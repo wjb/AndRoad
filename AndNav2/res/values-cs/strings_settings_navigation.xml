@@ -11,7 +11,7 @@
 <resources>
 	<string name="tv_settings_quickinfo_navigation_focused">Nastavení navigace...</string>
 	<string name="tv_settings_navigation_quickinfo_caption">Nastavení navigace...</string>
-	<string name="tv_settings_navigation_centermode">změnit volbu centrování</string>
-	<string name="tv_settings_navigation_rotatemode">změnit volbu rotace</string>
-	<string name="tv_settings_navigation_more">Více</string>
+	<string name="tv_settings_navigation_centermode">centrování mapy</string>
+	<string name="tv_settings_navigation_rotatemode">rotace mapy</string>
+	<string name="tv_settings_navigation_more">více</string>
 </resources>

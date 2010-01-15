@@ -77,7 +77,7 @@ public enum Country implements Parcelable {
 	CROATIA(R.string.country_croatia, "HR", R.drawable.flag_croatia, "hr", null, true, null, Constants.NOT_SET),
 	CUBA(R.string.country_cuba, "CU", R.drawable.flag_cuba, null, null, false, null, Constants.NOT_SET),
 	CYPRUS(R.string.country_cyprus, "CY", R.drawable.flag_cyprus, null, null, false, null, Constants.NOT_SET),
-	CZECHREPUBLIC(R.string.country_czechrepublic, "CZ", R.drawable.flag_czech_republic, "cz", null, true, null, Constants.NOT_SET),
+	CZECHREPUBLIC(R.string.country_czechrepublic, "CZ", R.drawable.flag_czech_republic, "cs", null, true, new DirectionsLanguage[]{DirectionsLanguage.CZECH}, Constants.NOT_SET), 
 	DENMARK(R.string.country_denmark, "DK", R.drawable.flag_denmark, null, null, true, null, Constants.NOT_SET),
 	DJIBOUTI(R.string.country_djibouti, "DJ", R.drawable.flag_djibouti, null, null, false, null, Constants.NOT_SET),
 	DOMINICA(R.string.country_dominica, "DM", R.drawable.flag_dominica, null, null, false, null, Constants.NOT_SET),

@@ -21,7 +21,7 @@
 	<string name="toast_autofollow_enabled">Autofollow: zapnuto</string>
 	<string name="toast_autofollow_disabled">Autofollow: vypnuto</string>
 	
-	<string name="whereami_location_not_resolvable">Vaše pozice nemohla být nalezena.</string>
+	<string name="whereami_location_not_resolvable">Vaše pozice nebyla nalezena.</string>
 
 	<string name="toast_whereami_no_radar_app_installed">Radarový program není nainstalován.\nMůže být stažen z Android-Marketu!</string>	
 	<string name="toast_map_accessibilityanalysis_finished">Analýza dostupnosti dokončena.</string>
@@ -49,7 +49,7 @@
 	<!-- The Maptile-Preload-Dialog -->
 	<string name="dlg_preloader_rect_maxzoom_title">Zvolit maximálné zvětšení.</string>
 	<string name="dlg_preloader_rect_reducezoom">Zmenšit zvětšení</string>
-	<string name="dlg_preloader_rect_title">Rechecks-Vorlader</string>
+	<string name="dlg_preloader_rect_title">Načtení mapy</string>
 	<string name="dlg_preloader_rect_message">Načíst %d mapové podklady v zobrazeném poli?\n\nPřibližná velikost: %s</string>
 	
 	<!-- The Dialog where the user can add a new Traffic Feed. -->

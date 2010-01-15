@@ -11,7 +11,7 @@
 <resources>
 	<string name="tv_settings_center_and_rotate_mode_quickinfo_current">(aktuální)</string>
 	<string name="rotatemode_dd_up_centermode_upto_nextturn_mutex_title">Konflikt v nastavení!</string>
-	<string name="rotatemode_dd_up_centermode_upto_nextturn_mutex_message">Zvolené nastavení nelze použít současně s volbou rotace: \"Směr jízdy nahoru\".\n\nBude pokračováno s volbou rotace: \"Sever nahoru\"!</string>
+	<string name="rotatemode_dd_up_centermode_upto_nextturn_mutex_message">Zvolené nastavení nelze použít současně s volbou rotace: \"Směr jízdy nahoru\".\n\nBude nastavena volba rotace: \"Sever nahoru\"!</string>
 	<string name="centermode_dd_up_rotatemode_upto_nextturn_mutex_title">Konflikt v nastavení!</string>
-	<string name="centermode_dd_up_rotatemode_upto_nextturn_mutex_message">Zvolené nastavení nelze použít současně s volbou centrování: \"K odbočení\".\n\nBude pokračováno s volbou rotace: \"uživatelské centrování\"!</string>
+	<string name="centermode_dd_up_rotatemode_upto_nextturn_mutex_message">Zvolené nastavení nelze použít současně s volbou centrování: \"K odbočení\".\n\nBude nastavena volba rotace: \"uživatelské centrování\"!</string>
 </resources>

@@ -15,6 +15,7 @@ public enum DirectionsLanguage {
 	// ===========================================================
 
 	ENGLISH("en", R.string.dialect_none, R.xml.turninstructions_en),
+	CZECH("cs", R.string.dialect_none, R.xml.turninstructions_cs),
 	GERMAN("de", R.string.dialect_none, R.xml.turninstructions_de),
 	GERMAN_PLATT("de-opplat", R.string.dialect_germany_platt, R.xml.turninstructions_de),
 	GERMAN_SCHWAEBISCH("de-swabia", R.string.dialect_germany_schwaebisch, R.xml.turninstructions_de),

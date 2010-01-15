@@ -17,7 +17,7 @@
 	<string name="dlg_input_osm_account_password">Heslo:</string>
 	<string name="dlg_input_osm_account_username_tooshort"><b>NICHT GESPEICHERT</b>\nJméno příliš krátké!</string>
 	<string name="dlg_input_osm_account_password_tooshort"><b>NICHT GESPEICHERT</b>\nHeslo příliš krátké!</string>
-	<string name="dlg_input_osm_account_info"><b>Tip:</b> Zadání dvakrát zkontrolovat!</string>
+	<string name="dlg_input_osm_account_info"><b>Tip:</b> Zadání dvakrát zkontroluj!</string>
 	
 	<string name="notif_settings_tracepolicy_osmcontribution_failed_fallback_used_title">Načtení trasy selhalo.</string>
 	<string name="notif_settings_tracepolicy_osmcontribution_failed_fallback_used_message">Trasy byla uložena na SD kartu.</string>

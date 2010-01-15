@@ -10,9 +10,9 @@
 -->
 <resources>
 	<string name="tv_sd_contacts_quickinfo_caption">Vybrat kontakt...</string>
-	<string name="sd_contacts_resolving_address">Addresa se hledá...</string>
+	<string name="sd_contacts_resolving_address">Adresa se hledá...</string>
 	<string name="toast_sd_contacts_error_resolving_address">Chyba při hledání adresy...</string>
-	<string name="toast_could_not_resolve_address">Addresa nenalezena...</string>
+	<string name="toast_could_not_resolve_address">Adresa nenalezena...</string>
 	<string name="sd_contacts_address_type_home">Soukromá</string>
 	<string name="sd_contacts_address_type_work">Do práce</string>
 	
