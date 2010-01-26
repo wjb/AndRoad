@@ -9,6 +9,6 @@
  ### README-END ###
 -->
 <resources>
-	<string name="tv_settings_quickinfo_keylayout_focused">Změnit klávesnici...</string>
-	<string name="tv_settings_keylayout_quickinfo_caption">Vybrat klávesnici...</string>
+	<string name="tv_settings_quickinfo_keylayout_focused">Nastavení klávesnice...</string>
+	<string name="tv_settings_keylayout_quickinfo_caption">Vyberte klávesnici...</string>
 </resources>

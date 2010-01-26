@@ -24,30 +24,30 @@
 	<string name="ddmap_info_waypoint_passed">Bod projet.</string>
 	<string name="ddmap_info_target_reached">Cíl dosažen!</string>
 	<string name="ddmap_info_gps_resolving">Zapínám GPS...</string>
-	<string name="ddmap_info_no_route">Žádná trasa nenalezena ...</string>
+	<string name="ddmap_info_no_route">Trasa nenalezena ...</string>
 	<string name="ddmap_info_route_fetch_no_dataconnection_title">Žádné datové připojení...</string>
 	<string name="ddmap_info_route_fetch_no_dataconnection_message">Datové připojení přerušeno...\n <b>Zkusit znovu?</b></string>
 	<string name="ddmap_info_route_fetch_tries_exceeded_ask_remove_streetnumber_title">Trasa nenalezena</string>
-	<string name="ddmap_info_route_fetch_tries_exceeded_ask_remove_streetnumber_message">Po <b>3</b> pokusu...\n<b>Zkusit znovu</b> bez <b>čísla popisného</b>?</string>
-	<string name="ddmap_info_route_fetch_tries_exceeded_title">Žádná trasa nenalezena ...</string>
+	<string name="ddmap_info_route_fetch_tries_exceeded_ask_remove_streetnumber_message">Po <b>3</b> pokusech...\n<b>Zkusit znovu</b> bez <b>čísla popisného</b>?</string>
+	<string name="ddmap_info_route_fetch_tries_exceeded_title">Trasa nenalezena ...</string>
 	<string name="ddmap_info_route_fetch_tries_exceeded_message">Po <b>3</b> pokusu...\n<b>Zkusit znovu?</b></string>
 	<string name="ddmap_info_route_fetch_useold">Použít poslední trasu</string>
 	<string name="ddmap_info_gps_fetch_tries_exceeded_title"><b>GPS</b> není k dispozici...</string>
 	<string name="ddmap_info_gps_fetch_tries_exceeded_message"><b>Zkusit znovu</b> zjistit GPS pozici novou?\n\n<i>(GPS ikona ve statusové řádce by měla <b>přestat</b> blikat!)</i></string>
 	
 	
-	<string name="toast_autozoom_enabled">Autozoom <b>zapnut</b>. Přepnout pomocí '<b>a</b>'-klávesy.</string>
-	<string name="toast_autozoom_disabled">Autozoom <b>vypnut</b>. Přepnout pomocí '<b>a</b>'-klávesy.</string>
+	<string name="toast_autozoom_enabled">Autozoom <b>zapnut</b>. Přepnout pomocí \'<b>a</b>\'-klávesy.</string>
+	<string name="toast_autozoom_disabled">Autozoom <b>vypnut</b>. Přepnout pomocí \'<b>a</b>\'-klávesy.</string>
 	
-	<string name="toast_snaptoroute_enabled">'Pozici na trase přilepit' <b>zapnuto</b>. Přepnout pomocí '<b>a</b>'-klávesy.</string>
-	<string name="toast_snaptoroute_disabled">'Pozici na trase přilepit' <b>vypnuto</b>. Přepnout pomocí '<b>a</b>'-klávesy.</string>
+	<string name="toast_snaptoroute_enabled">\'Pozici na trase přilepit\' <b>zapnuto</b>. Přepnout pomocí \'<b>a</b>\'-klávesy.</string>
+	<string name="toast_snaptoroute_disabled">\'Pozici na trase přilepit\' <b>vypnuto</b>. Přepnout pomocí \'<b>a</b>\'-klávesy.</string>
 	
 	<!-- Preloader -->
 	<string name="toast_preloader_noroute">Trasa neexistuje pro přednačtení mapových podkladů.</string>
 	<string name="ddmap_info_preloader_autozoom_disabled">Autozoom je nyní vypnut.</string>
 	
 	<string name="dlg_preloader_title">Přednačtení</string>
-	<string name="dlg_preloader_message">%d mapové podklady pro aktuální trasu přednačíst?\n\nPřibližná velikost: %s</string>
+	<string name="dlg_preloader_message">Přednačíst %d mapových podkladů pro aktuální trasu?\n\nPřibližná velikost: %s</string>
 	
 	<string name="pdg_preloader_title">Načítám mapové podklady...</string>
 	<string name="pdg_preloader_message">Načítám: %d z %d\n\n<i>Zpět pro schování okna.</i></string>

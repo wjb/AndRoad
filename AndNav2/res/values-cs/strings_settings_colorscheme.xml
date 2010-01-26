@@ -16,5 +16,5 @@
 		<string name="toast_settings_colorscheme_changed">Aby byly změny viditelné, musí být AndNav2 restartován.</string>
 		<string name="tv_settings_colorscheme_mapcolorscheme_caption">Změnit Mapové barevné schéma...</string>
 		<string name="tv_settings_colorscheme_overallbrightness_slider_caption">Změnit světlost displeje...</string>
-		<string name="tv_settings_colorscheme_overallbrightness_slider_hint">Světlost displeje <b>nebude</b> okamžitě změněna!</string>
+		<string name="tv_settings_colorscheme_overallbrightness_slider_hint">Nastavení světlosti displeje <b>nebude</b> provedeno okamžitě!</string>
 </resources>

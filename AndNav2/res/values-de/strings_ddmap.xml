@@ -26,11 +26,11 @@
 	<string name="ddmap_info_gps_fetch_tries_exceeded_message"><b>Nochmal versuchen</b> die GPS-Position zu bestimmen?\n\n<i>(Das GPS Icon in der Statusleiste sollte <b>aufhören</b> zu blinken!)</i></string>
 	
 	
-	<string name="toast_autozoom_enabled">Autozoom <b>eingeschaltet</b>. Umschalten mit der '<b>a</b>'-Taste.</string>
-	<string name="toast_autozoom_disabled">Autozoom <b>ausgeschaltet</b>. Umschalten mit der '<b>a</b>'-Taste.</string>
+	<string name="toast_autozoom_enabled">Autozoom <b>eingeschaltet</b>. Umschalten mit der \'<b>a</b>\'-Taste.</string>
+	<string name="toast_autozoom_disabled">Autozoom <b>ausgeschaltet</b>. Umschalten mit der \'<b>a</b>\'-Taste.</string>
 	
-	<string name="toast_snaptoroute_enabled">'Position auf Route heften' <b>eingeschaltet</b>. Umschalten mit der '<b>a</b>'-Taste.</string>
-	<string name="toast_snaptoroute_disabled">'Position auf Route heften' <b>ausgeschaltet</b>. Umschalten mit der '<b>a</b>'-Taste.</string>
+	<string name="toast_snaptoroute_enabled">\'Position auf Route heften\' <b>eingeschaltet</b>. Umschalten mit der \'<b>a</b>\'-Taste.</string>
+	<string name="toast_snaptoroute_disabled">\'Position auf Route heften\' <b>ausgeschaltet</b>. Umschalten mit der \'<b>a</b>\'-Taste.</string>
 	
 	<!-- Preloader -->
 	<string name="toast_preloader_noroute">Keine Route verfügbar um Kartenkacheln zu vor zu laden.</string>

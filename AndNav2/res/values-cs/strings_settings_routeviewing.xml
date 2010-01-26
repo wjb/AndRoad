@@ -9,9 +9,9 @@
  ### README-END ###
 -->
 <resources>
-	<string name="tv_settings_routeviewing_maxlevel_caption">Nastavit maximální zvětšení během navigace ...</string>
+	<string name="tv_settings_routeviewing_maxlevel_caption">Nastavte maximální zvětšení během navigace ...</string>
 	<string name="chk_settings_routeviewing_maxlevel_enabled_caption">Aktivovat autozoom ...</string>
 	
-	<string name="chk_settings_routeviewing_snaptoroute_enabled_caption">Korekce chyby...</string>
-	<string name="tv_settings_routeviewing_snaptoroute_caption">Nastavit toleranci pro zobrazení ukazatele na trase.</string>
+	<string name="chk_settings_routeviewing_snaptoroute_enabled_caption">Korekce GPS chyby...</string>
+	<string name="tv_settings_routeviewing_snaptoroute_caption">Nastavte toleranci pro zobrazení ukazatele na trase.</string>
 </resources>

@@ -23,8 +23,8 @@
 	<string name="app_name_about">AndNav2! - O</string>
 	<string name="app_name_sd_mainchoose">AndNav2! - Vybrat způsob...</string>
 	<string name="app_name_sd_resolver">Hledat adresu...</string>
-	<string name="app_name_sd_poi_categories">AndNav2! - POI-vybrat kategorii...</string>
-	<string name="app_name_sd_poi_entry">AndNav2! - POI zadat popis...</string>
+	<string name="app_name_sd_poi_categories">AndNav2! - POI-vyběr kategorií...</string>
+	<string name="app_name_sd_poi_entry">AndNav2! - POI zadejte popis...</string>
 	<string name="app_name_sd_poi_searchlist">AndNav2! - POI vybrat...</string>
 	<string name="app_name_sd_country">AndNav2! - vybrat zemi...</string>
 	<string name="app_name_sd_ziporcity">AndNav2! - Vylepšit ...</string>

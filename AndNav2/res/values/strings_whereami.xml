@@ -16,7 +16,7 @@
 	<string name="tv_whereami_contextmenu_weather_get">Weather Forecast...</string>
 	<string name="tv_whereami_contextmenu_close">Close</string>
 	
-	<string name="et_whereami_searchbox_hint">i.e.: 'Oakland, Blossom St'</string>
+	<string name="et_whereami_searchbox_hint">i.e.: \'Oakland, Blossom St\'</string>
 	
 		
 	<string name="toast_autofollow_once">Centered on user...</string>

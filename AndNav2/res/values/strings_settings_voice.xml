@@ -18,8 +18,8 @@
 		<string name="dlg_settings_voice_tts_play_sample">Play sample</string>
 		
 	<string name="tts_not_installed_title">"'Text to Speech' ..."</string>
-	<string name="tts_not_installed_message">The <b>FREE</b> 'Text to Speech' library was not found on this device.\n\nDo you want to install it from the <b>Android Market</b>?</string>
-	<string name="tts_outdated_message">The <b>FREE</b> 'Text to Speech' library is out of date.\n\nIt is <b>strongly</b> recommended to update it now!</string>
+	<string name="tts_not_installed_message">The <b>FREE</b> \'Text to Speech\' library was not found on this device.\n\nDo you want to install it from the <b>Android Market</b>?</string>
+	<string name="tts_outdated_message">The <b>FREE</b> \'Text to Speech\' library is out of date.\n\nIt is <b>strongly</b> recommended to update it now!</string>
 			
 	<array name="spin_settings_directionvoice_saywhat_items">
 		<item>Nothing</item>

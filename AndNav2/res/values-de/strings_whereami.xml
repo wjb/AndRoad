@@ -16,7 +16,7 @@
 	<string name="tv_whereami_contextmenu_weather_get">Wettervorhersage...</string>
 	<string name="tv_whereami_contextmenu_close">Schließen</string>
 	
-	<string name="et_whereami_searchbox_hint">z.B.: 'Berlin, Lychenerstraße'</string>
+	<string name="et_whereami_searchbox_hint">z.B.: \'Berlin, Lychenerstraße\'</string>
 	
 		
 	<string name="toast_autofollow_once">Auf Nutzer zentriert...</string>

@@ -9,17 +9,17 @@
  ### README-END ###
 -->
 <resources>
-	<string name="tv_settings_quickinfo_favorites_focused">Spravovate oblíbené body...</string>
+	<string name="tv_settings_quickinfo_favorites_focused">Spravovat oblíbené body...</string>
 	
 	<string name="settings_favortites_contextmenu_use">Vybrat oblíbený bod!</string>
 	<string name="settings_favortites_contextmenu_delete">Tento oblíbený bod smazat!</string>
 
-	<string name="tv_sd_favorites_quickinfo_caption">Oblíbený bod vybrat...</string>
-	<string name="menu_sd_favorites_wipe">Oblíbený bod smazat...</string>
+	<string name="tv_sd_favorites_quickinfo_caption">Vyberte oblíbený bod...</string>
+	<string name="menu_sd_favorites_wipe">Smazat blíbený bod...</string>
 	
 	<string name="dlg_input_favorite_name_name">Jméno:</string>
-	<string name="dlg_input_favorite_name_title">Zadat jméno...</string>
+	<string name="dlg_input_favorite_name_title">Jméno bodu...</string>
 	<string name="dlg_input_favorite_name_example">Minimálně <b>3</b> znaky.</string>
 	
-	<string name="toast_error_adding_favorite">Chyba při přidání oblíbenéh bodu.</string>
+	<string name="toast_error_adding_favorite">Chyba při přidání oblíbeného bodu.</string>
 </resources>

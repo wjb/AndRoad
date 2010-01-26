@@ -18,8 +18,8 @@
 		<string name="dlg_settings_voice_tts_play_sample">Beispiel abspielen</string>
 		
 	<string name="tts_not_installed_title">"'Text-To-Speech' ..."</string>
-	<string name="tts_not_installed_message">Die <b>FREIE</b> 'Text-To-Speech' Bibliothek wurde nicht gefunden.\n\nMöchten Sie diese vom <b>Android Market</b> herunterladen?</string>
-	<string name="tts_outdated_message">Die <b>FREIE</b> 'Text-To-Speech' Bibliothek ist nicht merh aktuell.\n\nEs wird <b>stark</b> empfohlen diese jetzt zu aktuelisieren!</string>
+	<string name="tts_not_installed_message">Die <b>FREIE</b> \'Text-To-Speech\' Bibliothek wurde nicht gefunden.\n\nMöchten Sie diese vom <b>Android Market</b> herunterladen?</string>
+	<string name="tts_outdated_message">Die <b>FREIE</b> \'Text-To-Speech\' Bibliothek ist nicht merh aktuell.\n\nEs wird <b>stark</b> empfohlen diese jetzt zu aktuelisieren!</string>
 			
 	<array name="spin_settings_directionvoice_saywhat_items">
 		<item>Nichts</item>

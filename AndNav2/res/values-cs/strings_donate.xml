@@ -14,7 +14,7 @@
 	<string name="donate_recurring">Opakovaně</string>
 	<string name="donate_proceed_info">Budete přesměrováni na paypal.com, kde můžete zkontrolovat Vaše data.</string>
 	
-	<string name="donate_period_daily">deně</string>
+	<string name="donate_period_daily">denně</string>
 	<string name="donate_period_weekly">týdně</string>
 	<string name="donate_period_monthly">měsíčně</string>
 	<string name="donate_period_yearly">ročně</string>

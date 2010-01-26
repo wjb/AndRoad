@@ -11,5 +11,5 @@
 	<string name="pdg_settings_cache_clear_cache_title">Clearing cache...</string>
 	
 	<string name="settings_cache_clear_external_warning_title">Warning...</string>
-	<string name="settings_cache_clear_external_warning_message">Clearing the SD-Card cache <b>should be</b> done using your <b>desktop computer</b>!\n\nIt's a lot faster and much more reliable. (The attempt to clear the cache by clicking 'Proceed' might crash!)\n</string>
+	<string name="settings_cache_clear_external_warning_message">Clearing the SD-Card cache <b>should be</b> done using your <b>desktop computer</b>!\n\nIt\'s a lot faster and much more reliable. (The attempt to clear the cache by clicking \'Proceed\' might crash!)\n</string>
 </resources>

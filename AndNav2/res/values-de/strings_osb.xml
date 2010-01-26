@@ -6,7 +6,7 @@
 	<string name="dlg_osb_bug_invalid_comment">Bitte gültigen Kommentar eingeben..."</string>
 	<string name="dlg_osb_commentername">Name:</string>
 	
-	<string name="osb_instructions"><b>Anleitung:</b>\nHier können Sie uns über Bugs im OpenStreetMap-Kartenmaterial informieren.\n\n<b>Was ist ein Bug:</b>\nEin Bug ist zum Beispiel eine fehlende Straße, eine fehlende Kreuzung, ein falscher Straßenname oder einfach ein nicht verzeichneter Briefkasten.\nFügen Sie einfach einen Kommentar an den neu erstellten Bug und innerhalb weniger Tage oder Wochen wird der Fehler behoben.\n\n<b>Einen Bug erstellen:</b>\nUm einen Bug zu erstellen, drücken Sie einfach auf das '<i>grüne Plus</i>'-Icon zu Ihrer Rechten und positionieren Sie das Fadenkreuz über der fehlerhaften Stelle.\nDrücken sie nun den erschienenen Knopf mit dem <b>Haken</b> um eine kurze Beschreibung einzugeben. Oder aber drücken Sie <b>Abbrechen</b> um den Bug wieder zu verwerfen.\n\n<b>Einen Bug ändern:</b>\nUm einen Bug zu <b>ändern</b> klicken Sie ihn einfach auf der Karte an.\nDrücken sie dann den <b>Ändern</b>-Knopf unten rechts in der Ecke des Bildschirms und lassen sich durch die Menüs führen.\n\nVielen Dank an das OpenStreetBugs.org-Team für diese Program-Schnittstelle.\n\nBitte nutzen Sie diese Fähigkeit weise. =)\n</string>
+	<string name="osb_instructions"><b>Anleitung:</b>\nHier können Sie uns über Bugs im OpenStreetMap-Kartenmaterial informieren.\n\n<b>Was ist ein Bug:</b>\nEin Bug ist zum Beispiel eine fehlende Straße, eine fehlende Kreuzung, ein falscher Straßenname oder einfach ein nicht verzeichneter Briefkasten.\nFügen Sie einfach einen Kommentar an den neu erstellten Bug und innerhalb weniger Tage oder Wochen wird der Fehler behoben.\n\n<b>Einen Bug erstellen:</b>\nUm einen Bug zu erstellen, drücken Sie einfach auf das \'<i>grüne Plus</i>\'-Icon zu Ihrer Rechten und positionieren Sie das Fadenkreuz über der fehlerhaften Stelle.\nDrücken sie nun den erschienenen Knopf mit dem <b>Haken</b> um eine kurze Beschreibung einzugeben. Oder aber drücken Sie <b>Abbrechen</b> um den Bug wieder zu verwerfen.\n\n<b>Einen Bug ändern:</b>\nUm einen Bug zu <b>ändern</b> klicken Sie ihn einfach auf der Karte an.\nDrücken sie dann den <b>Ändern</b>-Knopf unten rechts in der Ecke des Bildschirms und lassen sich durch die Menüs führen.\n\nVielen Dank an das OpenStreetBugs.org-Team für diese Program-Schnittstelle.\n\nBitte nutzen Sie diese Fähigkeit weise. =)\n</string>
 	
 	<!-- Choose between adding OSB or FTPC -->
 	<string name="dlg_osb_choose_what_to_add">Wählen...</string>
@@ -52,7 +52,7 @@
 	<string name="dlg_input_osmpoiname_title">Namen des POI eingeben...</string>
 	<string name="dlg_input_osmpoiname_category">Kategorie:</string>
 	<string name="dlg_input_osmpoiname_name">Name:</string>
-	<string name="dlg_input_osmpoiname_name_hint">z.B.: 'McDonalds'</string>
+	<string name="dlg_input_osmpoiname_name_hint">z.B.: \'McDonalds\'</string>
 	<string name="dlg_input_osmpoiname_example">Hinweis: Der <b>Name</b> sollte den POI in 1-3 Worten dingefest machen.</string>
 	
 	<string name="dlg_osb_add_osmpoi_failed_title">Fehler...</string>

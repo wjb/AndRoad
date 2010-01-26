@@ -24,6 +24,6 @@
 	<string name="veecheck_version_importance">Důležitost:</string> 
 	
 	<string name="veecheck_confirm_text"><b>Chcete AndNav2 aktualizovat na nejnovější verzi?</b>\n\n<b>Důležitost:</b> <i>%s</i>\n<b>Typ:</b> <i>%s</i>\n%s\n\nS přátelským pozdravem,\nVáš AndNav-Team</string>
-	<string name="veecheck_confirm_text_default"><b>Chcete AndNav2 aktualizovat na nejnovější verzi?</b>\n\nNové verze mají více možností a méně chyba!\n\nS přátelským pozdravem,\nVáš AndNav-Team</string> 
+	<string name="veecheck_confirm_text_default"><b>Chcete AndNav2 aktualizovat na nejnovější verzi?</b>\n\nNové verze mají více možností a méně chyb!\n\nS přátelským pozdravem,\nVáš AndNav-Team</string> 
 	<string name="veecheck_confirm_stop"><b>Tuto</b> aktualizaci ignorovat!</string> 
 </resources>

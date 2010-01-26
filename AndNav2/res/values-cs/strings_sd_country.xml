@@ -9,5 +9,5 @@
  ### README-END ###
 -->
 <resources>
-	<string name="tv_sd_country_quickinfo_default">Vybrat zemi...</string>
+	<string name="tv_sd_country_quickinfo_default">Vyberte zemi...</string>
 </resources>

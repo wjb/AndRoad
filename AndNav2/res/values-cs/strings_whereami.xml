@@ -47,7 +47,7 @@
 	<string name="wherami_dialog_country">Země:</string>
 	
 	<!-- The Maptile-Preload-Dialog -->
-	<string name="dlg_preloader_rect_maxzoom_title">Zvolit maximálné zvětšení.</string>
+	<string name="dlg_preloader_rect_maxzoom_title">Zvolte maximálné zvětšení.</string>
 	<string name="dlg_preloader_rect_reducezoom">Zmenšit zvětšení</string>
 	<string name="dlg_preloader_rect_title">Načtení mapy</string>
 	<string name="dlg_preloader_rect_message">Načíst %d mapové podklady v zobrazeném poli?\n\nPřibližná velikost: %s</string>

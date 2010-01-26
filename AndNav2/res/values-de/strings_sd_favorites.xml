@@ -9,7 +9,7 @@
 	<string name="menu_sd_favorites_wipe">Favoriten löschen...</string>
 	
 	<string name="dlg_input_favorite_name_name">Name:</string>
-	<string name="et_dlg_input_favorite_name_name_hint">z.B.: 'Toller Ort'</string>
+	<string name="et_dlg_input_favorite_name_name_hint">z.B.: \'Toller Ort\'</string>
 	<string name="dlg_input_favorite_name_title">Name eingeben...</string>
 	<string name="dlg_input_favorite_name_example">Mindestens <b>3</b> Buchstaben.</string>
 	

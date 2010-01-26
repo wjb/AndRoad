@@ -12,7 +12,7 @@
 <resources>
 	<array name="did_you_know">
 		<item><b>Dlouhým kliknutím</b> na mapu v módu navigace se zobrazí dialogové okénko pro přidání otočného bodu a zadání prostoru pro objetí.</item>
-		<item><b>Dlouhým kliknutím</b> na mapu v módu náhledu můžete přidat oblíbebé bod nebo si nechat zobrazit předpověd pro danou oblast.</item>
-		<item>Když na otevřete <b>Menu</b> na displeji, můžete vybírat mezi <i>Adresou/Kontakty/POI</i>, najdete také položku menu, kde můžete přímo zadat <b>zeměpisnou šířku</b> a <b>délku</b> Vašeho cíle.</item>
+		<item><b>Dlouhým kliknutím</b> na mapu v módu náhledu můžete přidat oblíbebý bod nebo si nechat zobrazit předpověd počasí pro danou oblast.</item>
+		<item>Když otevřete <b>Menu</b> na displeji, můžete vybírat mezi <i>Adresou/Kontakty/POI</i>, najdete také položku menu, kde můžete přímo zadat <b>zeměpisnou šířku</b> a <b>délku</b> Vašeho cíle.</item>
 	</array>
 </resources>

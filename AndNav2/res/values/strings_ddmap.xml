@@ -26,11 +26,11 @@
 	<string name="ddmap_info_gps_fetch_tries_exceeded_message"><b>Retry</b> getting your current GPS-Location?\n\n<i>(The GPS icon in the statusbar needs to <b>stop</b> blinking!)</i></string>
 	
 	
-	<string name="toast_autozoom_enabled">Autozoom is now <b>enabled</b>. Toggle it with the '<b>a</b>'-Key.</string>
-	<string name="toast_autozoom_disabled">Autozoom is now <b>disabled</b>. Toggle it with the '<b>a</b>'-Key.</string>
+	<string name="toast_autozoom_enabled">Autozoom is now <b>enabled</b>. Toggle it with the \'<b>a</b>\'-Key.</string>
+	<string name="toast_autozoom_disabled">Autozoom is now <b>disabled</b>. Toggle it with the \'<b>a</b>\'-Key.</string>
 	
-	<string name="toast_snaptoroute_enabled">SnapToRoute is now <b>enabled</b>. Toggle it with the '<b>s</b>'-Key.</string>
-	<string name="toast_snaptoroute_disabled">SnapToRoute is now <b>disabled</b>. Toggle it with the '<b>s</b>'-Key.</string>
+	<string name="toast_snaptoroute_enabled">SnapToRoute is now <b>enabled</b>. Toggle it with the \'<b>s</b>\'-Key.</string>
+	<string name="toast_snaptoroute_disabled">SnapToRoute is now <b>disabled</b>. Toggle it with the \'<b>s</b>\'-Key.</string>
 	
 	<!-- Preloader -->
 	<string name="toast_preloader_noroute">No Route to load MapTiles for.</string>

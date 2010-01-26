@@ -57,7 +57,7 @@
 	<string name="country_congodemocraticrepublic">Democratic Republic of the Congo</string>
 	<string name="country_cookislands">Cook Islands</string>
 	<string name="country_costarica">Costa Rica</string>
-	<string name="country_cotedivoire">Cote d'Ivoire</string>
+	<string name="country_cotedivoire">Cote d\'Ivoire</string>
 	<string name="country_croatia">Croatia</string>
 	<string name="country_cuba">Cuba</string>
 	<string name="country_cyprus">Cyprus</string>
@@ -115,10 +115,10 @@
 	<string name="country_kenya">Kenya</string>
 	<string name="country_kiribati">Kiribati</string>
 	<string name="country_koreasouth">Republic of South Korea</string>
-	<string name="country_koreanorth">Democratic People's Republic of North Korea</string>
+	<string name="country_koreanorth">Democratic People\'s Republic of North Korea</string>
 	<string name="country_kuwait">Kuwait</string>
 	<string name="country_kyrgyzstan">Kyrgyztan</string>
-	<string name="country_laopeoplesdemocraticrepublic">People's Democratic Republic of Lao</string>
+	<string name="country_laopeoplesdemocraticrepublic">People\'s Democratic Republic of Lao</string>
 	<string name="country_latvia">Latvia</string>
 	<string name="country_lebanon">Lebanon</string>
 	<string name="country_lesotho">Lesotho</string>
