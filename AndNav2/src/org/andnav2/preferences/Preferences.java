@@ -203,9 +203,7 @@ public class Preferences implements Constants, PreferenceConstants {
 	 * @param nat Nationality to be saved and used by the whole application. */
 	public static void saveDrivingDirectionsLanguage(final Context ctx, final DirectionsLanguage nat){
 		final boolean isDialect = nat.NAMERESID == R.string.dialect_none;
-		if(isDialect && Constants.LITEVERSION){
-			Toast.makeText(ctx, R.string.toast_get_pro_version, Toast.LENGTH_SHORT).show();
-		}else{
+		if(isDialect){
 			getEditorInstance(ctx).putString(PREF_DRIVINGDIRECTIONSLANGUAGE_ID, nat.ID).commit();
 		}
 	}
@@ -952,10 +950,7 @@ public class Preferences implements Constants, PreferenceConstants {
 	}
 
 	public static void saveHUDImpl(final Context ctx, final IHUDImpl pHUDImpl, final int pVariationID){
-		/* LITEVERSION */
-		if(Constants.LITEVERSION && pHUDImpl.getID() != BasicHUDImpl.ID){
-			Toast.makeText(ctx, R.string.toast_get_pro_version, Toast.LENGTH_SHORT).show();
-		}else{
+		if(pHUDImpl.getID() != BasicHUDImpl.ID){
 			getEditorInstance(ctx)
 			.putInt(PREF_HUDID_ID, pHUDImpl.getID())
 			.putInt(PREF_HUDVARIATIONID_ID, pVariationID)

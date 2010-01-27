@@ -25,8 +25,6 @@ public class SDPOICategories extends BasePOICategorySelectionActivity {
 	// Constants
 	// ===========================================================
 
-	private static final int DIALOG_NOTINLITEVERSION = 0;
-
 	// ===========================================================
 	// Fields
 	// ===========================================================
@@ -45,12 +43,7 @@ public class SDPOICategories extends BasePOICategorySelectionActivity {
 
 	@Override
 	protected Dialog onCreateDialog(final int id) {
-		switch(id){
-			case DIALOG_NOTINLITEVERSION:
-				return CommonDialogFactory.createNotInLiteVersionDialog(this);
-			default:
-				return null;
-		}
+			return null;
 	}
 
 	@Override
@@ -66,14 +59,6 @@ public class SDPOICategories extends BasePOICategorySelectionActivity {
 			public boolean onChildClick(final ExpandableListView parent, final View v, final int groupPosition, final int childPosition, final long id) {
 				final HashMap<String, String> map = (HashMap<String, String>)SDPOICategories.this.mExpListAdapter.getChild(groupPosition, childPosition);
 				final String poiTypeRawName = map.get(KEY_SUBTYPERAWNAME);
-
-
-				/* LITEVERSION */
-				final POIType p = POIType.fromRawName(poiTypeRawName);
-				if(LITEVERSION && !p.isInGroup(POIGroup.MOSTUSED)){
-					showDialog(DIALOG_NOTINLITEVERSION);
-					return true;
-				}
 
 
 				final UnitSystem us = Preferences.getUnitSystem(SDPOICategories.this);

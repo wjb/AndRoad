@@ -155,8 +155,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 	private static final int DIALOG_SELECT_FREEFORM_OR_STRUCTURED_SEARCH = DIALOG_INPUT_LAT_LON + 1;
 	private static final int DIALOG_INPUT_FAVORITE_NAME = DIALOG_SELECT_FREEFORM_OR_STRUCTURED_SEARCH + 1;
 	private static final int DIALOG_SELECT_TRAFFICFEED_FILTER_QUARTER = DIALOG_INPUT_FAVORITE_NAME + 1;
-	private static final int DIALOG_NOTINLITEVERSION = DIALOG_SELECT_TRAFFICFEED_FILTER_QUARTER + 1;
-	private static final int DIALOG_SELECT_VEHICLEREGISTRATIONPLATE_LOOKUP_COUNTRIES = DIALOG_NOTINLITEVERSION + 1;
+	private static final int DIALOG_SELECT_VEHICLEREGISTRATIONPLATE_LOOKUP_COUNTRIES = DIALOG_SELECT_TRAFFICFEED_FILTER_QUARTER + 1;
 	private static final int DIALOG_INPUT_VEHICLEREGISTRATIONPLATE_LOOKUP = DIALOG_SELECT_VEHICLEREGISTRATIONPLATE_LOOKUP_COUNTRIES + 1;
 
 
@@ -820,12 +819,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 				}
 				return true;
 			case MENU_WEATHER_ID:
-				/* LITEVERSION */
-				if(PROVERSION) {
-					openWeatherDialog(super.mOSMapView.getMapCenter());
-				} else {
-					showDialog(DIALOG_NOTINLITEVERSION);
-				}
+				openWeatherDialog(super.mOSMapView.getMapCenter());
 				return true;
 			case MENU_GPSSTATUS_ID:
 				org.andnav2.ui.util.Util.startUnknownActivity(this, "com.eclipsim.gpsstatus.VIEW", "com.eclipsim.gpsstatus");
@@ -905,15 +899,6 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 							Toast.makeText(WhereAmIMap.this, "Sorry, not found", Toast.LENGTH_LONG).show();
 						}else{
 							Toast.makeText(WhereAmIMap.this, "Found: " + vrp.getAbbreviation() + " = " + vrp.getRepresentation(), Toast.LENGTH_LONG).show();
-						}
-					}
-				});
-			case DIALOG_NOTINLITEVERSION:
-				return CommonDialogFactory.createNotInLiteVersionDialog(this, new CommonCallbackAdapter<Boolean>(){
-					@Override
-					public void onSuccess(final Boolean result) {
-						if(result){
-							// TODO (Wo wirds benutzt ??)
 						}
 					}
 				});

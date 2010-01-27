@@ -864,38 +864,6 @@ public class CommonDialogFactory {
 		.create();
 	}
 
-	public static Dialog createNotInLiteVersionDialog(final Context ctx){
-		return createNotInLiteVersionDialog(ctx, new CommonCallbackAdapter<Boolean>(){
-			@Override
-			public void onSuccess(final Boolean result) {
-				if(result){
-					final Intent proversionIntent = new Intent(ctx, ProVersion.class);
-					ctx.startActivity(proversionIntent);
-				}
-			}
-		});
-	}
-
-	public static Dialog createNotInLiteVersionDialog(final Context ctx, final CommonCallback<Boolean> pCallback){
-		return new AlertDialog.Builder(ctx)
-		.setIcon(R.drawable.market_bag)
-		.setTitle(R.string.dlg_notinliteversion_title)
-		.setMessage(R.string.dlg_notinliteversion_message)
-		.setPositiveButton(R.string.dlg_notinliteversion_moreinfo, new OnClickListener(){
-			@Override
-			public void onClick(final DialogInterface arg0, final int arg1) {
-				pCallback.onSuccess(true);
-			}
-		})
-		.setNegativeButton(R.string.cancel, new OnClickListener(){
-			@Override
-			public void onClick(final DialogInterface arg0, final int arg1) {
-				pCallback.onSuccess(false);
-			}
-		})
-		.create();
-	}
-
 	public static Dialog createORSServerSelectionInstructionsDialog(final Context ctx, final CommonCallback<Void> pCallback) {
 		return new AlertDialog.Builder(ctx)
 		.setIcon(R.drawable.information)
