@@ -10,7 +10,6 @@ import org.andnav2.osm.views.overlay.OSMMapViewSimpleTraceOverlay;
 import org.andnav2.preferences.PreferenceConstants;
 import org.andnav2.preferences.Preferences;
 import org.andnav2.ui.map.overlay.ColorSchemeOverlay;
-import org.andnav2.util.BetaExpirationBlocker;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -54,10 +53,6 @@ public abstract class OpenStreetMapAndNavBaseActivity extends OpenStreetMapActiv
 	@Override
 	protected void onCreate(final Bundle savedInstanceState, final boolean pDoGPSRecordingAndContributing, final boolean pShowTitleBarInMap) {
 		super.onCreate(savedInstanceState, pDoGPSRecordingAndContributing, pShowTitleBarInMap);
-
-//		if(BetaExpirationBlocker.finishWhenExpired(this)) {
-//			return;
-//		}
 
 		final boolean showTitleBarInMap = Preferences.getShowTitleBarInMap(this);
 		/* The app-title-bar just takes some pixels away without being useful. */

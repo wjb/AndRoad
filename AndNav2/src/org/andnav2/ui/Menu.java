@@ -16,7 +16,6 @@ import org.andnav2.ui.sd.SDPOISearchList;
 import org.andnav2.ui.settings.SettingsMenu;
 import org.andnav2.ui.settings.SettingsSelectHome;
 import org.andnav2.ui.util.Util;
-import org.andnav2.util.BetaExpirationBlocker;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -74,10 +73,6 @@ public class Menu extends AndNavGPSActivity {
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 		this.setContentView(R.layout.menu);
-
-//		if(BetaExpirationBlocker.finishWhenExpired(this)) {
-//			return;
-//		}
 
 		this.findViewById(R.id.ibtn_whereami).requestFocus();
 

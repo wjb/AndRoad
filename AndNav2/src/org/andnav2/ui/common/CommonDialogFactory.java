@@ -13,7 +13,6 @@ import org.andnav2.sys.ors.adt.ds.POIType;
 import org.andnav2.sys.ors.adt.lus.Country;
 import org.andnav2.sys.ors.adt.rs.DirectionsLanguage;
 import org.andnav2.sys.osb.adt.OpenStreetBug;
-import org.andnav2.ui.ProVersion;
 import org.andnav2.ui.sd.SDPOICategories;
 import org.andnav2.ui.sd.SDPOIEntry;
 import org.openstreetmap.api.exceptions.OSMAPIException;
