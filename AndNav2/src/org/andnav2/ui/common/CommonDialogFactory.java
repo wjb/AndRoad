@@ -431,19 +431,25 @@ public class CommonDialogFactory {
 		.create();
 	}
 
+	/**
+	 * Present the End User License Agreement dialog so the user can accept it.
+	 * @param ctx
+	 * @param pCallback
+	 * @return
+	 */
 	public static Dialog createAcceptEulaDialog(final Context ctx, final CommonCallback<Boolean> pCallback){
+		CharSequence msg = ctx.getString(R.string.eula_gpl) 
+		                 + ctx.getString(R.string.eula_disclaim) ;
 		return new AlertDialog.Builder(ctx)
 		.setTitle(R.string.eula_title)
-		.setMessage(R.string.eula)
+		.setMessage(msg)
 		.setPositiveButton(R.string.eula_accept, new DialogInterface.OnClickListener(){
-			@Override
 			public void onClick(final DialogInterface d, final int which) {
 				d.dismiss();
 				pCallback.onSuccess(true);
 			}
 		})
 		.setNegativeButton(R.string.eula_decline, new DialogInterface.OnClickListener(){
-			@Override
 			public void onClick(final DialogInterface d, final int which) {
 				d.dismiss();
 				pCallback.onSuccess(false);
