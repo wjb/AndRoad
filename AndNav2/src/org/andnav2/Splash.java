@@ -44,7 +44,12 @@ public class Splash extends Activity implements Constants, AdFreeConstants {
 	// Constructors
 	// ===========================================================
 
-	/** Called when the activity is first created. */
+	/** 
+	 * 
+	 * Called when the activity is first created. 
+	 * 
+	 * @param icicle ?
+	 */
 	@Override
 	public void onCreate(final Bundle icicle) {
 		super.onCreate(icicle);
@@ -88,7 +93,7 @@ public class Splash extends Activity implements Constants, AdFreeConstants {
 		//		final Animation logoZoomAnimation = AnimationUtils.loadAnimation(Splash.this, R.anim.splash_zoomin);
 		//		logoZoomAnimation.setRepeatCount(0);
 		//		this.findViewById(R.id.iv_splash_logo).startAnimation(logoZoomAnimation);
-
+		
 		if(Preferences.isEulaAccepted(Splash.this)){
 			doEulaAcceptedStartup();
 		}else{

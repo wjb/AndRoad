@@ -3,6 +3,7 @@ package org.andnav2.ui.common;
 
 import java.util.List;
 
+
 import org.andnav2.R;
 import org.andnav2.adt.Direction;
 import org.andnav2.adt.TrafficFeed;
@@ -27,6 +28,7 @@ import android.content.DialogInterface.OnClickListener;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.text.ClipboardManager;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -438,8 +440,9 @@ public class CommonDialogFactory {
 	 * @return
 	 */
 	public static Dialog createAcceptEulaDialog(final Context ctx, final CommonCallback<Boolean> pCallback){
-		CharSequence msg = ctx.getString(R.string.eula_gpl) 
-		                 + ctx.getString(R.string.eula_disclaim) ;
+		
+		CharSequence msg = ctx.getString(R.string.eula_disclaim) 
+		                 + Html.fromHtml(ctx.getString(R.string.eula_gpl3));
 		return new AlertDialog.Builder(ctx)
 		.setTitle(R.string.eula_title)
 		.setMessage(msg)
