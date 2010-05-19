@@ -5,13 +5,15 @@ import org.andnav2.R;
 import org.andnav2.util.constants.Constants;
 
 import android.content.Context;
-import android.hardware.SensorListener;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.util.AttributeSet;
 import android.widget.Toast;
 
 
-public class CompassRotateView extends RotateView implements SensorListener {
+public class CompassRotateView extends RotateView implements SensorEventListener {
 	// ===========================================================
 	// Constants
 	// ===========================================================
@@ -67,7 +69,7 @@ public class CompassRotateView extends RotateView implements SensorListener {
 	// ===========================================================
 
 	@Override
-	public void onAccuracyChanged(final int sensor, final int accuracy) {
+	public void onAccuracyChanged(final Sensor sensor, final int accuracy) {
 		if(!this.mToastShownOnce  && this.mActive && accuracy < SensorManager.SENSOR_STATUS_ACCURACY_MEDIUM){
 			this.mToastShownOnce = true;
 			Toast.makeText(this.getContext(), R.string.compass_please_callibrate, Toast.LENGTH_SHORT).show();
@@ -82,6 +84,12 @@ public class CompassRotateView extends RotateView implements SensorListener {
 				invalidate();
 			}
 		}
+	}
+
+	@Override
+	public void onSensorChanged(SensorEvent event) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	// ===========================================================
