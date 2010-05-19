@@ -24,7 +24,17 @@ public enum ORSServer implements Parcelable {
 			"http://openls.giub.uni-bonn.de/openls-osm/determineroute",
 			"http://openls.giub.uni-bonn.de/openls-osm/directory",
 			"http://openls.giub.uni-bonn.de/openls-osm/geocode",
-			new IPingMethod.HostNamePing("www.openrouteservice.org")),
+			new IPingMethod.HostNamePing("openrouteservice.org")),
+
+	UNIHEIDEL("University of Heidelberg",
+			"This server is hosted by the University of Heidelberg, covering whole Europe, with Routing, POIs and Geocoding.",
+			"Heidelberg, Germany",
+			Country.GERMANY,
+			Country.EUROPEANUNION,
+			"http://openls.geog.uni-heidelberg.de/route/andnav",
+			"http://openls.geog.uni-heidelberg.de/geocode/andnav",
+			"http://openls.geog.uni-heidelberg.de/directory/andnav",
+			new IPingMethod.HostNamePing("openrouteservice.org")),
 
 	PASCALHOME("@Home",
 			"This server covers North America with Routing and the U.S. with geocoding. It also provides POIs for the whole world!\nExpect several downtimes from this server!",

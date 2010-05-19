@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="src" path="test"/>
+	<classpathentry excluding="**/.svn/**" kind="src" path="src"/>
+	<classpathentry excluding="**/.svn/**" kind="src" path="test"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="lib/httpmime-4.0-beta1.jar"/>
 	<classpathentry kind="lib" path="lib/apache-mime4j-0.4.jar"/>
@@ -18,7 +18,7 @@
 	<classpathentry kind="lib" path="lib/libosmapi.jar"/>
 	<classpathentry kind="lib" path="lib/libgoogleweatherapi.jar"/>
 	<classpathentry kind="lib" path="lib/TTS_library_stub_1.5_rc_01.jar"/>
-	<classpathentry kind="src" path="gen"/>
+	<classpathentry excluding="**/.svn/**" kind="src" path="gen"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
