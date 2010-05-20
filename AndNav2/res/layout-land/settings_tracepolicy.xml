@@ -44,7 +44,6 @@
 			android:layout_weight="1" 
 			android:stretchColumns="0,2">
 			<TableRow 
-				android:paddingTop="20px"
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content">
 				<TextView android:layout_width="fill_parent"
@@ -67,12 +66,8 @@
 					android:layout_height="wrap_content"
 					android:src="@drawable/tracepolicy_andnavupload"
 					android:gravity="center"
-					android:paddingLeft="30px" 
-					android:paddingRight="30px"
-					android:paddingBottom="12px" 
-					android:paddingTop="12px"/>
-				<TextView android:layout_width="wrap_content"
-					android:layout_height="wrap_content" />
+					android:paddingBottom="5px" android:paddingTop="5px" android:paddingLeft="30px" android:paddingRight="30px"/>
+				
 			</TableRow>
 			<TableRow android:layout_width="fill_parent"
 				android:layout_height="wrap_content">
@@ -87,10 +82,24 @@
 					android:layout_height="wrap_content"
 					android:src="@drawable/tracepolicy_directosmupload"
 					android:gravity="center"
-					android:paddingBottom="12px"
-					android:paddingTop="12px"/>
-				<TextView android:layout_width="wrap_content"
-					android:layout_height="wrap_content" />
+					android:paddingBottom="5px" android:paddingTop="5px"/>
+				
+			</TableRow>
+			<TableRow android:layout_width="fill_parent"
+				android:layout_height="wrap_content">
+				<ImageView
+					android:id="@+id/iv_settings_tracepolicy_uploadtotrailmappingaccount_selector"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center" />
+				<ImageButton
+					android:id="@+id/ibtn_settings_tracepolicy_uploadtotrailmappingaccount"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:src="@drawable/tracepolicy_directtrailmappingupload"
+					android:gravity="center"
+					android:paddingBottom="5px" android:paddingTop="5px"/>
+				
 			</TableRow>
 		</TableLayout>
 		<TableLayout
@@ -99,7 +108,6 @@
 			android:layout_weight="1" 
 			android:stretchColumns="0,2">
 			<TableRow 
-				android:paddingTop="20px"
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content">
 				<TextView android:layout_width="fill_parent"
@@ -122,10 +130,8 @@
 					android:layout_height="wrap_content"
 					android:src="@drawable/sdcard"
 					android:gravity="center"
-					android:paddingTop="12px"
-					android:paddingBottom="12px"/>
-				<TextView android:layout_width="wrap_content"
-					android:layout_height="wrap_content" />
+					android:paddingBottom="5px" android:paddingTop="5px"/>
+				
 			</TableRow>
 		</TableLayout>
 	</LinearLayout>

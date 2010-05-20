@@ -25,6 +25,8 @@ public class SettingsTracePolicy extends AndNavBaseActivity{
 
 	protected static final int DIALOG_INPUT_OSM_ACCOUNT_INFO = 0;
 
+	protected static final int DIALOG_INPUT_TRAILMAPPING_ACCOUNT_INFO = 1;
+
 	// ===========================================================
 	// Fields
 	// ===========================================================
@@ -33,9 +35,11 @@ public class SettingsTracePolicy extends AndNavBaseActivity{
 
 	protected ImageButton mIbtnToSDCard;
 	protected ImageButton mIbtnToOSMAccountUploader;
+	protected ImageButton mIbtnToTrailmappingAccountUploader;
 	protected ImageButton mIbtnToAndNav;
 	protected ImageView mIvToSDCardSelector;
 	protected ImageView mIvToOSMAccountUploaderSelector;
+	protected ImageView mIvToTrailmappingAccountUploaderSelector;
 	protected ImageView mIvToAndNavSelector;
 	protected CheckBox mChkFilterMinimalTraces;
 
@@ -51,10 +55,12 @@ public class SettingsTracePolicy extends AndNavBaseActivity{
 
 		this.mIbtnToSDCard = (ImageButton)this.findViewById(R.id.ibtn_settings_tracepolicy_sdcard);
 		this.mIbtnToOSMAccountUploader = (ImageButton)this.findViewById(R.id.ibtn_settings_tracepolicy_uploadtoosmaccount);
+		this.mIbtnToTrailmappingAccountUploader = (ImageButton)this.findViewById(R.id.ibtn_settings_tracepolicy_uploadtotrailmappingaccount);
 		this.mIbtnToAndNav = (ImageButton)this.findViewById(R.id.ibtn_settings_tracepolicy_uploadtoandnav);
 
 		this.mIvToSDCardSelector = (ImageView)this.findViewById(R.id.iv_settings_tracepolicy_sdcard_selector);
 		this.mIvToOSMAccountUploaderSelector = (ImageView)this.findViewById(R.id.iv_settings_tracepolicy_uploadtoosmaccount_selector);
+		this.mIvToTrailmappingAccountUploaderSelector = (ImageView)this.findViewById(R.id.iv_settings_tracepolicy_uploadtotrailmappingaccount_selector);
 		this.mIvToAndNavSelector = (ImageView)this.findViewById(R.id.iv_settings_tracepolicy_uploadtoandnav_selector);
 
 		this.mChkFilterMinimalTraces = (CheckBox)this.findViewById(R.id.chk_settings_tracepolicy_filter_minimal_requirements);
@@ -136,6 +142,18 @@ public class SettingsTracePolicy extends AndNavBaseActivity{
 				}
 			}
 		};
+
+		new OnClickOnFocusChangedListenerAdapter(this, R.id.ibtn_settings_tracepolicy_uploadtotrailmappingaccount){
+			@Override
+			public void onClicked(final View me) {
+				if(Preferences.getTracePolicyTrailmapping(SettingsTracePolicy.this)){
+					SettingsTracePolicy.this.mIvToTrailmappingAccountUploaderSelector.setImageResource(R.drawable.crossed);
+					Preferences.saveTracePolicyTrailmapping(SettingsTracePolicy.this, false);
+				}else{
+					showDialog(DIALOG_INPUT_TRAILMAPPING_ACCOUNT_INFO);
+				}
+			}
+		};
 	}
 
 	// ===========================================================
@@ -172,6 +190,29 @@ public class SettingsTracePolicy extends AndNavBaseActivity{
 						}
 					}
 				});
+			case DIALOG_INPUT_TRAILMAPPING_ACCOUNT_INFO:
+				return CommonDialogFactory.createTrailmappingAccountInfoDialog(this, new CommonCallbackAdapter<Boolean>(){
+					@Override
+					public void onSuccess(final Boolean result) {
+						if(result){
+							final boolean oldValue = Preferences.getTracePolicyTrailmapping(SettingsTracePolicy.this);
+							final boolean newValue = !oldValue;
+
+							if(SettingsTracePolicy.super.mMenuVoiceEnabled) {
+								MediaPlayer.create(SettingsTracePolicy.this, R.raw.save).start();
+							}
+
+
+							if(newValue) {
+								SettingsTracePolicy.this.mIvToTrailmappingAccountUploaderSelector.setImageResource(R.drawable.checked);
+							} else {
+								SettingsTracePolicy.this.mIvToTrailmappingAccountUploaderSelector.setImageResource(R.drawable.crossed);
+							}
+
+							Preferences.saveTracePolicyTrailmapping(SettingsTracePolicy.this, newValue);
+						}
+					}
+				});
 			default:
 				return null;
 		}
@@ -194,6 +235,12 @@ public class SettingsTracePolicy extends AndNavBaseActivity{
 			this.mIvToOSMAccountUploaderSelector.setImageResource(R.drawable.checked);
 		} else {
 			this.mIvToOSMAccountUploaderSelector.setImageResource(R.drawable.crossed);
+		}
+
+		if(Preferences.getTracePolicyTrailmapping(this)) {
+			this.mIvToTrailmappingAccountUploaderSelector.setImageResource(R.drawable.checked);
+		} else {
+			this.mIvToTrailmappingAccountUploaderSelector.setImageResource(R.drawable.crossed);
 		}
 
 		if(Preferences.getTracePolicyAndnavOrg(this)) {

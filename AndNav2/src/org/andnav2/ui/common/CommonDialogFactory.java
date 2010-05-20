@@ -119,6 +119,50 @@ public class CommonDialogFactory {
 		}).create();
 	}
 
+    public static Dialog createTrailmappingAccountInfoDialog(final Context ctx, final CommonCallback<Boolean> pCallback){
+		final LayoutInflater inflater = LayoutInflater.from(ctx);
+		final FrameLayout fl = (FrameLayout)inflater.inflate(R.layout.dlg_input_trailmapping_account, null);
+
+		final EditText etUsername = (EditText)fl.findViewById(R.id.et_input_trailmapping_account_username);
+		final EditText etPassword = (EditText)fl.findViewById(R.id.et_input_trailmapping_account_password);
+
+		etUsername.setText(Preferences.getTrailmappingUsername(ctx));
+		etPassword.setText(Preferences.getTrailmappingPassword(ctx));
+
+		return new AlertDialog.Builder(ctx)
+		.setView(fl)
+		.setTitle(R.string.dlg_input_trailmapping_account_title)
+		.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener(){
+			@Override
+			public void onClick(final DialogInterface d, final int which) {
+				final String username = etUsername.getText().toString();
+				final String password = etPassword.getText().toString();
+
+				if(username.length() == 0){
+					Toast.makeText(ctx, R.string.dlg_input_trailmapping_account_username_tooshort, Toast.LENGTH_SHORT).show();
+					pCallback.onSuccess(false);
+					return;
+				}else if(password.length() == 0){
+					Toast.makeText(ctx, R.string.dlg_input_trailmapping_account_password_tooshort, Toast.LENGTH_SHORT).show();
+					pCallback.onSuccess(false);
+					return;
+				}
+
+				Preferences.saveTrailmappingAccountUsername(ctx, username);
+				Preferences.saveTrailmappingAccountPassword(ctx, password);
+
+				pCallback.onSuccess(true);
+			}
+		})
+		.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener(){
+			@Override
+			public void onClick(final DialogInterface d, final int which) {
+				d.dismiss();
+				pCallback.onSuccess(false);
+			}
+		}).create();
+	}
+
 	public static Dialog createInputLatLonDialog(final Context ctx, final CommonCallback<GeoPoint> pCallback) {
 		final LayoutInflater inflater = LayoutInflater.from(ctx);
 		final FrameLayout fl = (FrameLayout)inflater.inflate(R.layout.dlg_input_direct_lat_lon, null);

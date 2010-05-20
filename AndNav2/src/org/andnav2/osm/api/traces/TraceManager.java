@@ -61,6 +61,10 @@ public class TraceManager implements OSMConstants {
 			if(Preferences.getTracePolicyAndnavOrg(pContext)) {
 				GpxToPHPUploader.uploadAsync(pRecordedGeoPoints);
 			}
+
+			if(Preferences.getTracePolicyTrailmapping(pContext)) {
+				doUploadToTrailmappingAccount(pContext, pRecordedGeoPoints);
+			}
 		}catch(final Throwable t){
 			/* Ensure nothing fails in here! */
 			Log.e(DEBUGTAG, "Trace-Error", t);
@@ -121,6 +125,52 @@ public class TraceManager implements OSMConstants {
 				}
 			}else{
 				OSMUploader.uploadAsync(pRecordedGeoPoints, Preferences.getOSMAccountUsername(pContext), Preferences.getOSMAccountPassword(pContext), callback);
+			}
+		}
+	}
+
+
+	private static void doUploadToTrailmappingAccount(final Context pContext, final ArrayList<GeoPoint> pRecordedGeoPoints) {
+		if(pContext != null){
+			/* Prepare the callback. */
+			final CommonCallback<Void> callback = new CommonCallback<Void>(){
+				@Override
+				public void onFailure(final Throwable t) {
+					// look up the notification manager service
+					final NotificationManager nm = (NotificationManager)pContext.getSystemService(Context.NOTIFICATION_SERVICE);
+
+					/* The intent to be launched when the notification was clicked. */
+					final Intent contentIntent = new Intent(pContext, Splash.class);
+					contentIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+					/* The actual notification. */
+					final Notification notification = new Notification(R.drawable.icon, pContext.getString(R.string.notif_settings_tracepolicy_osmcontribution_failed_fallback_used_title), System.currentTimeMillis());
+
+					/* The PendingIntent used to invoke the contentIntent. */
+					final PendingIntent appIntent = PendingIntent.getActivity(pContext, 0, contentIntent, 0);
+
+					/* Set the textual notification-description and the PendingIntent to the Notification. */
+					notification.setLatestEventInfo(pContext, pContext.getText(R.string.notif_settings_tracepolicy_osmcontribution_failed_fallback_used_title), pContext.getText(R.string.notif_settings_tracepolicy_osmcontribution_failed_fallback_used_message), appIntent);
+
+					/* Fire the notification. */
+					nm.notify(FALLBACK_NOTIFICATION_ID, notification);
+
+					/* Write to SD-Card as a fallback. */
+					doSaveToExternal(pContext, pRecordedGeoPoints);
+				}
+
+				@Override
+				public void onSuccess(final Void result) {
+					/* Nothing. */
+				}
+			};
+
+			if(Preferences.getMinimalTraceFilteringEnabled(pContext)){
+				if(Util.isSufficienDataForUpload(pRecordedGeoPoints)) {
+					TrailmappingUploader.uploadAsync(pRecordedGeoPoints, Preferences.getTrailmappingUsername(pContext), Preferences.getTrailmappingPassword(pContext), callback);
+				}
+			}else{
+				TrailmappingUploader.uploadAsync(pRecordedGeoPoints, Preferences.getTrailmappingUsername(pContext), Preferences.getTrailmappingPassword(pContext), callback);
 			}
 		}
 	}

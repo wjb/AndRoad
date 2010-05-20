@@ -657,6 +657,27 @@ public class Preferences implements Constants, PreferenceConstants {
 		return getInstance(ctx).getString(PREF_OSMACCOUNT_PASSWORD_ID, PREF_OSMACCOUNT_PASSWORD_DEFAULT);
 	}
 
+
+	// ===========================================================
+	// TrailmappingAccount-Data
+	// ===========================================================
+
+	public static void saveTrailmappingAccountUsername(final Context ctx, final String aUsername) {
+		getEditorInstance(ctx).putString(PREF_TRAILMAPPINGACCOUNT_USERNAME_ID, aUsername).commit();
+	}
+
+	public static String getTrailmappingUsername(final Context ctx) {
+		return getInstance(ctx).getString(PREF_TRAILMAPPINGACCOUNT_USERNAME_ID, PREF_TRAILMAPPINGACCOUNT_USERNAME_DEFAULT);
+	}
+
+	public static void saveTrailmappingAccountPassword(final Context ctx, final String aUsername) {
+		getEditorInstance(ctx).putString(PREF_TRAILMAPPINGACCOUNT_PASSWORD_ID, aUsername).commit();
+	}
+
+	public static String getTrailmappingPassword(final Context ctx) {
+		return getInstance(ctx).getString(PREF_TRAILMAPPINGACCOUNT_PASSWORD_ID, PREF_TRAILMAPPINGACCOUNT_PASSWORD_DEFAULT);
+	}
+
 	// ===========================================================
 	// OSBCommentername
 	// ===========================================================
@@ -828,6 +849,14 @@ public class Preferences implements Constants, PreferenceConstants {
 
 	public static void saveTracePolicyOSM(final Context ctx, final boolean pEnabled){
 		getEditorInstance(ctx).putBoolean(PREF_TRACEPOLICY_OSM_ID, pEnabled).commit();
+	}
+
+	public static boolean getTracePolicyTrailmapping(final Context ctx) {
+		return getInstance(ctx).getBoolean(PREF_TRACEPOLICY_TRAILMAPPING_ID, PREF_TRACEPOLICY_TRAILMAPPING_DEFAULT);
+	}
+
+	public static void saveTracePolicyTrailmapping(final Context ctx, final boolean pEnabled){
+		getEditorInstance(ctx).putBoolean(PREF_TRACEPOLICY_TRAILMAPPING_ID, pEnabled).commit();
 	}
 
 	// ===========================================================

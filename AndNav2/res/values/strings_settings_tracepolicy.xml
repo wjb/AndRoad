@@ -18,6 +18,12 @@
 	<string name="dlg_input_osm_account_username_tooshort"><b>NOT SAVED</b>\nUsername is too short!</string>
 	<string name="dlg_input_osm_account_password_tooshort"><b>NOT SAVED</b>\nPassword is too short!</string>
 	<string name="dlg_input_osm_account_info"><b>Tip:</b> Double-Check your account-data!</string>
+	<string name="dlg_input_trailmapping_account_title">TrailMapping Account-Data</string>
+	<string name="dlg_input_trailmapping_account_username">Username:</string>
+	<string name="dlg_input_trailmapping_account_password">Password:</string>
+	<string name="dlg_input_trailmapping_account_username_tooshort"><b>NOT SAVED</b>\nUsername is too short!</string>
+	<string name="dlg_input_trailmapping_account_password_tooshort"><b>NOT SAVED</b>\nPassword is too short!</string>
+	<string name="dlg_input_trailmapping_account_info"><b>Tip:</b> Double-Check your account-data!</string>
 	
 	<string name="notif_settings_tracepolicy_osmcontribution_failed_fallback_used_title">Trace-Upload failed.</string>
 	<string name="notif_settings_tracepolicy_osmcontribution_failed_fallback_used_message">The Trace was stored to the SD-Card.</string>
