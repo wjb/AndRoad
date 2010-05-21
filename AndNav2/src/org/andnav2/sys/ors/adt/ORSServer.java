@@ -22,8 +22,8 @@ public enum ORSServer implements Parcelable {
 			Country.GERMANY,
 			Country.EUROPEANUNION,
 			"http://openls.geog.uni-heidelberg.de/route/andnav",
-			"http://openls.geog.uni-heidelberg.de/geocode/andnav",
 			"http://openls.geog.uni-heidelberg.de/directory/andnav",
+			"http://openls.geog.uni-heidelberg.de/geocode/andnav",
 			new IPingMethod.HostNamePing("openrouteservice.org"));
 
 	// ===========================================================
