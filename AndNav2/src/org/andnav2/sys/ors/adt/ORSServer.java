@@ -16,16 +16,6 @@ public enum ORSServer implements Parcelable {
 	// Elements
 	// ===========================================================
 
-	UNIBONN("University of Bonn",
-			"This server is hosted by the University of Bonn, covering whole Europe, with Routing, POIs and Geocoding.",
-			"Bonn, Germany",
-			Country.GERMANY,
-			Country.EUROPEANUNION,
-			"http://openls.giub.uni-bonn.de/openls-osm/determineroute",
-			"http://openls.giub.uni-bonn.de/openls-osm/directory",
-			"http://openls.giub.uni-bonn.de/openls-osm/geocode",
-			new IPingMethod.HostNamePing("openrouteservice.org")),
-
 	UNIHEIDEL("University of Heidelberg",
 			"This server is hosted by the University of Heidelberg, covering whole Europe, with Routing, POIs and Geocoding.",
 			"Heidelberg, Germany",
@@ -34,17 +24,7 @@ public enum ORSServer implements Parcelable {
 			"http://openls.geog.uni-heidelberg.de/route/andnav",
 			"http://openls.geog.uni-heidelberg.de/geocode/andnav",
 			"http://openls.geog.uni-heidelberg.de/directory/andnav",
-			new IPingMethod.HostNamePing("openrouteservice.org")),
-
-	PASCALHOME("@Home",
-			"This server covers North America with Routing and the U.S. with geocoding. It also provides POIs for the whole world!\nExpect several downtimes from this server!",
-			"Frankfurt, Germany",
-			Country.GERMANY,
-			Country.USA,
-			"http://partisan.dyndns.org:81/myols/determineroute",
-			"http://partisan.dyndns.org:81/myols/directory",
-			"http://partisan.dyndns.org:81/myols/geocode",
-			new IPingMethod.URLResponsePing("http://partisan.dyndns.org:81/myols/determineroute?request=getCapabilities"));
+			new IPingMethod.HostNamePing("openrouteservice.org"));
 
 	// ===========================================================
 	// Constants
@@ -85,7 +65,7 @@ public enum ORSServer implements Parcelable {
 	// ===========================================================
 
 	public static ORSServer getDefault() {
-		return UNIBONN;
+		return UNIHEIDEL;
 	}
 
 	public static ORSServer fromName(final String i, final boolean pDefaultFallback) {
