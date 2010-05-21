@@ -979,12 +979,10 @@ public class Preferences implements Constants, PreferenceConstants {
 	}
 
 	public static void saveHUDImpl(final Context ctx, final IHUDImpl pHUDImpl, final int pVariationID){
-		if(pHUDImpl.getID() != BasicHUDImpl.ID){
-			getEditorInstance(ctx)
-			.putInt(PREF_HUDID_ID, pHUDImpl.getID())
-			.putInt(PREF_HUDVARIATIONID_ID, pVariationID)
-			.commit();
-		}
+		getEditorInstance(ctx)
+		.putInt(PREF_HUDID_ID, pHUDImpl.getID())
+		.putInt(PREF_HUDVARIATIONID_ID, pVariationID)
+		.commit();
 	}
 
 	public static DirectionArrowDescriptor getHUDImplVariationDirectionArrowDescriptor(final Context ctx){
