@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="tv_sd_contacts_quickinfo_caption">Choisir un contact...</string>
+	<string name="sd_contacts_resolving_address">Résoudre l\'adresse...</string>
+	<string name="toast_sd_contacts_error_resolving_address">Erreur lors de la résolution d\'adresse ...</string>
+	<string name="toast_could_not_resolve_address">Ne peut résoudre l\'adresse...</string>
+	<string name="sd_contacts_address_type_home">Domicile</string>
+	<string name="sd_contacts_address_type_work">Travail</string>
+	
+	<string name="sd_contacts_loading_title">Chargement des contacts...</string>
+	<string name="sd_contacts_loading_progress">Avancement : %d %%  (%d de %d contacts)</string>
+</resources>

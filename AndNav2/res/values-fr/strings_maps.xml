@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ ##### README #####
+ # @License: BSD (may be used for everything by anyone!) 
+ #
+ # @Description:
+ # This Strings from this file are used in multiple map-screens.
+ #
+ ### README-END ###
+-->
+<resources>
+	<!-- Message shown, when another application started andnav with invalid parameters. -->
+	<string name="nav_intent_parse_error_message">Impossible de lire les données transmises. Veuillez contacter le support qui vous a dirigé vers AndNav.</string>
+	
+	<!-- Menu-Strings -->
+	<string name="maps_menu_quit">Quitter</string>
+	<string name="maps_menu_refetch_route">Rerécupération de la route</string>
+	<string name="maps_menu_focus_coordinates">Aller aux coordonnées...</string>
+	<string name="maps_menu_auto_refetch">Rerécupération automatique</string>
+	<string name="maps_menu_settings">Paramètres</string>
+	<string name="maps_menu_weather">Météo</string>
+	<string name="maps_menu_submenu_traffic">Trafic</string>
+	<string name="maps_menu_submenu_traffic_clear"><b>Effacer</b> le trafic</string>
+	<string name="maps_menu_submenu_traffic_custom_feeds">Sources personnalisées...</string>
+	<string name="maps_menu_osb">Améliorer la carte</string>
+	<string name="maps_menu_reverseroute">Route inverse</string>
+	<string name="maps_menu_submenu_waypoints">Points de passage</string>
+	<string name="maps_menu_accessibility_analysis">Accessibilité</string>
+	<string name="maps_menu_waypoint_add">Ajouter un point de passage</string>
+	<string name="maps_menu_waypoints_clear">Effacer les points de passage</string>
+	<string name="maps_menu_waypoints_optimize">Optimiser l\'ordre des points de passage</string>
+	<string name="maps_menu_submenu_renderers">Type de carte</string>
+	<string name="maps_menu_satellite">Changer de satellite</string>
+	<string name="maps_menu_traffic">Changer de trafic</string>
+	<string name="maps_menu_preload">Précharger</string>
+	<string name="maps_menu_shareroute">Envoyer la route par mail</string>
+	<string name="maps_menu_compass">Boussole</string>
+	<string name="maps_menu_getcentetcoordinates">Voir les coordonnées</string>
+	<string name="maps_menu_getcentetcoordinates_message"><b>Centre de la carte :</b>\n\n<b>Latitude:\t</b>%.6f\n<b>Longitude:\t</b>%.6f\n</string>
+	<string name="maps_menu_altitude_profile">Graphe d\'altitude</string>
+	<string name="maps_menu_altitude_profile_title">Graphe d\'altitude de la route</string>
+	<string name="maps_menu_altitude_profile_error">Un problème a été rencontré lors de la création du graphe d\'altitude pour la route.\nLa zone requise n\'est probablement pas encore couverte par notre serveur.</string>
+	<string name="maps_menu_gpsstatus">Montrer le statut GPS</string>
+	<string name="maps_menu_zoomtodestination">Zoomer sur la destination</string>
+	<string name="maps_menu_trace_show">Montrer la trace actuelle</string>
+	<string name="maps_menu_trace_hide">Cacher la trace actuelle</string>
+	<string name="maps_menu_trace_submit">Envoyer la trace actuelle</string>
+	<string name="maps_menu_vehicleregistrationplate_lookup">Recherche plaque d\'immatriculation</string>
+	
+	<!-- Context Menu-String -->
+	<string name="maps_contextmenu_add_as_waypoint">Ajouter comme point de passage</string>
+	<string name="maps_contextmenu_clear_waypoints">Effacer les points de passage</string>
+	<string name="maps_contextmenu_close">Fermer</string>	
+	
+	<!-- Zoomlevels of the preloader (with descriptions) -->
+	<array name="preloader_rectangle_zoomlevels">
+		<item>0 (Monde)</item>
+		<item>1</item>
+		<item>2 (Continent)</item>
+		<item>3</item>
+		<item>4</item>
+		<item>5</item>
+		<item>6 (Pays)</item>
+		<item>7</item>
+		<item>8</item>
+		<item>9</item>
+		<item>10</item>
+		<item>11</item>
+		<item>12 (Ville)</item>
+		<item>13</item>
+		<item>14</item>
+		<item>15</item>
+		<item>16 (Rue)</item>
+		<item>17</item>
+		<item>18</item>
+		<item>19 (Maximal)</item>
+	</array>
+</resources>

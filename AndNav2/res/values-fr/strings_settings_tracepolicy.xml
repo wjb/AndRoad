@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ ##### README #####
+ # @License: BSD (may be used for everything by anyone!) 
+ #
+ # @Description:
+ # This Strings from this file are used by the Tracepolicy-Screens.
+ # 
+ ### README-END ###
+-->
+<resources>
+	<string name="tv_settings_quickinfo_tracepolicy_focused">Paramètres de trace...</string>
+	<string name="chk_settings_tracepolicy_filter_caption">Filtre minimal</string>
+	<string name="tv_settings_tracepolicy_quickdescription">Choisir que faire avec les traces GPS et les enregistrements AndNav.</string>
+	<string name="dlg_input_osm_account_title">Données du compte OSM</string>
+	<string name="dlg_input_osm_account_username">Utilisateur :</string>
+	<string name="dlg_input_osm_account_password">Mot de passe :</string>
+	<string name="dlg_input_osm_account_username_tooshort"><b>NON SAUVEGARDE</b>\nUtilisateur trop court !</string>
+	<string name="dlg_input_osm_account_password_tooshort"><b>NON SAUVEGARDE</b>\nMot de passe trop court !</string>
+	<string name="dlg_input_osm_account_info"><b>Tip:</b> Revérifiez vos données de compte !</string>
+	<string name="dlg_input_trailmapping_account_title">Données du compte TrailMapping</string>
+	<string name="dlg_input_trailmapping_account_username">Utilisateur :</string>
+	<string name="dlg_input_trailmapping_account_password">Mot de passe:</string>
+	<string name="dlg_input_trailmapping_account_username_tooshort"><b>NOIN SAUVEGARDE</b>\nUtilisateur trop court !</string>
+	<string name="dlg_input_trailmapping_account_password_tooshort"><b>NOT SAVED</b>\nMot de passe trop court !</string>
+	<string name="dlg_input_trailmapping_account_info"><b>Tip:</b> Revérifiez vos données de compte !</string>
+	
+	<string name="notif_settings_tracepolicy_osmcontribution_failed_fallback_used_title">Echec de l\'envoi de la trace.</string>
+	<string name="notif_settings_tracepolicy_osmcontribution_failed_fallback_used_message">La trace a été stockée sur la SD-Card.</string>
+	
+	<string name="tv_settings_tracepolicy_local">Local</string>
+	<string name="tv_settings_tracepolicy_remote">Distant</string>
+</resources>

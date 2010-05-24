@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ ##### README #####
+ # @License: BSD (may be used for everything by anyone!) 
+ #
+ # @Description:
+ # This Strings from this file are used by the Standard-Map-Screen (also known as WhereAmI-Map).
+ # 
+ ### README-END ###
+-->
+<resources>
+	<!-- Context Menu-Strings -->
+	<string name="tv_whereami_contextmenu_nav_here">Naviguer ici...</string>
+	<string name="tv_whereami_contextmenu_add_as_favorite">Ajouter comme favori...</string>
+	<string name="tv_whereami_contextmenu_show_radar">Montrer sur le radar...</string>
+	<string name="tv_whereami_contextmenu_weather_get">Prévisions météo...</string>
+	<string name="tv_whereami_contextmenu_close">Fermer</string>
+	
+	<string name="et_whereami_searchbox_hint">i.e. : \'Oakland, Blossom St\'</string>
+	
+		
+	<string name="toast_autofollow_once">Centré sur l\'utilisateur...</string>
+	<string name="toast_autofollow_enabled">Suivre automatiquement : Activé</string>
+	<string name="toast_autofollow_disabled">Suire automatiquement : Désactivé</string>
+	
+	<string name="whereami_location_not_resolvable">Votre position actuelle n\'a pas pu être trouvée.</string>
+
+	<string name="toast_whereami_no_radar_app_installed">Application radar non installée.\nElle peut être téléchargée depuis le marché !</string>	
+	<string name="toast_map_accessibilityanalysis_finished">Analyse d\'accessibilité terminée.</string>
+	
+	<string name="whereami_search_no_places_found">Aucun lieu trouvé !</string>
+	<string name="whereami_search_places_found">Lieux trouvés :</string>
+	
+	<string name="whereami_search_scope_title">Recherche...</string>
+	<string name="whereami_search_scope_global">Global</string>
+	<string name="whereami_search_scope_local">Local (rectangle visible)</string>
+	
+	<string name="wherami_dialog_locality">Endroit :</string>
+	<string name="wherami_dialog_thoroughfare">Passage interdit :</string>
+	<string name="wherami_dialog_distance">Distance :</string>
+	<string name="wherami_dialog_streetname">Nom de rue :</string>
+	<string name="wherami_dialog_streetnumber">Numéro de rue :</string>
+	<string name="wherami_dialog_feature">Caractéristique :</string>
+	<string name="wherami_dialog_zipcode">Code postal :</string>
+	<string name="wherami_dialog_cityname">Ville :</string>
+	<string name="wherami_dialog_phone">Téléphone :</string>
+	<string name="wherami_dialog_adminarea">Zone administrative :</string>
+	<string name="wherami_dialog_subadminarea">Sous-zone administrative:</string>
+	<string name="wherami_dialog_country">Pays:</string>
+	
+	<!-- The Maptile-Preload-Dialog -->
+	<string name="dlg_preloader_rect_maxzoom_title">Selectionner le niveau max de zoom.</string>
+	<string name="dlg_preloader_rect_reducezoom">Reduire zoom</string>
+	<string name="dlg_preloader_rect_title">Préchargeur de rectangle</string>
+	<string name="dlg_preloader_rect_message">Précharger %d tuiles pour le rectangle visible ?\n\nTaille estimée : %s</string>
+	
+	<!-- The Dialog where the user can add a new Traffic Feed. -->
+	<string name="dlg_customtrafficfeed_title">Entrer la source de données...</string>
+	<string name="dlg_customtrafficfeed_name">Nom :</string>
+	<string name="dlg_customtrafficfeed_name_hint">Ma source de trafic</string>
+	<string name="dlg_customtrafficfeed_url">URL :</string>
+	<string name="dlg_customtrafficfeed_url_hint">http://</string>
+	<string name="dlg_customtrafficfeed_country">Pays :</string>
+	
+	 <!-- The following two items are the caption of the Button that opens http://feedlist.andnav.org -->
+	<string name="dlg_customtrafficfeed_showfeedlist">Liste de sources</string>
+	<string name="dlg_customtrafficfeed_clipboardpaste">&lt;- Coller</string>
+	
+	<string name="dlg_input_vehicleregistrationplate_lookup_hint">Exemple: "HD TV 123"</string>
+	<string name="dlg_input_vehicleregistrationplate_lookup_title">Entrer signe...</string>
+</resources>

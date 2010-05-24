@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ ##### README #####
+ # @License: BSD (may be used for everything by anyone!) 
+ #
+ # @Description:
+ # This Strings from this file are used in the mainmenu of andnav.
+ #
+ ### README-END ###
+-->
+<resources>
+	<string name="menu_whereami">Où suis-je ?</string>
+	<string name="menu_searchdestination">Rechercher une destination...</string>
+	<string name="menu_settings">Paramètres...</string>
+	<string name="menu_routehome">Domicile !</string>
+	<string name="menu_firstaid">Trouver un hôpital !</string>
+	<string name="menu_quit">Quitter !</string>
+	
+	<string name="menu_donate">Nous dépendons de vos <b>dons</b>...! (Info)</string>
+</resources>

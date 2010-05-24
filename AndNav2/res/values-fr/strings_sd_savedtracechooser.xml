@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ ##### README #####
+ # @License: BSD (may be used for everything by anyone!) 
+ #
+ # @Description:
+ # This Strings from this file are used on the Screen where the saved traces are displayed.
+ #
+ ### README-END ###
+-->
+<resources>
+	<string name="tv_sd_savedtracechooser_quickinfo_caption">Charger une trace...</string>
+	<string name="dlg_sd_savedtracechooser_loading_title">Chargement des traces...</string>
+	<string name="dlg_sd_savedtracechooser_loading_progress">Avancement : %d %%  (%d de %d traces)</string>
+	
+	<string name="dlg_sd_savedtracechooser_contextmenu_use">Utiliser</string>
+	<string name="dlg_sd_savedtracechooser_contextmenu_rename">Renommer</string>
+	<string name="dlg_sd_savedtracechooser_contextmenu_information">Informations</string>
+	<string name="dlg_sd_savedtracechooser_contextmenu_share_trailmapping">Partager sur trailmapping.com</string>
+	
+	<string name="dlg_sd_savedtracechooser_contextmenu_rename_hint">Entrer le nouveau nom de fichier pour la trace.</string>
+	<string name="dlg_sd_savedtracechooser_contextmenu_rename_success">Trace renommée avec succès.</string>
+	<string name="dlg_sd_savedtracechooser_contextmenu_rename_fail">Echec du renommage de la trace.</string>
+</resources>

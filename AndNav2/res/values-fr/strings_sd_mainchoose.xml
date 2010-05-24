@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="tv_sd_mainchoose_favorite">Depuis les favoris...</string>
+	<string name="tv_sd_mainchoose_contacts">Choisir un contact...</string>
+	<string name="tv_sd_mainchoose_poi">Point d\'intérêt (POI)...</string>
+	<string name="tv_sd_mainchoose_address">Recherche d\'adresse...</string>
+	<string name="tv_sd_mainchoose_load_saved">Charger une route enregistrée...</string>
+	<string name="tv_sd_mainchoose_close">Fermer...</string>
+	
+	
+	<string name="menu_sd_mainchoose_lat_lon">Lat + Lon</string>
+	<string name="dlg_input_direct_lat_lon_title">Entrer les coordonnées décimales...</string>
+	<string name="dlg_input_direct_lat_lon_latitude">Latitude :</string>
+	<string name="dlg_input_direct_lat_lon_longitude">Longitude :</string>
+	<string name="dlg_input_direct_lat_lon_example"><b>Exemple</b> (<i>New York</i>):\nLat: \'40.755962\'\nLon: \'-73.986703\'</string>
+	<string name="dlg_input_direct_lat_lon_malformed">Latitude ou Longitude mal formée.</string>
+</resources>

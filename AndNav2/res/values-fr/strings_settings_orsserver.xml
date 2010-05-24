@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+ ##### README #####
+ # @License: BSD (may be used for everything by anyone!) 
+ #
+ # @Description:
+ # This file describes the server-settings-screen in AndNav.
+ #
+ ### README-END ###
+-->
+<resources>
+	<string name="tv_settings_quickinfo_orsserver_focused">Changer le serveur...</string>
+	<string name="tv_settings_orsserver_quickinfo_caption">Selectionner le serveur...</string>
+	
+	<string name="orsserver_selection_instructions">Sur cet écran vous pouvez sélectionner un serveur approprié pour votre position. Les serveurs hors-ligne ne retournent pas de résultats.\n\nVous pouvez changer de serveur n\'importe quand dans les paramètres de AndNav2.</string>
+	<string name="orsserver_pingall">Ping tous</string>
+	<string name="orsserver_serverinfo_title">Infos serveur</string>
+		
+	
+	<!-- Strings regarding the Server-ListView -->
+	<string name="tv_settings_orsserver_listrow_status">Statut :</string>
+	<string name="tv_settings_orsserver_listrow_latency">Latence :</string>
+	<string name="tv_settings_orsserver_listrow_location">Lieu :</string>
+	
+	<!-- Contextmenu of the servers. -->
+	<string name="settings_orsserver_contextmenu_use">Utiliser</string>
+	<string name="settings_orsserver_contextmenu_ping">Ping</string>
+	<string name="settings_orsserver_contextmenu_information">Infos</string>
+	
+	<!-- Message when user selected the server on the first start. -->
+	<string name="orsserver_selection_changeable">Vous pouvez changer de serveur n\'importe quand dans les <b>Paramètres</b>.</string>
+</resources>

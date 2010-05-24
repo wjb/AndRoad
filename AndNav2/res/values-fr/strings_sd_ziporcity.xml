@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="tv_ziporcity_searchbyzip">Code postal...</string>
+	<string name="tv_ziporcity_searchbycityname">Ville...</string>
+	<string name="tv_ziporcity_searchby_uk_postcode_bs7776">Code postal...</string>
+</resources>

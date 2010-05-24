@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<resources>
+	<string name="veecheck_notify_ticker">Mise à jour de AndNav2 disponible</string> 
+	<string name="veecheck_notify_title">Mise à jour de AndNav2 disponible</string> 
+	<string name="veecheck_notify_message">Télécharger la dernière version...</string> 
+	<string name="veecheck_pref_category">Exemple de paramètres veecheck</string> 
+	<string name="veecheck_pref_enabled_title">Activé</string> 
+	<string name="veecheck_pref_enabled_summary">Si la vérification est activée ou non.</string> 
+	<string name="veecheck_pref_check_uri_title">Vérifier URI</string> 
+	<string name="veecheck_pref_check_uri_summary">L\'URI vérifiée pour les mises à jour.</string> 
+	<string name="veecheck_confirm_title">Confirmer les mises à jour AndNav2</string> 
+	
+	<string name="veecheck_version_type">Type :</string>
+	<string name="veecheck_version_description">Description :</string>
+	<string name="veecheck_version_importance">Importance :</string> 
+	
+	<string name="veecheck_confirm_text"><b>Voulez-vous mettre à jour AndNav2 à la dernière version ?</b>\n\n<b>Importance :</b> <i>%s</i>\n<b>Type :</b> <i>%s</i>\n%s\n\nCordialement,\nL\'équipe AndNav</string>
+	<string name="veecheck_confirm_text_default">Voulez-vous mettre à jour AndNav2 à la dernière version ?\n\nUne nouvelle version signifie :\n- Moins de bugs\n- Plus de fonctionalités\n- De meilleures performances\n- Moins de consommation d\'énergie\n\nCordialement,\nL\'équipe AndNav</string> 
+	<string name="veecheck_confirm_stop">Ne plus m\'avertir de <b>cette</b> mise à jour.</string> 
+</resources>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="tv_settings_quickinfo_colorscheme_focused">Schéma de couleurs</string>
+		<string name="tv_settings_quickinfo_colorscheme_day">Schéma de couleurs jour</string>
+		<string name="tv_settings_quickinfo_colorscheme_night">Schéma de couleurs nuit</string>
+		<string name="tv_settings_quickinfo_colorscheme_default">Couleurs par défaut</string>
+		<string name="toast_settings_colorscheme_changed">Vous devez redémarrer AndNav2 pour voir les changements complets.</string>
+		<string name="tv_settings_colorscheme_mapcolorscheme_caption">Changer le schéma de couleurs de la carte...</string>
+		<string name="tv_settings_colorscheme_overallbrightness_slider_caption">Changer la luminosité...</string>
+		<string name="tv_settings_colorscheme_overallbrightness_slider_hint">La luminosité peut <b>ne pas</b> changer immediatement !</string>
+</resources>

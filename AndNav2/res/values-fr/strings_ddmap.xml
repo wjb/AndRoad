@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- Fetch Route Dialog -->
+	<string name="pdg_fetchroute_title">Récupération de la route...</string>
+	<string name="pdg_fetchroute_messagestart">Destination :</string>
+	<!-- REFetch Route Dialog -->
+	<string name="pdg_refetchroute_title">Re-récupération de la route...</string>
+	<!-- REStore Route Dialog (after Screenorientation changed) -->
+	<string name="pdg_restoreroute_title">Restauration de la route...</string>
+	<!-- Shown while loading a saved route -->
+	<string name="pdg_fetchroute_loading_saved_route">Chargement de la route...</string>
+	<!-- Shown while loading a shared route -->
+	<string name="pdg_fetchroute_loading_routebyhandle">Chargement de la route depuis RouteHandleID = %d</string>
+	
+	<string name="ddmap_info_waypoint_passed">Point de passage dépassé.</string>
+	<string name="ddmap_info_gps_resolving">Recherche Gps...</string>
+	<string name="ddmap_info_no_route">Aucune route trouvée...</string>
+	<string name="ddmap_info_route_fetch_no_dataconnection_title">Aucune connexion...</string>
+	<string name="ddmap_info_route_fetch_no_dataconnection_message">La connexion semble être perdue...\n <b>Réessayer ?</b></string>
+	<string name="ddmap_info_route_fetch_tries_exceeded_ask_remove_streetnumber_title">Route introuvable</string>
+	<string name="ddmap_info_route_fetch_tries_exceeded_ask_remove_streetnumber_message">Après <b>3</b> essais...\n<b>Réessayer</b> sans le <b>numéro de rue</b> ?</string>
+	<string name="ddmap_info_route_fetch_tries_exceeded_title">Route introuvable</string>
+	<string name="ddmap_info_route_fetch_tries_exceeded_message">Après <b>3</b> essais...\n<b>Reéssayer</b> ?</string>
+	<string name="ddmap_info_route_fetch_useold">Utiliser la dernière fonctionnelle</string>
+	<string name="ddmap_info_gps_fetch_tries_exceeded_title">Le <b>GPS</b> semble indisponible...</string>
+	<string name="ddmap_info_gps_fetch_tries_exceeded_message"><b>Réessayer</b> de trouver votre Position GPS ?\n\n<i>(L\'icône GPS dans la barre de statut ne doit <b>plus</b> clignoter !)</i></string>
+	
+	
+	<string name="toast_autozoom_enabled">Zoom automatique <b>activé</b>. Changer avec \'<b>a</b>\'.</string>
+	<string name="toast_autozoom_disabled">Zoom automatique <b>désactivé</b>. Changer avec \'<b>a</b>\'.</string>
+	
+	<string name="toast_snaptoroute_enabled">Projection sur route <b>activée</b>. Changer avec \'<b>s</b>\'.</string>
+	<string name="toast_snaptoroute_disabled">Projection sur route <b>désactivée</b>. Changer avec \'<b>s</b>\'.</string>
+	
+	<!-- Preloader -->
+	<string name="toast_preloader_noroute">Aucune route pour laquelle précharger des tuiles.</string>
+	<string name="ddmap_info_preloader_autozoom_disabled">Zoom automatique désactivé.</string>
+	
+	<string name="dlg_preloader_title">Préchargeur</string>
+	<string name="dlg_preloader_message">Précharger %d tuiles pour la route actuelle ?\n\nTaille approximative : %s</string>
+	
+	<string name="pdg_preloader_title">Préchargement des tuiles...</string>
+	<string name="pdg_preloader_message">Avancement : %d de %d\n\n<i>Appuyer sur RETOUR pour cacher.</i></string>
+	
+	<string name="toast_preloader_cache_increased_message">La taille du cache a été augmentée à : %s</string>
+		
+	<!-- Pseudo Context Menu-String -->
+	<!-- TODO? Sollte abgelöst werden vom richtigen ContextMenu -->
+	<string name="ddmap_contextmenu_add_as_waypoint">Ajouter comme point de passage</string>
+	<string name="ddmap_contextmenu_clear_waypoints">Effacer les points de passage</string>
+	<string name="ddmap_contextmenu_add_as_avoidarea">Ajouter comme zone à éviter</string>
+	<string name="ddmap_contextmenu_clear_avoidareas">Effacer les zones à éviter</string>
+	<string name="ddmap_contextmenu_close">Fermer</string>
+	<string name="ddmap_contextmenu_exit">Quitter</string>
+	
+	<string name="ddmap_contextmenu_clear_avoidareas_radius_title">Sélectionner le rayon d\'évitement...</string>
+	
+	<string name="ddmap_info_target_reached">Cible atteinte</string>
+</resources>

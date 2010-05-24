@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- Menu-Quick-Info (TextView below Icons) -->
+	<string name="firstaid_step01_selfprotect">Protégez-vous</string>
+	<string name="firstaid_step02_call911">Appelez le 112</string>
+	<string name="firstaid_step03_recoveryposition">Position de sécurité</string>
+</resources>

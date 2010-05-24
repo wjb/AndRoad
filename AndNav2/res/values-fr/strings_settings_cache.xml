@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="tv_settings_quickinfo_cache_focused">Paramètres du cache...</string>
+	<string name="tv_settings_cache_fallbackinfo_caption">La mémoire de l\'appareil sera toujours utilisée lorsque la SDCard n\'est pas disponible !</string>
+	<string name="tv_settings_cache_quickinfo_default_caption">Modifier la quantité en Méga-Octets utilisée par les tuiles en stockage local. Des plus gros caches permettent moins de transfert de données et un chargement plus rapide de la carte.</string>
+	<string name="tv_settings_cache_current_size">Utilisé : %.1f de %d Mo</string>
+	<string name="tv_settings_cache_max_size_external">Taille max (SDCard) :</string>
+	<string name="tv_settings_cache_max_size_internal">Taille max (Appareil) :</string>
+	<string name="btn_settings_cache_clear_cache_caption">Vider le cache...</string>
+	<string name="pdg_settings_cache_clear_cache_message">Veuillez patienter</string>
+	<string name="pdg_settings_cache_clear_cache_title">Effacement du cache...</string>
+	
+	<string name="settings_cache_clear_external_warning_title">Attention...</string>
+	<string name="settings_cache_clear_external_warning_message">Vider le cache de la SD-Card <b>devrait</b> être fait en utilisant votre <b>ordinateur fixe</b> !\n\nCela est beaucoup plus rapide et sûr. (Le vidage de cache en cliquant sur \'Continuer\' pourrait crasher !)\n</string>
+</resources>

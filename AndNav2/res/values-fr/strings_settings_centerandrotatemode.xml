@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="tv_settings_center_and_rotate_mode_quickinfo_current">(actuel)</string>
+	<string name="rotatemode_dd_up_centermode_upto_nextturn_mutex_title">Conflit de paramètres !</string>
+	<string name="rotatemode_dd_up_centermode_upto_nextturn_mutex_message">Le paramètre sélectionné est incompatible avec le mode de rotation : \"Dans le sens de la marche\".\n\nContinuer règlera le mode de rotation sur : \"Nord en haut\" !</string>
+	<string name="centermode_dd_up_rotatemode_upto_nextturn_mutex_title">Conflit de paramètres !</string>
+	<string name="centermode_dd_up_rotatemode_upto_nextturn_mutex_message">Le paramètre sélectionné est incompatible avec le mode de Centrage : \"Jusqu\'au prochain changement\".\n\nContinuer règlera le mode de centrage sur : \"Centré sur l\'utilisateur\" !</string>
+</resources>
