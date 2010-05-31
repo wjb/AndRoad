@@ -152,7 +152,7 @@ public class OSMMapTileFilesystemCache extends AbstractOSMMapTileFilesystemCache
 				final File f = new File(this.EXTERNAL_STORAGE_BASEDIRECTORY + SDCARD_TILE_PATH + aFormattedFileName);
 
 				final long fileSize = f.length();
-				if(fileSize < 10){
+				if(fileSize < 1){
 					Log.w(DEBUGTAG, "Deleted empty MapTile: " + aFormattedFileName);
 					f.delete();
 					return null;
