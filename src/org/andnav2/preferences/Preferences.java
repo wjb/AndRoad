@@ -21,7 +21,6 @@ import org.andnav2.sys.ors.adt.rs.RoutePreferenceType;
 import org.andnav2.ui.map.hud.HUDRegistry;
 import org.andnav2.ui.map.hud.IHUDImpl;
 import org.andnav2.ui.map.hud.IHUDImplVariation;
-import org.andnav2.ui.map.hud.impl.basic.BasicHUDImpl;
 import org.andnav2.util.Base64;
 import org.andnav2.util.constants.Constants;
 
@@ -30,7 +29,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.skyhookwireless.wps.WPSAuthentication;
 

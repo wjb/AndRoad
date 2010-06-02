@@ -21,10 +21,11 @@
 			<string name="tv_settings_directionvoice_column_saywhat">... co říct?</string>
 			
 		<string name="tv_settings_voice_ttsdescription"><b>TTS</b> znamená \'<i>řeč z Textu</i>\'</string>
+<!--TODO-->
+		<string name="settings_voice_tts_working">Text to speech is working properly.</string>
+		<string name="settings_voice_tts_sample">In 500 meters, turn right into King Street.</string>
 		
 		<string name="btn_settings_voice_tts_caption">Text-To-Speech...</string>
-		<string name="dlg_settings_voice_tts_change_settings">Změnit nastavení</string>
-		<string name="dlg_settings_voice_tts_play_sample">Přehrát příklad</string>
 		
 	<string name="tts_not_installed_title">"'Text-To-Speech' ..."</string>
 	<string name="tts_not_installed_message"><b>VOLNÁ</b> \'Text-To-Speech\' knihovna nebyla nalezena.\n\nChcete ji z <b>Android Marketu</b> stáhnout?</string>

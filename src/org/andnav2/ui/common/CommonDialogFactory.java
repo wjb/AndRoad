@@ -215,26 +215,6 @@ public class CommonDialogFactory {
 
 	/**
 	 * @param ctx
-	 * @param pCallback 0 for config, 1 for sample
-	 */
-	public static Dialog createTTSConfigOrTestDialog(final Context ctx, final CommonCallback<Integer> pCallback) {
-		final String[] choices = {ctx.getString(R.string.dlg_settings_voice_tts_change_settings), ctx.getString(R.string.dlg_settings_voice_tts_play_sample)};
-		return new AlertDialog.Builder(ctx).setSingleChoiceItems(choices , 0, new DialogInterface.OnClickListener(){
-			@Override
-			public void onClick(final DialogInterface d, final int which) {
-				d.dismiss();
-
-				if(which < 0) {
-					pCallback.onFailure(new IllegalAccessException("Nothing was selected."));
-				} else {
-					pCallback.onSuccess(which);
-				}
-			}
-		}).create();
-	}
-
-	/**
-	 * @param ctx
 	 * @param pCallback 0 for freeform, 1 for structured
 	 */
 	public static Dialog createFreeformOrStructuredAddressSelectorDialog(final Context ctx, final CommonCallback<Integer> pCallback) {

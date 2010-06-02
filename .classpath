@@ -17,7 +17,6 @@
 	<classpathentry kind="lib" path="lib/admob-sdk-android.jar"/>
 	<classpathentry kind="lib" path="lib/libosmapi.jar"/>
 	<classpathentry kind="lib" path="lib/libgoogleweatherapi.jar"/>
-	<classpathentry kind="lib" path="lib/TTS_library_stub_1.5_rc_01.jar"/>
 	<classpathentry excluding="**/.svn/**" kind="src" path="gen"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry kind="output" path="bin"/>

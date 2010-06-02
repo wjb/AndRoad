@@ -12,10 +12,10 @@
 			<string name="tv_settings_directionvoice_column_saywhat">... say what?</string>
 			
 		<string name="tv_settings_voice_ttsdescription"><b>TTS</b> means \'<i>Text To Speech</i>\'</string>
+		<string name="settings_voice_tts_working">Text to speech is working properly.</string>
+		<string name="settings_voice_tts_sample">In 500 meters, turn right into King Street.</string>
 		
 		<string name="btn_settings_voice_tts_caption">Text-2-Speech...</string>
-		<string name="dlg_settings_voice_tts_change_settings">Change Settings</string>
-		<string name="dlg_settings_voice_tts_play_sample">Play sample</string>
 		
 	<string name="tts_not_installed_title">"'Text to Speech' ..."</string>
 	<string name="tts_not_installed_message">The <b>FREE</b> \'Text to Speech\' library was not found on this device.\n\nDo you want to install it from the <b>Android Market</b>?</string>

@@ -25,8 +25,6 @@ public class SettingsDirectionVoice extends AndNavBaseActivity {
 	// Final Fields
 	// ===========================================================
 
-	private static final String TEST_MESSAGE = "In 500 meters, turn right into King Street.";
-
 	// ===========================================================
 	// Fields
 	// ===========================================================
@@ -94,18 +92,19 @@ public class SettingsDirectionVoice extends AndNavBaseActivity {
 
 			@Override
 			public void onClicked(final View me) {
+				final String test_message = getString(R.string.settings_voice_tts_sample);
 				if(this.mTTS == null){
 					this.mTTS = new TextToSpeech(SettingsDirectionVoice.this, new TextToSpeech.OnInitListener(){
 						@Override
 						public void onInit(final int version) {
 							mTTSAvailable = true;
 							//							mTTS.setLanguage(Preferences.getDrivingDirectionsLanguage(SettingsDirectionVoice.this).getIETFLAnguageTag());
-							mTTS.speak(TEST_MESSAGE, 0, null);
+							mTTS.speak(test_message, 0, null);
 						}
 					});
 				}else{
 					if(this.mTTSAvailable) {
-						this.mTTS.speak(TEST_MESSAGE, 0, null);
+						this.mTTS.speak(test_message, 0, null);
 					}
 				}
 			}

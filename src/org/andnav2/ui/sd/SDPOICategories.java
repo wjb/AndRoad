@@ -7,9 +7,6 @@ import org.andnav2.R;
 import org.andnav2.adt.UnitSystem;
 import org.andnav2.preferences.Preferences;
 import org.andnav2.sys.ors.adt.ds.OSMRepresentation;
-import org.andnav2.sys.ors.adt.ds.POIGroup;
-import org.andnav2.sys.ors.adt.ds.POIType;
-import org.andnav2.ui.common.CommonDialogFactory;
 import org.andnav2.ui.common.activities.BasePOICategorySelectionActivity;
 
 import android.app.AlertDialog;
