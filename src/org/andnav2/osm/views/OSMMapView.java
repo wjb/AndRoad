@@ -1,6 +1,7 @@
 // Created by plusminus on 17:45:56 - 25.09.2008
 package org.andnav2.osm.views;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,6 +43,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewParent;
 import android.view.GestureDetector.OnGestureListener;
+import android.util.FloatMath;
 
 public class OSMMapView extends View implements OSMConstants, OSMMapViewConstants{
 	// ===========================================================
@@ -49,6 +51,9 @@ public class OSMMapView extends View implements OSMConstants, OSMMapViewConstant
 	// ===========================================================
 
 	final OSMMapTileProviderInfo DEFAULTPROVIDER = OSMMapTileProviderInfo.MAPNIK;
+
+    final int NONE = 0;
+    final int ZOOM = 1;
 
 	// ===========================================================
 	// Fields
@@ -67,10 +72,50 @@ public class OSMMapView extends View implements OSMConstants, OSMMapViewConstant
 	protected final List<OSMMapViewOverlay> mOverlays = new ArrayList<OSMMapViewOverlay>();
 
 	protected final Paint mPaint = new Paint();
-	private int mTouchDownX;
-	private int mTouchDownY;
-	private int mTouchMapOffsetX;
-	private int mTouchMapOffsetY;
+	private float x[] = {Float.NaN, Float.NaN};
+	private float y[] = {Float.NaN, Float.NaN};
+	private int mTouchMapOffsetX = 0;
+	private int mTouchMapOffsetY = 0;
+    private int mTouchMode = NONE;
+    private float mTouchMapZoom = 0;
+
+    // get API level 5 MotionEvent constants by reflection
+    // TODO can remove this stuff if we upgrade to API level 5
+    private static int ACTION_MASK = 255;
+    private static int ACTION_POINTER_INDEX_SHIFT = 8;
+    private static int ACTION_POINTER_DOWN = 5;
+    private static int ACTION_POINTER_UP = 6;
+    private static Method MotionEvent_getPointerId;
+    private static Method MotionEvent_getPointerCount;
+    private static Method MotionEvent_getX;
+    private static Method MotionEvent_getY;
+    static {
+        final MotionEvent me = MotionEvent.obtain(0, 0, 0, 0f, 0f, 0);
+        try {
+            ACTION_MASK = MotionEvent.class.getField("ACTION_MASK").getInt(me);
+        } catch (final Exception e) {}
+        try {
+            ACTION_POINTER_INDEX_SHIFT = MotionEvent.class.getField("ACTION_POINTER_ID_SHIFT").getInt(me);
+        } catch (final Exception e) {}
+        try {
+            ACTION_POINTER_DOWN = MotionEvent.class.getField("ACTION_POINTER_DOWN").getInt(me);
+        } catch (final Exception e) {}
+        try {
+            ACTION_POINTER_UP = MotionEvent.class.getField("ACTION_POINTER_UP").getInt(me);
+        } catch (final Exception e) {}
+        try {
+            MotionEvent_getPointerId = MotionEvent.class.getMethod("getPointerId", new Class[] { int.class });
+        } catch (final Exception e) {}
+        try {
+            MotionEvent_getPointerCount = MotionEvent.class.getMethod("getPointerCount", new Class[] { });
+        } catch (final Exception e) {}
+        try {
+            MotionEvent_getX = MotionEvent.class.getMethod("getX", new Class[] { int.class });
+        } catch (final Exception e) {}
+        try {
+            MotionEvent_getY = MotionEvent.class.getMethod("getY", new Class[] { int.class });
+        } catch (final Exception e) {}
+    }
 
 	private OSMMapView mMiniMap, mMaxiMap;
 
@@ -497,6 +542,11 @@ public class OSMMapView extends View implements OSMConstants, OSMMapViewConstant
 	}
 
 
+    private float calculateDistance(float x1, float x2, float y1, float y2) {
+        float x = x1 - x2;
+        float y = y1 - y2;
+        return FloatMath.sqrt(x * x + y * y);
+    }
 
 	@Override
 	public boolean onTouchEvent(final MotionEvent event) {
@@ -511,17 +561,98 @@ public class OSMMapView extends View implements OSMConstants, OSMMapViewConstant
 
 		this.mGestureDetector.onTouchEvent(event);
 
-		switch(event.getAction()){
+        // Get action, index of the pointer
+        final int action = event.getAction();
+        int index = action >> ACTION_POINTER_INDEX_SHIFT;
+        int actionCode = action & ACTION_MASK;
+        int id = 0;
+        int pointerCount = 1;
+        try {
+            id = Integer.parseInt(MotionEvent_getPointerId.invoke(event, index).toString());
+            pointerCount = Integer.parseInt(MotionEvent_getPointerCount.invoke(event).toString());
+        } catch(final Exception e) {
+            index = 0;
+        }
+
+        // if there is a second pointer which touch the screen
+        if (actionCode == ACTION_POINTER_DOWN) {
+            try {
+                this.x[id] = Float.valueOf(MotionEvent_getX.invoke(event, index).toString());
+                this.y[id] = Float.valueOf(MotionEvent_getY.invoke(event, index).toString());
+            } catch(final Exception e) {
+                this.x[id] = event.getX();
+                this.y[id] = event.getY();
+            }
+
+            this.mTouchMapOffsetX = 0;
+            this.mTouchMapOffsetY = 0;
+
+            // Calculate distance between both pointers
+            this.mTouchMapZoom = calculateDistance(this.x[0],
+                                                   this.x[1],
+                                                   this.y[0],
+                                                   this.y[1]);
+
+            invalidate();
+            return true;
+        }
+
+        // if the second pointer gets off the screen
+        if (actionCode == ACTION_POINTER_UP) {
+            this.mTouchMapZoom = 0;
+            this.mTouchMode = NONE;
+            actionCode = MotionEvent.ACTION_UP;
+        }
+
+		switch(actionCode){
 			case MotionEvent.ACTION_DOWN:
-				this.mTouchDownX = (int)event.getX();
-				this.mTouchDownY = (int)event.getY();
+                this.x[id] = event.getX();
+                this.y[id] = event.getY();
 				invalidate();
 				return true;
 			case MotionEvent.ACTION_MOVE:
-				this.mTouchMapOffsetX = (int)event.getX() - this.mTouchDownX;
-				this.mTouchMapOffsetY = (int)event.getY() - this.mTouchDownY;
-				invalidate();
-				return true;
+                if (pointerCount == 1) {
+                    // translation
+                    int downX = (this.x[id] == Float.NaN ? 0 : new Float(this.x[id]).intValue());
+                    int downY = (this.y[id] == Float.NaN ? 0 : new Float(this.y[id]).intValue());
+                    this.mTouchMapOffsetX = (int)event.getX() - downX;
+                    this.mTouchMapOffsetY = (int)event.getY() - downY;
+                    invalidate();
+                    return true;
+                } else {
+
+                    // What kind of move is it?
+                    if (this.mTouchMode == NONE) {
+                        this.mTouchMode = ZOOM;
+                    }
+
+                    // Get the pointer coordinates
+                    try {
+                        this.x[id] = Float.valueOf(MotionEvent_getX.invoke(event, index).toString());
+                        this.y[id] = Float.valueOf(MotionEvent_getY.invoke(event, index).toString());
+                    } catch(final Exception e) {
+                        this.x[id] = event.getX();
+                        this.y[id] = event.getY();
+                    }
+
+                    // Calculate distance between both pointers
+                    float distance = calculateDistance(this.x[0],
+                    								   this.x[1],
+                    								   this.y[0],
+                    								   this.y[1]);
+
+                    float offsetZoom = distance - this.mTouchMapZoom;
+                    this.mTouchMapZoom = distance;
+
+                    if (this.mTouchMode == ZOOM) {
+                        if (offsetZoom > 0) {
+                            this.zoomIn();
+                        } else {
+                            this.zoomOut();
+                        }
+                    }
+                    return true;
+                }
 			case MotionEvent.ACTION_UP:
 				final int viewWidth_2 = this.getWidth() / 2;
 				final int viewHeight_2 = this.getHeight() / 2;
