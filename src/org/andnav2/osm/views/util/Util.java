@@ -9,6 +9,8 @@ import org.andnav2.osm.views.tiles.adt.OSMTileInfo;
 import org.andnav2.osm.views.tiles.caching.LRUCache;
 import org.andnav2.osm.views.util.constants.OSMMapViewConstants;
 
+import android.util.FloatMath;
+
 /**
  * 
  * @author Nicolas Gramlich
@@ -38,6 +40,12 @@ public class Util implements OSMMapViewConstants, OSMConstants, MathConstants{
 	// ===========================================================
 	// Methods
 	// ===========================================================
+
+    public static float calculateDistance(float x1, float x2, float y1, float y2) {
+        float x = x1 - x2;
+        float y = y1 - y2;
+        return FloatMath.sqrt(x * x + y * y);
+    }
 
 	public static OSMTileInfo[] calculateNeededTilesForZoomLevelInBoundingBox(final int zoom, final BoundingBoxE6 bbE6Visible) {
 		final OSMTileInfo upperLeftTile = getMapTileFromCoordinates(bbE6Visible.getLatNorthE6(), bbE6Visible.getLonWestE6(), zoom);

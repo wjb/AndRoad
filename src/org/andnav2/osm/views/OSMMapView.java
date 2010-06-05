@@ -24,6 +24,7 @@ import org.andnav2.osm.views.util.Util;
 import org.andnav2.osm.views.util.constants.OSMMapViewConstants;
 import org.andnav2.ui.common.views.RotateView;
 import org.andnav2.ui.map.overlay.util.ManagedLinePath;
+import org.andnav2.util.constants.Constants;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -43,7 +44,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewParent;
 import android.view.GestureDetector.OnGestureListener;
-import android.util.FloatMath;
 
 public class OSMMapView extends View implements OSMConstants, OSMMapViewConstants{
 	// ===========================================================
@@ -54,6 +54,7 @@ public class OSMMapView extends View implements OSMConstants, OSMMapViewConstant
 
     final int NONE = 0;
     final int ZOOM = 1;
+    final int ROTATION = 2;
 
 	// ===========================================================
 	// Fields
@@ -78,6 +79,7 @@ public class OSMMapView extends View implements OSMConstants, OSMMapViewConstant
 	private int mTouchMapOffsetY = 0;
     private int mTouchMode = NONE;
     private float mTouchMapZoom = 0;
+    private float mTouchMapRotateAdjacent = 0;
 
     // get API level 5 MotionEvent constants by reflection
     // TODO can remove this stuff if we upgrade to API level 5
@@ -542,12 +544,6 @@ public class OSMMapView extends View implements OSMConstants, OSMMapViewConstant
 	}
 
 
-    private float calculateDistance(float x1, float x2, float y1, float y2) {
-        float x = x1 - x2;
-        float y = y1 - y2;
-        return FloatMath.sqrt(x * x + y * y);
-    }
-
 	@Override
 	public boolean onTouchEvent(final MotionEvent event) {
 		for(final OSMMapViewOverlay osmvo : this.mOverlays) {
@@ -563,6 +559,7 @@ public class OSMMapView extends View implements OSMConstants, OSMMapViewConstant
 
         // Get action, index of the pointer
         final int action = event.getAction();
+        final ViewParent parent = this.getParent();
         int index = action >> ACTION_POINTER_INDEX_SHIFT;
         int actionCode = action & ACTION_MASK;
         int id = 0;
@@ -588,10 +585,13 @@ public class OSMMapView extends View implements OSMConstants, OSMMapViewConstant
             this.mTouchMapOffsetY = 0;
 
             // Calculate distance between both pointers
-            this.mTouchMapZoom = calculateDistance(this.x[0],
-                                                   this.x[1],
-                                                   this.y[0],
-                                                   this.y[1]);
+            this.mTouchMapZoom = Util.calculateDistance(this.x[0],
+                                                        this.x[1],
+                                                        this.y[0],
+                                                        this.y[1]);
+
+            // Calculate the adjacent distance
+            this.mTouchMapRotateAdjacent = this.mTouchMapZoom;
 
             invalidate();
             return true;
@@ -621,11 +621,6 @@ public class OSMMapView extends View implements OSMConstants, OSMMapViewConstant
                     return true;
                 } else {
 
-                    // What kind of move is it?
-                    if (this.mTouchMode == NONE) {
-                        this.mTouchMode = ZOOM;
-                    }
-
                     // Get the pointer coordinates
                     try {
                         this.x[id] = Float.valueOf(MotionEvent_getX.invoke(event, index).toString());
@@ -636,21 +631,52 @@ public class OSMMapView extends View implements OSMConstants, OSMMapViewConstant
                     }
 
                     // Calculate distance between both pointers
-                    float distance = calculateDistance(this.x[0],
-                    								   this.x[1],
-                    								   this.y[0],
-                    								   this.y[1]);
+                    float distance = Util.calculateDistance(this.x[0],
+                                                            this.x[1],
+                                                            this.y[0],
+                                                            this.y[1]);
 
                     float offsetZoom = distance - this.mTouchMapZoom;
                     this.mTouchMapZoom = distance;
 
-                    if (this.mTouchMode == ZOOM) {
+                    // Calculate angle of rotation
+                    float cosa = this.mTouchMapRotateAdjacent / distance;
+                    cosa -= Math.floor(cosa);
+                    float angle = (float) Math.toDegrees(Math.acos(cosa)) / 2;
+                    this.mTouchMapRotateAdjacent = distance;
+
+                    // What kind of move is it?
+                    if (this.mTouchMode == NONE) {
+                        if ((parent instanceof RotateView) &&
+                            (distance >= 200 &&
+                             distance <= 550)) {
+                            this.mTouchMode = ROTATION;
+                        } else if (distance > 550 ||
+                                   distance < 200) {
+                            this.mTouchMode = ZOOM;
+                        }
+                    }
+
+                    if (this.mTouchMode == ROTATION) {
+                        if (Float.isNaN(angle)) {
+                            angle = 0;
+                        }
+                        final RotateView par = (RotateView)parent;
+                        if (par.getRotationDegree() == Constants.NOT_SET) {
+                            par.setRotationDegree(angle);
+                        } else {
+                            angle = angle + par.getRotationDegree();
+                            par.setRotationDegree(angle);
+                        }
+                    } else if (this.mTouchMode == ZOOM) {
                         if (offsetZoom > 0) {
                             this.zoomIn();
                         } else {
                             this.zoomOut();
                         }
                     }
+
+                    invalidate();
                     return true;
                 }
 			case MotionEvent.ACTION_UP:
