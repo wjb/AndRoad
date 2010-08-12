@@ -14,6 +14,7 @@
 	<string name="tv_whereami_contextmenu_add_as_favorite">Als Favorite hinzufügen...</string>
 	<string name="tv_whereami_contextmenu_show_radar">Im Radar zeigen...</string>
 	<string name="tv_whereami_contextmenu_weather_get">Wettervorhersage...</string>
+       <string name="tv_whereami_contextmenu_foxytag">Foxy Tag...</string>
 	<string name="tv_whereami_contextmenu_close">Schließen</string>
 	
 	<string name="et_whereami_searchbox_hint">z.B.: \'Berlin, Lychenerstraße\'</string>

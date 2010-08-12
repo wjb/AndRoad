@@ -14,6 +14,7 @@
 	<string name="tv_whereami_contextmenu_add_as_favorite">Přidat bod jako oblíbený...</string>
 	<string name="tv_whereami_contextmenu_show_radar">Zobrazit v radaru...</string>
 	<string name="tv_whereami_contextmenu_weather_get">Předpověď počasí...</string>
+       <string name="tv_whereami_contextmenu_foxytag">Foxy Tag...</string>
 	<string name="tv_whereami_contextmenu_close">Zavřít</string>
 	
 		

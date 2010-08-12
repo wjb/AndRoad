@@ -46,6 +46,7 @@
 	<string name="maps_menu_trace_show">Zobrazit současnou trasu</string>
 	<string name="maps_menu_trace_hide">Skrýt současnou trasu</string>
 	<string name="maps_menu_trace_submit">Odeslat současnou trasu</string>
+       <string name="maps_menu_foxytag">Foxy Tag</string>
 	<string name="maps_menu_vehicleregistrationplate_lookup">Info o SPZ</string>
 	
 	<!-- Context Menu-String -->

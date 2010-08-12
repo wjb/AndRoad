@@ -14,6 +14,7 @@
 	<string name="tv_whereami_contextmenu_add_as_favorite">Add as favorite...</string>
 	<string name="tv_whereami_contextmenu_show_radar">Show in Radar...</string>
 	<string name="tv_whereami_contextmenu_weather_get">Weather Forecast...</string>
+       <string name="tv_whereami_contextmenu_foxytag">Foxy Tag...</string>
 	<string name="tv_whereami_contextmenu_close">Close</string>
 	
 	<string name="et_whereami_searchbox_hint">i.e.: \'Oakland, Blossom St\'</string>

@@ -54,11 +54,13 @@ import org.andnav2.sys.ors.adt.ts.ISpatialDataOrganizer;
 import org.andnav2.sys.ors.adt.ts.TrafficItem;
 import org.andnav2.sys.ors.adt.ts.TrafficOverlayManager;
 import org.andnav2.sys.ors.exceptions.ORSException;
+import org.andnav2.sys.ors.ff.FoxyTagRequester;
 import org.andnav2.sys.ors.lus.LUSRequester;
 import org.andnav2.sys.ors.tuks.TUKSRequester;
 import org.andnav2.sys.ors.util.RouteHandleIDExtractor;
 import org.andnav2.sys.ors.views.overlay.AreaOfInterestOverlay;
 import org.andnav2.sys.ors.views.overlay.FavoritePoint;
+import org.andnav2.sys.ors.views.overlay.FoxyTagPoint;
 import org.andnav2.sys.ors.views.overlay.BitmapItem;
 import org.andnav2.sys.ors.views.overlay.BitmapOverlay;
 import org.andnav2.sys.ors.views.overlay.TrafficOverlay;
@@ -136,7 +138,8 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 	private static final int MENU_SATELLITE_ID = MENU_QUIT_ID + 1;
 	private static final int MENU_SUBMENU_TRAFFIC_ID = MENU_SATELLITE_ID + 1;
 	private static final int MENU_WEATHER_ID = MENU_SUBMENU_TRAFFIC_ID + 1;
-    private static final int MENU_SHOWFAVORITE_ID = MENU_WEATHER_ID + 1;
+	private static final int MENU_FOXYTAG_ID = MENU_WEATHER_ID + 1;
+    private static final int MENU_SHOWFAVORITE_ID = MENU_FOXYTAG_ID + 1;
 	private static final int MENU_OSB_ID = MENU_SHOWFAVORITE_ID + 1;
 	private static final int MENU_COMPASS_ID = MENU_OSB_ID + 1;
 	private static final int MENU_PRELOAD_ID = MENU_COMPASS_ID + 1;
@@ -704,6 +707,13 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 			menuPos++;
 		}
 
+		{ // FoxyTag-Item
+			menu.add(menuPos, MENU_FOXYTAG_ID, menuPos, getString(R.string.maps_menu_foxytag))
+			.setIcon(R.drawable.foxytag)
+			.setAlphabeticShortcut('f');
+			menuPos++;
+		}
+
 		{ // Compass-Item
 			if((this.mSensorManager.getSensors() & SensorManager.SENSOR_ORIENTATION) != 0){
 				menu.add(menuPos, MENU_COMPASS_ID, menuPos, getString(R.string.maps_menu_compass))
@@ -832,6 +842,9 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 			case MENU_WEATHER_ID:
 				openWeatherDialog(super.mOSMapView.getMapCenter());
 				return true;
+            case MENU_FOXYTAG_ID:
+                showFoxyTag(super.mOSMapView.getMapCenter());
+                return true;
 			case MENU_GPSSTATUS_ID:
 				org.andnav2.ui.util.Util.startUnknownActivity(this, "com.eclipsim.gpsstatus.VIEW", "com.eclipsim.gpsstatus");
 				return true;
@@ -1126,6 +1139,23 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 	// Methods
 	// ===========================================================
 
+	private void showFoxyTag(final GeoPoint pGeoPoint) {
+        Toast.makeText(WhereAmIMap.this, R.string.please_wait_a_moment, Toast.LENGTH_LONG).show();
+        new Thread(new Runnable(){
+                @Override
+                public void run() {
+                    try {
+                        final List<BitmapItem> ff = WhereAmIMap.this.mFFOverlay.getBitmapItems();
+                        for (final FoxyTagPoint fpp : FoxyTagRequester.request(WhereAmIMap.this, WhereAmIMap.this.mOSMapView.getMapCenter())) {
+                            ff.add(fpp);
+                        }
+                    } catch (final Exception e) {
+                        Log.e(Constants.DEBUGTAG, "AASRequester-Error", e);
+                    }
+                }
+            }, "FoxyTag-Runner").start();
+    }
+
     private void toggleFavorite() {
         final List<BitmapItem> fs = WhereAmIMap.this.mFavoriteOverlay.getBitmapItems();
         if (fs.size() > 0) {
@@ -1409,6 +1439,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 						getString(R.string.tv_whereami_contextmenu_add_as_favorite),
 						getString(R.string.tv_whereami_contextmenu_show_radar),
 						getString(R.string.tv_whereami_contextmenu_weather_get),
+						getString(R.string.tv_whereami_contextmenu_foxytag),
 						getString(R.string.tv_whereami_contextmenu_close)};
 				new AlertDialog.Builder(WhereAmIMap.this)
 				.setSingleChoiceItems(items, 0, new DialogInterface.OnClickListener(){
@@ -1432,6 +1463,9 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 							case 3:
 								openWeatherDialog(WhereAmIMap.this.mGPLastMapClick);
 								break;
+                            case 4:
+                                showFoxyTag(WhereAmIMap.this.mGPLastMapClick);
+                                break;
 							case 5:
 								return;
 						}

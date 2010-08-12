@@ -46,6 +46,7 @@
 	<string name="maps_menu_trace_show">Montrer la trace actuelle</string>
 	<string name="maps_menu_trace_hide">Cacher la trace actuelle</string>
 	<string name="maps_menu_trace_submit">Envoyer la trace actuelle</string>
+    <string name="maps_menu_foxytag">Foxy Tag</string>
 	<string name="maps_menu_vehicleregistrationplate_lookup">Recherche plaque d\'immatriculation</string>
 	
 	<!-- Context Menu-String -->
