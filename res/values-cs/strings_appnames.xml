@@ -61,4 +61,5 @@
 	<string name="app_name_settings_statistics">AndNav2! - Statistiky...</string>
 	<string name="app_name_settings_routingflags">AndNav2! - Nastavení trasy...</string>
 	<string name="app_name_settings_routingflags_dialog">Nastavení trasy...</string>
+	<string name="app_name_camera_favorite">Camera Favorite</string>
 </resources>

@@ -15,4 +15,6 @@
 	
 	
 	<string name="toast_error_adding_favorite">Erreur lors de l\'ajout du favori.</string>
+
+	<string name="dlg_photo">Photo</string>
 </resources>

@@ -14,6 +14,7 @@ import org.andnav2.sys.ors.adt.ds.POIType;
 import org.andnav2.sys.ors.adt.lus.Country;
 import org.andnav2.sys.ors.adt.rs.DirectionsLanguage;
 import org.andnav2.sys.osb.adt.OpenStreetBug;
+import org.andnav2.ui.camera.CameraFavorite;
 import org.andnav2.ui.sd.SDPOICategories;
 import org.andnav2.ui.sd.SDPOIEntry;
 import org.openstreetmap.api.exceptions.OSMAPIException;
@@ -291,6 +292,14 @@ public class CommonDialogFactory {
 				}catch(final Exception e){
 					pCallback.onFailure(e);
 				}
+			}
+		})
+        .setNeutralButton(R.string.dlg_photo, new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(final DialogInterface d, final int which) {
+				final Intent cameraFavoriteIntent = new Intent(ctx, CameraFavorite.class);
+
+				ctx.startActivity(cameraFavoriteIntent);
 			}
 		})
 		.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener(){

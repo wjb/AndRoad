@@ -64,4 +64,5 @@
 	<string name="app_name_settings_statistics">AndNav2! - Statistiken...</string>
 	<string name="app_name_settings_routingflags">AndNav2! - Navigations Einstellungen...</string>
 	<string name="app_name_settings_routingflags_dialog">Navigations Einstellungen...</string>
+	<string name="app_name_camera_favorite">Camera Favorite</string>
 </resources>

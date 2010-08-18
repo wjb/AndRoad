@@ -22,4 +22,6 @@
 	<string name="dlg_input_favorite_name_example">Minimálně <b>3</b> znaky.</string>
 	
 	<string name="toast_error_adding_favorite">Chyba při přidání oblíbeného bodu.</string>
+
+	<string name="dlg_photo">Photo</string>
 </resources>
