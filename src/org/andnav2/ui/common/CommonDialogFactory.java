@@ -3,7 +3,6 @@ package org.andnav2.ui.common;
 
 import java.util.List;
 
-
 import org.andnav2.R;
 import org.andnav2.adt.Direction;
 import org.andnav2.adt.TrafficFeed;
@@ -15,6 +14,7 @@ import org.andnav2.sys.ors.adt.lus.Country;
 import org.andnav2.sys.ors.adt.rs.DirectionsLanguage;
 import org.andnav2.sys.osb.adt.OpenStreetBug;
 import org.andnav2.ui.camera.CameraFavorite;
+import org.andnav2.ui.map.WhereAmIMap;
 import org.andnav2.ui.sd.SDPOICategories;
 import org.andnav2.ui.sd.SDPOIEntry;
 import org.openstreetmap.api.exceptions.OSMAPIException;
@@ -266,13 +266,13 @@ public class CommonDialogFactory {
 		}).create();
 	}
 
-	public static Dialog createInputFavoriteNameDialog(final Context ctx, final CommonCallback<String> pCallback) {
-		final LayoutInflater inflater = LayoutInflater.from(ctx);
+	public static Dialog createInputFavoriteNameDialog(final Activity act, final CommonCallback<String> pCallback) {
+		final LayoutInflater inflater = LayoutInflater.from(act);
 		final FrameLayout fl = (FrameLayout)inflater.inflate(R.layout.dlg_input_favorite_name, null);
 
 		final EditText etName = (EditText)fl.findViewById(R.id.et_dlg_input_favorite_name_name);
 
-		return new AlertDialog.Builder(ctx)
+		return new AlertDialog.Builder(act)
 		.setView(fl)
 		.setTitle(R.string.dlg_input_favorite_name_title)
 		.setIcon(R.drawable.settingsmenu_favorites)
@@ -297,9 +297,25 @@ public class CommonDialogFactory {
         .setNeutralButton(R.string.dlg_photo, new DialogInterface.OnClickListener(){
             @Override
             public void onClick(final DialogInterface d, final int which) {
-				final Intent cameraFavoriteIntent = new Intent(ctx, CameraFavorite.class);
+				try{
+					final String name = etName.getText().toString();
+					if(name.length() < 3) {
+						pCallback.onFailure(new IllegalArgumentException("Name not long enough.")); // TODO i18n
+                        d.dismiss();
+                        return;
+					}
 
-				ctx.startActivity(cameraFavoriteIntent);
+					/* If no exception received until here, values are valid! */
+					d.dismiss();
+
+                    final Intent cameraFavoriteIntent = new Intent(act, CameraFavorite.class);
+                    cameraFavoriteIntent.putExtra(CommonDialogFactory.class.getName(), name);
+                    act.startActivityForResult(cameraFavoriteIntent, WhereAmIMap.REQUESTCODE_PICTURE);
+				}catch(final Exception e){
+					pCallback.onFailure(e);
+                    d.dismiss();
+                    return;
+				}
 			}
 		})
 		.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener(){

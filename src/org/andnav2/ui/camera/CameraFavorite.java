@@ -1,13 +1,12 @@
 package org.andnav2.ui.camera;
 
 import java.lang.reflect.Method;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
 import org.andnav2.R;
+import org.andnav2.ui.common.CommonDialogFactory;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.PixelFormat;
 import android.hardware.Camera;
@@ -37,6 +36,7 @@ public class CameraFavorite extends Activity{
 	Camera camera;
 	Button buttonClick;
     SurfaceHolder previewHolder;
+    String name;
 
 	// ===========================================================
 	// Constructors
@@ -47,6 +47,7 @@ public class CameraFavorite extends Activity{
 		super.onCreate(icicle);
 		setContentView(R.layout.camerafavorite);
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        name = this.getIntent().getStringExtra(CommonDialogFactory.class.getName());
 
         SurfaceView preview=(SurfaceView)findViewById(R.id.cameraPreview);
         previewHolder=preview.getHolder();
@@ -123,20 +124,11 @@ public class CameraFavorite extends Activity{
 	/** Handles data for jpeg picture */
 	PictureCallback jpegCallback = new PictureCallback() {
 		public void onPictureTaken(byte[] data, Camera camera) {
-			FileOutputStream outStream = null;
-			try {
-				// Write to sdcard
-				outStream = new FileOutputStream(String.format("/sdcard/%d.jpg", System.currentTimeMillis()));	
-				outStream.write(data);
-				outStream.close();
-
-                // close activity
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			} finally {
-			}
+            Intent d = new Intent();
+            d.putExtra(CommonDialogFactory.class.getName(), name);
+            d.putExtra(CameraFavorite.class.getName(), data);
+            CameraFavorite.this.setResult(Activity.RESULT_OK, d);
+            CameraFavorite.this.finish();
 		}
 	};
 

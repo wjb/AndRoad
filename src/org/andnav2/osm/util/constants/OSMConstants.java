@@ -19,6 +19,7 @@ public interface OSMConstants {
 	public static final String SDCARD_SAVEDTRACES_PATH = "traces/";
 	public static final String SDCARD_SKYHOOKCACHE_PATH = "skyhookcache/";
 	public static final String SDCARD_TILE_PATH = "tiles/";
+	public static final String SDCARD_SAVEDFAVORITES_PATH = "favorites/";
 
 	public static final int NOT_SET = Integer.MIN_VALUE;
 

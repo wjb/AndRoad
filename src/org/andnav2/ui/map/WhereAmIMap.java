@@ -1,6 +1,8 @@
 //Created by plusminus on 19:05:55 - 12.02.2008
 package org.andnav2.ui.map;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,6 +43,7 @@ import org.andnav2.osm.views.tiles.caching.OSMMapTileFilesystemCache;
 import org.andnav2.osm.views.tiles.util.OSMMapTilePreloader;
 import org.andnav2.osm.views.tiles.util.OSMMapTilePreloader.OnProgressChangeListener;
 import org.andnav2.osm.views.util.Util;
+import org.andnav2.osm.util.constants.OSMConstants;
 import org.andnav2.preferences.PreferenceConstants;
 import org.andnav2.preferences.Preferences;
 import org.andnav2.sys.ors.aas.AASRequester;
@@ -67,6 +70,7 @@ import org.andnav2.sys.ors.views.overlay.TrafficOverlay;
 import org.andnav2.sys.ors.views.overlay.TrafficOverlayItem;
 import org.andnav2.sys.vehicleregistrationplates.VRPRegistry;
 import org.andnav2.sys.vehicleregistrationplates.tables.IVRPElement;
+import org.andnav2.ui.camera.CameraFavorite;
 import org.andnav2.ui.common.CommonCallback;
 import org.andnav2.ui.common.CommonCallbackAdapter;
 import org.andnav2.ui.common.CommonDialogFactory;
@@ -130,6 +134,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 	private static final int REQUESTCODE_OSBMAP = REQUESTCODE_WEATHER + 1;
 	private static final int REQUESTCODE_STRUCTURED_SEARCH_SD_MAINCHOOSE = REQUESTCODE_OSBMAP + 1;
 	private static final int REQUESTCODE_DDMAP = REQUESTCODE_STRUCTURED_SEARCH_SD_MAINCHOOSE + 1;
+	public static final int REQUESTCODE_PICTURE = REQUESTCODE_DDMAP + 1;
 
 	private final int LAT_INDEX = 0;
 	private final int LON_INDEX = 1;
@@ -560,6 +565,30 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 					WhereAmIMap.super.mOSMapView.getController().animateTo(gp, AnimationType.MIDDLEPEAKSPEED);
 				}
 				break;
+            case REQUESTCODE_PICTURE:
+                String result = data.getStringExtra(CommonDialogFactory.class.getName());
+                try {
+                    DBManager.addFavorite(WhereAmIMap.this, result, WhereAmIMap.this.mGPLastMapClick.getLatitudeE6(), WhereAmIMap.this.mGPLastMapClick.getLongitudeE6());
+                } catch (final DataBaseException e) {
+                    Toast.makeText(WhereAmIMap.this, R.string.toast_error_adding_favorite, Toast.LENGTH_LONG).show();
+                }
+
+                byte[] d = data.getByteArrayExtra(CameraFavorite.class.getName());
+
+                final String traceFolderPath = org.andnav2.osm.util.Util.getAndNavExternalStoragePath() + OSMConstants.SDCARD_SAVEDFAVORITES_PATH;
+                new File(traceFolderPath).mkdirs();
+                final String filename = traceFolderPath + System.currentTimeMillis() + ".jpg";
+                FileOutputStream outStream = null;
+                try {
+                    // Write to sdcard
+                    outStream = new FileOutputStream(filename);
+                    outStream.write(d);
+                    outStream.flush();
+                    outStream.close();
+				} catch (final Exception e) {
+					Log.e(OSMConstants.DEBUGTAG, "File-Writing-Error", e);
+				}
+                break;
 		}
 	}
 
