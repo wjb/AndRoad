@@ -45,7 +45,6 @@
 	<string name="toast_preloader_cache_increased_message">Cachegröße wurde erhöht auf: %s</string>
 		
 	<!-- Pseudo Context Menu-String -->
-	<!-- TODO? Sollte abgelöst werden vom richtigen ContextMenu -->
 	<string name="ddmap_contextmenu_add_as_waypoint">Als Wegpunkt hinzufügen</string>
 	<string name="ddmap_contextmenu_clear_waypoints">Wegpunkte löschen</string>
 	<string name="ddmap_contextmenu_add_as_avoidarea">Als Meidungsgebiet hinzufügen</string>
