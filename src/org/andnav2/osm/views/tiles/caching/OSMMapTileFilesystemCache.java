@@ -151,6 +151,10 @@ public class OSMMapTileFilesystemCache extends AbstractOSMMapTileFilesystemCache
 			case EXTERNAL:
 				final File f = new File(this.EXTERNAL_STORAGE_BASEDIRECTORY + SDCARD_TILE_PATH + aFormattedFileName);
 
+                if (!f.exists()) {
+                    return null;
+                }
+
 				final long fileSize = f.length();
 				if(fileSize < 1){
 					Log.w(DEBUGTAG, "Deleted empty MapTile: " + aFormattedFileName);
@@ -158,11 +162,7 @@ public class OSMMapTileFilesystemCache extends AbstractOSMMapTileFilesystemCache
 					return null;
 				}
 
-				if(f.exists()) {
-					return new FileInputStream(f);
-				} else {
-					return null;
-				}
+                return new FileInputStream(f);
 			default:
 				throw new IllegalArgumentException("Unknown StoragePolicy");
 		}
