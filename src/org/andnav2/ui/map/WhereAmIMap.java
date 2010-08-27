@@ -568,6 +568,8 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
             case REQUESTCODE_PICTURE:
                 String result = data.getStringExtra(CommonDialogFactory.class.getName());
                 long favoriteid = -1;
+                if (WhereAmIMap.this.mGPLastMapClick == null)
+                    break;
                 try {
                     favoriteid = DBManager.addFavorite(WhereAmIMap.this, result, WhereAmIMap.this.mGPLastMapClick.getLatitudeE6(), WhereAmIMap.this.mGPLastMapClick.getLongitudeE6());
                 } catch (final DataBaseException e) {
@@ -579,13 +581,15 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 
                 Favorite f;
                 try {
-                    f = DBManager.getFavoriteById(this, favoriteid);
-                } catch (final DataBaseException e) {}
+                    f = DBManager.getFavoriteById(this, "" + favoriteid);
+                } catch (final DataBaseException e) {
+                    break;
+                }
                 byte[] d = data.getByteArrayExtra(CameraFavorite.class.getName());
 
                 final String favoriteFolderPath = org.andnav2.osm.util.Util.getAndNavExternalStoragePath() + OSMConstants.SDCARD_SAVEDFAVORITES_PATH;
                 new File(favoriteFolderPath).mkdirs();
-                final String filename = favoriteFolderPath + favoriteid + ".jpg";
+                final String filename = f.getPhotoFilename();
                 FileOutputStream outStream = null;
                 try {
                     // Write to sdcard

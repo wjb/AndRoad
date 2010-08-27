@@ -1,6 +1,7 @@
 //Created by plusminus on 14:01:14 - 15.02.2008
 package org.andnav2.db;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -288,6 +289,13 @@ public class DBManager implements DatabaseConstants{
 		try {
 			ensureFavoritesTableExists(myDB);
 
+            List<Favorite> favList = DBManager.getFavoritesByName(ctx, aFavName);
+            for (final Favorite fav : favList) {
+                final File f = new File(fav.getPhotoFilename());
+                if (f.exists())
+                    f.delete();
+            }
+
 			/* Remove the favorite by its name passed as parameter. */
 			final int affected = myDB.delete(T_FAVS, T_FAVS_COL_FAVNAME + "=?", new String[]{aFavName});
 
@@ -412,7 +420,7 @@ public class DBManager implements DatabaseConstants{
 		}
 	}
 
-    public static Favorite getFavoriteById(final Context ctx, final long id) throws DataBaseException {
+    public static Favorite getFavoriteById(final Context ctx, final String id) throws DataBaseException {
 		/* Prepare Database */
 		final SQLiteDatabase myDB = ensureDBInstanceExists(ctx);
         Favorite fav = null;
@@ -424,7 +432,7 @@ public class DBManager implements DatabaseConstants{
 			final Cursor c = myDB.query(T_FAVS, new String[] {
 					T_FAVS_COL_ID, T_FAVS_COL_FAVNAME, T_FAVS_COL_LAT,
 					T_FAVS_COL_LNG, T_FAVS_COL_USES
-                }, null, null, null, null, T_FAVS_COL_LAST_USE + " DESC");
+                }, T_FAVS_COL_ID + "=?", new String[]{id}, null, null, T_FAVS_COL_LAST_USE + " DESC");
 
 			/* Check if our query was valid. */
 			if (c != null) {
@@ -473,6 +481,56 @@ public class DBManager implements DatabaseConstants{
 					T_FAVS_COL_ID, T_FAVS_COL_FAVNAME, T_FAVS_COL_LAT,
 					T_FAVS_COL_LNG, T_FAVS_COL_USES
                 }, null, null, null, null, T_FAVS_COL_LAST_USE + " DESC");
+
+			/* Check if our query was valid. */
+			if (c != null) {
+				favList = new ArrayList<Favorite>(c.getCount());
+
+				/* Get the indices of the Columns we will need */
+                final int idColumn = c.getColumnIndexOrThrow(T_FAVS_COL_ID);
+				final int favNameColumn = c.getColumnIndexOrThrow(T_FAVS_COL_FAVNAME);
+				final int latColumn = c.getColumnIndexOrThrow(T_FAVS_COL_LAT);
+				final int lngColumn = c.getColumnIndexOrThrow(T_FAVS_COL_LNG);
+				final int usesColumn = c.getColumnIndexOrThrow(T_FAVS_COL_USES);
+
+				/* Check if at least one Result was returned. */
+				if (c.moveToFirst()) {
+					/* Loop through all Results */
+					do {
+						/* Retrieve the values of the Entry the Cursor is providing. */
+						favList.add(new Favorite(c.getLong(idColumn),
+                                                 c.getString(favNameColumn),
+                                                 c.getInt(latColumn),
+                                                 c.getInt(lngColumn),
+                                                 c.getInt(usesColumn)));
+
+					} while (c.moveToNext());
+				}
+				c.close();
+			}else{
+				throw new DataBaseException("Failed on reading favourties");
+			}
+
+		}finally{
+			/* Close Database */
+			closeDB();
+		}
+		return favList;
+	}
+
+	public static List<Favorite> getFavoritesByName(final Context ctx, final String aFavName) throws DataBaseException {
+		/* Prepare Database */
+		final SQLiteDatabase myDB = ensureDBInstanceExists(ctx);
+		ArrayList<Favorite> favList = null;
+
+		try{
+			ensureFavoritesTableExists(myDB);
+
+			/* Query for all favourites. */
+			final Cursor c = myDB.query(T_FAVS, new String[] {
+					T_FAVS_COL_ID, T_FAVS_COL_FAVNAME, T_FAVS_COL_LAT,
+					T_FAVS_COL_LNG, T_FAVS_COL_USES
+                }, T_FAVS_COL_FAVNAME + "=?", new String[]{aFavName}, null, null, T_FAVS_COL_LAST_USE + " DESC");
 
 			/* Check if our query was valid. */
 			if (c != null) {
