@@ -35,7 +35,6 @@
 	<string name="maps_menu_traffic">Informace o stavu</string>
 	<string name="maps_menu_preload">Přednačíst</string>
 	<string name="maps_menu_shareroute">Trasu poslat emailem</string>
-	<string name="maps_menu_compass">Kompas</string>
 	<string name="maps_menu_getcentetcoordinates">Souřadnice mapového centra...</string>
 	<string name="maps_menu_getcentetcoordinates_message"><b>Mapové centrum:</b>\n\n<b>Zeměpisná šíře:\t</b>%.6f\n<b>Zeměpisná délka:\t</b>%.6f\n</string>
 	<string name="maps_menu_altitude_profile">Výškový profil</string>

@@ -35,7 +35,6 @@
 	<string name="maps_menu_traffic">Changer de trafic</string>
 	<string name="maps_menu_preload">Précharger</string>
 	<string name="maps_menu_shareroute">Envoyer la route par mail</string>
-	<string name="maps_menu_compass">Boussole</string>
 	<string name="maps_menu_getcentetcoordinates">Voir les coordonnées</string>
 	<string name="maps_menu_getcentetcoordinates_message"><b>Centre de la carte :</b>\n\n<b>Latitude:\t</b>%.6f\n<b>Longitude:\t</b>%.6f\n</string>
 	<string name="maps_menu_altitude_profile">Graphe d\'altitude</string>

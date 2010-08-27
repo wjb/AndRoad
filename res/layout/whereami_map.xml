@@ -68,7 +68,6 @@
 		android:src="@drawable/world_small"/>	
 	<view class="org.andnav2.ui.common.views.CompassImageView" 
 		android:id="@+id/iv_whereami_compass"
-		android:visibility="gone"
 		android:layout_alignParentRight="true"
 		android:layout_above="@id/ibtn_whereami_choose_renderer" 
 		android:layout_width="wrap_content"

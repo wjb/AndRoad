@@ -141,8 +141,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 	private static final int MENU_FOXYTAG_ID = MENU_WEATHER_ID + 1;
     private static final int MENU_SHOWFAVORITE_ID = MENU_FOXYTAG_ID + 1;
 	private static final int MENU_OSB_ID = MENU_SHOWFAVORITE_ID + 1;
-	private static final int MENU_COMPASS_ID = MENU_OSB_ID + 1;
-	private static final int MENU_PRELOAD_ID = MENU_COMPASS_ID + 1;
+	private static final int MENU_PRELOAD_ID = MENU_OSB_ID + 1;
 	private static final int MENU_ACCESSIBILITYANALYSIS_ID = MENU_PRELOAD_ID + 1;
 	private static final int MENU_SUBMENU_RENDERERS_ID = MENU_ACCESSIBILITYANALYSIS_ID + 1;
 	private static final int MENU_LOAD_TRACE_ID = MENU_SUBMENU_RENDERERS_ID + 1;
@@ -182,6 +181,8 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 	private ImageButton mIbtnWhereAmI;
 	private ImageButton mIbtnSearch;
 	private ImageButton mIbtnChooseRenderer;
+	private CompassRotateView mCompassRotateView;
+	private CompassImageView mIvCompass;
 	private EditText mEtSearch;
 	private ImageButton mIbtnNavPointsDoStart;
 	private ImageButton mIbtnNavPointsDoCancel;
@@ -199,8 +200,6 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 
 	private int mDoCenter = WhereAmIMap.CENTERMODE_AUTO;
 
-	private CompassRotateView mCompassRotateView;
-
 	private ArrayList<OSMMapViewOverlayItem> mSearchPinList;
 	/** Currently selected index in mSearchPinList. */
 	private int mSearchPinListIndex;
@@ -213,9 +212,6 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 	private OSMMapViewSingleIconOverlay mStartFlagOverlay;
 	private OSMMapViewSingleIconOverlay mDestinationFlagOverlay;
 	private OSMMapViewSimpleLineOverlay mNavPointsConnectionLineOverlay;
-
-
-	private CompassImageView mIvCompass;
 
 	/** Keeps the screen alive when it would lock otherwise. */
 	private PowerManager.WakeLock mWakeLock;
@@ -351,13 +347,14 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 		this.mIbtnCenter = (ImageButton)this.findViewById(R.id.ibtn_whereami_center);
 		this.mIbtnWhereAmI = (ImageButton)this.findViewById(R.id.ibtn_whereami_whereami);
 		this.mIbtnSearch = (ImageButton)this.findViewById(R.id.ibtn_whereami_search);
-		this.mEtSearch = (EditText)this.findViewById(R.id.et_whereami_search);
 		this.mIbtnChooseRenderer = (ImageButton)this.findViewById(R.id.ibtn_whereami_choose_renderer);
+		this.mCompassRotateView = (CompassRotateView)this.findViewById(R.id.rotator_wheramimap);
+		this.mIvCompass = (CompassImageView)this.findViewById(R.id.iv_whereami_compass);
+		this.mEtSearch = (EditText)this.findViewById(R.id.et_whereami_search);
 		this.mIbtnNavPointsSetStart = (ImageButton)this.findViewById(R.id.ibtn_whereami_setstartpoint);
 		this.mIbtnNavPointsSetDestination = (ImageButton)this.findViewById(R.id.ibtn_whereami_setendpoint);
 		this.mIbtnNavPointsDoStart = (ImageButton)this.findViewById(R.id.ibtn_whereami_setnavpoints_start);
 		this.mIbtnNavPointsDoCancel = (ImageButton)this.findViewById(R.id.ibtn_whereami_setnavpoints_cancel);
-		this.mCompassRotateView = (CompassRotateView)this.findViewById(R.id.rotator_wheramimap);
 		this.mMapItemControlView = (OSMMapViewItemizedOverlayControlView)this.findViewById(R.id.itemizedoverlaycontrol_whereami);
 		this.mScaleIndicatorView = (OSMMapViewScaleIndicatorView)this.findViewById(R.id.scaleindicatorview_whereami);
 		this.mScaleIndicatorView.setUnitSystem(Preferences.getUnitSystem(this));
@@ -385,8 +382,6 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 		final PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
 		this.mWakeLock = pm.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK, "MyWakeLock");
 		this.mWakeLock.acquire();
-
-		this.mIvCompass = (CompassImageView)this.findViewById(R.id.iv_whereami_compass);
 
 		this.mOSMapView.addChangeListener(new OnChangeListener(){
 			@Override
@@ -540,6 +535,9 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 			this.mIbtnCenter.startAnimation(this.mFadeToRightAnimation);
 		}
 
+        this.mCompassRotateView.toggleActive();
+        this.mIvCompass.startAnimation(this.mFadeToRightAnimation);
+
 		/* Right icons */
 		this.mIbtnWhereAmI.startAnimation(this.mFadeToRightAnimation);
 		this.mIbtnChooseRenderer.startAnimation(this.mFadeToRightAnimation);
@@ -580,7 +578,6 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 		super.onDestroy();
 	}
 
-	private final String STATE_COMPASSMODE_ID = "state_compassmode_id";
 	private final String STATE_AUTOCENTER_ID = "state_autocenter_id";
 	private final String STATE_ETSEARCHVISIBLE_ID = "state_etsearchvisible_id";
 	private final String STATE_ZOOM_ID = "state_zoom_id";
@@ -596,10 +593,6 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 		}
 
 		super.onRestoreInstanceState(savedInstanceState);
-
-		if(savedInstanceState.getBoolean(this.STATE_COMPASSMODE_ID, false)) {
-			toggleCompass();
-		}
 
 		updateUIForAutoCenterChange(savedInstanceState.getInt(this.STATE_AUTOCENTER_ID, WhereAmIMap.CENTERMODE_AUTO));
 
@@ -622,7 +615,6 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 	protected void onSaveInstanceState(final Bundle outState) {
 		super.onSaveInstanceState(outState);
 
-		outState.putBoolean(this.STATE_COMPASSMODE_ID, this.mCompassRotateView.isActive());
 		outState.putInt(this.STATE_AUTOCENTER_ID, this.mDoCenter);
 
 		outState.putBoolean(this.STATE_ETSEARCHVISIBLE_ID, this.mEtSearch.getVisibility() == View.VISIBLE);
@@ -679,11 +671,6 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 	@Override
 	public boolean onKeyDown(final int keyCode, final KeyEvent event) {
 		switch(keyCode){
-			case KeyEvent.KEYCODE_C:
-				if((this.mSensorManager.getSensors() & SensorManager.SENSOR_ORIENTATION) != 0) {
-					toggleCompass();
-				}
-				return true;
 			case KeyEvent.KEYCODE_SEARCH:
 				if(this.mEtSearch.getVisibility() != View.VISIBLE) {
 					handleSearchOpen();
@@ -712,15 +699,6 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 			.setIcon(R.drawable.foxytag)
 			.setAlphabeticShortcut('f');
 			menuPos++;
-		}
-
-		{ // Compass-Item
-			if((this.mSensorManager.getSensors() & SensorManager.SENSOR_ORIENTATION) != 0){
-				menu.add(menuPos, MENU_COMPASS_ID, menuPos, getString(R.string.maps_menu_compass))
-				.setIcon(R.drawable.compass)
-				.setAlphabeticShortcut('c');
-				menuPos++;
-			}
 		}
 
 		{ // Renderers-SubMenuItem
@@ -857,9 +835,6 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 			case MENU_QUIT_ID:
 				this.setResult(Constants.SUBACTIVITY_RESULTCODE_CHAINCLOSE_QUITTED);
 				this.finish();
-				return true;
-			case MENU_COMPASS_ID:
-				this.toggleCompass();
 				return true;
 			case MENU_PRELOAD_ID:
 				showPreloadDialog();
@@ -1394,17 +1369,6 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 		}).create().show();
 	}
 
-	private void toggleCompass() {
-		this.mCompassRotateView.toggleActive();
-		if(this.mCompassRotateView.isActive()){
-			this.mIvCompass.setVisibility(View.VISIBLE);
-			//			this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); // TODO Strange issue with SkyHook
-		}else{
-			this.mIvCompass.setVisibility(View.GONE);
-			//			this.setRequestedOrientation(Preferences.getRequestedScreenOrientation(this)); // TODO Strange issue with SkyHook
-		}
-	}
-
 	private void applyAutoCompleteListeners() {
 		try{
 			final List<DBPOI> usedPOIs = DBManager.getPOIHistory(this);
@@ -1744,6 +1708,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 	private void updateUIForNavPointsCrosshairMode(final boolean pNewState) {
 		this.mCrosshairOverlay.setVisible(pNewState);
 		this.mNavPointsCrosshairMode = pNewState;
+        this.mCompassRotateView.toggleActive();
 
 		if(pNewState){
 			this.mIbtnNavPointsDoCancel.setVisibility(View.VISIBLE);
@@ -1755,6 +1720,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 			this.mIbtnNavPointsSetStart.clearAnimation();
 			this.mIbtnNavPointsSetDestination.clearAnimation();
 			this.mIbtnCenter.clearAnimation();
+            this.mIvCompass.clearAnimation();
 
 			final boolean startAndDestinationSet = this.mStartFlagOverlay.isVisible() && this.mDestinationFlagOverlay.isVisible();
 			this.mIbtnNavPointsDoStart.setEnabled(startAndDestinationSet);
@@ -1769,6 +1735,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 			this.mIbtnNavPointsSetStart.setVisibility(View.GONE);
 			this.mIbtnNavPointsDoStart.startAnimation(this.mFadeToLeftAnimation);
 			this.mIbtnCenter.startAnimation(this.mFadeToRightAnimation);
+            this.mIvCompass.startAnimation(this.mFadeToRightAnimation);
 
 			this.mIbtnNavPointsDoStart.setEnabled(true);
 			this.mStartFlagOverlay.setVisible(false);
