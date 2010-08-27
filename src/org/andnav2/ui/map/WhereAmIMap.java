@@ -567,17 +567,25 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 				break;
             case REQUESTCODE_PICTURE:
                 String result = data.getStringExtra(CommonDialogFactory.class.getName());
+                long favoriteid = -1;
                 try {
-                    DBManager.addFavorite(WhereAmIMap.this, result, WhereAmIMap.this.mGPLastMapClick.getLatitudeE6(), WhereAmIMap.this.mGPLastMapClick.getLongitudeE6());
+                    favoriteid = DBManager.addFavorite(WhereAmIMap.this, result, WhereAmIMap.this.mGPLastMapClick.getLatitudeE6(), WhereAmIMap.this.mGPLastMapClick.getLongitudeE6());
                 } catch (final DataBaseException e) {
                     Toast.makeText(WhereAmIMap.this, R.string.toast_error_adding_favorite, Toast.LENGTH_LONG).show();
                 }
 
+                if (favoriteid == -1)
+                    break;
+
+                Favorite f;
+                try {
+                    f = DBManager.getFavoriteById(this, favoriteid);
+                } catch (final DataBaseException e) {}
                 byte[] d = data.getByteArrayExtra(CameraFavorite.class.getName());
 
-                final String traceFolderPath = org.andnav2.osm.util.Util.getAndNavExternalStoragePath() + OSMConstants.SDCARD_SAVEDFAVORITES_PATH;
-                new File(traceFolderPath).mkdirs();
-                final String filename = traceFolderPath + System.currentTimeMillis() + ".jpg";
+                final String favoriteFolderPath = org.andnav2.osm.util.Util.getAndNavExternalStoragePath() + OSMConstants.SDCARD_SAVEDFAVORITES_PATH;
+                new File(favoriteFolderPath).mkdirs();
+                final String filename = favoriteFolderPath + favoriteid + ".jpg";
                 FileOutputStream outStream = null;
                 try {
                     // Write to sdcard

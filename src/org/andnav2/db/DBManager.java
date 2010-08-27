@@ -193,9 +193,11 @@ public class DBManager implements DatabaseConstants{
 		}
 	}
 
-	public static void addFavorite(final Context ctx, final String aFavName, final int aLatitude, final int aLongitude) throws DataBaseException {
+	public static long addFavorite(final Context ctx, final String aFavName, final int aLatitude, final int aLongitude) throws DataBaseException {
+        long retVal = -1;
+
 		if(aFavName == null || aFavName.length() == 0) {
-			return;
+			return retVal;
 		}
 
 		/* Prepare Database */
@@ -218,7 +220,7 @@ public class DBManager implements DatabaseConstants{
 					cv.put(T_FAVS_COL_LNG, aLongitude);
 					cv.put(T_FAVS_COL_LAST_USE, DATETIME_NOW);
 
-					final long retVal = myDB.insert(T_FAVS, null, cv);
+					retVal = myDB.insert(T_FAVS, null, cv);
 					if(retVal == -1) {
 						throw new DataBaseException("Failed on inserting new favorite");
 					}
@@ -229,6 +231,8 @@ public class DBManager implements DatabaseConstants{
 			/* Close Database */
 			closeDB();
 		}
+
+        return retVal;
 	}
 
 	public static void addPOIToHistory(final Context ctx, final String aPOIName, final int aLatitude, final int aLongitude) throws DataBaseException {
@@ -408,24 +412,24 @@ public class DBManager implements DatabaseConstants{
 		}
 	}
 
-	public static List<Favorite> getFavorites(final Context ctx) throws DataBaseException {
+    public static Favorite getFavoriteById(final Context ctx, final long id) throws DataBaseException {
 		/* Prepare Database */
 		final SQLiteDatabase myDB = ensureDBInstanceExists(ctx);
-		ArrayList<Favorite> favList = null;
+        Favorite fav = null;
 
 		try{
 			ensureFavoritesTableExists(myDB);
 
 			/* Query for all favourites. */
 			final Cursor c = myDB.query(T_FAVS, new String[] {
-					T_FAVS_COL_FAVNAME, T_FAVS_COL_LAT,
-					T_FAVS_COL_LNG, T_FAVS_COL_USES }, null, null, null, null, T_FAVS_COL_LAST_USE + " DESC");
+					T_FAVS_COL_ID, T_FAVS_COL_FAVNAME, T_FAVS_COL_LAT,
+					T_FAVS_COL_LNG, T_FAVS_COL_USES
+                }, null, null, null, null, T_FAVS_COL_LAST_USE + " DESC");
 
 			/* Check if our query was valid. */
 			if (c != null) {
-				favList = new ArrayList<Favorite>(c.getCount());
-
 				/* Get the indices of the Columns we will need */
+                final int idColumn = c.getColumnIndexOrThrow(T_FAVS_COL_ID);
 				final int favNameColumn = c.getColumnIndexOrThrow(T_FAVS_COL_FAVNAME);
 				final int latColumn = c.getColumnIndexOrThrow(T_FAVS_COL_LAT);
 				final int lngColumn = c.getColumnIndexOrThrow(T_FAVS_COL_LNG);
@@ -436,10 +440,61 @@ public class DBManager implements DatabaseConstants{
 					/* Loop through all Results */
 					do {
 						/* Retrieve the values of the Entry the Cursor is providing. */
-						favList.add(new Favorite(c.getString(favNameColumn),
-								c.getInt(latColumn),
-								c.getInt(lngColumn),
-								c.getInt(usesColumn)));
+						fav = new Favorite(c.getLong(idColumn),
+                                           c.getString(favNameColumn),
+                                           c.getInt(latColumn),
+                                           c.getInt(lngColumn),
+                                           c.getInt(usesColumn));
+
+					} while (c.moveToNext());
+				}
+				c.close();
+			}else{
+				throw new DataBaseException("Failed on reading favourties");
+			}
+
+		}finally{
+			/* Close Database */
+			closeDB();
+		}
+		return fav;
+	}
+
+	public static List<Favorite> getFavorites(final Context ctx) throws DataBaseException {
+		/* Prepare Database */
+		final SQLiteDatabase myDB = ensureDBInstanceExists(ctx);
+		ArrayList<Favorite> favList = null;
+
+		try{
+			ensureFavoritesTableExists(myDB);
+
+			/* Query for all favourites. */
+			final Cursor c = myDB.query(T_FAVS, new String[] {
+					T_FAVS_COL_ID, T_FAVS_COL_FAVNAME, T_FAVS_COL_LAT,
+					T_FAVS_COL_LNG, T_FAVS_COL_USES
+                }, null, null, null, null, T_FAVS_COL_LAST_USE + " DESC");
+
+			/* Check if our query was valid. */
+			if (c != null) {
+				favList = new ArrayList<Favorite>(c.getCount());
+
+				/* Get the indices of the Columns we will need */
+                final int idColumn = c.getColumnIndexOrThrow(T_FAVS_COL_ID);
+				final int favNameColumn = c.getColumnIndexOrThrow(T_FAVS_COL_FAVNAME);
+				final int latColumn = c.getColumnIndexOrThrow(T_FAVS_COL_LAT);
+				final int lngColumn = c.getColumnIndexOrThrow(T_FAVS_COL_LNG);
+				final int usesColumn = c.getColumnIndexOrThrow(T_FAVS_COL_USES);
+
+				/* Check if at least one Result was returned. */
+				if (c.moveToFirst()) {
+					/* Loop through all Results */
+					do {
+						/* Retrieve the values of the Entry the Cursor is providing. */
+						favList.add(new Favorite(c.getLong(idColumn),
+                                                 c.getString(favNameColumn),
+                                                 c.getInt(latColumn),
+                                                 c.getInt(lngColumn),
+                                                 c.getInt(usesColumn)));
 
 					} while (c.moveToNext());
 				}

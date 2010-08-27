@@ -1,15 +1,20 @@
 package org.andnav2.sys.ors.views.overlay;
 
-import org.andnav2.R;
-import org.andnav2.adt.Favorite;
-import org.andnav2.osm.views.OSMMapView.OSMMapViewProjection;
-import org.andnav2.osm.views.util.Util;
-
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Point;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.Toast;
 
+import org.andnav2.R;
+import org.andnav2.adt.Favorite;
+import org.andnav2.osm.adt.GeoPoint;
+import org.andnav2.osm.views.OSMMapView.OSMMapViewProjection;
+import org.andnav2.osm.views.util.Util;
+import org.andnav2.osm.util.constants.OSMConstants;
+import org.andnav2.util.constants.Constants;
 
 public class FavoritePoint extends BitmapItem {
 
@@ -31,6 +36,16 @@ public class FavoritePoint extends BitmapItem {
 	public FavoritePoint(final Favorite aCenter, final Context ctx) {
         super(aCenter, ctx, R.drawable.favorites);
         this.fCenter = aCenter;
+
+        // Load favorite image if there is one
+        final long id = aCenter.getId();
+        final String favoriteFolderPath = org.andnav2.osm.util.Util.getAndNavExternalStoragePath() + OSMConstants.SDCARD_SAVEDFAVORITES_PATH;
+        final String filename = favoriteFolderPath + id + ".jpg";
+        final Bitmap photo = BitmapFactory.decodeFile(filename);
+        if (photo != null)
+            icon = Bitmap.createScaledBitmap(photo, 45, 45, true);
+        else
+            Log.d(Constants.DEBUGTAG, "No Photo on path " + filename);
 	}
 
 	// ===========================================================

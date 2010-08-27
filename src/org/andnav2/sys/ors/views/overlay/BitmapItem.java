@@ -23,9 +23,10 @@ public class BitmapItem {
 	// ===========================================================
 
 	protected final Paint mPaint = new Paint();
-	protected final Bitmap icon;
 	protected final GeoPoint mCenter;
     protected final Context ctx;
+
+	protected Bitmap icon;
 
 	// ===========================================================
 	// Constructors

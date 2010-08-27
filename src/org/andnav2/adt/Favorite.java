@@ -13,6 +13,7 @@ public class Favorite extends GeoPoint{
 	// Fields
 	// ===========================================================
 
+    protected final long id;
 	protected final String mName;
 	protected final int mUses;
 
@@ -20,8 +21,9 @@ public class Favorite extends GeoPoint{
 	// Constructors
 	// ===========================================================
 
-	public Favorite(final String aName, final int aLatitude, final int aLongitude, final int aUses) {
+	public Favorite(final long id, final String aName, final int aLatitude, final int aLongitude, final int aUses) {
 		super(aLatitude, aLongitude);
+        this.id = id;
 		this.mName = aName;
 		this.mUses = aUses;
 	}
@@ -30,13 +32,19 @@ public class Favorite extends GeoPoint{
 	// Getter & Setter
 	// ===========================================================
 
+	public long getId() {
+		return this.id;
+	}
+
 	public String getName() {
 		return this.mName;
 	}
 
 	public String getFullString() {
 		final StringBuilder sb = new StringBuilder();
-		sb.append("Name: ");
+		sb.append("Id: ");
+		sb.append(this.id);
+		sb.append("    Name: ");
 		sb.append(this.mName);
 		sb.append("    Lat: ");
 		sb.append(this.mLatitudeE6);
