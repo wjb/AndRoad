@@ -2,6 +2,7 @@
 package org.andnav2.adt;
 
 import org.andnav2.osm.adt.GeoPoint;
+import org.andnav2.osm.util.constants.OSMConstants;
 
 public class Favorite extends GeoPoint{
 
@@ -39,6 +40,11 @@ public class Favorite extends GeoPoint{
 	public String getName() {
 		return this.mName;
 	}
+
+    public String getPhotoFilename() {
+        final String favoriteFolderPath = org.andnav2.osm.util.Util.getAndNavExternalStoragePath() + OSMConstants.SDCARD_SAVEDFAVORITES_PATH;
+        return favoriteFolderPath + this.id + ".jpg";
+    }
 
 	public String getFullString() {
 		final StringBuilder sb = new StringBuilder();

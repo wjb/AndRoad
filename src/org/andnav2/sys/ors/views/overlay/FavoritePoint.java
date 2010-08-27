@@ -13,7 +13,6 @@ import org.andnav2.adt.Favorite;
 import org.andnav2.osm.adt.GeoPoint;
 import org.andnav2.osm.views.OSMMapView.OSMMapViewProjection;
 import org.andnav2.osm.views.util.Util;
-import org.andnav2.osm.util.constants.OSMConstants;
 import org.andnav2.util.constants.Constants;
 
 public class FavoritePoint extends BitmapItem {
@@ -38,9 +37,7 @@ public class FavoritePoint extends BitmapItem {
         this.fCenter = aCenter;
 
         // Load favorite image if there is one
-        final long id = aCenter.getId();
-        final String favoriteFolderPath = org.andnav2.osm.util.Util.getAndNavExternalStoragePath() + OSMConstants.SDCARD_SAVEDFAVORITES_PATH;
-        final String filename = favoriteFolderPath + id + ".jpg";
+        final String filename = aCenter.getPhotoFilename();
         final Bitmap photo = BitmapFactory.decodeFile(filename);
         if (photo != null)
             icon = Bitmap.createScaledBitmap(photo, 45, 45, true);
