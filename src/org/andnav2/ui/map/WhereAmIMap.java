@@ -1277,11 +1277,15 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 										new OnProgressChangeListener(){
 									@Override
 									public void onProgressChange(final int progress, final int max) {
-										if(progress != max) {
-											pd.setMessage(String.format(progressMessage, progress, max));
-										} else {
-											pd.dismiss();
-										}
+                                        try {
+                                            if(progress != max) {
+                                                pd.setMessage(String.format(progressMessage, progress, max));
+                                            } else {
+                                                pd.dismiss();
+                                            }
+                                        } catch (final Exception e) {
+                                            Log.e(Constants.DEBUGTAG, "View error", e);
+                                        }
 									}
 								});
 							}
