@@ -1673,7 +1673,8 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 					@Override
 					public void run() {
 						try {
-							final ArrayList<GeocodedAddress> addr = LUSRequester.requestReverseGeocode(WhereAmIMap.this, mapCenter, ReverseGeocodePreferenceType.STREETADDRESS);
+                            final LUSRequester lus = Preferences.getORSServer(WhereAmIMap.this).LOCATIONUTILITYSERVICE;
+							final ArrayList<GeocodedAddress> addr = lus.requestReverseGeocode(WhereAmIMap.this, mapCenter, ReverseGeocodePreferenceType.STREETADDRESS);
 							runOnUiThread(new Runnable(){
 								@Override
 								public void run() {
@@ -1904,7 +1905,8 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 			@Override
 			public void run() {
 				try {
-					final ArrayList<GeocodedAddress> ret = LUSRequester.requestFreeformAddress(WhereAmIMap.this, null, query);
+                    final LUSRequester lus = Preferences.getORSServer(WhereAmIMap.this).LOCATIONUTILITYSERVICE;
+					final ArrayList<GeocodedAddress> ret = lus.requestFreeformAddress(WhereAmIMap.this, null, query);
 
 					runOnUiThread(new Runnable(){
 						@Override

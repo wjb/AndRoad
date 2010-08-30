@@ -7,6 +7,13 @@ import org.andnav2.sys.ors.adt.lus.Country;
 import org.andnav2.util.ping.IPingMethod;
 import org.andnav2.util.ping.PingResult;
 
+import org.andnav2.sys.ors.ds.DSRequester;
+import org.andnav2.sys.ors.ds.openrouteservice.OpenRouteServiceDSRequester;
+import org.andnav2.sys.ors.lus.LUSRequester;
+import org.andnav2.sys.ors.lus.openrouteservice.OpenRouteServiceLUSRequester;
+import org.andnav2.sys.ors.rs.RSRequester;
+import org.andnav2.sys.ors.rs.openrouteservice.OpenRouteServiceRSRequester;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -21,10 +28,10 @@ public enum ORSServer implements Parcelable {
 			"Heidelberg, Germany",
 			Country.GERMANY,
 			Country.EUROPEANUNION,
-			"http://openls.geog.uni-heidelberg.de/route/andnav",
-			"http://openls.geog.uni-heidelberg.de/directory/andnav",
-			"http://openls.geog.uni-heidelberg.de/geocode/andnav",
-			new IPingMethod.HostNamePing("openrouteservice.org"));
+            new OpenRouteServiceRSRequester("http://openls.geog.uni-heidelberg.de/route/andnav"),
+            new OpenRouteServiceDSRequester("http://openls.geog.uni-heidelberg.de/directory/andnav"),
+            new OpenRouteServiceLUSRequester("http://openls.geog.uni-heidelberg.de/geocode/andnav"),
+			new IPingMethod.HostNamePing("openls.geog.uni-heidelberg.de"));
 
 	// ===========================================================
 	// Constants
@@ -39,19 +46,19 @@ public enum ORSServer implements Parcelable {
 	public final String LOCATIONNAME;
 	public final Country LOCATION;
 	public final Country COVERAGE;
-	public final String URL_ROUTESERVICE;
-	public final String URL_DIRECTORYSERVICE;
-	public final String URL_LOCATIONUTILITYSERVICE;
+	public final RSRequester ROUTESERVICE;
+	public final DSRequester DIRECTORYSERVICE;
+	public final LUSRequester LOCATIONUTILITYSERVICE;
 	public final IPingMethod PING;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
-	private ORSServer(final String pServerName, final String pServerDescription, final String pLocationName, final Country pLocation, final Country pCoverage, final String pURLRouteService, final String pURLDirectoryService, final String pURLLocationUtilityService, final IPingMethod pPingMethod) {
-		this.URL_ROUTESERVICE = pURLRouteService;
-		this.URL_DIRECTORYSERVICE = pURLDirectoryService;
-		this.URL_LOCATIONUTILITYSERVICE = pURLLocationUtilityService;
+	private ORSServer(final String pServerName, final String pServerDescription, final String pLocationName, final Country pLocation, final Country pCoverage, final RSRequester pRouteService, final DSRequester pDirectoryService, final LUSRequester pLocationUtilityService, final IPingMethod pPingMethod) {
+		this.ROUTESERVICE = pRouteService;
+		this.DIRECTORYSERVICE = pDirectoryService;
+		this.LOCATIONUTILITYSERVICE = pLocationUtilityService;
 		this.LOCATION = pLocation;
 		this.LOCATIONNAME = pLocationName;
 		this.SERVERNAME = pServerName;

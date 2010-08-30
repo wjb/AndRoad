@@ -35,7 +35,8 @@ public class RouteFactory implements Constants{
 	public static Route create(final Context ctx, final long pRouteHandle) throws ORSException, Exception{
 		final DirectionsLanguage nat = Preferences.getDrivingDirectionsLanguage(ctx);
 		try {
-			final Route route = RSRequester.request(ctx, nat, pRouteHandle);
+            final RSRequester rs = Preferences.getORSServer(ctx).ROUTESERVICE;
+			final Route route = rs.request(ctx, nat, pRouteHandle);
 
 			return route;
 		} catch(final ORSException e){
@@ -59,7 +60,8 @@ public class RouteFactory implements Constants{
 		final boolean requestHandle = true;
 		final RoutePreferenceType pRoutePreference = Preferences.getRoutePreferenceType(ctx);
 		try {
-			final Route route = RSRequester.request(ctx, nat, start, vias, end, pRoutePreference, true, pAvoidTolls, pAvoidHighways, requestHandle, pAvoidAreas, pSaveRoute);
+            final RSRequester rs = Preferences.getORSServer(ctx).ROUTESERVICE;
+			final Route route = rs.request(ctx, nat, start, vias, end, pRoutePreference, true, pAvoidTolls, pAvoidHighways, requestHandle, pAvoidAreas, pSaveRoute);
 
 			route.getVias().addAll(vias);
 

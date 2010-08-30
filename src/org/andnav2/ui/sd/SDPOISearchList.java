@@ -249,8 +249,8 @@ public class SDPOISearchList extends AndNavGPSActivity {
 					}
 					final GeoPoint center = TypeConverter.locationToGeoPoint(SDPOISearchList.super.mMyLocation);
 
-
-					final ArrayList<ORSPOI> orspois = DSRequester.request(SDPOISearchList.this, center, type, aSearchRadius);
+                    final DSRequester ds = Preferences.getORSServer(SDPOISearchList.this).DIRECTORYSERVICE;
+					final ArrayList<ORSPOI> orspois = ds.request(SDPOISearchList.this, center, type, aSearchRadius);
 					for (final ORSPOI orspoi : orspois){
 						String name = orspoi.getName();
 						if(name.length() == 0){
@@ -351,7 +351,8 @@ public class SDPOISearchList extends AndNavGPSActivity {
 
 					final int searchdist = aSearchRadius;
 
-					ret = LUSRequester.requestFreeformAddress(SDPOISearchList.this, null, query);
+                    final LUSRequester lus = Preferences.getORSServer(SDPOISearchList.this).LOCATIONUTILITYSERVICE;
+					ret = lus.requestFreeformAddress(SDPOISearchList.this, null, query);
 
 					runOnUiThread(new Runnable(){
 						@Override

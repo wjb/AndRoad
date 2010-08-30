@@ -1,4 +1,4 @@
-package org.andnav2.sys.ors.rs;
+package org.andnav2.sys.ors.rs.openrouteservice;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +21,7 @@ import android.graphics.Point;
 import android.util.FloatMath;
 import android.util.Log;
 
-public class RSParser extends DefaultHandler implements TimeConstants, Constants {
+public class OpenRouteServiceRSParser extends DefaultHandler implements TimeConstants, Constants {
 	// ====================================
 	// Constants
 	// ====================================
@@ -66,11 +66,11 @@ public class RSParser extends DefaultHandler implements TimeConstants, Constants
 	// ===========================================================
 
 
-	public RSParser() {
+	public OpenRouteServiceRSParser() {
 		this.mVias = null;
 	}
 
-	public RSParser(final List<GeoPoint> vias) {
+	public OpenRouteServiceRSParser(final List<GeoPoint> vias) {
 		this.mVias = vias;
 	}
 

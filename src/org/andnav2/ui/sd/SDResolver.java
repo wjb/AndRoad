@@ -197,22 +197,23 @@ public class SDResolver extends AndNavBaseActivity {
 
 					/* Switch on the Mode. */
 					final int searchMode = extras.getInt(EXTRAS_MODE);
+                    final LUSRequester lus = Preferences.getORSServer(SDResolver.this).LOCATIONUTILITYSERVICE;
 					switch (searchMode) {
 						case EXTRAS_MODE_STREETNAMESEARCH:
 							final String dummycityname = "";
-							resolved = LUSRequester.requestStreetaddressCity(SDResolver.this, nat, subdivision, dummycityname, streetName, streetNumber);
+							resolved = lus.requestStreetaddressCity(SDResolver.this, nat, subdivision, dummycityname, streetName, streetNumber);
 							break;
 						case EXTRAS_MODE_FREEFORMSEARCH:
 							final String freeformAddress = extras.getString(EXTRAS_FREEFORM_ID);
-							resolved = LUSRequester.requestFreeformAddress(SDResolver.this, nat, freeformAddress);
+							resolved = lus.requestFreeformAddress(SDResolver.this, nat, freeformAddress);
 							break;
 						case EXTRAS_MODE_ZIPSEARCH:
 							final String zipCode = extras.getString(EXTRAS_ZIPCODE_ID);
-							resolved = LUSRequester.requestStreetaddressPostalcode(SDResolver.this, nat, subdivision, zipCode, streetName, streetNumber);
+							resolved = lus.requestStreetaddressPostalcode(SDResolver.this, nat, subdivision, zipCode, streetName, streetNumber);
 							break;
 						case EXTRAS_MODE_CITYNAMESEARCH:
 							final String cityname = extras.getString(EXTRAS_CITYNAME_ID);
-							resolved = LUSRequester.requestStreetaddressCity(SDResolver.this, nat, subdivision, cityname, streetName, streetNumber);
+							resolved = lus.requestStreetaddressCity(SDResolver.this, nat, subdivision, cityname, streetName, streetNumber);
 							break;
 						default:
 							throw new IllegalArgumentException("Unawaited MODE in SDResolver.");

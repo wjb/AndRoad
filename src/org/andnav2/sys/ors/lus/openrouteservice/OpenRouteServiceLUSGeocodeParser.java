@@ -1,4 +1,4 @@
-package org.andnav2.sys.ors.lus;
+package org.andnav2.sys.ors.lus.openrouteservice;
 
 import java.util.ArrayList;
 
@@ -44,7 +44,7 @@ import android.util.Log;
  * &lt;/xls:XLS&gt;</pre>
  *
  */
-public class LUSGeocodeParser extends DefaultHandler implements TimeConstants, Constants{
+public class OpenRouteServiceLUSGeocodeParser extends DefaultHandler implements TimeConstants, Constants{
 	// ====================================
 	// Constants
 	// ====================================

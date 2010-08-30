@@ -1,4 +1,5 @@
-package org.andnav2.sys.ors.rs;
+package org.andnav2.sys.ors.rs.openrouteservice;
+
 import java.util.ArrayList;
 import java.util.Formatter;
 import java.util.List;
@@ -16,9 +17,7 @@ import org.andnav2.sys.ors.util.constants.ORSXMLConstants;
 
 import android.content.Context;
 
-
-
-public class RSRequestComposer implements ORSXMLConstants {
+public class OpenRouteServiceRSRequestComposer implements ORSXMLConstants {
 
 	/**
 	 * 

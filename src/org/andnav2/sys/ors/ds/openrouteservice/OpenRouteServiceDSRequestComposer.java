@@ -1,4 +1,4 @@
-package org.andnav2.sys.ors.ds;
+package org.andnav2.sys.ors.ds.openrouteservice;
 import java.util.Formatter;
 import java.util.Locale;
 
@@ -13,7 +13,7 @@ import org.andnav2.sys.ors.util.constants.ORSXMLConstants;
 import android.content.Context;
 
 
-public class DSRequestComposer implements ORSXMLConstants {
+public class OpenRouteServiceDSRequestComposer implements ORSXMLConstants {
 
 	/**
 	 * <pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;

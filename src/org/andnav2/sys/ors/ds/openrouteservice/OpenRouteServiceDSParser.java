@@ -1,5 +1,5 @@
 // Created by plusminus on 18:06:19 - 07.11.2008
-package org.andnav2.sys.ors.ds;
+package org.andnav2.sys.ors.ds.openrouteservice;
 
 import java.util.ArrayList;
 
@@ -48,7 +48,7 @@ import android.util.Log;
  * @author Nicolas Gramlich
  *
  */
-public class DSParser extends DefaultHandler implements TimeConstants, Constants{
+public class OpenRouteServiceDSParser extends DefaultHandler implements TimeConstants, Constants{
 	// ====================================
 	// Constants
 	// ====================================

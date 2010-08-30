@@ -1,4 +1,4 @@
-package org.andnav2.sys.ors.lus;
+package org.andnav2.sys.ors.lus.openrouteservice;
 
 import java.util.ArrayList;
 
@@ -14,6 +14,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import android.util.Log;
+
 /**
  * @author Nicolas Gramlich
  * Parses XML-Data like:
@@ -40,7 +41,7 @@ import android.util.Log;
  *   &lt;/xls:Response&gt;
  * &lt;/xls:XLS&gt;</pre>
  */
-public class LUSReverseGeocodeParser extends DefaultHandler implements TimeConstants, Constants{
+public class OpenRouteServiceLUSReverseGeocodeParser extends DefaultHandler implements TimeConstants, Constants{
 	// ====================================
 	// Constants
 	// ====================================

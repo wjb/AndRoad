@@ -192,14 +192,15 @@ public class SDStreet extends AndNavBaseActivity {
 
 					List<GeocodedAddress> addresses;
 					try {
+                        final LUSRequester lus = Preferences.getORSServer(SDStreet.this).LOCATIONUTILITYSERVICE;
 						switch (SDStreet.this.bundleCreatedWith.getInt(EXTRAS_MODE)) {
 							case EXTRAS_MODE_ZIPSEARCH:
 								final String zip = SDStreet.this.bundleCreatedWith.getString(EXTRAS_ZIPCODE_ID);
-								addresses = LUSRequester.requestStreetaddressPostalcode(SDStreet.this, nat, subdivision, zip, streetName, null);
+								addresses = lus.requestStreetaddressPostalcode(SDStreet.this, nat, subdivision, zip, streetName, null);
 								break;
 							case EXTRAS_MODE_CITYNAMESEARCH:
 								final String city = SDStreet.this.bundleCreatedWith.getString(EXTRAS_CITYNAME_ID);
-								addresses = LUSRequester.requestStreetaddressCity(SDStreet.this, nat, subdivision, city, streetName, null);
+								addresses = lus.requestStreetaddressCity(SDStreet.this, nat, subdivision, city, streetName, null);
 								break;
 							default:
 								throw new IllegalArgumentException();

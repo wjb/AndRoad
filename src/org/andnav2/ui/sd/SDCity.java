@@ -160,7 +160,8 @@ public class SDCity extends AndNavBaseActivity {
 
 					List<GeocodedAddress> addresses;
 					try {
-						addresses = LUSRequester.requestFreeformAddress(SDCity.this, Country.fromAbbreviation(countrycode), cityname);
+                        final LUSRequester lus = Preferences.getORSServer(SDCity.this).LOCATIONUTILITYSERVICE;
+						addresses = lus.requestFreeformAddress(SDCity.this, Country.fromAbbreviation(countrycode), cityname);
 
 						if(addresses == null) {
 							return null;
