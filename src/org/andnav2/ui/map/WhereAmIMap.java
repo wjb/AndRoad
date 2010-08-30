@@ -143,8 +143,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 	private static final int MENU_OSB_ID = MENU_SHOWFAVORITE_ID + 1;
 	private static final int MENU_PRELOAD_ID = MENU_OSB_ID + 1;
 	private static final int MENU_ACCESSIBILITYANALYSIS_ID = MENU_PRELOAD_ID + 1;
-	private static final int MENU_SUBMENU_RENDERERS_ID = MENU_ACCESSIBILITYANALYSIS_ID + 1;
-	private static final int MENU_LOAD_TRACE_ID = MENU_SUBMENU_RENDERERS_ID + 1;
+	private static final int MENU_LOAD_TRACE_ID = MENU_ACCESSIBILITYANALYSIS_ID + 1;
 	private static final int MENU_SHOWLATLON_ID = MENU_LOAD_TRACE_ID + 1;
 	private static final int MENU_INPUTLATLON_ID = MENU_SHOWLATLON_ID + 1;
 	private static final int MENU_VEHICLEREGISTRATIONPLATE_LOOKUP_ID = MENU_INPUTLATLON_ID + 1;
@@ -699,20 +698,6 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 			.setIcon(R.drawable.foxytag)
 			.setAlphabeticShortcut('f');
 			menuPos++;
-		}
-
-		{ // Renderers-SubMenuItem
-			final SubMenu subMenu = menu.addSubMenu(menuPos, MENU_SUBMENU_RENDERERS_ID, menuPos, getString(R.string.maps_menu_submenu_renderers)).setIcon(R.drawable.layers);
-			menuPos++;
-			{
-				final OSMMapTileProviderInfo[] providers = OSMMapTileProviderInfo.values();
-				for(int j = 0; j < providers.length; j ++){
-					final SpannableString itemTitle = new SpannableString(providers[j].NAME + " (" + providers[j].DESCRIPTION + ")");
-					itemTitle.setSpan(new StyleSpan(Typeface.ITALIC), providers[j].NAME.length(), itemTitle.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-					itemTitle.setSpan(new RelativeSizeSpan(0.5f), providers[j].NAME.length(), itemTitle.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-					subMenu.add(0, MENU_SUBMENU_LAYERS_OFFSET + j, Menu.NONE, itemTitle);
-				}
-			}
 		}
 
 		{ // Traffic-SubMenuItem
