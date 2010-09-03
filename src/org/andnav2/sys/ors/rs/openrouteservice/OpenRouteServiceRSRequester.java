@@ -44,7 +44,6 @@ import org.xml.sax.XMLReader;
 import android.content.Context;
 import android.util.Log;
 
-
 public class OpenRouteServiceRSRequester implements Constants, OSMConstants, RSRequester {
 	// ====================================
 	// Constants

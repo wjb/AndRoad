@@ -13,6 +13,7 @@ import org.andnav2.sys.ors.lus.LUSRequester;
 import org.andnav2.sys.ors.lus.openrouteservice.OpenRouteServiceLUSRequester;
 import org.andnav2.sys.ors.rs.RSRequester;
 import org.andnav2.sys.ors.rs.openrouteservice.OpenRouteServiceRSRequester;
+import org.andnav2.sys.ors.rs.yahoo.YahooRSRequester;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -24,14 +25,23 @@ public enum ORSServer implements Parcelable {
 	// ===========================================================
 
 	UNIHEIDEL("University of Heidelberg",
-			"This server is hosted by the University of Heidelberg, covering whole Europe, with Routing, POIs and Geocoding.",
-			"Heidelberg, Germany",
-			Country.GERMANY,
-			Country.EUROPEANUNION,
-            new OpenRouteServiceRSRequester("http://openls.geog.uni-heidelberg.de/route/andnav"),
-            new OpenRouteServiceDSRequester("http://openls.geog.uni-heidelberg.de/directory/andnav"),
-            new OpenRouteServiceLUSRequester("http://openls.geog.uni-heidelberg.de/geocode/andnav"),
-			new IPingMethod.HostNamePing("openls.geog.uni-heidelberg.de"));
+              "This server is hosted by the University of Heidelberg, covering whole Europe, with Routing, POIs and Geocoding.",
+              "Heidelberg, Germany",
+              Country.GERMANY,
+              Country.EUROPEANUNION,
+              new OpenRouteServiceRSRequester("http://openls.geog.uni-heidelberg.de/route/andnav"),
+              new OpenRouteServiceDSRequester("http://openls.geog.uni-heidelberg.de/directory/andnav"),
+              new OpenRouteServiceLUSRequester("http://openls.geog.uni-heidelberg.de/geocode/andnav"),
+              new IPingMethod.HostNamePing("openls.geog.uni-heidelberg.de")),
+	YAHOO("Yahoo Navigation",
+          "This server is the yahoo navigation. You are not authorised to use it through AndNav. This is just a test.",
+          "USA",
+          Country.USA,
+          Country.USA,
+          new YahooRSRequester(),
+          null,
+          null,
+          new IPingMethod.HostNamePing("maps.yahoo.com"));
 
 	// ===========================================================
 	// Constants

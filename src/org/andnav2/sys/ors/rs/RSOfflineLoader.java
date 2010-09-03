@@ -18,6 +18,7 @@ import org.andnav2.sys.ors.adt.rs.Route;
 import org.andnav2.sys.ors.exceptions.ORSException;
 import org.andnav2.sys.ors.rs.RSRequester;
 import org.andnav2.sys.ors.rs.openrouteservice.OpenRouteServiceRSParser;
+import org.andnav2.sys.ors.rs.yahoo.YahooRSParser;
 
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -87,6 +88,32 @@ public class RSOfflineLoader implements OSMConstants {
                 final XMLReader xr = sp.getXMLReader();
                 /* Create a new ContentHandler and apply it to the XML-Reader*/
                 final OpenRouteServiceRSParser openLSParser = new OpenRouteServiceRSParser();
+                xr.setContentHandler(openLSParser);
+
+                /* Parse the xml-data from our URL. */
+                //			final char[] c = new char[100000];
+                //			new InputStreamReader(acon.getInputStream()).read(c, 0, 100000);
+                //			String s = new String(c);
+                xr.parse(new InputSource(new BufferedInputStream(fileIn)));
+
+                /* The Handler now provides the parsed data to us. */
+                return openLSParser.getRoute();
+            }
+
+            if (RSRequester.YAHOO_PREFIX.equals(prefix)) {
+                /* Get a SAXParser from the SAXPArserFactory. */
+                final SAXParserFactory spf = SAXParserFactory.newInstance();
+                SAXParser sp;
+                try {
+                    sp = spf.newSAXParser();
+                } catch (final ParserConfigurationException e) {
+                    throw new SAXException(e);
+                }
+
+                /* Get the XMLReader of the SAXParser we created. */
+                final XMLReader xr = sp.getXMLReader();
+                /* Create a new ContentHandler and apply it to the XML-Reader*/
+                final YahooRSParser openLSParser = new YahooRSParser();
                 xr.setContentHandler(openLSParser);
 
                 /* Parse the xml-data from our URL. */

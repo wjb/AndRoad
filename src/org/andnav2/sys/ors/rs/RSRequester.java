@@ -22,6 +22,7 @@ public interface RSRequester {
 	// ====================================
 
     public static final String OPENROUTESERVICE_PREFIX = "orouteser_";
+    public static final String YAHOO_PREFIX = "yahooserv_";
 
 	// ====================================
 	// Fields
