@@ -4,6 +4,10 @@ import org.andnav2.sys.ors.util.constants.ORSXMLConstants;
 
 import android.content.Context;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.IOException;
 
 /**
  * @since 2008-04-06 19:03:54
@@ -45,6 +49,27 @@ public class Util implements ORSXMLConstants{
 	public static String removeHtmlTags(final String pInput) {
 		return pInput.replaceAll("\\<.*?\\>", "");
 	}
+
+    public static String convertStreamToString(InputStream is) {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        StringBuilder sb = new StringBuilder();
+ 
+        String line = null;
+        try {
+            while ((line = reader.readLine()) != null) {
+                sb.append(line + "\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                is.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return sb.toString();
+    }
 
 	// ===========================================================
 	// Inner and Anonymous Classes
