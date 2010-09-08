@@ -12,6 +12,7 @@ import org.andnav2.sys.ors.ds.openrouteservice.OpenRouteServiceDSRequester;
 import org.andnav2.sys.ors.ds.yahoo.YahooDSRequester;
 import org.andnav2.sys.ors.lus.LUSRequester;
 import org.andnav2.sys.ors.lus.openrouteservice.OpenRouteServiceLUSRequester;
+import org.andnav2.sys.ors.lus.yahoo.YahooLUSRequester;
 import org.andnav2.sys.ors.rs.RSRequester;
 import org.andnav2.sys.ors.rs.openrouteservice.OpenRouteServiceRSRequester;
 import org.andnav2.sys.ors.rs.yahoo.YahooRSRequester;
@@ -41,7 +42,7 @@ public enum ORSServer implements Parcelable {
           Country.USA,
           new YahooRSRequester(),
           new YahooDSRequester(),
-          null,
+          new YahooLUSRequester(),
           new IPingMethod.HostNamePing("maps.yahoo.com"));
 
 	// ===========================================================
