@@ -11,6 +11,7 @@ import org.andnav2.sys.ors.ds.DSRequester;
 import org.andnav2.sys.ors.ds.openrouteservice.OpenRouteServiceDSRequester;
 import org.andnav2.sys.ors.ds.yahoo.YahooDSRequester;
 import org.andnav2.sys.ors.lus.LUSRequester;
+import org.andnav2.sys.ors.lus.google.GoogleLUSRequester;
 import org.andnav2.sys.ors.lus.openrouteservice.OpenRouteServiceLUSRequester;
 import org.andnav2.sys.ors.lus.yahoo.YahooLUSRequester;
 import org.andnav2.sys.ors.rs.RSRequester;
@@ -35,6 +36,15 @@ public enum ORSServer implements Parcelable {
               new OpenRouteServiceDSRequester("http://openls.geog.uni-heidelberg.de/directory/andnav"),
               new OpenRouteServiceLUSRequester("http://openls.geog.uni-heidelberg.de/geocode/andnav"),
               new IPingMethod.HostNamePing("openls.geog.uni-heidelberg.de")),
+	GOOGLE("Google Navigation",
+          "This server is the google navigation. You are not authorised to use it through AndNav. This is just a test.",
+          "USA",
+          Country.USA,
+          Country.USA,
+          null,
+          null,
+          new GoogleLUSRequester(),
+          new IPingMethod.HostNamePing("google.com")),
 	YAHOO("Yahoo Navigation",
           "This server is the yahoo navigation. You are not authorised to use it through AndNav. This is just a test.",
           "USA",
