@@ -1542,7 +1542,11 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 			public void onClick(final View arg0) {
 				if(WhereAmIMap.this.mNavPointsCrosshairMode){
 					/* User chose a good start+destination. */
-					doNavBetweenGeoPoints(WhereAmIMap.this.mStartFlagOverlay.getLocation(), WhereAmIMap.this.mDestinationFlagOverlay.getLocation());
+                    if (WhereAmIMap.this.mStartFlagOverlay.isVisible()) {
+                        doNavBetweenGeoPoints(WhereAmIMap.this.mStartFlagOverlay.getLocation(), WhereAmIMap.this.mDestinationFlagOverlay.getLocation());
+                    } else {
+                        doNavToGeoPoint(WhereAmIMap.this.mDestinationFlagOverlay.getLocation());
+                    }
 					/* End crosshair-mode. */
 					updateUIForNavPointsCrosshairMode(false);
 				}else{
@@ -1711,11 +1715,16 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 			this.mIbtnCenter.clearAnimation();
             this.mIvCompass.clearAnimation();
 
-			final boolean startAndDestinationSet = this.mStartFlagOverlay.isVisible() && this.mDestinationFlagOverlay.isVisible();
-			this.mIbtnNavPointsDoStart.setEnabled(startAndDestinationSet);
-			this.mNavPointsConnectionLineOverlay.setFrom(this.mStartFlagOverlay.getLocation());
+			final boolean destinationSet = this.mDestinationFlagOverlay.isVisible();
+			this.mIbtnNavPointsDoStart.setEnabled(destinationSet);
+            final GeoPoint start;
+            if (WhereAmIMap.this.mStartFlagOverlay.isVisible())
+                start = WhereAmIMap.this.mStartFlagOverlay.getLocation();
+            else
+                start = WhereAmIMap.this.mMyLocationOverlay.getLocation();
+			this.mNavPointsConnectionLineOverlay.setFrom(start);
 			this.mNavPointsConnectionLineOverlay.setTo(this.mDestinationFlagOverlay.getLocation());
-			this.mNavPointsConnectionLineOverlay.setVisible(startAndDestinationSet);
+			this.mNavPointsConnectionLineOverlay.setVisible(destinationSet);
 		}else{
 			startDelayedHideControlsAnimation();
 

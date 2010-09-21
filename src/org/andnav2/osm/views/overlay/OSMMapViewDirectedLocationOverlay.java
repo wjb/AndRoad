@@ -91,6 +91,10 @@ public class OSMMapViewDirectedLocationOverlay extends OSMMapViewOverlay {
 		this.mLocation = mp;
 	}
 
+	public GeoPoint getLocation(){
+		return this.mLocation;
+	}
+
 	/**
 	 * 
 	 * @param pAccuracy in Meters
