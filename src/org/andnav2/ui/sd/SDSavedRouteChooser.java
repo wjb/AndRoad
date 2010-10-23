@@ -111,7 +111,6 @@ public class SDSavedRouteChooser extends AndNavBaseActivity implements OSMConsta
 					@Override
 					public void onSuccess(final String result) {
 						final String oldFilename = SDSavedRouteChooser.this.mSelectedSavedRoute.mFileName;
-
 						if(result != null){
 							try{
 								final boolean success = new File(EXTERNAL_STORAGE_BASEDIRECTORY + SDCARD_SAVEDROUTES_PATH + oldFilename).renameTo(new File(EXTERNAL_STORAGE_BASEDIRECTORY + SDCARD_SAVEDROUTES_PATH + result));

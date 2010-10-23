@@ -1,6 +1,7 @@
 // Created by plusminus on 10:27:21 - 07.04.2008
 package org.andnav2.sys.ors.adt.rs;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,11 +20,13 @@ import android.os.Parcelable;
  * @see Creative Commons Attribution-Noncommercial-Share Alike 2.0 Germany License .
  * Permissions beyond the scope of this license may be requested at plusminus {at} anddev {dot} org
  */
-public class RouteInstruction implements Parcelable {
+public class RouteInstruction implements Parcelable, Serializable {
 
 	// ===========================================================
-	// Final Fields
+	// Constants
 	// ===========================================================
+
+    static final long serialVersionUID = 4L;
 
 	// ===========================================================
 	// Fields

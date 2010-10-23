@@ -1,11 +1,16 @@
 package org.andnav2.osm.adt;
 
+import java.io.Serializable;
+
 import org.andnav2.osm.util.Util;
 
-public class GeoLine {
+public class GeoLine implements Serializable {
+
 	// ===========================================================
 	// Constants
 	// ===========================================================
+
+    static final long serialVersionUID = 4L;
 
 	// ===========================================================
 	// Fields

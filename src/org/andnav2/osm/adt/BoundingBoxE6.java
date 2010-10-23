@@ -4,6 +4,7 @@ package org.andnav2.osm.adt;
 import static org.andnav2.osm.util.MyMath.gudermann;
 import static org.andnav2.osm.util.MyMath.gudermannInverse;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.andnav2.adt.Direction;
@@ -18,10 +19,13 @@ import android.os.Parcelable;
  * @author Nicolas Gramlich
  *
  */
-public class BoundingBoxE6 implements Parcelable, OSMMapViewConstants, OSMConstants{
+public class BoundingBoxE6 implements Parcelable, Serializable, OSMMapViewConstants, OSMConstants {
+
 	// ===========================================================
 	// Constants
 	// ===========================================================
+
+    static final long serialVersionUID = 2L;
 
 	// ===========================================================
 	// Fields

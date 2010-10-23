@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -75,7 +76,9 @@ public class YahooRSRequester implements Constants, OSMConstants, RSRequester {
     }
 
 	public Route request(final Context ctx, final DirectionsLanguage nat, final GeoPoint start, final List<GeoPoint> vias, final GeoPoint end, final RoutePreferenceType pRoutePreference, final boolean pProvideGeometry, final boolean pAvoidTolls, final boolean pAvoidHighways, final boolean pRequestHandle, final ArrayList<AreaOfInterest> pAvoidAreas, final boolean pSaveRoute) throws MalformedURLException, IOException, SAXException, ORSException{
-        final URL requestURL = new URL("http://maps.yahoo.com/services/us/directions?" + YahooRSRequestComposer.create(nat, start, vias, end));
+        final String yahoourl = "http://maps.yahoo.com/services/us/directions?" + YahooRSRequestComposer.create(nat, start, vias, end);
+        Log.d(OSMConstants.DEBUGTAG, "Yahoo url " + yahoourl);
+        final URL requestURL = new URL(yahoourl);
 
 		final HttpURLConnection acon = (HttpURLConnection) requestURL.openConnection();
 		acon.setAllowUserInteraction(false);
@@ -131,13 +134,13 @@ public class YahooRSRequester implements Constants, OSMConstants, RSRequester {
 				new File(traceFolderPath).mkdirs();
 
 				// Create file and ensure that needed folders exist.
-				final String filename = traceFolderPath + RSRequester.YAHOO_PREFIX + SDF.format(new Date(System.currentTimeMillis()));
+				final String filename = traceFolderPath + SDF.format(new Date(System.currentTimeMillis()));
 				final File dest = new File(filename + ".route");
 
 				// Write Data
-				final OutputStream out = new BufferedOutputStream(new FileOutputStream(dest),StreamUtils.IO_BUFFER_SIZE);
+				final ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(dest));
 
-				out.write(readBytes);
+                out.writeObject(r);
 				out.flush();
 				out.close();
 			} catch (final Exception e) {

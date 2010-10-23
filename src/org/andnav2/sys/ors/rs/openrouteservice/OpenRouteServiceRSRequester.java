@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
@@ -200,13 +201,13 @@ public class OpenRouteServiceRSRequester implements Constants, OSMConstants, RSR
 				new File(traceFolderPath).mkdirs();
 
 				// Create file and ensure that needed folders exist.
-				final String filename = traceFolderPath + RSRequester.OPENROUTESERVICE_PREFIX + SDF.format(new Date(System.currentTimeMillis()));
+				final String filename = traceFolderPath + SDF.format(new Date(System.currentTimeMillis()));
 				final File dest = new File(filename + ".route");
 
 				// Write Data
-				final OutputStream out = new BufferedOutputStream(new FileOutputStream(dest),StreamUtils.IO_BUFFER_SIZE);
+				final ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(dest));
 
-				out.write(readBytes);
+                out.writeObject(r);
 				out.flush();
 				out.close();
 			} catch (final Exception e) {

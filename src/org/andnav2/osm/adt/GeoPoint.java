@@ -1,6 +1,7 @@
 // Created by plusminus on 21:28:12 - 25.09.2008
 package org.andnav2.osm.adt;
 
+import java.io.Serializable;
 import java.util.Formatter;
 import java.util.Locale;
 
@@ -20,10 +21,13 @@ import android.os.Parcelable;
  * @author Nicolas Gramlich
  *
  */
-public class GeoPoint implements IGeoPoint, Parcelable, MathConstants, GeoConstants, OSMConstants, GMLXMLConstants, OSMTraceAPIConstants {
+public class GeoPoint implements IGeoPoint, Serializable, Parcelable, MathConstants, GeoConstants, OSMConstants, GMLXMLConstants, OSMTraceAPIConstants {
+
 	// ===========================================================
 	// Constants
 	// ===========================================================
+
+    static final long serialVersionUID = 3L;
 
 	// ===========================================================
 	// Fields

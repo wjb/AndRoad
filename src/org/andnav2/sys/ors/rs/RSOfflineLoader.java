@@ -4,11 +4,7 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
+import java.io.ObjectInputStream;
 
 import org.andnav2.osm.exceptions.ExternalStorageNotMountedException;
 import org.andnav2.osm.util.Util;
@@ -19,10 +15,6 @@ import org.andnav2.sys.ors.exceptions.ORSException;
 import org.andnav2.sys.ors.rs.RSRequester;
 import org.andnav2.sys.ors.rs.openrouteservice.OpenRouteServiceRSParser;
 import org.andnav2.sys.ors.rs.yahoo.YahooRSParser;
-
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
-import org.xml.sax.XMLReader;
 
 import android.content.Context;
 import android.util.Log;
@@ -59,8 +51,6 @@ public class RSOfflineLoader implements OSMConstants {
 	// ===========================================================
 
 	public static Route load(final Context ctx, final String aFileName) throws ExternalStorageNotMountedException, ORSException, IOException{
-        String prefix = aFileName.substring(0, 10);
-
 		try {
 			if(!android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED)){
 				throw new ExternalStorageNotMountedException();
@@ -72,67 +62,15 @@ public class RSOfflineLoader implements OSMConstants {
 			}
 
 			final File f = new File(EXTERNAL_STORAGE_BASEDIRECTORY + SDCARD_SAVEDROUTES_PATH + aFileName);
-			final InputStream fileIn = new FileInputStream(f);
+			final ObjectInputStream fileIn = new ObjectInputStream(new FileInputStream(f));
+            final Route r = (Route) fileIn.readObject();
+            fileIn.close();
 
-            if (RSRequester.OPENROUTESERVICE_PREFIX.equals(prefix)) {
-                /* Get a SAXParser from the SAXPArserFactory. */
-                final SAXParserFactory spf = SAXParserFactory.newInstance();
-                SAXParser sp;
-                try {
-                    sp = spf.newSAXParser();
-                } catch (final ParserConfigurationException e) {
-                    throw new SAXException(e);
-                }
-
-                /* Get the XMLReader of the SAXParser we created. */
-                final XMLReader xr = sp.getXMLReader();
-                /* Create a new ContentHandler and apply it to the XML-Reader*/
-                final OpenRouteServiceRSParser openLSParser = new OpenRouteServiceRSParser();
-                xr.setContentHandler(openLSParser);
-
-                /* Parse the xml-data from our URL. */
-                //			final char[] c = new char[100000];
-                //			new InputStreamReader(acon.getInputStream()).read(c, 0, 100000);
-                //			String s = new String(c);
-                xr.parse(new InputSource(new BufferedInputStream(fileIn)));
-
-                /* The Handler now provides the parsed data to us. */
-                return openLSParser.getRoute();
-            }
-
-            if (RSRequester.YAHOO_PREFIX.equals(prefix)) {
-                /* Get a SAXParser from the SAXPArserFactory. */
-                final SAXParserFactory spf = SAXParserFactory.newInstance();
-                SAXParser sp;
-                try {
-                    sp = spf.newSAXParser();
-                } catch (final ParserConfigurationException e) {
-                    throw new SAXException(e);
-                }
-
-                /* Get the XMLReader of the SAXParser we created. */
-                final XMLReader xr = sp.getXMLReader();
-                /* Create a new ContentHandler and apply it to the XML-Reader*/
-                final YahooRSParser openLSParser = new YahooRSParser();
-                xr.setContentHandler(openLSParser);
-
-                /* Parse the xml-data from our URL. */
-                //			final char[] c = new char[100000];
-                //			new InputStreamReader(acon.getInputStream()).read(c, 0, 100000);
-                //			String s = new String(c);
-                xr.parse(new InputSource(new BufferedInputStream(fileIn)));
-
-                /* The Handler now provides the parsed data to us. */
-                return openLSParser.getRoute();
-            }
-		} catch(final ORSException e){
-			throw e;
-		} catch (final SAXException e) {
+            return r;
+		} catch (final ClassNotFoundException e) {
 			Log.e(DEBUGTAG, "Error", e);
-			throw new ORSException(new Error(Error.ERRORCODE_UNKNOWN, Error.SEVERITY_ERROR, "org.andnav2.ors.rs.RSOfflineLoader.load(...)", "Malformed XML. Was file save in UTF-8 Encoding?"));
+			throw new ORSException(new Error(Error.ERRORCODE_UNKNOWN, Error.SEVERITY_ERROR, "org.andnav2.ors.rs.RSOfflineLoader.load(...)", "Class Route Not Found Exception"));
 		}
-
-        throw new ORSException(new Error(Error.ERRORCODE_UNKNOWN, Error.SEVERITY_ERROR, "org.andnav2.ors.rs.RSOfflineLoader.load(...)", "Prefix " + prefix + " unknown."));
 	}
 
 	// ===========================================================
