@@ -76,6 +76,10 @@ public class YahooRSRequester implements Constants, OSMConstants, RSRequester {
     }
 
 	public Route request(final Context ctx, final DirectionsLanguage nat, final GeoPoint start, final List<GeoPoint> vias, final GeoPoint end, final RoutePreferenceType pRoutePreference, final boolean pProvideGeometry, final boolean pAvoidTolls, final boolean pAvoidHighways, final boolean pRequestHandle, final ArrayList<AreaOfInterest> pAvoidAreas, final boolean pSaveRoute) throws MalformedURLException, IOException, SAXException, ORSException{
+        return this.request(ctx, nat, start, vias, end, pRoutePreference, pProvideGeometry, pAvoidTolls, pAvoidHighways, pRequestHandle, pAvoidAreas, pSaveRoute, true);
+    }
+
+	public Route request(final Context ctx, final DirectionsLanguage nat, final GeoPoint start, final List<GeoPoint> vias, final GeoPoint end, final RoutePreferenceType pRoutePreference, final boolean pProvideGeometry, final boolean pAvoidTolls, final boolean pAvoidHighways, final boolean pRequestHandle, final ArrayList<AreaOfInterest> pAvoidAreas, final boolean pSaveRoute, final boolean pGetPartialsRoutes) throws MalformedURLException, IOException, SAXException, ORSException{
         final String yahoourl = "http://maps.yahoo.com/services/us/directions?" + YahooRSRequestComposer.create(nat, start, vias, end);
         Log.d(OSMConstants.DEBUGTAG, "Yahoo url " + yahoourl);
         final URL requestURL = new URL(yahoourl);
@@ -104,28 +108,47 @@ public class YahooRSRequester implements Constants, OSMConstants, RSRequester {
 		xr.setContentHandler(openLSParser);
 
 		/* Parse the xml-data from our URL. */
+        final Route r;
 
 		if(!pSaveRoute){
-			xr.parse(new InputSource(new BufferedInputStream(acon.getInputStream())));
+            try {
+                xr.parse(new InputSource(new BufferedInputStream(acon.getInputStream(), StreamUtils.IO_BUFFER_SIZE)));
+            } catch (final IOException e) {
+                if (pGetPartialsRoutes) {
+                    throw e;
+                } else {
+                    return null;
+                }
+            }
 
 			/* The Handler now provides the parsed data to us. */
-			return openLSParser.getRoute();
+			r = openLSParser.getRoute();
 		}else{
 			final StringBuilder sb = new StringBuilder();
 
 			int read = 0;
 			final char[] buf = new char[StreamUtils.IO_BUFFER_SIZE];
-			final InputStreamReader isr = new InputStreamReader(new BufferedInputStream(acon.getInputStream()));
+			final InputStreamReader isr;
+            try {
+                isr = new InputStreamReader(new BufferedInputStream(acon.getInputStream(), StreamUtils.IO_BUFFER_SIZE));
+            } catch (final IOException e) {
+                if (pGetPartialsRoutes) {
+                    throw e;
+                } else {
+                    return null;
+                }
+            }
 			while((read = isr.read(buf)) != -1) {
 				sb.append(buf, 0, read);
 			}
+            StreamUtils.closeStream(isr);
 
 			final byte[] readBytes = sb.toString().getBytes();
 
 			xr.parse(new InputSource(new ByteArrayInputStream(readBytes)));
 
 			/* The Handler now provides the parsed data to us. */
-			final Route r = openLSParser.getRoute();
+			r = openLSParser.getRoute();
 
 			/* Exception would have been thrown in invalid route. */
 			try {
@@ -141,14 +164,37 @@ public class YahooRSRequester implements Constants, OSMConstants, RSRequester {
 				final ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(dest));
 
                 out.writeObject(r);
-				out.flush();
-				out.close();
+                StreamUtils.closeStream(out);
 			} catch (final Exception e) {
 				Log.e(OSMConstants.DEBUGTAG, "File-Writing-Error", e);
 			}
-
-			return r;
         }
 
+        if (pGetPartialsRoutes) {
+            boolean mLoop = true;
+
+            while (mLoop) {
+                GeoPoint previous = r.getStart();
+                mLoop = false;
+                for (int i = 1; i < r.getPolyLine().size(); i++) {
+                    final GeoPoint point = r.getPolyLine().get(i);
+                    int distance = previous.distanceTo(point);
+                    if (distance > 2500) {
+                        Route partialroute = this.request(ctx, nat, previous, null, point, pRoutePreference, pProvideGeometry, pAvoidTolls, pAvoidHighways, pRequestHandle, null, false, false);
+                        if (partialroute != null && partialroute.getPolyLine().size() > 2) {
+                            int append = r.insert(partialroute, previous, point);
+                            i += append;
+
+                            if (append > 0)
+                                mLoop = true;
+                        }
+                    }
+                    previous = point;
+                }
+            }
+        }
+
+        r.finalizeRoute();
+        return r;
     }
 }

@@ -4,13 +4,15 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.andnav2.adt.other.GraphicsPoint;
 import org.andnav2.osm.adt.BoundingBoxE6;
 import org.andnav2.osm.adt.GeoPoint;
 import org.andnav2.util.constants.Constants;
 
+import android.graphics.Point;
 import android.os.Parcel;
 import android.os.Parcelable;
-
+import android.util.FloatMath;
 
 /**
  * @since 2008-04-06 19:05:37
@@ -26,6 +28,8 @@ public class Route implements Parcelable, Serializable {
 	// ===========================================================
 
     static final long serialVersionUID = 1L;
+	protected static final int LATITUDE_OVERMAX = (int)(81 * 1E6);
+	protected static final int LONGITUDE_OVERMAX = (int)(181 * 1E6);
 
 	// ===========================================================
 	// Fields
@@ -329,6 +333,166 @@ public class Route implements Parcelable, Serializable {
 		this.mBoundingBoxE6 = boundingBoxE6;
 	}
 
+    public int insert(final Route partialroute, final GeoPoint start, final GeoPoint end) {
+        int index = this.findInPolyLine(start, 0);
+        int add = 0;
+        int k = 1;
+
+        for (int i = 1; i < partialroute.getPolyLine().size(); i++) {
+            GeoPoint point = partialroute.getPolyLine().get(i);
+
+            if (point.equals(start) || point.equals(end)) {
+                continue;
+            }
+
+            try {
+                int j = this.findInPolyLine(point, index);
+                index = j;
+                k = 1;
+            } catch (IllegalArgumentException ex) {
+                mPolyLine.add(index + k, point);
+                add++;
+                k++;
+            }
+        }
+
+        return add;
+    }
+
+	public void finalizeRoute() {
+		/* Drag to local variables, for performance reasons */
+		final List<GeoPoint> polyLine = getPolyLine();
+		final List<RouteInstruction> routeInstructions = getRouteInstructions();
+
+
+		final int[] routeSegmentLengths = new int[polyLine.size() - 1];
+		setRouteSegmentLengths(routeSegmentLengths);
+		{
+			final int[] routeSegmentLengthsUpToDestination = new int[polyLine.size()];
+			setRouteSegmentLengthsUpToDestination(routeSegmentLengthsUpToDestination);
+
+			final int routeSegmentLengthsCount = routeSegmentLengths.length;
+			int routeSegmentLengthsSummed = 0;
+			/* Loop through all the MapPoints and determine the lengths of the segments and the length. */
+			for(int i = routeSegmentLengthsCount - 1; i > 0; i--){
+				routeSegmentLengthsUpToDestination[i-1] = routeSegmentLengthsSummed
+				+= routeSegmentLengths[i-1] = polyLine.get(i-1).distanceTo(polyLine.get(i));
+			}
+
+			// TODO Check if list-edges get filled properly
+		}
+
+
+		{ /* Fill the TurnPoints-Array. */
+			final Point vIn = new Point(), vOut = new Point(); /* Needed to calculate the angles. */
+			int curIndexInPolyLine;
+
+
+			final int polyLineLenght = polyLine.size();
+			for(final RouteInstruction ri : getRouteInstructions()){
+				curIndexInPolyLine = ri.getFirstMotherPolylineIndex();
+				if(this.mVias != null) {
+					for(final GeoPoint v : this.mVias) {
+						if(this.mPolyLine.get(curIndexInPolyLine).equals(v)) {
+							ri.setIsWaypoint(true);
+						}
+					}
+				}
+
+				if(curIndexInPolyLine == 0 || curIndexInPolyLine >= polyLineLenght - 1){ // TODO anners wie bei AndNav1 --> funzt trotzdem?
+					ri.setAngle(0);
+				}else{
+
+					/* To calculate the angle, we need the line "into" that turnpoint. */
+					vIn.x =  polyLine.get(curIndexInPolyLine - 1).getLongitudeE6() - polyLine.get(curIndexInPolyLine).getLongitudeE6();
+					vIn.y = polyLine.get(curIndexInPolyLine - 1).getLatitudeE6() - polyLine.get(curIndexInPolyLine).getLatitudeE6();
+
+					/* And the line 'out of' that turnpoint. */
+					vOut.x = polyLine.get(curIndexInPolyLine + 1).getLongitudeE6() - polyLine.get(curIndexInPolyLine).getLongitudeE6();
+					vOut.y = polyLine.get(curIndexInPolyLine + 1).getLatitudeE6() - polyLine.get(curIndexInPolyLine).getLatitudeE6();
+
+					/* Formula: angle = acos[(x * y) / (|x| * |y|)] */
+					if(GraphicsPoint.crossProduct(vIn, vOut) > 0) {
+						ri.setAngle(- 180 + (float)Math.toDegrees(Math.acos(GraphicsPoint.dotProduct(vIn, vOut) / (FloatMath.sqrt(vIn.x * vIn.x + vIn.y * vIn.y) * FloatMath.sqrt(vOut.x * vOut.x + vOut.y * vOut.y)))));
+					} else {
+						ri.setAngle(180 - (float)Math.toDegrees(Math.acos(GraphicsPoint.dotProduct(vIn, vOut) / (FloatMath.sqrt(vIn.x * vIn.x + vIn.y * vIn.y) * FloatMath.sqrt(vOut.x * vOut.x + vOut.y * vOut.y)))));
+					}
+				}
+			}
+		}
+
+		{
+			/* Calculate the Lat/Lng Spans for each Point up to the next TurnPoint. */
+			setLatitudeMinSpans(new int[polyLine.size()]);
+			setLatitudeMaxSpans(new int[polyLine.size()]);
+			setLongitudeMinSpans(new int[polyLine.size()]);
+			setLongitudeMaxSpans(new int[polyLine.size()]);
+
+			/* Minimum & maximum latitude so we can span it
+			 * The latitude is clamped between -80 degrees and +80 degrees inclusive
+			 * thus we ensure that we go beyond that number. */
+			int minLatitude = LATITUDE_OVERMAX;
+			int maxLatitude = -LATITUDE_OVERMAX;
+
+			/* Minimum & maximum longitude so we can span it
+			 * The longitude is clamped between -180 degrees and +180 degrees inclusive
+			 * thus we ensure that we go beyond that number. */
+			int minLongitude  = LONGITUDE_OVERMAX;
+			int maxLongitude  = -LONGITUDE_OVERMAX;
+
+			int currentLatitude;
+			int currentLongitude;
+
+			GeoPoint current = null;
+			int currentNextTurnIndex = routeInstructions.size() - 1;
+			/* Starting backwards! */
+			for(int j = polyLine.size() - 1; j >= 0 ; j--){
+				current = polyLine.get(j);
+				// FIXME Wird net richtig zurueckgesetzt... new :( Bug noch am leben?
+				/* Check if we are 'on' a turnPoint. */
+				final int turnPointIndexInRoute;
+				if(currentNextTurnIndex < 0) {
+					turnPointIndexInRoute = 0;
+				} else {
+					turnPointIndexInRoute = routeInstructions.get(currentNextTurnIndex).getFirstMotherPolylineIndex();
+				}
+
+				if(j == turnPointIndexInRoute){
+					currentNextTurnIndex--;
+					/* Reset min/max. */
+					minLatitude = LATITUDE_OVERMAX;
+					maxLatitude = -LATITUDE_OVERMAX;
+					minLongitude = LONGITUDE_OVERMAX;
+					maxLongitude = -LONGITUDE_OVERMAX;
+				}
+				/* Store to local field. */
+				currentLatitude = current.getLatitudeE6();
+				currentLongitude = current.getLongitudeE6();
+
+				/* Sets the minimum and maximum latitude so we can span and zoom */
+				if(minLatitude > currentLatitude) {
+					minLatitude = currentLatitude;
+				}
+				if(maxLatitude < currentLatitude) {
+					maxLatitude = currentLatitude;
+				}
+
+
+				/* Sets the minimum and maximum latitude so we can span and zoom */
+				if(minLongitude > currentLongitude) {
+					minLongitude = currentLongitude;
+				}
+				if(maxLongitude < currentLongitude) {
+					maxLongitude = currentLongitude;
+				}
+
+				getLatitudeMaxSpans()[j] = maxLatitude;
+				getLatitudeMinSpans()[j] = minLatitude;
+				getLongitudeMaxSpans()[j] = maxLongitude;
+				getLongitudeMinSpans()[j] = minLongitude;
+			}
+		}
+	}
 
 	// ===========================================================
 	// Methods from SuperClasses
