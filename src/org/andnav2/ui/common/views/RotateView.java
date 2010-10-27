@@ -58,16 +58,8 @@ public class RotateView extends ViewGroup implements Constants{
 		return this.mPerspectiveAngle == -45f;
 	}
 
-	public float getRotationDegree() {
-		return this.mHeading;
-	}
-
 	public void setRotationDegree(final float aHeading) {
 		this.mHeading = aHeading;
-	}
-
-	public float getPerspectiveAngle() {
-		return this.mPerspectiveAngle;
 	}
 
 	public void setPerspectiveAngle(final float pAngle) {
@@ -177,12 +169,8 @@ public class RotateView extends ViewGroup implements Constants{
 		}
 
 		final float[] pts = {ev.getX(), ev.getY()};
-
-		final float w_2 = getWidth() * 0.5f;
-		final float h_2 = getHeight() * 0.5f;
-
 		final Matrix m = new Matrix();
-		m.setRotate(this.mHeading, w_2, h_2);
+		m.setRotate(this.mHeading);
 
 		m.mapPoints(pts);
 		ev.setLocation(pts[X], pts[Y]);
