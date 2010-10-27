@@ -22,6 +22,7 @@
 	<string name="maps_menu_submenu_traffic">Trafic</string>
 	<string name="maps_menu_submenu_traffic_clear"><b>Effacer</b> le trafic</string>
 	<string name="maps_menu_submenu_traffic_custom_feeds">Sources personnalisées...</string>
+	<string name="maps_menu_favorites">Les Favoris</string>
 	<string name="maps_menu_osb">Améliorer la carte</string>
 	<string name="maps_menu_reverseroute">Route inverse</string>
 	<string name="maps_menu_submenu_waypoints">Points de passage</string>

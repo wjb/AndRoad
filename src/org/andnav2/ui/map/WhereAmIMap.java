@@ -8,6 +8,7 @@ import org.andnav2.R;
 import org.andnav2.adt.AndNavLocation;
 import org.andnav2.adt.DBPOI;
 import org.andnav2.adt.Direction;
+import org.andnav2.adt.Favorite;
 import org.andnav2.adt.TrafficFeed;
 import org.andnav2.adt.UnitSystem;
 import org.andnav2.app.APIIntentReceiver;
@@ -57,6 +58,9 @@ import org.andnav2.sys.ors.lus.LUSRequester;
 import org.andnav2.sys.ors.tuks.TUKSRequester;
 import org.andnav2.sys.ors.util.RouteHandleIDExtractor;
 import org.andnav2.sys.ors.views.overlay.AreaOfInterestOverlay;
+import org.andnav2.sys.ors.views.overlay.FavoritePoint;
+import org.andnav2.sys.ors.views.overlay.BitmapItem;
+import org.andnav2.sys.ors.views.overlay.BitmapOverlay;
 import org.andnav2.sys.ors.views.overlay.TrafficOverlay;
 import org.andnav2.sys.ors.views.overlay.TrafficOverlayItem;
 import org.andnav2.sys.vehicleregistrationplates.VRPRegistry;
@@ -132,7 +136,8 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 	private static final int MENU_SATELLITE_ID = MENU_QUIT_ID + 1;
 	private static final int MENU_SUBMENU_TRAFFIC_ID = MENU_SATELLITE_ID + 1;
 	private static final int MENU_WEATHER_ID = MENU_SUBMENU_TRAFFIC_ID + 1;
-	private static final int MENU_OSB_ID = MENU_WEATHER_ID + 1;
+   private static final int MENU_SHOWFAVORITE_ID = MENU_WEATHER_ID + 1;
+	private static final int MENU_OSB_ID = MENU_SHOWFAVORITE_ID + 1;
 	private static final int MENU_COMPASS_ID = MENU_OSB_ID + 1;
 	private static final int MENU_PRELOAD_ID = MENU_COMPASS_ID + 1;
 	private static final int MENU_ACCESSIBILITYANALYSIS_ID = MENU_PRELOAD_ID + 1;
@@ -199,6 +204,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 
 	private AbstractOSMMapViewItemizedOverlayWithFocus<OSMMapViewOverlayItem> mItemOverlay;
 	private AreaOfInterestOverlay mAASOverlay;
+	private BitmapOverlay mFavoriteOverlay;
 	private TrafficOverlay mTrafficOverlay;
 	private OSMMapViewSingleIconOverlay mStartFlagOverlay;
 	private OSMMapViewSingleIconOverlay mDestinationFlagOverlay;
@@ -263,6 +269,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 
 		this.mAASOverlay = new AreaOfInterestOverlay();
 		this.mAASOverlay.setDrawnAreasLimit(10);
+		this.mFavoriteOverlay = new BitmapOverlay();
 		this.mAreaOfAvoidingsOverlay = new AreaOfInterestOverlay(this.mAvoidAreas);
 
 		/* SetNavPoints-Overlay. */
@@ -275,6 +282,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 		this.mNavPointsConnectionLineOverlay.setVisible(false);
 
 		overlays.add(this.mAASOverlay);
+		overlays.add(this.mFavoriteOverlay);
 		overlays.add(this.mAreaOfAvoidingsOverlay);
 		overlays.add(this.mTrafficOverlay);
 		overlays.add(this.mNavPointsConnectionLineOverlay);
@@ -753,6 +761,13 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 			menuPos++;
 		}
 
+		{ // Show Favorite
+			menu.add(menuPos, MENU_SHOWFAVORITE_ID, menuPos, getString(R.string.maps_menu_favorites))
+			.setIcon(R.drawable.settingsmenu_favorites)
+			.setAlphabeticShortcut('s');
+			menuPos++;
+		}
+
 		{ // OSB-Item
 			menu.add(menuPos, MENU_OSB_ID, menuPos, getString(R.string.maps_menu_osb))
 			.setIcon(R.drawable.osb_icon_bug_add)
@@ -817,6 +832,9 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 			case MENU_GPSSTATUS_ID:
 				org.andnav2.ui.util.Util.startUnknownActivity(this, "com.eclipsim.gpsstatus.VIEW", "com.eclipsim.gpsstatus");
 				return true;
+            case MENU_SHOWFAVORITE_ID:
+                toggleFavorite();
+                return true;
 			case MENU_OSB_ID:
 				openOSBMap();
 				return true;
@@ -1104,6 +1122,21 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 	// ===========================================================
 	// Methods
 	// ===========================================================
+
+    private void toggleFavorite() {
+        final List<BitmapItem> fs = WhereAmIMap.this.mFavoriteOverlay.getBitmapItems();
+        if (fs.size() > 0) {
+            fs.clear();
+            return;
+        }
+        try {
+            for (final Favorite fp : DBManager.getFavorites(this)) {
+                fs.add(new FavoritePoint(fp, this));
+            }
+        } catch (final DataBaseException e) {
+			//			Log.e(DEBUGTAG, "Error on loading Favorites", e);
+		}
+    }
 
 	private void showCenterLatLonDialog() {
 		final GeoPoint mapCenter = WhereAmIMap.this.mOSMapView.getMapCenter();

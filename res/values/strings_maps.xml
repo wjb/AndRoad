@@ -22,6 +22,7 @@
 	<string name="maps_menu_submenu_traffic">Traffic</string>
 	<string name="maps_menu_submenu_traffic_clear"><b>Clear</b> Traffic</string>
 	<string name="maps_menu_submenu_traffic_custom_feeds">Custom Feeds...</string>
+	<string name="maps_menu_favorites">Favorites</string>
 	<string name="maps_menu_osb">Improve Map</string>
 	<string name="maps_menu_reverseroute">Reverse Route</string>
 	<string name="maps_menu_submenu_waypoints">WayPoints</string>
