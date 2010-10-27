@@ -45,9 +45,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
-import com.admob.android.ads.AdView;
-
-
 public class SDResolver extends AndNavBaseActivity {
 	// ===========================================================
 	// Constants
@@ -80,11 +77,6 @@ public class SDResolver extends AndNavBaseActivity {
 		this.setContentView(R.layout.sd_resolver);
 
 		this.mBundleCreatedWith = this.getIntent().getExtras();
-
-		if(Preferences.getAdFreeState(this) == false)
-			((AdView)findViewById(R.id.ad)).setGoneWithoutAd(true);
-		else
-			((AdView)findViewById(R.id.ad)).setVisibility(View.GONE);
 
 		this.mResolvedAddressesList = (ListView)this.findViewById(R.id.list_resolvedaddresses);
 

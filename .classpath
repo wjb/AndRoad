@@ -14,7 +14,6 @@
 	<classpathentry kind="lib" path="lib/libTpegML.jar" sourcepath="/libTpegML"/>
 	<classpathentry kind="lib" path="lib/libSpatialIndex.jar"/>
 	<classpathentry kind="lib" path="lib/libQuadTree.jar" sourcepath="/libQuadTree"/>
-	<classpathentry kind="lib" path="lib/admob-sdk-android.jar"/>
 	<classpathentry kind="lib" path="lib/libosmapi.jar"/>
 	<classpathentry kind="lib" path="lib/libgoogleweatherapi.jar"/>
 	<classpathentry excluding="**/.svn/**" kind="src" path="gen"/>

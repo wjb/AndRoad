@@ -58,10 +58,8 @@ import org.andnav2.sys.ors.exceptions.ORSException;
 import org.andnav2.sys.ors.rs.RSOfflineLoader;
 import org.andnav2.sys.ors.rs.RouteFactory;
 import org.andnav2.sys.ors.views.overlay.AreaOfInterestOverlay;
-import org.andnav2.ui.common.AdProgressDialog;
 import org.andnav2.ui.common.CommonCallback;
 import org.andnav2.ui.common.CommonDialogFactory;
-import org.andnav2.ui.common.views.AdView;
 import org.andnav2.ui.common.views.RotateView;
 import org.andnav2.ui.map.hud.IHUDImpl;
 import org.andnav2.ui.map.overlay.MapDrivingDirectionsOverlay;
@@ -242,7 +240,7 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 
 	private MapDrivingDirectionsOverlay mMyMapDrivingDirectionsOverlay = null;
 
-	private AdProgressDialog mRouteFetchProgressDialog;
+	private ProgressDialog mRouteFetchProgressDialog;
 	private Bundle mBundleCreatedWith;
 	private GeoPoint mGPLastMapClick;
 
@@ -270,8 +268,6 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 	 * disappear.
 	 */
 	private boolean mInitialRouteFetch = true;
-
-	private AdView mAdView;
 
 	private PowerManager.WakeLock mWakeLock;
 
@@ -343,10 +339,6 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 		this.mRouteCountry = this.mBundleCreatedWith.getParcelable(EXTRAS_COUNTRY_ID);
 
 		this.mTTS = new TextToSpeech(this, this.mTTSInitListener);
-
-		/* Init AdView. */
-		this.loadNewAd();
-
 
 		final int searchMode = OpenStreetDDMap.this.mBundleCreatedWith.getInt(EXTRAS_MODE);
 		switch(searchMode){
@@ -1869,21 +1861,17 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 				dialogMessage = getString(R.string.please_wait_a_moment);
 			}
 			// Display an indeterminate Progress-Dialog
-			this.mRouteFetchProgressDialog = AdProgressDialog.show(OpenStreetDDMap.this,
+			this.mRouteFetchProgressDialog = ProgressDialog.show(OpenStreetDDMap.this,
 					getString(R.string.pdg_refetchroute_title),
 					dialogMessage,
+					true,
 					true,
 					new OnCancelListener(){
 				@Override
 				public void onCancel(final DialogInterface dialog) {
 					OpenStreetDDMap.this.finish();
 				}
-			},
-			this.mAdView);
-
-
-			/* Prepare a new AdView. */
-			loadNewAd();
+			});
 
 			this.mStaticNavCurrentTurnIndex = Constants.NOT_SET;
 			this.mStaticNavNextTurnIndex = Constants.NOT_SET;
@@ -2251,32 +2239,6 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 			case EXTRAS_MODE_CITYNAMESEARCH:
 			default:
 				throw new IllegalStateException("Unknown MODE in initDestination.");
-		}
-	}
-
-	/**
-	 * Sets the field <code>mAdView</code> with a fresh AdView (immediately initiates the downloading.)
-	 */
-	private void loadNewAd() {
-		final boolean firstAd = this.mAdView == null;
-
-		/* Load new ad. */
-		this.mAdView = new AdView(OpenStreetDDMap.this);
-
-		if(Preferences.getAdFreeState(this)){
-			this.mAdView.setVisibility(View.GONE);
-		}else{
-			this.mAdView.setVisibility(View.VISIBLE);
-		}
-
-		if(firstAd){
-			/* The first ad needs to be */
-			this.mAdView.loadDataWithBaseURL(AdView.ADURLBASE, Preferences.getAdHtmlCode(this), "text/html", "UTF-8", null);
-
-			/* Preload a new Ad to be loaded as the next 'firstAd' (on a new navigation-session). */
-			AdView.preloadAdAsync(this);
-		}else{
-			this.mAdView.loadAd();
 		}
 	}
 

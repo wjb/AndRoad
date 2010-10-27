@@ -46,9 +46,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
-import com.admob.android.ads.AdView;
-
-
 
 public class SDPOISearchList extends AndNavGPSActivity {
 	// ===========================================================
@@ -95,11 +92,6 @@ public class SDPOISearchList extends AndNavGPSActivity {
 		this.setContentView(R.layout.sd_poi_searchlist);
 
 		this.mUnitSystem = Preferences.getUnitSystem(this);
-
-		if(Preferences.getAdFreeState(this) == false)
-			((AdView)findViewById(R.id.ad)).setGoneWithoutAd(true);
-		else
-			((AdView)findViewById(R.id.ad)).setVisibility(View.GONE);
 
 		/*
 		 * Save the Extras Bundle of the Intent this Activity was created with,

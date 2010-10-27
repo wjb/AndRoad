@@ -7,7 +7,6 @@ import org.andnav2.ui.Menu;
 import org.andnav2.ui.StartupWarning;
 import org.andnav2.ui.common.CommonCallbackAdapter;
 import org.andnav2.ui.common.CommonDialogFactory;
-import org.andnav2.ui.common.views.AdView;
 import org.andnav2.ui.settings.SettingsORSServer;
 import org.andnav2.util.Util;
 import org.andnav2.util.constants.AdFreeConstants;
@@ -64,9 +63,6 @@ public class Splash extends Activity implements Constants, AdFreeConstants {
 			adfreeintent.putExtra(ANDNAV_ADFREE_CODE, Util.getVersionName(this));
 			this.sendBroadcast(adfreeintent);			
 			
-			
-			AdView.preloadAdAsync(this);
-
 			DowntimeManager.requestDowntimesAsync(this);
 
 			//			android.provider.Settings.System.putInt(this.getContentResolver(), android.provider.Settings.System.SOUND_EFFECTS_ENABLED, 1);

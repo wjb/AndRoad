@@ -111,9 +111,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.admob.android.ads.AdView;
-
-
 public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements PreferenceConstants, Constants, AbstractOSMMapViewItemizedOverlay.OnItemTapListener<OSMMapViewOverlayItem>{
 
 	// ===========================================================
@@ -337,11 +334,6 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 		super.onCreate(icicle);
 
 		/* Load all the Views. */
-		if(Preferences.getAdFreeState(this) == false)
-			((AdView)findViewById(R.id.ad)).setGoneWithoutAd(true);
-		else
-			((AdView)findViewById(R.id.ad)).setVisibility(View.GONE);
-
 		this.mIbtnCenter = (ImageButton)this.findViewById(R.id.ibtn_whereami_center);
 		this.mIbtnWhereAmI = (ImageButton)this.findViewById(R.id.ibtn_whereami_whereami);
 		this.mIbtnSearch = (ImageButton)this.findViewById(R.id.ibtn_whereami_search);

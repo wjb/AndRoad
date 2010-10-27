@@ -3,7 +3,6 @@ package org.andnav2.ui;
 
 import org.andnav2.R;
 import org.andnav2.osm.adt.GeoPoint;
-import org.andnav2.paypal.ui.Donate;
 import org.andnav2.preferences.Preferences;
 import org.andnav2.sys.ors.adt.ds.POIType;
 import org.andnav2.ui.common.CommonCallbackAdapter;
@@ -113,13 +112,6 @@ public class Menu extends AndNavGPSActivity {
 			public void onClick(final View v) {
 				final Intent faqWebIntent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse("http://wiki.andnav.org"));
 				startActivity(faqWebIntent);
-			}
-		});
-		findViewById(R.id.btn_donate).setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(final View v) {
-				final Intent donateIntent = new Intent(Menu.this, Donate.class);
-				startActivityForResult(donateIntent, REQUESTCODE_DONATE);
 			}
 		});
 

@@ -3,20 +3,9 @@
               xmlns:admobsdk="http://schemas.android.com/apk/res/org.andnav2"
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
-	<!-- AdMob - AdView -->
-	<com.admob.android.ads.AdView  
-		android:id="@+id/ad" 
-		android:layout_width="fill_parent" 
-		android:layout_height="wrap_content"
-		android:layout_alignParentBottom="true"
-		admobsdk:backgroundColor="#000000"
-		admobsdk:textColor="#FFFFFF"
-		admobsdk:keywords="Android application"
-		admobsdk:refreshInterval="30" />
 	<!-- Background (rotatable) -->
 	<view class="org.andnav2.ui.common.views.CompassRotateView" 
 		android:id="@+id/rotator_wheramimap"
-		android:layout_above="@id/ad"
 		android:layout_width="fill_parent"
 		android:layout_height="fill_parent" >     
 		<view class="org.andnav2.osm.views.OSMMapView" 

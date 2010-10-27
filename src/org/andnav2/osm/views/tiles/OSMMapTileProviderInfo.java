@@ -108,7 +108,7 @@ public enum OSMMapTileProviderInfo {
 			256,
 			18000,
 			OSMMapTileProviderType.DOWNLOAD_PROVIDER,
-			false,
+			true,
 	"googlemaps"),
 	GOOGLEMAPS_SATELLITE("http://mt0.google.com/vt/lyrs=s@127,h@127&",
 			"GoogleMaps Satellite",
@@ -120,7 +120,7 @@ public enum OSMMapTileProviderInfo {
 			256,
 			18000,
 			OSMMapTileProviderType.DOWNLOAD_PROVIDER,
-			false,
+			true,
 	"googlemaps_satellite"),
 	GOOGLEMAPS_TERRAIN("http://mt0.google.com/vt/lyrs=t@127,r@127&",
 			"GoogleMaps Terrain",
@@ -132,7 +132,7 @@ public enum OSMMapTileProviderInfo {
 			256,
 			18000,
 			OSMMapTileProviderType.DOWNLOAD_PROVIDER,
-			false,
+			true,
 	"googlemaps_terrain");
 	//	TRIVIAL_RENDERER("http://trivial/", // URL and name are still needed - they are used as keys by the FS/memory tile caches.
 	//			"Trvial-R",
