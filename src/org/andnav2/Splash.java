@@ -8,7 +8,6 @@ import org.andnav2.ui.StartupWarning;
 import org.andnav2.ui.common.CommonCallbackAdapter;
 import org.andnav2.ui.common.CommonDialogFactory;
 import org.andnav2.ui.settings.SettingsORSServer;
-import org.andnav2.util.Util;
 import org.andnav2.util.constants.AdFreeConstants;
 import org.andnav2.util.constants.Constants;
 
@@ -59,28 +58,7 @@ public class Splash extends Activity implements Constants, AdFreeConstants {
 		this.setRequestedOrientation(Preferences.getRequestedScreenOrientation(this));
 
 		try{
-			final Intent adfreeintent = new Intent(ANDNAV_ADFREE_ACTION);
-			adfreeintent.putExtra(ANDNAV_ADFREE_CODE, Util.getVersionName(this));
-			this.sendBroadcast(adfreeintent);			
-			
 			DowntimeManager.requestDowntimesAsync(this);
-
-			//			android.provider.Settings.System.putInt(this.getContentResolver(), android.provider.Settings.System.SOUND_EFFECTS_ENABLED, 1);
-
-			//			ISpatialDataOrganizer<GeoPoint> iim = new ListBackedSpatialIndexOrganizer<GeoPoint>();
-			//			Collection<GeoPoint> items = new ArrayList<GeoPoint>();
-			//			items.add(new GeoPoint(0,0));
-			//			items.add(new GeoPoint(10,10));
-			//			items.add(new GeoPoint(0,10));
-			//			items.add(new GeoPoint(10,0));
-			//			items.add(new GeoPoint(6,6));
-			//			iim.addAll(items);
-			//			iim.buildIndex();
-			//
-			//			List<GeoPoint> close = iim.getClosest(new GeoPoint(7,7), 2);
-			//			for (GeoPoint geoPoint : close) {
-			//				System.out.println(geoPoint);
-			//			}
 		}catch(final Exception e){
 			Log.d(DEBUGTAG, "SplashError", e);
 		}
@@ -98,11 +76,6 @@ public class Splash extends Activity implements Constants, AdFreeConstants {
 	}
 
 	private void doEulaAcceptedStartup() {
-		/* Check if there is a need to register a SkyHook-Account. */
-		if(Preferences.getSkyHookWPSAuthentication(this, false) == null){
-			//			Util.registerAndSaveNewSkyHookUserAsync(this); // TODO remove when
-		}
-
 		/* New Handler to start the Menu-Activity
 		 * and close this Splash-Screen after some seconds.*/
 		new Handler().postDelayed(new Runnable(){

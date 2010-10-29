@@ -69,7 +69,6 @@ public interface PreferenceConstants {
 	public static final String PREF_OSB_SHOWINSTRUCTIONS_ID = "osb_showinstructions_id";
 	public static final String PREF_STARTUPCOUNT_ID = "startupcount_id";
 	public static final String PREF_SHOWNOTTSINSTALLEDINFO_ID = "shownottsinstalledinfot_id";
-	public static final String PREF_ADFREESTATE_ID = "adfreestate_id";
 	public static final String PREF_SAVEINITIALROUTE_ID = "saveinitialroute_id";
 	public static final String PREF_ADHTMLCODE_ID = "adhtmlcode_id";
 	public static final String PREF_MINIMALTRACEFILTERING_ID = "minimaltracefiltering_id";

@@ -30,9 +30,6 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.util.Log;
 
-import com.skyhookwireless.wps.WPSAuthentication;
-
-
 public class Preferences implements Constants, PreferenceConstants {
 	// ===========================================================
 	// Final Fields
@@ -870,19 +867,6 @@ public class Preferences implements Constants, PreferenceConstants {
 	}
 
 	// ===========================================================
-	// AdFree
-	// ===========================================================
-
-	public static void saveAdFreeState(final Context ctx, final boolean pState) {
-		getEditorInstance(ctx).putBoolean(PREF_ADFREESTATE_ID, pState).commit();		
-	}
-
-	public static boolean getAdFreeState(final Context ctx) {
-		return getInstance(ctx).getBoolean(PREF_ADFREESTATE_ID, PREF_ADFREESTATE_DEFAULT);
-	}
-
-
-	// ===========================================================
 	// SaveInitialRoute
 	// ===========================================================
 
@@ -985,35 +969,6 @@ public class Preferences implements Constants, PreferenceConstants {
 
 	public static DirectionArrowDescriptor getHUDImplVariationDirectionArrowDescriptor(final Context ctx){
 		return getHUDImpl(ctx).getVariation(getHUDImplVariationID(ctx)).getDirectionArrowDescriptor();
-	}
-
-	// ===========================================================
-	// SkyHook Authentication
-	// ===========================================================
-
-	public static WPSAuthentication getSkyHookWPSAuthentication(final Context ctx, final boolean pUseFallback) {
-		final String username = getInstance(ctx).getString(PREF_SKYHOOKUSERNAME_ID, null);
-		if(username == null){
-			if(pUseFallback){
-				return getSkyHookWPSFallbackAuthentication();
-			}else{
-				return null;
-			}
-		}else{
-			return new WPSAuthentication(username, PREF_SKYHOOKREGISTRATIONREALM_DEFAULT);
-		}
-	}
-
-	public static WPSAuthentication getSkyHookWPSRegistrationAuthentication() {
-		return new WPSAuthentication(PREF_SKYHOOKREGISTRATIONUSERNAME_DEFAULT, PREF_SKYHOOKREGISTRATIONREALM_DEFAULT);
-	}
-
-	public static WPSAuthentication getSkyHookWPSFallbackAuthentication() {
-		return new WPSAuthentication(PREF_SKYHOOKFALLBACKUSERNAME_DEFAULT, PREF_SKYHOOKFALLBACKREALM_DEFAULT);
-	}
-
-	public static void saveSkyHookWPSAuthentication(final Context ctx, final WPSAuthentication newUser) {
-		getEditorInstance(ctx).putString(PREF_SKYHOOKUSERNAME_ID, newUser.getUsername()).commit();
 	}
 
 	// ===========================================================
