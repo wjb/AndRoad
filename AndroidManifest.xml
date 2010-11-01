@@ -315,12 +315,6 @@
                 <category android:name="android.intent.category.VIEW" />
             </intent-filter>
     	</activity>
-        <receiver android:name=".app.AdFreeResultIntentReceiver">
-            <intent-filter>
-                <action android:name="org.andnav2.adfree.intent.AD_FREE_SUCCESS" />
-                <action android:name="org.andnav2.adfree.intent.AD_FREE_FAIL" />
-            </intent-filter>
-        </receiver>
         <receiver android:name=".app.APIIntentReceiver">
             <intent-filter>
                 <action android:name="org.andnav.intent.ACTION_NAV_TO" />
