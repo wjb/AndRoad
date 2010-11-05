@@ -16,6 +16,7 @@ import org.andnav2.sys.ors.lus.google.GoogleLUSRequester;
 import org.andnav2.sys.ors.lus.openrouteservice.OpenRouteServiceLUSRequester;
 import org.andnav2.sys.ors.lus.yahoo.YahooLUSRequester;
 import org.andnav2.sys.ors.rs.RSRequester;
+import org.andnav2.sys.ors.rs.google.GoogleRSRequester;
 import org.andnav2.sys.ors.rs.openrouteservice.OpenRouteServiceRSRequester;
 import org.andnav2.sys.ors.rs.yahoo.YahooRSRequester;
 
@@ -42,7 +43,7 @@ public enum ORSServer implements Parcelable {
           "USA",
           Country.USA,
           Country.USA,
-          null,
+          new GoogleRSRequester(),
           new GoogleDSRequester(),
           new GoogleLUSRequester(),
           new IPingMethod.HostNamePing("google.com")),
