@@ -4,7 +4,7 @@ import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.andnav2.osm.adt.GeoPoint;
+import org.andnav.osm.util.GeoPoint;
 
 /**
  * 

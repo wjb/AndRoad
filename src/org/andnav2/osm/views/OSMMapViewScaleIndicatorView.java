@@ -1,9 +1,10 @@
 // Created by plusminus on 23:01:57 - 13.01.2009
 package org.andnav2.osm.views;
 
+import org.andnav.osm.util.GeoPoint;
+
 import org.andnav2.R;
 import org.andnav2.adt.UnitSystem;
-import org.andnav2.osm.adt.GeoPoint;
 import org.andnav2.osm.views.OSMMapView.OSMMapViewProjection;
 
 import android.content.Context;

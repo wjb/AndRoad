@@ -7,11 +7,12 @@ import java.util.List;
 
 import junit.framework.Assert;
 
+import org.andnav.osm.util.BoundingBoxE6;
+import org.andnav.osm.util.GeoPoint;
+
 import org.andnav2.R;
 import org.andnav2.adt.AndNavLocation;
 import org.andnav2.exc.Exceptor;
-import org.andnav2.osm.adt.BoundingBoxE6;
-import org.andnav2.osm.adt.GeoPoint;
 import org.andnav2.osm.views.OSMMapView;
 import org.andnav2.osm.views.OSMMapViewScaleIndicatorView;
 import org.andnav2.osm.views.OSMMapView.OSMMapViewProjection;
@@ -340,8 +341,8 @@ public class OSBMap extends OpenStreetMapAndNavBaseActivity implements OnItemTap
 								OSBMap.this.mNewOSMPOINodeID = NodeCreationRequester
 								.requestAddPOI(username, password,
 										pResultName,
-										mapCenter.getLatitudeAsDouble(),
-										mapCenter.getLongitudeAsDouble(),
+										mapCenter.getLatitudeE6() / 1E6,
+										mapCenter.getLongitudeE6() / 1E6,
 										utcTimestamp,
 										poi.OSMKEYNAME, poi.RAWNAME);
 								showDialog(DIALOG_SHOW_OSM_POI_SUCCESS);

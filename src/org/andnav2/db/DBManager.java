@@ -5,11 +5,12 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.andnav.osm.util.GeoPoint;
+
 import org.andnav2.adt.DBPOI;
 import org.andnav2.adt.Favorite;
 import org.andnav2.adt.TrafficFeed;
 import org.andnav2.db.util.constants.DatabaseConstants;
-import org.andnav2.osm.adt.GeoPoint;
 import org.andnav2.sys.ors.adt.lus.Country;
 import org.andnav2.util.constants.Constants;
 

@@ -5,7 +5,8 @@ import java.util.Formatter;
 import java.util.List;
 import java.util.Locale;
 
-import org.andnav2.osm.adt.GeoPoint;
+import org.andnav.osm.util.GeoPoint;
+
 import org.andnav2.sys.ors.aps.util.constants.APSConstants;
 import org.andnav2.sys.ors.util.constants.ORSXMLConstants;
 
@@ -72,7 +73,7 @@ public class APSRequestComposer implements ORSXMLConstants, APSConstants {
 
 		for(int i = min; i < geoPointCount; i++) {
 			final GeoPoint gp = pGeoPoints.get(i);
-			gp.formatTo(f);
+			f.format(GML_POS_TAG, gp.getLongitudeE6() / 1E6, gp.getLatitudeE6() / 1E6);
 
 			lengthSummed += previous.distanceTo(gp);
 			previous = gp;
@@ -95,9 +96,9 @@ public class APSRequestComposer implements ORSXMLConstants, APSConstants {
 		int lengthSummed = 0;
 		GeoPoint previous = pGeoPoints.get(0);
 		for(final GeoPoint gp : pGeoPoints){
-			latBuilder.append(gp.getLatitudeAsDouble());
+			latBuilder.append(gp.getLatitudeE6() / 1E6);
 			latBuilder.append(',');
-			lonBuilder.append(gp.getLongitudeAsDouble());
+			lonBuilder.append(gp.getLongitudeE6() / 1E6);
 			lonBuilder.append(',');
 
 			lengthSummed += previous.distanceTo(gp);

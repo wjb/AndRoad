@@ -1,8 +1,7 @@
 // Created by plusminus on 19:27:52 - 15.11.2008
 package org.andnav2.sys.ors.adt.ds;
 
-import org.andnav2.osm.adt.GeoPoint;
-
+import org.andnav.osm.util.GeoPoint;
 
 public class ORSPOI {
 	// ===========================================================

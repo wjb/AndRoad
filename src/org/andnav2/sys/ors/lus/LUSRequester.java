@@ -4,7 +4,8 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 
-import org.andnav2.osm.adt.GeoPoint;
+import org.andnav.osm.util.GeoPoint;
+
 import org.andnav2.sys.ors.adt.GeocodedAddress;
 import org.andnav2.sys.ors.adt.lus.Country;
 import org.andnav2.sys.ors.adt.lus.ICountrySubdivision;

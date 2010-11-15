@@ -3,9 +3,10 @@ package org.andnav2.osm.api.traces.util;
 
 import java.util.ArrayList;
 
+import org.andnav.osm.util.GeoPoint;
+
 import org.andnav2.adt.AndNavLocation;
 import org.andnav2.osm.adt.GPSGeoLocation;
-import org.andnav2.osm.adt.GeoPoint;
 import org.andnav2.osm.adt.util.TypeConverter;
 import org.andnav2.osm.util.constants.OSMConstants;
 

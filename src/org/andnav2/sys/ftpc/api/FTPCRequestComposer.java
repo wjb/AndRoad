@@ -3,8 +3,7 @@ package org.andnav2.sys.ftpc.api;
 
 import java.util.Locale;
 
-import org.andnav2.osm.adt.GeoPoint;
-
+import org.andnav.osm.util.GeoPoint;
 
 public class FTPCRequestComposer {
 	// ===========================================================
@@ -68,8 +67,8 @@ public class FTPCRequestComposer {
 	public static String createSubmitPostCodeEntitiy(final GeoPoint pGeoPoint, final String pPostCode1String, final String pPostCode2String, final String pEMailAddress){
 		return String.format(Locale.ENGLISH, SUBMIT_BASEURL,
 				pEMailAddress,
-				pGeoPoint.getLatitudeAsDouble(),
-				pGeoPoint.getLongitudeAsDouble(),
+				pGeoPoint.getLatitudeE6() / 1E6,
+				pGeoPoint.getLongitudeE6() / 1E6,
 				pPostCode1String,
 				pPostCode2String);
 	}

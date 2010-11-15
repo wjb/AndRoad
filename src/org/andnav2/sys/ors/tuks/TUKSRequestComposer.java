@@ -6,7 +6,8 @@ import java.util.Locale;
 
 import junit.framework.Assert;
 
-import org.andnav2.osm.adt.BoundingBoxE6;
+import org.andnav.osm.util.BoundingBoxE6;
+
 import org.andnav2.sys.ors.util.constants.ORSXMLConstants;
 
 
@@ -80,8 +81,8 @@ public class TUKSRequestComposer implements ORSXMLConstants {
 		/* The BoundingBox...  */
 		sb.append(GML_ENVELOPE_TAG_OPEN);
 
-		f.format(GML_LOWERCORNER_TAG, pBoundingBoxE6.getLonWest(), pBoundingBoxE6.getLatSouth());
-		f.format(GML_UPPERCORNER_TAG, pBoundingBoxE6.getLonEast(), pBoundingBoxE6.getLatNorth());
+		f.format(GML_LOWERCORNER_TAG, pBoundingBoxE6.getLonWestE6() / 1E6, pBoundingBoxE6.getLatSouthE6() / 1E6);
+		f.format(GML_UPPERCORNER_TAG, pBoundingBoxE6.getLonEastE6() / 1E6, pBoundingBoxE6.getLatNorthE6() / 1E6);
 
 		sb.append(GML_ENVELOPE_TAG_CLOSE)
 		.append(OGC_BBOX_TAG_CLOSE)
@@ -139,10 +140,10 @@ public class TUKSRequestComposer implements ORSXMLConstants {
 		sb.append(GML_BOX_TAG_OPEN);
 
 		f.format(GML_COORDINATES_TAG,
-				pBoundingBoxE6.getLonEast(),
-				pBoundingBoxE6.getLatSouth(),
-				pBoundingBoxE6.getLonWest(),
-				pBoundingBoxE6.getLatNorth());
+				pBoundingBoxE6.getLonEastE6() / 1E6,
+				pBoundingBoxE6.getLatSouthE6() / 1E6,
+				pBoundingBoxE6.getLonWestE6() / 1E6,
+				pBoundingBoxE6.getLatNorthE6() / 1E6);
 
 		sb.append(GML_BOX_TAG_CLOSE)
 		.append(OGC_BBOX_TAG_CLOSE)

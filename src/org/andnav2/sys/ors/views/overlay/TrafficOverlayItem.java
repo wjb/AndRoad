@@ -21,7 +21,7 @@ public class TrafficOverlayItem extends OSMMapViewOverlayItem {
 	// ===========================================================
 
 	public TrafficOverlayItem(final Context ctx, final TrafficItem pFeature) {
-		super(pFeature.getSeverity().name(), pFeature.getDescription(), pFeature.getGeoPoint());
+		super(pFeature.getSeverity().name(), pFeature.getDescription(), pFeature);
 	}
 
 	// ===========================================================

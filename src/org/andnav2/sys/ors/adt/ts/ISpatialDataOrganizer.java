@@ -4,8 +4,8 @@ package org.andnav2.sys.ors.adt.ts;
 import java.util.Collection;
 import java.util.List;
 
-import org.andnav2.osm.adt.BoundingBoxE6;
-import org.andnav2.osm.adt.IGeoPoint;
+import org.andnav.osm.util.BoundingBoxE6;
+import org.andnav.osm.util.GeoPoint;
 
 /**
  * 
@@ -13,7 +13,7 @@ import org.andnav2.osm.adt.IGeoPoint;
  *
  * @param <T>
  */
-public interface ISpatialDataOrganizer<T extends IGeoPoint> {
+public interface ISpatialDataOrganizer<T extends GeoPoint> {
 	public abstract List<T> getItems();
 
 	public abstract void add(final T pItem);
@@ -24,7 +24,7 @@ public interface ISpatialDataOrganizer<T extends IGeoPoint> {
 
 	public abstract GetMode getGetMode();
 
-	public abstract List<T> getClosest(final IGeoPoint pGeoPoint, final int pCount);
+	public abstract List<T> getClosest(final GeoPoint pGeoPoint, final int pCount);
 	public abstract List<T> getWithinBoundingBox(final BoundingBoxE6 pBoundingBoxE6, final int pCount);
 
 	public void clearIndex();

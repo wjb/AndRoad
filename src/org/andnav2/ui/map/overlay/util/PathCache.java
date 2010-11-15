@@ -4,7 +4,8 @@ package org.andnav2.ui.map.overlay.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.andnav2.osm.adt.GeoPoint;
+import org.andnav.osm.util.GeoPoint;
+
 import org.andnav2.osm.views.OSMMapView;
 import org.andnav2.osm.views.OSMMapView.OSMMapViewProjection;
 import org.andnav2.sys.ors.adt.rs.Route;

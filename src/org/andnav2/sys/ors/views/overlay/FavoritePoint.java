@@ -8,9 +8,10 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.Toast;
 
+import org.andnav.osm.util.GeoPoint;
+
 import org.andnav2.R;
 import org.andnav2.adt.Favorite;
-import org.andnav2.osm.adt.GeoPoint;
 import org.andnav2.osm.views.OSMMapView.OSMMapViewProjection;
 import org.andnav2.osm.views.util.Util;
 import org.andnav2.util.constants.Constants;

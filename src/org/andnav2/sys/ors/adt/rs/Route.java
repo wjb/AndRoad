@@ -4,9 +4,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.andnav.osm.util.BoundingBoxE6;
+import org.andnav.osm.util.GeoPoint;
+
 import org.andnav2.adt.other.GraphicsPoint;
-import org.andnav2.osm.adt.BoundingBoxE6;
-import org.andnav2.osm.adt.GeoPoint;
 import org.andnav2.util.constants.Constants;
 
 import android.graphics.Point;

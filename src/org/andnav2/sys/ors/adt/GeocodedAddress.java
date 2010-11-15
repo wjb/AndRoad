@@ -1,15 +1,16 @@
 // Created by plusminus on 01:20:48 - 02.11.2008
 package org.andnav2.sys.ors.adt;
 
+import org.andnav.osm.util.GeoPoint;
+import org.andnav.osm.views.util.constants.OpenStreetMapViewConstants;
+
 import org.andnav2.R;
 import org.andnav2.adt.UnitSystem;
-import org.andnav2.osm.adt.GeoPoint;
 import org.andnav2.sys.ors.adt.lus.Country;
 
 import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
-
 
 public class GeocodedAddress extends GeoPoint implements Parcelable {
 	// ===========================================================
@@ -149,8 +150,8 @@ public class GeocodedAddress extends GeoPoint implements Parcelable {
 		}
 
 		try{
-			final double lat = this.mLatitudeE6 / 1E6;
-			final double lon = this.mLongitudeE6 / 1E6;
+			final double lat = this.getLatitudeE6() / 1E6;
+			final double lon = this.getLongitudeE6() / 1E6;
 			sb.append('\n');
 			sb.append(ctx.getString(R.string.latitude)).append(": ").append(lat).append('\n');
 			sb.append(ctx.getString(R.string.longitude)).append(": ").append(lon);
@@ -195,11 +196,11 @@ public class GeocodedAddress extends GeoPoint implements Parcelable {
 
 	@Override
 	public void writeToParcel(final Parcel out, final int arg1) {
-		out.writeInt(this.mLatitudeE6);
-		out.writeInt(this.mLongitudeE6);
+		out.writeInt(this.getLatitudeE6());
+		out.writeInt(this.getLongitudeE6());
 
 		if(this.mNationality == null) {
-			out.writeInt(NOT_SET);
+			out.writeInt(OpenStreetMapViewConstants.NOT_SET);
 		} else {
 			out.writeInt(this.mNationality.ordinal());
 		}
@@ -219,7 +220,7 @@ public class GeocodedAddress extends GeoPoint implements Parcelable {
 		final GeocodedAddress out = new GeocodedAddress(latE6, lonE6);
 
 		final int natOrdinal = in.readInt();
-		final Country nat = (natOrdinal == NOT_SET) ? null : Country.values()[natOrdinal];
+		final Country nat = (natOrdinal == OpenStreetMapViewConstants.NOT_SET) ? null : Country.values()[natOrdinal];
 		out.setNationality(nat);
 
 		out.setStreetNameOfficial(in.readString());

@@ -3,6 +3,8 @@ package org.andnav2.osm.adt;
 
 import java.util.GregorianCalendar;
 
+import org.andnav.osm.util.GeoPoint;
+import org.andnav.osm.views.util.constants.OpenStreetMapViewConstants;
 
 public class GeoLocation extends GeoPoint {
 	// ===========================================================
@@ -14,9 +16,9 @@ public class GeoLocation extends GeoPoint {
 	// ===========================================================
 
 	private long mTimeStamp;
-	private int mAltitude = NOT_SET;
-	private int mBearing = NOT_SET;
-	private int mSpeed = NOT_SET;
+	private int mAltitude = OpenStreetMapViewConstants.NOT_SET;
+	private int mBearing = OpenStreetMapViewConstants.NOT_SET;
+	private int mSpeed = OpenStreetMapViewConstants.NOT_SET;
 
 	// ===========================================================
 	// Constructors
@@ -63,7 +65,7 @@ public class GeoLocation extends GeoPoint {
 	}
 
 	public boolean hasAltitude(){
-		return this.mAltitude != NOT_SET;
+		return this.mAltitude != OpenStreetMapViewConstants.NOT_SET;
 	}
 
 	public int getBearing() {
@@ -75,7 +77,7 @@ public class GeoLocation extends GeoPoint {
 	}
 
 	public boolean hasBearing(){
-		return this.mBearing != NOT_SET;
+		return this.mBearing != OpenStreetMapViewConstants.NOT_SET;
 	}
 
 	public int getSpeed() {
@@ -87,7 +89,7 @@ public class GeoLocation extends GeoPoint {
 	}
 
 	public boolean hasSpeed(){
-		return this.mSpeed != NOT_SET;
+		return this.mSpeed != OpenStreetMapViewConstants.NOT_SET;
 	}
 
 	// ===========================================================

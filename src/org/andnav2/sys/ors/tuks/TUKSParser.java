@@ -4,7 +4,8 @@ package org.andnav2.sys.ors.tuks;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.andnav2.osm.adt.GeoPoint;
+import org.andnav.osm.util.GeoPoint;
+
 import org.andnav2.sys.ors.adt.GeocodedAddress;
 import org.andnav2.sys.ors.adt.ts.TrafficItem;
 import org.andnav2.traffic.tpeg.adt.IIDFinder;

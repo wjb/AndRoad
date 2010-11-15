@@ -5,12 +5,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.andnav.osm.util.GeoPoint;
+
 import org.andnav2.R;
 import org.andnav2.adt.DBPOI;
 import org.andnav2.adt.UnitSystem;
 import org.andnav2.db.DBManager;
 import org.andnav2.db.DataBaseException;
-import org.andnav2.osm.adt.GeoPoint;
 import org.andnav2.osm.adt.util.TypeConverter;
 import org.andnav2.preferences.Preferences;
 import org.andnav2.sys.ors.adt.GeocodedAddress;
@@ -538,8 +539,8 @@ public class SDPOISearchList extends AndNavGPSActivity {
 
 		@Override
 		public void writeToParcel(final Parcel out, final int flags) {
-			out.writeInt(this.mLatitudeE6);
-			out.writeInt(this.mLongitudeE6);
+			out.writeInt(this.getLatitudeE6());
+			out.writeInt(this.getLongitudeE6());
 			out.writeInt(this.mDistanceToUserLocation);
 			out.writeString(this.mName);
 			out.writeInt(mUnitSystem.ordinal());

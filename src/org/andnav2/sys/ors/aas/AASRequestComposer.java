@@ -3,7 +3,8 @@ package org.andnav2.sys.ors.aas;
 
 import java.io.UnsupportedEncodingException;
 
-import org.andnav2.osm.adt.GeoPoint;
+import org.andnav.osm.util.GeoPoint;
+
 import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.StringBody;
 

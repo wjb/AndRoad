@@ -3,7 +3,8 @@ package org.andnav2.util;
 
 import java.util.ArrayList;
 
-import org.andnav2.osm.adt.GeoPoint;
+import org.andnav.osm.util.GeoPoint;
+
 import org.andnav2.util.constants.Constants;
 
 import android.content.Context;
@@ -93,7 +94,7 @@ public class Util {
 		final ArrayList<GeoPoint> out = new ArrayList<GeoPoint>();
 
 		for (final GeoPoint gp : wayPoints) {
-			out.add(gp.cloneDeep());
+			out.add((GeoPoint) gp.clone());
 		}
 
 		return out;

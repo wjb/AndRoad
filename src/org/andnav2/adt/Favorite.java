@@ -1,7 +1,8 @@
 // Created by plusminus on 14:31:57 - 15.02.2008
 package org.andnav2.adt;
 
-import org.andnav2.osm.adt.GeoPoint;
+import org.andnav.osm.util.GeoPoint;
+
 import org.andnav2.osm.util.constants.OSMConstants;
 
 public class Favorite extends GeoPoint{
@@ -53,9 +54,9 @@ public class Favorite extends GeoPoint{
 		sb.append("    Name: ");
 		sb.append(this.mName);
 		sb.append("    Lat: ");
-		sb.append(this.mLatitudeE6);
+		sb.append(this.getLatitudeE6());
 		sb.append("  Lng: ");
-		sb.append(this.mLongitudeE6);
+		sb.append(this.getLongitudeE6());
 		return sb.toString();
 	}
 

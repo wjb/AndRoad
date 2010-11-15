@@ -9,6 +9,9 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
+import org.andnav.osm.util.BoundingBoxE6;
+import org.andnav.osm.util.GeoPoint;
+
 import org.andnav2.R;
 import org.andnav2.adt.AndNavLocation;
 import org.andnav2.adt.UnitSystem;
@@ -24,8 +27,6 @@ import org.andnav2.nav.WayPointListener;
 import org.andnav2.nav.WaypointOptimizer;
 import org.andnav2.nav.stats.StatisticsManager;
 import org.andnav2.nav.util.NavAlgorithm;
-import org.andnav2.osm.adt.BoundingBoxE6;
-import org.andnav2.osm.adt.GeoPoint;
 import org.andnav2.osm.exceptions.ExternalStorageNotMountedException;
 import org.andnav2.osm.views.OSMMapView;
 import org.andnav2.osm.views.OSMMapViewScaleIndicatorView;

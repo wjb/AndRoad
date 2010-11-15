@@ -17,7 +17,8 @@ import javax.xml.parsers.SAXParserFactory;
 
 import org.andnav2.sys.ors.ds.DSRequester;
 
-import org.andnav2.osm.adt.GeoPoint;
+import org.andnav.osm.util.GeoPoint;
+
 import org.andnav2.sys.ors.adt.Error;
 import org.andnav2.sys.ors.adt.ds.ORSPOI;
 import org.andnav2.sys.ors.adt.ds.POIType;

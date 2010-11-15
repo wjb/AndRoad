@@ -4,10 +4,10 @@ package org.andnav2.osm.views;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.andnav.osm.util.BoundingBoxE6;
+import org.andnav.osm.util.GeoPoint;
+
 import org.andnav2.exc.Exceptor;
-import org.andnav2.osm.adt.BoundingBoxE6;
-import org.andnav2.osm.adt.GeoPoint;
-import org.andnav2.osm.adt.IGeoPoint;
 import org.andnav2.osm.adt.util.TypeConverter;
 import org.andnav2.osm.exceptions.ExternalStorageNotMountedException;
 import org.andnav2.osm.util.MyMath;
@@ -749,7 +749,7 @@ public class OSMMapView extends View implements OSMConstants, OSMMapViewConstant
 		 * @param reuse just pass null if you do not have a Point to be 'recycled'.
 		 * @return the Point containing the approximated ScreenCoordinates of the GeoPoint passed.
 		 */
-		public Point toPixels(final IGeoPoint in, final Point reuse) {
+		public Point toPixels(final GeoPoint in, final Point reuse) {
 			return toPixels(in, reuse, true);
 		}
 
@@ -757,7 +757,7 @@ public class OSMMapView extends View implements OSMConstants, OSMMapViewConstant
 			return toPixels(latE6, lonE6, reuse, true);
 		}
 
-		protected Point toPixels(final IGeoPoint in, final Point reuse, final boolean doGudermann){
+		protected Point toPixels(final GeoPoint in, final Point reuse, final boolean doGudermann){
 			return toPixels(in.getLatitudeE6(), in.getLongitudeE6(), reuse, doGudermann);
 		}
 
@@ -791,11 +791,11 @@ public class OSMMapView extends View implements OSMConstants, OSMMapViewConstant
 			return out;
 		}
 
-		public Path toPixels(final List<IGeoPoint> in, final Path reuse) {
+		public Path toPixels(final List<GeoPoint> in, final Path reuse) {
 			return toPixels(in, reuse, true);
 		}
 
-		protected Path toPixels(final List<IGeoPoint> in, final Path reuse, final boolean doGudermann) throws IllegalArgumentException {
+		protected Path toPixels(final List<GeoPoint> in, final Path reuse, final boolean doGudermann) throws IllegalArgumentException {
 			if(in.size() < 2) {
 				throw new IllegalArgumentException("List of GeoPoints needs to be at least 2.");
 			}
@@ -803,7 +803,7 @@ public class OSMMapView extends View implements OSMConstants, OSMMapViewConstant
 			final Path out = (reuse != null) ? reuse : new ManagedLinePath();
 
 			int i = 0;
-			for (final IGeoPoint gp : in) {
+			for (final GeoPoint gp : in) {
 				i++;
 				final OSMTileInfo underGeopointTileCoords = Util.getMapTileFromCoordinates(gp.getLatitudeE6(), gp.getLongitudeE6(), this.centerMapTileCoords.zoom);
 

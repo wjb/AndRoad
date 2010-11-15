@@ -5,8 +5,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.andnav2.osm.adt.BoundingBoxE6;
-import org.andnav2.osm.adt.GeoPoint;
+import org.andnav.osm.util.BoundingBoxE6;
+import org.andnav.osm.util.GeoPoint;
+
 import org.andnav2.sys.ors.util.Util;
 
 import android.os.Parcel;
@@ -38,7 +39,7 @@ public class RouteInstruction implements Parcelable, Serializable {
 	protected int mLengthMeters;
 	protected String mDescriptionHtml;
 
-	protected List<GeoPoint> mPartialPolyLine;
+	protected ArrayList<GeoPoint> mPartialPolyLine;
 
 	protected int mFirstMotherPolylineIndex;
 

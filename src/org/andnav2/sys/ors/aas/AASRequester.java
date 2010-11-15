@@ -10,7 +10,8 @@ import javax.xml.parsers.SAXParserFactory;
 
 import junit.framework.Assert;
 
-import org.andnav2.osm.adt.GeoPoint;
+import org.andnav.osm.util.GeoPoint;
+
 import org.andnav2.sys.ors.exceptions.ORSException;
 import org.andnav2.util.constants.Constants;
 import org.apache.http.HttpResponse;

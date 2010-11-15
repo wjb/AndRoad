@@ -37,7 +37,7 @@ public class Requester {
 
 	public static boolean submit(final String pServerBaseURL, final String pUsername, final String pPassword, final AndNavLocation pLocation){
 		final StringBuilder urlBuilder = new StringBuilder();
-		urlBuilder.append(pServerBaseURL).append("/setUserPosition.php").append("?latitude=").append(pLocation.getLatitudeAsDouble()).append("&longitude=").append(pLocation.getLongitudeAsDouble());
+		urlBuilder.append(pServerBaseURL).append("/setUserPosition.php").append("?latitude=").append(pLocation.getLatitudeE6() / 1E6).append("&longitude=").append(pLocation.getLongitudeE6() / 1E6);
 
 		if(pLocation.hasBearing()) {
 			urlBuilder.append("&dir=").append(pLocation.getBearing());

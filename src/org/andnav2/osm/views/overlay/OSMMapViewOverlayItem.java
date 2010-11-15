@@ -1,8 +1,9 @@
 // Created by plusminus on 00:02:58 - 03.10.2008
 package org.andnav2.osm.views.overlay;
 
+import org.andnav.osm.util.GeoPoint;
+
 import org.andnav2.R;
-import org.andnav2.osm.adt.GeoPoint;
 
 import android.content.Context;
 
@@ -29,7 +30,7 @@ public class OSMMapViewOverlayItem extends GeoPoint{
 	// ===========================================================
 
 	public OSMMapViewOverlayItem(final Context ctx, final GeoPoint pGeoPoint) {
-		this(ctx.getString(R.string.coordinates), pGeoPoint.toMultiLineUserString(ctx), pGeoPoint.getLatitudeE6(), pGeoPoint.getLongitudeE6());
+		this(ctx.getString(R.string.coordinates), pGeoPoint.toString(), pGeoPoint.getLatitudeE6(), pGeoPoint.getLongitudeE6());
 	}
 
 	public OSMMapViewOverlayItem(final String aTitle, final String aDescription, final GeoPoint pGeoPoint) {

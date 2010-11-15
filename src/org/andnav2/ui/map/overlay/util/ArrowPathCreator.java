@@ -3,7 +3,8 @@ package org.andnav2.ui.map.overlay.util;
 
 import java.util.List;
 
-import org.andnav2.osm.adt.GeoPoint;
+import org.andnav.osm.util.GeoPoint;
+
 import org.andnav2.osm.views.OSMMapView.OSMMapViewProjection;
 import org.andnav2.preferences.PreferenceConstants;
 import org.andnav2.util.constants.Constants;

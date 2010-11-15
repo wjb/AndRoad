@@ -1,10 +1,11 @@
 // Created by plusminus on 11:26:05 - 25.10.2008
 package org.andnav2.ui.sd;
 
+import org.andnav.osm.util.GeoPoint;
+
 import org.andnav2.R;
 import org.andnav2.db.DBManager;
 import org.andnav2.db.DataBaseException;
-import org.andnav2.osm.adt.GeoPoint;
 import org.andnav2.preferences.Preferences;
 import org.andnav2.sys.ors.adt.lus.Country;
 import org.andnav2.sys.ors.adt.lus.CountrySubdivisionRegistry;

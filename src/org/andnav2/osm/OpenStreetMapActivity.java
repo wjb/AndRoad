@@ -1,11 +1,12 @@
 // Created by plusminus on 00:14:42 - 02.10.2008
 package org.andnav2.osm;
 
+import org.andnav.osm.util.GeoPoint;
+
 import org.andnav2.adt.AndNavLocation;
 import org.andnav2.loc.AbstractAndNavLocationProvider;
 import org.andnav2.loc.NetworkFallbackLocationProvider;
 import org.andnav2.loc.AbstractAndNavLocationProvider.AndNavLocationCallback;
-import org.andnav2.osm.adt.GeoPoint;
 import org.andnav2.osm.api.traces.TraceManager;
 import org.andnav2.osm.api.traces.util.RouteRecorder;
 import org.andnav2.osm.util.constants.OSMConstants;

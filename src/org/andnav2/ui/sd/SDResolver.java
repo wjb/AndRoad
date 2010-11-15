@@ -5,11 +5,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.andnav.osm.util.GeoPoint;
+
 import org.andnav2.R;
 import org.andnav2.db.DBManager;
 import org.andnav2.db.DataBaseException;
 import org.andnav2.exc.Exceptor;
-import org.andnav2.osm.adt.GeoPoint;
 import org.andnav2.preferences.Preferences;
 import org.andnav2.sys.ors.adt.GeocodedAddress;
 import org.andnav2.sys.ors.adt.lus.Country;

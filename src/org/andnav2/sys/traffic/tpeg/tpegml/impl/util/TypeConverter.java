@@ -1,9 +1,9 @@
 // Created by plusminus on 23:03:24 - 17.01.2009
 package org.andnav2.sys.traffic.tpeg.tpegml.impl.util;
 
-import org.andnav2.osm.adt.GeoPoint;
-import org.andnav2.traffic.tpeg.adt.misc.WGS84;
+import org.andnav.osm.util.GeoPoint;
 
+import org.andnav2.traffic.tpeg.adt.misc.WGS84;
 
 public class TypeConverter {
 	// ===========================================================

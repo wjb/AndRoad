@@ -3,6 +3,8 @@ package org.andnav2.nav;
 
 import java.util.List;
 
+import org.andnav.osm.util.GeoPoint;
+
 import org.andnav2.adt.AndNavLocation;
 import org.andnav2.adt.UnitSystem;
 import org.andnav2.adt.voice.AudibleTurnCommand;
@@ -10,7 +12,6 @@ import org.andnav2.adt.voice.AudibleTurnCommandManager;
 import org.andnav2.adt.voice.DirectionVoiceCommandListener;
 import org.andnav2.nav.util.NavAlgorithm;
 import org.andnav2.nav.util.Util;
-import org.andnav2.osm.adt.GeoPoint;
 import org.andnav2.sys.ors.adt.rs.Route;
 import org.andnav2.sys.ors.adt.rs.RouteInstruction;
 import org.andnav2.util.constants.Constants;

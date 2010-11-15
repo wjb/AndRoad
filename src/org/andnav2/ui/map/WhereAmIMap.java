@@ -6,10 +6,13 @@ import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.andnav.osm.util.BoundingBoxE6;
+import org.andnav.osm.util.Direction;
+import org.andnav.osm.util.GeoPoint;
+
 import org.andnav2.R;
 import org.andnav2.adt.AndNavLocation;
 import org.andnav2.adt.DBPOI;
-import org.andnav2.adt.Direction;
 import org.andnav2.adt.Favorite;
 import org.andnav2.adt.TrafficFeed;
 import org.andnav2.adt.UnitSystem;
@@ -17,8 +20,6 @@ import org.andnav2.app.APIIntentReceiver;
 import org.andnav2.db.DBManager;
 import org.andnav2.db.DataBaseException;
 import org.andnav2.exc.Exceptor;
-import org.andnav2.osm.adt.BoundingBoxE6;
-import org.andnav2.osm.adt.GeoPoint;
 import org.andnav2.osm.util.CoordinatesExtractor;
 import org.andnav2.osm.views.OSMMapView;
 import org.andnav2.osm.views.OSMMapViewScaleIndicatorView;
@@ -1177,13 +1178,13 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 		new AlertDialog.Builder(this)
 		.setIcon(R.drawable.world)
 		.setTitle(R.string.coordinates)
-		.setMessage(getString(R.string.maps_menu_getcentetcoordinates_message, mapCenter.getLatitudeAsDouble(), mapCenter.getLongitudeAsDouble()))
+		.setMessage(getString(R.string.maps_menu_getcentetcoordinates_message, mapCenter.getLatitudeE6() / 1E6, mapCenter.getLongitudeE6() / 1E6))
 		.setNeutralButton(R.string.clipboard, new DialogInterface.OnClickListener(){
 			@Override
 			public void onClick(final DialogInterface d, final int which) {
 				final ClipboardManager cb = (ClipboardManager) WhereAmIMap.this.getSystemService(Context.CLIPBOARD_SERVICE);
 
-				final String clipboardText = String.format("%.6f %.6f",mapCenter.getLatitudeAsDouble(), mapCenter.getLongitudeAsDouble());
+				final String clipboardText = String.format("%.6f %.6f",mapCenter.getLatitudeE6() / 1E6, mapCenter.getLongitudeE6() / 1E6);
 				cb.setText(clipboardText);
 				d.dismiss();
 			}
@@ -1450,8 +1451,8 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 								break;
 							case 2:
 								final Intent i = new Intent("com.google.android.radar.SHOW_RADAR");
-								i.putExtra("latitude", (float)WhereAmIMap.this.mGPLastMapClick.getLatitudeAsDouble());
-								i.putExtra("longitude", (float)WhereAmIMap.this.mGPLastMapClick.getLongitudeAsDouble());
+								i.putExtra("latitude", (float)WhereAmIMap.this.mGPLastMapClick.getLatitudeE6() / 1E6);
+								i.putExtra("longitude", (float)WhereAmIMap.this.mGPLastMapClick.getLongitudeE6() / 1E6);
 								org.andnav2.ui.util.Util.startUnknownActivity(WhereAmIMap.this, i, "com.google.android.radar");
 								break;
 							case 3:

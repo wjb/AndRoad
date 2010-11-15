@@ -4,9 +4,10 @@ package org.andnav2.osm.adt;
 import java.util.Formatter;
 import java.util.GregorianCalendar;
 
+import org.andnav.osm.contributor.util.RecordedRouteGPXFormatter;
+import org.andnav.osm.views.util.constants.OpenStreetMapViewConstants;
+
 import org.andnav2.osm.api.traces.util.Util;
-
-
 
 public class GPSGeoLocation extends GeoLocation {
 	// ===========================================================
@@ -17,14 +18,14 @@ public class GPSGeoLocation extends GeoLocation {
 	// Fields
 	// ===========================================================
 
-	private int mNumSatellites = NOT_SET;
+	private int mNumSatellites = OpenStreetMapViewConstants.NOT_SET;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
 	public GPSGeoLocation(final int latitudeE6, final int longitudeE6, final long timeStamp) {
-		this(latitudeE6, longitudeE6, timeStamp, NOT_SET);
+		this(latitudeE6, longitudeE6, timeStamp, OpenStreetMapViewConstants.NOT_SET);
 	}
 
 	public GPSGeoLocation(final int latitudeE6, final int longitudeE6, final int aNumSatellites) {
@@ -32,7 +33,7 @@ public class GPSGeoLocation extends GeoLocation {
 	}
 
 	public GPSGeoLocation(final int latitudeE6, final int longitudeE6, final long timestamp, final int aNumSatellites) {
-		this(latitudeE6, longitudeE6, timestamp, NOT_SET, NOT_SET, NOT_SET, aNumSatellites);
+		this(latitudeE6, longitudeE6, timestamp, OpenStreetMapViewConstants.NOT_SET, OpenStreetMapViewConstants.NOT_SET, OpenStreetMapViewConstants.NOT_SET, aNumSatellites);
 	}
 
 	public GPSGeoLocation(final int latitudeE6, final int longitudeE6, final long timeStamp, final int altitude, final int bearing, final int speed, final int aNumSatellites) {
@@ -53,35 +54,34 @@ public class GPSGeoLocation extends GeoLocation {
 	}
 
 	public boolean hasNumSatellites(){
-		return this.mNumSatellites != NOT_SET;
+		return this.mNumSatellites != OpenStreetMapViewConstants.NOT_SET;
 	}
 
 	// ===========================================================
 	// Methods from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
 	public void appendToGpxString(final StringBuilder sb, final Formatter f){
-		f.format(GPX_TAG_TRACK_SEGMENT_POINT, getLatitudeAsDouble(), getLongitudeAsDouble());
-		f.format(GPX_TAG_TRACK_SEGMENT_POINT_TIME, Util.convertTimestampToUTCString(getTimeStamp()));
+		f.format(RecordedRouteGPXFormatter.GPX_TAG_TRACK_SEGMENT_POINT, getLatitudeE6() / 1E6, getLongitudeE6() / 1E6);
+		f.format(RecordedRouteGPXFormatter.GPX_TAG_TRACK_SEGMENT_POINT_TIME, Util.convertTimestampToUTCString(getTimeStamp()));
 
 		if(hasNumSatellites()) {
-			f.format(GPX_TAG_TRACK_SEGMENT_POINT_SAT, getNumSatellites());
+			f.format(RecordedRouteGPXFormatter.GPX_TAG_TRACK_SEGMENT_POINT_SAT, getNumSatellites());
 		}
 
 		if(hasAltitude()) {
-			f.format(GPX_TAG_TRACK_SEGMENT_POINT_ELE, getAltitude());
+			f.format(RecordedRouteGPXFormatter.GPX_TAG_TRACK_SEGMENT_POINT_ELE, getAltitude());
 		}
 
 		if(hasBearing()) {
-			f.format(GPX_TAG_TRACK_SEGMENT_POINT_SAT, getBearing());
+			f.format(RecordedRouteGPXFormatter.GPX_TAG_TRACK_SEGMENT_POINT_SAT, getBearing());
 		}
 
 		if(hasSpeed()) {
-			f.format(GPX_TAG_TRACK_SEGMENT_POINT_SAT, getSpeed());
+			f.format(RecordedRouteGPXFormatter.GPX_TAG_TRACK_SEGMENT_POINT_SAT, getSpeed());
 		}
 
-		sb.append(GPX_TAG_TRACK_SEGMENT_POINT_CLOSE);
+		sb.append(RecordedRouteGPXFormatter.GPX_TAG_TRACK_SEGMENT_POINT_CLOSE);
 	}
 
 	// ===========================================================

@@ -3,8 +3,9 @@ package org.andnav2.app;
 
 import java.util.ArrayList;
 
+import org.andnav.osm.util.GeoPoint;
+
 import org.andnav2.R;
-import org.andnav2.osm.adt.GeoPoint;
 import org.andnav2.ui.map.OpenStreetDDMap;
 import org.andnav2.ui.map.WhereAmIMap;
 import org.andnav2.util.constants.Constants;
@@ -91,7 +92,7 @@ public class APIIntentReceiver extends BroadcastReceiver implements Constants{
 
 					locationTitles.add((parts.length > 1) ? parts[1] : ctx.getString(R.string.coordinates));
 
-					locationDescription.add((parts.length > 2) ? parts[2] : gp.toMultiLineUserString(ctx));
+					locationDescription.add((parts.length > 2) ? parts[2] : gp.toDoubleString());
 				}
 			}
 

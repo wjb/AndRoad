@@ -20,7 +20,8 @@ import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import org.andnav2.osm.adt.GeoPoint;
+import org.andnav.osm.util.GeoPoint;
+
 import org.andnav2.osm.api.traces.util.GPXFormatter;
 import org.andnav2.osm.api.util.constants.OSMTraceAPIConstants;
 import org.andnav2.osm.util.constants.OSMConstants;

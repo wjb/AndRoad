@@ -1,6 +1,6 @@
 package org.andnav2.sys.osb.adt;
 
-import org.andnav2.osm.adt.GeoPoint;
+import org.andnav.osm.util.GeoPoint;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -96,8 +96,8 @@ public class OpenStreetBug extends GeoPoint implements Parcelable {
 
 	@Override
 	public void writeToParcel(final Parcel out, final int arg1) {
-		out.writeInt(this.mLatitudeE6);
-		out.writeInt(this.mLongitudeE6);
+		out.writeInt(this.getLatitudeE6());
+		out.writeInt(this.getLongitudeE6());
 		out.writeInt(this.mID);
 		out.writeString(this.mDesription);
 		out.writeInt((this.mIsOpen) ? 1 : 0);

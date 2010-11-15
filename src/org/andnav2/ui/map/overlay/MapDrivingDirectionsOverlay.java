@@ -4,10 +4,11 @@ package org.andnav2.ui.map.overlay;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.andnav.osm.util.GeoPoint;
+
 import org.andnav2.R;
 import org.andnav2.loc.AbstractAndNavLocationProvider;
 import org.andnav2.nav.Navigator;
-import org.andnav2.osm.adt.GeoPoint;
 import org.andnav2.osm.util.constants.MathConstants;
 import org.andnav2.osm.views.OSMMapView;
 import org.andnav2.osm.views.OSMMapView.OSMMapViewProjection;

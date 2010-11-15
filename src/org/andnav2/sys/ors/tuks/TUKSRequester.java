@@ -16,7 +16,8 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-import org.andnav2.osm.adt.BoundingBoxE6;
+import org.andnav.osm.util.BoundingBoxE6;
+
 import org.andnav2.sys.ors.adt.Error;
 import org.andnav2.sys.ors.adt.ts.TrafficItem;
 import org.andnav2.sys.ors.exceptions.ORSException;

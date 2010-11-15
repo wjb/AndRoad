@@ -5,13 +5,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.andnav2.osm.adt.BoundingBoxE6;
-import org.andnav2.osm.adt.IGeoPoint;
+import org.andnav.osm.util.BoundingBoxE6;
+import org.andnav.osm.util.GeoPoint;
 
 import com.openmap.util.quadtree.QuadTree;
 
 
-public class ListBackedQuadTreeOrganizer<T extends IGeoPoint> implements ISpatialDataOrganizer<T> {
+public class ListBackedQuadTreeOrganizer<T extends GeoPoint> implements ISpatialDataOrganizer<T> {
 	// ===========================================================
 	// Constants
 	// ===========================================================
@@ -88,7 +88,7 @@ public class ListBackedQuadTreeOrganizer<T extends IGeoPoint> implements ISpatia
 	}
 
 	@Override
-	public List<T> getClosest(final IGeoPoint pGeoPoint, final int pCount){
+	public List<T> getClosest(final GeoPoint pGeoPoint, final int pCount){
 		throw new IllegalStateException("Wrong method!");
 	}
 

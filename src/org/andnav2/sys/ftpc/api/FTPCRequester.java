@@ -8,7 +8,8 @@ import java.net.URL;
 
 import junit.framework.Assert;
 
-import org.andnav2.osm.adt.GeoPoint;
+import org.andnav.osm.util.GeoPoint;
+
 import org.andnav2.osm.views.util.StreamUtils;
 import org.andnav2.sys.ftpc.exc.FTPCException;
 

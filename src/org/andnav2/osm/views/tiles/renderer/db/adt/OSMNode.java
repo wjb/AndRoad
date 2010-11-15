@@ -1,8 +1,7 @@
 // Created by plusminus on 14:33:47 - 10.02.2009
 package org.andnav2.osm.views.tiles.renderer.db.adt;
 
-import org.andnav2.osm.adt.GeoPoint;
-
+import org.andnav.osm.util.GeoPoint;
 
 public class OSMNode extends GeoPoint implements IOSMDataType {
 	// ===========================================================

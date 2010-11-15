@@ -5,8 +5,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.andnav2.osm.adt.BoundingBoxE6;
-import org.andnav2.osm.adt.IGeoPoint;
+import org.andnav.osm.util.BoundingBoxE6;
+import org.andnav.osm.util.GeoPoint;
+
 import org.andnav2.util.constants.Constants;
 
 import android.util.Log;
@@ -26,7 +27,7 @@ import com.att.research.storagemanager.PropertySet;
  *
  * @param <T>
  */
-public class ListBackedSpatialIndexOrganizer<T extends IGeoPoint> implements ISpatialDataOrganizer<T> {
+public class ListBackedSpatialIndexOrganizer<T extends GeoPoint> implements ISpatialDataOrganizer<T> {
 	// ===========================================================
 	// Constants
 	// ===========================================================
@@ -119,21 +120,21 @@ public class ListBackedSpatialIndexOrganizer<T extends IGeoPoint> implements ISp
 			Log.d(Constants.DEBUGTAG, "Inserting: " + i);
 			final T ti = this.mFeatureList.get(i);
 
-			coords[0] = ti.getLatitudeAsDouble();
-			coords[1] = ti.getLongitudeAsDouble();
+			coords[0] = ti.getLatitudeE6() / 1E6;
+			coords[1] = ti.getLongitudeE6() / 1E6;
 			this.mSpatialIndex.insertData(null, new Point(coords), i);
 		}
 	}
 
 	@Override
-	public List<T> getClosest(final IGeoPoint pGeoPoint, final int pCount){
+	public List<T> getClosest(final GeoPoint pGeoPoint, final int pCount){
 		if(!this.mIndexBuilt) {
 			throw new IllegalStateException("Trying to query before index was built.");
 		}
 
 		final List<T> out = new ArrayList<T>();
 
-		final double[] pointCoords = new double[]{pGeoPoint.getLatitudeAsDouble(), pGeoPoint.getLongitudeAsDouble()};
+		final double[] pointCoords = new double[]{pGeoPoint.getLatitudeE6() / 1E6, pGeoPoint.getLongitudeE6() / 1E6};
 		this.mSpatialIndex.nearestNeighborQuery(pCount, new Point(pointCoords ), new IVisitor(){
 
 			@Override

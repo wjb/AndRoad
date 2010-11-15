@@ -7,7 +7,8 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.ArrayList;
 
-import org.andnav2.osm.adt.GeoPoint;
+import org.andnav.osm.util.GeoPoint;
+
 import org.andnav2.osm.api.traces.util.GPXFormatter;
 import org.andnav2.osm.api.traces.util.Util;
 import org.apache.http.HttpResponse;

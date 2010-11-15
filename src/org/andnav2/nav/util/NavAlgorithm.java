@@ -3,7 +3,8 @@ package org.andnav2.nav.util;
 
 import java.util.List;
 
-import org.andnav2.osm.adt.GeoPoint;
+import org.andnav.osm.util.GeoPoint;
+
 import org.andnav2.util.constants.Constants;
 
 import android.graphics.Point;

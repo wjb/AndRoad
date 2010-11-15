@@ -1,8 +1,9 @@
 // Created by plusminus on 23:51:49 - 24.02.2008
 package org.andnav2.nav.util;
 
+import org.andnav.osm.util.GeoPoint;
+
 import org.andnav2.adt.other.GraphicsPoint;
-import org.andnav2.osm.adt.GeoPoint;
 import org.andnav2.util.constants.GeoConstants;
 import org.andnav2.util.constants.MathematicalConstants;
 

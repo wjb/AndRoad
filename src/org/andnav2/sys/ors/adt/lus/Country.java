@@ -2,9 +2,10 @@ package org.andnav2.sys.ors.adt.lus;
 
 import java.util.ArrayList;
 
+import org.andnav.osm.util.BoundingBoxE6;
+
 import org.andnav2.R;
 import org.andnav2.exc.Exceptor;
-import org.andnav2.osm.adt.BoundingBoxE6;
 import org.andnav2.sys.ors.adt.rs.DirectionsLanguage;
 import org.andnav2.sys.vehicleregistrationplates.VRPRegistry;
 import org.andnav2.sys.vehicleregistrationplates.tables.VRP_DE;

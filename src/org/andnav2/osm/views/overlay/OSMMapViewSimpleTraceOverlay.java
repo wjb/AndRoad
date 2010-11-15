@@ -2,9 +2,10 @@ package org.andnav2.osm.views.overlay;
 
 import java.util.List;
 
+import org.andnav.osm.util.GeoPoint;
+
 import org.andnav2.R;
 import org.andnav2.osm.OpenStreetMapActivity;
-import org.andnav2.osm.adt.GeoPoint;
 import org.andnav2.osm.views.OSMMapView;
 import org.andnav2.osm.views.OSMMapView.OSMMapViewProjection;
 import org.andnav2.preferences.PreferenceConstants;

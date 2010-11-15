@@ -1,7 +1,7 @@
 // Created by plusminus on 22:00:47 - 30.10.2008
 package org.andnav2.adt;
 
-import org.andnav2.osm.adt.GeoPoint;
+import org.andnav.osm.util.GeoPoint;
 
 public class DBPOI extends GeoPoint {
 	// ===========================================================

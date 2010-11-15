@@ -5,8 +5,9 @@ import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.util.Locale;
 
-import org.andnav2.osm.adt.BoundingBoxE6;
-import org.andnav2.osm.adt.GeoPoint;
+import org.andnav.osm.util.BoundingBoxE6;
+import org.andnav.osm.util.GeoPoint;
+
 import org.andnav2.sys.osb.adt.OpenStreetBug;
 import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.StringBody;
@@ -66,8 +67,8 @@ public class OSBRequestComposer {
 	public static MultipartEntity createSubmitBugEntitiy(final GeoPoint pBugGeoPoint, final String pBugDescription){
 		final MultipartEntity out = new MultipartEntity();
 		try {
-			out.addPart("lat", new StringBody(String.valueOf(pBugGeoPoint.getLatitudeAsDouble())));
-			out.addPart("lon", new StringBody(String.valueOf(pBugGeoPoint.getLongitudeAsDouble())));
+			out.addPart("lat", new StringBody(String.valueOf(pBugGeoPoint.getLatitudeE6() / 1E6)));
+			out.addPart("lon", new StringBody(String.valueOf(pBugGeoPoint.getLongitudeE6() / 1E6)));
 			out.addPart("text", new StringBody(pBugDescription, Charset.forName("UTF-8")));
 		} catch (final UnsupportedEncodingException e) {
 			e.printStackTrace();

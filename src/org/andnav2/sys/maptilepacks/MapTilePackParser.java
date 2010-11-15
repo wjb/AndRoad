@@ -4,7 +4,8 @@ package org.andnav2.sys.maptilepacks;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.andnav2.osm.adt.BoundingBoxE6;
+import org.andnav.osm.util.BoundingBoxE6;
+
 import org.andnav2.sys.maptilepacks.adt.MapTilePack;
 import org.andnav2.util.constants.Constants;
 import org.xml.sax.Attributes;

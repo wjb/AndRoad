@@ -1,8 +1,9 @@
 // Created by plusminus on 21:37:08 - 27.09.2008
 package org.andnav2.osm.views.controller;
 
-import org.andnav2.osm.adt.BoundingBoxE6;
-import org.andnav2.osm.adt.GeoPoint;
+import org.andnav.osm.util.BoundingBoxE6;
+import org.andnav.osm.util.GeoPoint;
+
 import org.andnav2.osm.util.constants.MathConstants;
 import org.andnav2.osm.views.OSMMapView;
 import org.andnav2.osm.views.util.MyMath;

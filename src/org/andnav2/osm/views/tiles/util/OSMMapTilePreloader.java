@@ -6,7 +6,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-import org.andnav2.osm.adt.GeoPoint;
+import org.andnav.osm.util.GeoPoint;
+
 import org.andnav2.osm.util.ValuePair;
 import org.andnav2.osm.util.Util.PixelSetter;
 import org.andnav2.osm.util.constants.OSMConstants;
@@ -223,7 +224,7 @@ public class OSMMapTilePreloader implements OSMConstants, OSMMapViewConstants {
 				final int prevX = cur.x;
 				final int prevY = cur.y;
 
-				cur = Util.getMapTileFromCoordinates(GeoPoint.getGeoPointBetween(gp, previous), aZoomLevel);
+				cur = Util.getMapTileFromCoordinates(GeoPoint.fromCenterBetween(gp, previous), aZoomLevel);
 
 				final int curX = cur.x;
 				final int curY = cur.y;

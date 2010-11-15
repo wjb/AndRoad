@@ -3,8 +3,9 @@ package org.andnav2.osm.views.tiles.renderer.trivial;
 
 import java.util.List;
 
+import org.andnav.osm.util.BoundingBoxE6;
+
 import org.andnav2.db.DataBaseException;
-import org.andnav2.osm.adt.BoundingBoxE6;
 import org.andnav2.osm.util.constants.OSMConstants;
 import org.andnav2.osm.views.tiles.adt.OSMTileInfo;
 import org.andnav2.osm.views.tiles.renderer.IOSMRenderer;

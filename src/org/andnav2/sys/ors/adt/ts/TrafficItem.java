@@ -1,12 +1,11 @@
 // Created by plusminus on 00:50:30 - 20.01.2009
 package org.andnav2.sys.ors.adt.ts;
 
-import org.andnav2.osm.adt.GeoPoint;
-import org.andnav2.osm.adt.IGeoPoint;
+import org.andnav.osm.util.GeoPoint;
+
 import org.andnav2.traffic.tpeg.adt.rtm.table.RTM31_general_magnitude;
 
-
-public class TrafficItem implements IGeoPoint {
+public class TrafficItem extends GeoPoint {
 	// ===========================================================
 	// Constants
 	// ===========================================================
@@ -15,7 +14,6 @@ public class TrafficItem implements IGeoPoint {
 	// Fields
 	// ===========================================================
 
-	private GeoPoint mGeoPoint;
 	private String mDescription;
 	private RTM31_general_magnitude mSeverity;
 
@@ -24,30 +22,17 @@ public class TrafficItem implements IGeoPoint {
 	// ===========================================================
 
 	public TrafficItem(){
-
+        super(0, 0);
 	}
 
 	// ===========================================================
 	// Getter & Setter
 	// ===========================================================
 
-	@Override
-	public double getLatitudeAsDouble() {
-		return this.mGeoPoint.getLatitudeAsDouble();
-	}
-
-	@Override
-	public double getLongitudeAsDouble() {
-		return this.mGeoPoint.getLongitudeAsDouble();
-	}
-
-	public GeoPoint getGeoPoint() {
-		return this.mGeoPoint;
-	}
-
-	public void setGeoPoint(final GeoPoint geoPoint) {
-		this.mGeoPoint = geoPoint;
-	}
+    public void setGeoPoint(GeoPoint gp) {
+        this.setLongitudeE6(gp.getLongitudeE6());
+        this.setLatitudeE6(gp.getLatitudeE6());
+    }
 
 	public String getDescription() {
 		return this.mDescription;
@@ -63,16 +48,6 @@ public class TrafficItem implements IGeoPoint {
 
 	public void setSeverity(final RTM31_general_magnitude severity) {
 		this.mSeverity = severity;
-	}
-
-	@Override
-	public int getLatitudeE6() {
-		return this.getGeoPoint().getLatitudeE6();
-	}
-
-	@Override
-	public int getLongitudeE6() {
-		return this.getGeoPoint().getLongitudeE6();
 	}
 
 	// ===========================================================

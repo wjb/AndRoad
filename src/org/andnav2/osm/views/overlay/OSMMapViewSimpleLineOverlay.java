@@ -1,8 +1,9 @@
 // Created by plusminus on 5:29:23 PM - Mar 4, 2009
 package org.andnav2.osm.views.overlay;
 
+import org.andnav.osm.util.GeoPoint;
+
 import org.andnav2.osm.adt.GeoLine;
-import org.andnav2.osm.adt.GeoPoint;
 import org.andnav2.osm.views.OSMMapView;
 
 import android.graphics.Canvas;

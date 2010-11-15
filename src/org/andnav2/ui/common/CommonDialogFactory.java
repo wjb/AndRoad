@@ -3,11 +3,12 @@ package org.andnav2.ui.common;
 
 import java.util.List;
 
+import org.andnav.osm.util.Direction;
+import org.andnav.osm.util.GeoPoint;
+
 import org.andnav2.R;
-import org.andnav2.adt.Direction;
 import org.andnav2.adt.TrafficFeed;
 import org.andnav2.db.DBManager;
-import org.andnav2.osm.adt.GeoPoint;
 import org.andnav2.preferences.Preferences;
 import org.andnav2.sys.ors.adt.ds.POIType;
 import org.andnav2.sys.ors.adt.lus.Country;

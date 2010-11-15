@@ -3,9 +3,10 @@ package org.andnav2.ui.map;
 
 import java.util.List;
 
+import org.andnav.osm.util.GeoPoint;
+
 import org.andnav2.R;
 import org.andnav2.adt.AndNavLocation;
-import org.andnav2.osm.adt.GeoPoint;
 import org.andnav2.osm.views.OSMMapView;
 import org.andnav2.osm.views.OSMMapView.OSMMapViewProjection;
 import org.andnav2.osm.views.controller.OSMMapViewController.AnimationType;

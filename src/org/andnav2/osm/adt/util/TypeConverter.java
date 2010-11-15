@@ -4,9 +4,10 @@ package org.andnav2.osm.adt.util;
 
 import java.util.GregorianCalendar;
 
+import org.andnav.osm.util.GeoPoint;
+
 import org.andnav2.adt.AndNavLocation;
 import org.andnav2.osm.adt.GPSGeoLocation;
-import org.andnav2.osm.adt.GeoPoint;
 import org.andnav2.osm.util.constants.OSMConstants;
 
 import android.location.Address;

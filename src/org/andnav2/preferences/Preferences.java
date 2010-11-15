@@ -3,9 +3,10 @@ package org.andnav2.preferences;
 
 import java.util.HashMap;
 
+import org.andnav.osm.util.GeoPoint;
+
 import org.andnav2.R;
 import org.andnav2.adt.UnitSystem;
-import org.andnav2.osm.adt.GeoPoint;
 import org.andnav2.osm.views.overlay.util.DirectionArrowDescriptor;
 import org.andnav2.osm.views.tiles.OSMMapTileProviderInfo;
 import org.andnav2.osm.views.tiles.caching.OSMMapTileFilesystemCache;

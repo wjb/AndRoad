@@ -1,7 +1,8 @@
 // Created by plusminus on 5:29:23 PM - Mar 4, 2009
 package org.andnav2.osm.views.overlay;
 
-import org.andnav2.osm.adt.BoundingBoxE6;
+import org.andnav.osm.util.BoundingBoxE6;
+
 import org.andnav2.osm.views.OSMMapView;
 
 import android.graphics.Canvas;

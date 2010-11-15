@@ -1,8 +1,9 @@
 //Created by plusminus on 19:51:45 - 21.05.2008
 package org.andnav2.ui.settings;
 
+import org.andnav.osm.util.GeoPoint;
+
 import org.andnav2.R;
-import org.andnav2.osm.adt.GeoPoint;
 import org.andnav2.preferences.Preferences;
 import org.andnav2.ui.AndNavBaseActivity;
 import org.andnav2.ui.common.OnClickOnFocusChangedListenerAdapter;

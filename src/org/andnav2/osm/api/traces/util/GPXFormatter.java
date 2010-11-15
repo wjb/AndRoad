@@ -9,8 +9,9 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 
+import org.andnav.osm.util.GeoPoint;
+
 import org.andnav2.osm.adt.GPSGeoLocation;
-import org.andnav2.osm.adt.GeoPoint;
 import org.andnav2.osm.api.util.constants.OSMTraceAPIConstants;
 import org.andnav2.osm.util.constants.OSMConstants;
 
@@ -99,7 +100,8 @@ public class GPXFormatter implements OSMTraceAPIConstants, OSMConstants {
 		sb.append(GPX_TAG_TRACK_SEGMENT);
 
 		for (final GeoPoint rgp : someRecords) {
-			rgp.appendToGpxString(sb, f);
+			f.format(GPX_TAG_TRACK_SEGMENT_POINT, rgp.getLatitudeE6() / 1E6, rgp.getLongitudeE6() / 1E6);
+            sb.append(GPX_TAG_TRACK_SEGMENT_POINT_CLOSE);
 		}
 
 		sb.append(GPX_TAG_TRACK_SEGMENT_CLOSE)

@@ -9,8 +9,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.andnav.osm.util.BoundingBoxE6;
+
 import org.andnav2.db.DataBaseException;
-import org.andnav2.osm.adt.BoundingBoxE6;
 import org.andnav2.osm.views.tiles.renderer.db.adt.OSMNode;
 import org.andnav2.osm.views.tiles.renderer.db.adt.OSMWay;
 import org.andnav2.osm.views.tiles.renderer.util.constants.OSMDatabaseConstants;
@@ -156,10 +157,10 @@ public class OSMDatabaseManager implements OSMDatabaseConstants, Constants {
 	}
 
 	private static String buildSelectWayNodesFromBoundingBoxQuery(final BoundingBoxE6 pBBE6) {
-		final double mercLonWest = MercatorSpherical.lon2x(pBBE6.getLonWest());
-		final double mercLonEast = MercatorSpherical.lon2x(pBBE6.getLonEast());
-		final double mercLatSouth = MercatorSpherical.lat2y(pBBE6.getLatSouth());
-		final double mercLatNorth = MercatorSpherical.lat2y(pBBE6.getLatNorth());
+		final double mercLonWest = MercatorSpherical.lon2x(pBBE6.getLonWestE6() / 1E6);
+		final double mercLonEast = MercatorSpherical.lon2x(pBBE6.getLonEastE6() / 1E6);
+		final double mercLatSouth = MercatorSpherical.lat2y(pBBE6.getLatSouthE6() / 1E6);
+		final double mercLatNorth = MercatorSpherical.lat2y(pBBE6.getLatNorthE6() / 1E6);
 
 		return new StringBuilder()
 		.append("SELECT DISTINCT "
@@ -186,10 +187,10 @@ public class OSMDatabaseManager implements OSMDatabaseConstants, Constants {
 
 
 	private static String buildSelectNodesFromBoundingBoxQuery(final BoundingBoxE6 pBBE6){
-		final double mercLonWest = MercatorSpherical.lon2x(pBBE6.getLonWest());
-		final double mercLonEast = MercatorSpherical.lon2x(pBBE6.getLonEast());
-		final double mercLatSouth = MercatorSpherical.lat2y(pBBE6.getLatSouth());
-		final double mercLatNorth = MercatorSpherical.lat2y(pBBE6.getLatNorth());
+		final double mercLonWest = MercatorSpherical.lon2x(pBBE6.getLonWestE6() / 1E6);
+		final double mercLonEast = MercatorSpherical.lon2x(pBBE6.getLonEastE6() / 1E6);
+		final double mercLatSouth = MercatorSpherical.lat2y(pBBE6.getLatSouthE6() / 1E6);
+		final double mercLatNorth = MercatorSpherical.lat2y(pBBE6.getLatNorthE6() / 1E6);
 
 		return new StringBuilder()
 		.append("SELECT DISTINCT "

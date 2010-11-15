@@ -1,7 +1,8 @@
 // Created by plusminus on 22:59:23 - 09.08.2008
 package org.andnav2.ui;
 
-import org.andnav2.osm.adt.GeoPoint;
+import org.andnav.osm.util.GeoPoint;
+
 import org.andnav2.osm.adt.util.TypeConverter;
 
 import android.content.Context;

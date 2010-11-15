@@ -1,7 +1,8 @@
 // Created by plusminus on 20:12:07 - 11.09.2008
 package org.andnav2.ui.map.overlay.util;
 
-import org.andnav2.osm.adt.GeoPoint;
+import org.andnav.osm.util.GeoPoint;
+
 import org.andnav2.osm.adt.util.TypeConverter;
 import org.andnav2.osm.views.overlay.OSMMapViewOverlayItem;
 

@@ -2,7 +2,8 @@ package org.andnav2.sys.ors.views.overlay;
 
 import junit.framework.Assert;
 
-import org.andnav2.osm.adt.GeoPoint;
+import org.andnav.osm.util.GeoPoint;
+
 import org.andnav2.osm.views.OSMMapView.OSMMapViewProjection;
 
 import android.content.Context;

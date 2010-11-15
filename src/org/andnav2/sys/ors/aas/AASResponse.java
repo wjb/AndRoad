@@ -3,7 +3,8 @@ package org.andnav2.sys.ors.aas;
 
 import java.util.ArrayList;
 
-import org.andnav2.osm.adt.BoundingBoxE6;
+import org.andnav.osm.util.BoundingBoxE6;
+
 import org.andnav2.sys.ors.adt.aoi.Polygon;
 
 
