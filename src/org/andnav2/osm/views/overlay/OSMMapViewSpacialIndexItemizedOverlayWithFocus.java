@@ -1,9 +1,14 @@
 // Created by plusminus on 23:18:23 - 02.10.2008
 package org.andnav2.osm.views.overlay;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import org.andnav2.osm.views.OSMMapView;
+import org.andnav.osm.views.OpenStreetMapView;
+import org.andnav.osm.views.overlay.OpenStreetMapViewOverlayItem;
+import org.andnav.osm.views.overlay.OpenStreetMapViewItemizedOverlayWithFocus;
+import org.andnav.osm.DefaultResourceProxyImpl;
+
 import org.andnav2.sys.ors.adt.ts.ISpatialDataOrganizer;
 
 import android.content.Context;
@@ -16,7 +21,7 @@ import android.graphics.drawable.Drawable;
  *
  * @param <T>
  */
-public class OSMMapViewSpacialIndexItemizedOverlayWithFocus<T extends OSMMapViewOverlayItem> extends AbstractOSMMapViewItemizedOverlayWithFocus<T> {
+public class OSMMapViewSpacialIndexItemizedOverlayWithFocus<T extends OpenStreetMapViewOverlayItem> extends OpenStreetMapViewItemizedOverlayWithFocus<T> {
 	// ===========================================================
 	// Constants
 	// ===========================================================
@@ -34,8 +39,8 @@ public class OSMMapViewSpacialIndexItemizedOverlayWithFocus<T extends OSMMapView
 	// Constructors
 	// ===========================================================
 
-	public OSMMapViewSpacialIndexItemizedOverlayWithFocus(final Context ctx, final ISpatialDataOrganizer<T> aManager, final Drawable pMarker, final Point pMarkerHotspot, final Drawable pMarkerFocusedBase, final Point pMarkerFocusedHotSpot, final int pFocusedBackgroundColor, final OnItemTapListener<T> pOnItemTapListener) {
-		super(ctx, pMarker, pMarkerHotspot, pMarkerFocusedBase, pMarkerFocusedHotSpot, pFocusedBackgroundColor, pOnItemTapListener);
+	public OSMMapViewSpacialIndexItemizedOverlayWithFocus(final Context ctx, final ISpatialDataOrganizer<T> aManager, final Drawable pMarker, final Point pMarkerHotspot, final Drawable pMarkerFocusedBase, final Point pMarkerFocusedHotSpot, final int pFocusedBackgroundColor, final OnItemGestureListener<T> pOnItemTapListener) {
+		super(ctx, new ArrayList(), pMarker, pMarkerHotspot, pMarkerFocusedBase, pMarkerFocusedHotSpot, pFocusedBackgroundColor, pOnItemTapListener, new DefaultResourceProxyImpl(ctx));
 		this.mSpatialDataOrganizer = aManager;
 	}
 
@@ -46,12 +51,10 @@ public class OSMMapViewSpacialIndexItemizedOverlayWithFocus<T extends OSMMapView
 	/**
 	 * @return may return null !
 	 */
-	@Override
 	public List<T> getOverlayItems(){
 		return this.mClosestItems;
 	}
 
-	@Override
 	public void setOverlayItems(final List<T> pItems){
 		this.mSpatialDataOrganizer.clearIndex();
 		this.mSpatialDataOrganizer.addAll(pItems);
@@ -66,8 +69,7 @@ public class OSMMapViewSpacialIndexItemizedOverlayWithFocus<T extends OSMMapView
 	// Methods from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
-	public void onDraw(final Canvas c, final OSMMapView mapView) {
+	public void onDraw(final Canvas c, final OpenStreetMapView mapView) {
 		if(this.mSpatialDataOrganizer.isIndexBuilt()){
 			switch(this.mSpatialDataOrganizer.getGetMode()){
 				case BOUNDINGBOX:

@@ -3,11 +3,11 @@ package org.andnav2.osm.views.tiles.renderer.trivial;
 
 import java.util.List;
 
+import org.andnav.osm.tileprovider.OpenStreetMapTile;
 import org.andnav.osm.util.BoundingBoxE6;
 
 import org.andnav2.db.DataBaseException;
 import org.andnav2.osm.util.constants.OSMConstants;
-import org.andnav2.osm.views.tiles.adt.OSMTileInfo;
 import org.andnav2.osm.views.tiles.renderer.IOSMRenderer;
 import org.andnav2.osm.views.tiles.renderer.db.OSMDatabaseManager;
 import org.andnav2.osm.views.tiles.renderer.db.adt.OSMNode;
@@ -157,7 +157,7 @@ public class TrivialRenderer implements IOSMRenderer, Constants, OSMConstants {
 	// ===========================================================
 
 	@Override
-	public Bitmap renderTile(final OSMTileInfo pTileInfo) {
+	public Bitmap renderTile(final OpenStreetMapTile pTileInfo) {
 		final Bitmap out = Bitmap.createBitmap(256, 256, Config.ARGB_4444);
 		final BoundingBoxE6 bbE6 = Util.getBoundingBoxFromMapTile(pTileInfo);
 

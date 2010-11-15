@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent">  
-    <view class="org.andnav2.osm.views.OSMMapView" 
+    <view class="org.andnav.osm.views.OpenStreetMapView" 
     	android:id="@+id/map_sethome"
         android:layout_width="fill_parent" 
         android:layout_height="fill_parent"

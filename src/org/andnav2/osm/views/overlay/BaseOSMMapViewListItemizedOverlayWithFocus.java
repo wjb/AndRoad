@@ -7,7 +7,11 @@ import android.content.Context;
 import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 
-public class BaseOSMMapViewListItemizedOverlayWithFocus<T extends OSMMapViewOverlayItem> extends AbstractOSMMapViewItemizedOverlayWithFocus<T> {
+import org.andnav.osm.DefaultResourceProxyImpl;
+import org.andnav.osm.views.overlay.OpenStreetMapViewOverlayItem;
+import org.andnav.osm.views.overlay.OpenStreetMapViewItemizedOverlayWithFocus;
+
+public class BaseOSMMapViewListItemizedOverlayWithFocus<T extends OpenStreetMapViewOverlayItem> extends OpenStreetMapViewItemizedOverlayWithFocus<T> {
 	// ===========================================================
 	// Constants
 	// ===========================================================
@@ -16,20 +20,16 @@ public class BaseOSMMapViewListItemizedOverlayWithFocus<T extends OSMMapViewOver
 	// Fields
 	// ===========================================================
 
-	private List<T> mItems;
-
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
-	public BaseOSMMapViewListItemizedOverlayWithFocus(final Context ctx, final List<T> pList, final OnItemTapListener<T> onItemTapListener) {
-		super(ctx, onItemTapListener);
-		this.mItems = pList;
+	public BaseOSMMapViewListItemizedOverlayWithFocus(final Context ctx, final List<T> pList, final OnItemGestureListener<T> onItemTapListener) {
+		super(ctx, pList, onItemTapListener);
 	}
 
-	public BaseOSMMapViewListItemizedOverlayWithFocus(final Context ctx, final List<T> pList, final Drawable pMarker, final Point pMarkerHotspot, final Drawable pMarkerFocusedBase, final Point pMarkerFocusedHotSpot, final int pFocusedBackgroundColor, final OnItemTapListener<T> pOnItemTapListener) {
-		super(ctx, pMarker, pMarkerHotspot, pMarkerFocusedBase, pMarkerFocusedHotSpot, pFocusedBackgroundColor, pOnItemTapListener);
-		this.mItems = pList;
+	public BaseOSMMapViewListItemizedOverlayWithFocus(final Context ctx, final List<T> pList, final Drawable pMarker, final Point pMarkerHotspot, final Drawable pMarkerFocusedBase, final Point pMarkerFocusedHotSpot, final int pFocusedBackgroundColor, final OnItemGestureListener<T> pOnItemTapListener) {
+		super(ctx, pList, pMarker, pMarkerHotspot, pMarkerFocusedBase, pMarkerFocusedHotSpot, pFocusedBackgroundColor, pOnItemTapListener, new DefaultResourceProxyImpl(ctx));
 	}
 	// ===========================================================
 	// Getter & Setter
@@ -39,14 +39,13 @@ public class BaseOSMMapViewListItemizedOverlayWithFocus<T extends OSMMapViewOver
 	// Methods from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
 	public List<T> getOverlayItems() {
-		return this.mItems;
+		return this.mItemList;
 	}
 
-	@Override
 	public void setOverlayItems(final List<T> pItems) {
-		this.mItems = pItems;
+        this.mItemList.clear();
+        this.mItemList.addAll(pItems);
 	}
 
 	// ===========================================================

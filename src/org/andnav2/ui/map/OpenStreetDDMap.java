@@ -9,8 +9,17 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
+import org.andnav.osm.tileprovider.OpenStreetMapTile;
 import org.andnav.osm.util.BoundingBoxE6;
 import org.andnav.osm.util.GeoPoint;
+import org.andnav.osm.views.OpenStreetMapView;
+import org.andnav.osm.views.overlay.ScaleBarOverlay;
+import org.andnav.osm.views.OpenStreetMapView.OpenStreetMapViewProjection;
+import org.andnav.osm.views.OpenStreetMapViewController.AnimationType;
+import org.andnav.osm.views.overlay.OpenStreetMapViewItemizedOverlayControlView;
+import org.andnav.osm.views.overlay.OpenStreetMapViewOverlay;
+import org.andnav.osm.views.util.IOpenStreetMapRendererInfo;
+import org.andnav.osm.views.util.OpenStreetMapRendererFactory;
 
 import org.andnav2.R;
 import org.andnav2.adt.AndNavLocation;
@@ -28,17 +37,9 @@ import org.andnav2.nav.WaypointOptimizer;
 import org.andnav2.nav.stats.StatisticsManager;
 import org.andnav2.nav.util.NavAlgorithm;
 import org.andnav2.osm.exceptions.ExternalStorageNotMountedException;
-import org.andnav2.osm.views.OSMMapView;
-import org.andnav2.osm.views.OSMMapViewScaleIndicatorView;
-import org.andnav2.osm.views.OSMMapView.OSMMapViewProjection;
-import org.andnav2.osm.views.OSMMapView.OnChangeListener;
-import org.andnav2.osm.views.controller.OSMMapViewController.AnimationType;
-import org.andnav2.osm.views.overlay.OSMMapViewItemizedOverlayControlView;
-import org.andnav2.osm.views.overlay.OSMMapViewOverlay;
 import org.andnav2.osm.views.overlay.util.DirectionArrowDescriptor;
 import org.andnav2.osm.views.tiles.OSMMapTileManager;
 import org.andnav2.osm.views.tiles.OSMMapTileProviderInfo;
-import org.andnav2.osm.views.tiles.adt.OSMTileInfo;
 import org.andnav2.osm.views.tiles.caching.OSMMapTileFilesystemCache;
 import org.andnav2.osm.views.tiles.util.OSMMapTilePreloader;
 import org.andnav2.osm.views.tiles.util.OSMMapTilePreloader.OnProgressChangeListener;
@@ -206,8 +207,8 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 
 	private final ArrayList<AreaOfInterest> mAvoidAreas = new ArrayList<AreaOfInterest>();
 
-	private OSMMapViewItemizedOverlayControlView mMapItemControlView;
-	private OSMMapViewScaleIndicatorView mScaleIndicatorView;
+	private OpenStreetMapViewItemizedOverlayControlView mMapItemControlView;
+	private ScaleBarOverlay mScaleIndicatorView;
 
 	/**
 	 * Indicates whether direction voice is enabled.
@@ -358,23 +359,9 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 		this.mHUDImpl.getRemainingSummaryView().setDisplayQuality(displayQuality);
 		this.mHUDImpl.getNextActionView().setDisplayQuality(displayQuality);
 		this.mHUDImpl.getUpperNextActionView().setDisplayQuality(displayQuality);
-		this.mScaleIndicatorView = (OSMMapViewScaleIndicatorView)this.findViewById(R.id.scaleindicatorview_ddmap);
-		this.mScaleIndicatorView.setUnitSystem(Preferences.getUnitSystem(this));
-
-		this.mOSMapView.addChangeListener(new OnChangeListener(){
-			@Override
-			public void onChange() {
-				runOnUiThread(new Runnable(){
-					@Override
-					public void run() {
-						OpenStreetDDMap.this.mScaleIndicatorView.refresh(OpenStreetDDMap.this.mOSMapView);
-					}
-				});
-			}
-		});
 
 		/* Load the ItemizedControlView. */
-		this.mMapItemControlView = (OSMMapViewItemizedOverlayControlView)findViewById(R.id.itemizedoverlaycontrol_ddmap);
+		this.mMapItemControlView = (OpenStreetMapViewItemizedOverlayControlView)findViewById(R.id.itemizedoverlaycontrol_ddmap);
 
 		/* This code together with the one in onResume() will make the screen be always on during navigation. */
 		final PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
@@ -422,8 +409,8 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 		this.setContentView(this.mHUDImpl.getVariation(variationID).getLayoutID());
 		this.mHUDImpl.init(this.findViewById(R.id.ddmap_root));
 
-		super.mOSMapView = (OSMMapView) findViewById(R.id.map_ddmap);
-		super.mOSMapView.setProviderInfo(Preferences.getMapViewProviderInfoDDMap(this));
+		super.mOSMapView = (OpenStreetMapView) findViewById(R.id.map_ddmap);
+		super.mOSMapView.setRenderer(Preferences.getMapViewProviderInfoDDMap(this));
 
 		this.mMapRotateView = (RotateView) findViewById(R.id.rotator_ddmap);
 
@@ -434,7 +421,16 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 
 		final int displayQuality = Preferences.getDisplayQuality(this);
 
-		final List<OSMMapViewOverlay> overlays = this.mOSMapView.getOverlays();
+		final List<OpenStreetMapViewOverlay> overlays = this.mOSMapView.getOverlays();
+
+		this.mScaleIndicatorView = new ScaleBarOverlay(this);
+        if (Preferences.getUnitSystem(this) == UnitSystem.IMPERIAL) {
+            this.mScaleIndicatorView.setImperial();
+        } else {
+            this.mScaleIndicatorView.setMetric();
+        }
+        this.mScaleIndicatorView.setScaleBarOffset(getResources().getDisplayMetrics().widthPixels/2 - getResources().getDisplayMetrics().xdpi/2, 10);
+        overlays.add(this.mScaleIndicatorView);
 
 		/* Add a new instance of our fancy Overlay-Class to the MapView. */
 		final DirectionArrowDescriptor pDirectionArrowDescriptor = Preferences.getHUDImplVariationDirectionArrowDescriptor(this);
@@ -442,7 +438,7 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 
 
 		/* The AvoidArea-Overlay. */
-		this.mAreaOfAvoidingsOverlay = new AreaOfInterestOverlay(this.mAvoidAreas);
+		this.mAreaOfAvoidingsOverlay = new AreaOfInterestOverlay(this, this.mAvoidAreas);
 		overlays.add(this.mMyMapDrivingDirectionsOverlay);
 		overlays.add(this.mAreaOfAvoidingsOverlay);
 	}
@@ -483,7 +479,7 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 	// Getter & Setter
 	// ===========================================================
 
-	public OSMMapView getMapView() {
+	public OpenStreetMapView getMapView() {
 		return this.mOSMapView;
 	}
 
@@ -623,11 +619,11 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 			final SubMenu subMenu = menu.addSubMenu(menuPos, MENU_SUBMENU_RENDERERS_ID, menuPos, getString(R.string.maps_menu_submenu_renderers)).setIcon(R.drawable.layers);
 			menuPos++;
 			{
-				final OSMMapTileProviderInfo[] providers = OSMMapTileProviderInfo.getLicenseFreeProviders();
+				final IOpenStreetMapRendererInfo[] providers = OpenStreetMapRendererFactory.getRenderers();
 				for(int j = 0; j < providers.length; j ++){
-					final SpannableString itemTitle = new SpannableString(providers[j].NAME + " (" + providers[j].DESCRIPTION + ")");
-					itemTitle.setSpan(new StyleSpan(Typeface.ITALIC), providers[j].NAME.length(), itemTitle.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-					itemTitle.setSpan(new RelativeSizeSpan(0.5f), providers[j].NAME.length(), itemTitle.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+					final SpannableString itemTitle = new SpannableString(providers[j].name());
+					itemTitle.setSpan(new StyleSpan(Typeface.ITALIC), providers[j].name().length(), itemTitle.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+					itemTitle.setSpan(new RelativeSizeSpan(0.5f), providers[j].name().length(), itemTitle.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 					subMenu.add(0, MENU_SUBMENU_LAYERS_OFFSET + j, Menu.NONE, itemTitle);
 				}
 			}
@@ -779,15 +775,11 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 				return true;
 			default:
 				if(itemId >= MENU_SUBMENU_LAYERS_OFFSET){
-					final OSMMapTileProviderInfo provider = OSMMapTileProviderInfo.values()[item.getItemId() - MENU_SUBMENU_LAYERS_OFFSET];
+					final IOpenStreetMapRendererInfo provider = OpenStreetMapRendererFactory.getRenderers()[item.getItemId() - MENU_SUBMENU_LAYERS_OFFSET];
 					/* Check if Auto-Follow has to be disabled. */
-					if(provider.hasBoundingBox() && !provider.BOUNDINGBOXE6.contains(super.mOSMapView.getMapCenter())){
-						Toast.makeText(OpenStreetDDMap.this, "Position not in BoundingBox of Renderer", Toast.LENGTH_SHORT).show(); // TODO i18n
-					}else{
-						/* Remember changes to the provider to start the next time with the same provider. */
-						Preferences.saveMapViewProviderInfoDDMap(this, provider);
-						this.mOSMapView.setProviderInfo(provider);
-					}
+                    /* Remember changes to the provider to start the next time with the same provider. */
+                    Preferences.saveMapViewProviderInfoDDMap(this, provider);
+                    this.mOSMapView.setRenderer(provider);
 					return true;
 				}
 		}
@@ -800,8 +792,8 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 		this.mAutoCenterBlockedUntil = System.currentTimeMillis() + AUTOCENTER_BLOCKTIME;
 
 		this.mOSMapView.getController().stopAnimation(false);
-		this.mOSMapView.setMapCenter(this.mRoute.getDestination());
-		this.mOSMapView.setZoomLevel(17);
+		this.mOSMapView.getController().setCenter(this.mRoute.getDestination());
+		this.mOSMapView.getController().setZoom(17);
 	}
 
 	private void handleShareRoute(final long pRouteHandleID) {
@@ -872,12 +864,11 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 			return;
 		}
 
-		final OSMMapTileManager pTileProvider = OpenStreetDDMap.this.mOSMapView.getMapTileManager();
-		final OSMMapTileProviderInfo rendererInfo = this.mOSMapView.getProviderInfo();
+		final IOpenStreetMapRendererInfo rendererInfo = this.mOSMapView.getRenderer();
 
-		final OSMTileInfo[] tilesNeeded = OSMMapTilePreloader.getNeededMaptiles(this.mRoute, zoomLevel, rendererInfo, true);
+		final OpenStreetMapTile[] tilesNeeded = OSMMapTilePreloader.getNeededMaptiles(this.mRoute, zoomLevel, rendererInfo, true);
 
-		final int bytesEpectedNeeded = tilesNeeded.length * rendererInfo.EXPECTED_AVERAGE_MAPTILE_BYTESIZE;
+        final int bytesEpectedNeeded = tilesNeeded.length * rendererInfo.maptileSizePx() * 71;
 		final String formattedFileSize = FileSizeFormatter.formatFileSize(bytesEpectedNeeded);
 
 		new AlertDialog.Builder(this)
@@ -893,7 +884,7 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 					@Override
 					public void run() {
 						/* Clear FileSystem-Cache. */
-						pTileProvider.getFileSystemCache().clearCurrentFSCache();
+						//pTileProvider.getFileSystemCache().clearCurrentFSCache();
 						runOnUiThread(new Runnable(){
 							@Override
 							public void run() {
@@ -912,7 +903,7 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 				new Thread(new Runnable(){
 					@Override
 					public void run() {
-						final OSMMapTileFilesystemCache fsProvider = pTileProvider.getFileSystemCache();
+						/*final OSMMapTileFilesystemCache fsProvider = pTileProvider.getFileSystemCache();
 						if(fsProvider.getMaxFSCacheByteSize() < bytesEpectedNeeded){
 							final int newCacheByteSize = (int)(bytesEpectedNeeded * 1.1f);
 
@@ -925,9 +916,9 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 							});
 
 							final int cacheSizeForPreferences = Math.min(OSMMapTileFilesystemCache.MAXIMUM_CACHESIZE, 1 + newCacheByteSize / (1024 * 1024));
-							Preferences.saveMaxCacheSize(OpenStreetDDMap.this, cacheSizeForPreferences);
+							Preferences.saveMaxCacheSize(OpenStreetDDMap.this, cacheSizeForPreferences);*/
 							/* Cache size needs to be increased. */
-							fsProvider.setMaxFSCacheByteSize(cacheSizeForPreferences * 1024 * 1024); // 10% margin
+							/*fsProvider.setMaxFSCacheByteSize(cacheSizeForPreferences * 1024 * 1024); // 10% margin
 							fsProvider.clearCurrentFSCache();
 						} else {
 							final int fsCacheBytesFree = fsProvider.getMaxFSCacheByteSize() - fsProvider.getCurrentFSCacheByteSize();
@@ -940,7 +931,7 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 								});
 								fsProvider.cutCurrentFSCacheBy((int)(bytesEpectedNeeded - fsCacheBytesFree * 0.9f)); // 10% margin
 							}
-						}
+                            }*/
 
 						runOnUiThread(new Runnable(){
 							@Override
@@ -948,7 +939,7 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 								new OSMMapTilePreloader().loadAllToCacheAsync(tilesNeeded,
 										zoomLevel,
 										rendererInfo,
-										pTileProvider,
+										OpenStreetDDMap.this.mOSMapView,
 										new OnProgressChangeListener(){
 									@Override
 									public void onProgressChange(final int progress, final int max) {
@@ -1026,7 +1017,7 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 				final DirectionArrowDescriptor pDirectionArrowDescriptor = Preferences.getHUDImplVariationDirectionArrowDescriptor(this);
 
 				/* When returning from the Settings-subActivity, always reset the MapDrivingDirectionsOverlay. */
-				final List<OSMMapViewOverlay> overlays = this.mOSMapView.getOverlays();
+				final List<OpenStreetMapViewOverlay> overlays = this.mOSMapView.getOverlays();
 				this.mMyMapDrivingDirectionsOverlay.release();
 				overlays.remove(this.mMyMapDrivingDirectionsOverlay);
 				this.mMyMapDrivingDirectionsOverlay = new MapDrivingDirectionsOverlay(this, displayQuality, this.mRealtimeNav, pDirectionArrowDescriptor);
@@ -1041,7 +1032,11 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 				this.mHUDImpl.getNextActionView().setUnitSystem(unitSystem);
 				this.mHUDImpl.getUpperNextActionView().setUnitSystem(unitSystem);
 				this.mHUDImpl.getRemainingSummaryView().setUnitSystem(unitSystem);
-				this.mScaleIndicatorView.setUnitSystem(unitSystem);
+                if (Preferences.getUnitSystem(this) == UnitSystem.IMPERIAL) {
+                    this.mScaleIndicatorView.setImperial();
+                } else {
+                    this.mScaleIndicatorView.setMetric();
+                }
 
 				break;
 			case REQUESTCODE_SD_WAYPOINT:
@@ -1576,7 +1571,7 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 		if(animateNotJustCenter) {
 			this.mOSMapView.getController().animateTo(lastKnownExcatLocation, AnimationType.MIDDLEPEAKSPEED);
 		} else {
-			super.mOSMapView.setMapCenter(lastKnownExcatLocation);
+			super.mOSMapView.getController().setCenter(lastKnownExcatLocation);
 		}
 
 		if(this.mAutoZoomEnabled && this.mNavigator.isReady() && this.mRoute != null && System.currentTimeMillis() > this.mAutoZoomBlockedUntil){
@@ -1594,10 +1589,7 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 				final int reqLatSpan = (int)(1.2f * (newMaxLat - newMinLat)); // 20% Margin
 				final int reqLonSpan = (int)(1.2f * (newMaxLon - newMinLon)); // 20% Margin
 
-				final int newZoomLevel = this.mOSMapView.getController().getZoomLevelForSpan(reqLatSpan, reqLonSpan);
-				if(newZoomLevel != Constants.NOT_SET && newZoomLevel < this.mAutoZoomMaxLevel) {
-					this.mOSMapView.setZoomLevel(newZoomLevel);
-				}
+				this.mOSMapView.getController().zoomToSpan(reqLatSpan, reqLonSpan);
 			}
 		}
 	}
@@ -1635,7 +1627,7 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 				if(animateNotJustCenter) {
 					this.mOSMapView.getController().animateTo(newCenter, AnimationType.MIDDLEPEAKSPEED);
 				} else {
-					this.mOSMapView.setMapCenter(newCenter);
+					this.mOSMapView.getController().setCenter(newCenter);
 				}
 
 
@@ -1651,10 +1643,7 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 					final int reqLatSpan = (int)(1.2f * (newMaxLat - newMinLat)); // 20% Margin
 					final int reqLonSpan = (int)(1.2f * (newMaxLon - newMinLon)); // 20% Margin
 
-					final int newZoomLevel = this.mOSMapView.getController().getZoomLevelForSpan(reqLatSpan, reqLonSpan);
-					if(newZoomLevel != Constants.NOT_SET && newZoomLevel < this.mAutoZoomMaxLevel) {
-						this.mOSMapView.setZoomLevel(newZoomLevel);
-					}
+                    this.mOSMapView.getController().zoomToSpan(reqLatSpan, reqLonSpan);
 				}
 	}
 
@@ -1674,7 +1663,7 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 		this.findViewById(R.id.iv_ddmap_zoomin).setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(final View v) {
-				OpenStreetDDMap.super.mOSMapView.zoomIn();
+				OpenStreetDDMap.super.mOSMapView.getController().zoomIn();
 				OpenStreetDDMap.super.mOSMapView.invalidate();
 				OpenStreetDDMap.this.mAutoZoomBlockedUntil = System.currentTimeMillis() + AUTOZOOM_BLOCKTIME;
 			}
@@ -1682,7 +1671,7 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 		this.findViewById(R.id.iv_ddmap_zoomout).setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(final View v) {
-				OpenStreetDDMap.super.mOSMapView.zoomOut();
+				OpenStreetDDMap.super.mOSMapView.getController().zoomOut();
 				OpenStreetDDMap.super.mOSMapView.invalidate();
 				OpenStreetDDMap.this.mAutoZoomBlockedUntil = System.currentTimeMillis() + AUTOZOOM_BLOCKTIME;
 			}
@@ -1737,7 +1726,7 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 		final GestureDetector gd = new GestureDetector(new GestureDetector.SimpleOnGestureListener(){
 			@Override
 			public void onLongPress(final MotionEvent e) {
-				final OSMMapViewProjection pj = OpenStreetDDMap.super.mOSMapView.getProjection();
+				final OpenStreetMapViewProjection pj = OpenStreetDDMap.super.mOSMapView.getProjection();
 				OpenStreetDDMap.this.mGPLastMapClick = pj.fromPixels((int)e.getX(), (int)e.getY());
 
 				final String[] items = new String[]{getString(R.string.ddmap_contextmenu_add_as_waypoint),
@@ -2154,7 +2143,7 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 					final BoundingBoxE6 bb = this.mRoute.getBoundingBoxE6();
 
 					this.mOSMapView.getController().zoomToSpan(bb);
-					this.mOSMapView.setMapCenter(this.getLastKnownLocationAsGeoPoint(true));
+					this.mOSMapView.getController().setCenter(this.getLastKnownLocationAsGeoPoint(true));
 				}
 
 				this.mOSMapView.postInvalidate();
@@ -2308,8 +2297,7 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-	private class StaticNavOverlayControlView implements OSMMapViewItemizedOverlayControlView.ItemizedOverlayControlViewListener{
-
+	private class StaticNavOverlayControlView implements OpenStreetMapViewItemizedOverlayControlView.ItemizedOverlayControlViewListener{
 		@Override
 		public void onCenter() {
 			if(OpenStreetDDMap.this.mRoute != null){

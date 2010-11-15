@@ -1,7 +1,8 @@
 // Created by plusminus on 00:02:58 - 03.10.2008
 package org.andnav2.sys.osb.views.overlay;
 
-import org.andnav2.osm.views.overlay.OSMMapViewOverlayItem;
+import org.andnav.osm.views.overlay.OpenStreetMapViewOverlayItem;
+
 import org.andnav2.sys.osb.adt.OpenStreetBug;
 
 import android.os.Parcel;
@@ -13,7 +14,7 @@ import android.os.Parcelable;
  * @author Nicolas Gramlich
  *
  */
-public class OSMMapViewOSBOverlayItem extends OSMMapViewOverlayItem implements Parcelable{
+public class OSMMapViewOSBOverlayItem extends OpenStreetMapViewOverlayItem implements Parcelable{
 	// ===========================================================
 	// Constants
 	// ===========================================================
@@ -54,7 +55,7 @@ public class OSMMapViewOSBOverlayItem extends OSMMapViewOverlayItem implements P
 
 	@Override
 	public boolean equals(final Object o) {
-		if(!(o instanceof OSMMapViewOverlayItem)) {
+		if(!(o instanceof OpenStreetMapViewOverlayItem)) {
 			return false;
 		}
 

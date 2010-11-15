@@ -6,15 +6,15 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
+import org.andnav.osm.tileprovider.OpenStreetMapTile;
 import org.andnav.osm.util.GeoPoint;
+import org.andnav.osm.views.OpenStreetMapView;
+import org.andnav.osm.views.util.IOpenStreetMapRendererInfo;
 
 import org.andnav2.osm.util.ValuePair;
 import org.andnav2.osm.util.Util.PixelSetter;
 import org.andnav2.osm.util.constants.OSMConstants;
 import org.andnav2.osm.views.tiles.OSMAbstractMapTileProvider;
-import org.andnav2.osm.views.tiles.OSMMapTileManager;
-import org.andnav2.osm.views.tiles.OSMMapTileProviderInfo;
-import org.andnav2.osm.views.tiles.adt.OSMTileInfo;
 import org.andnav2.osm.views.util.Util;
 import org.andnav2.osm.views.util.constants.OSMMapViewConstants;
 import org.andnav2.sys.ors.adt.rs.Route;
@@ -52,16 +52,16 @@ public class OSMMapTilePreloader implements OSMConstants, OSMMapViewConstants {
 	/**
 	 * Loads all MapTiles needed to cover a route at a specific zoomlevel.
 	 */
-	public void loadAllToCacheAsync(final Route aRoute, final int aZoomLevel, final OSMMapTileProviderInfo aRendererInfo, final OSMMapTileManager pTileProvider, final OnProgressChangeListener pProgressListener, final boolean pSmoothed) throws IllegalArgumentException {
-		loadAllToCacheAsync(OSMMapTilePreloader.getNeededMaptiles(aRoute, aZoomLevel, aRendererInfo, pSmoothed), aZoomLevel, aRendererInfo, pTileProvider, pProgressListener);
+	public void loadAllToCacheAsync(final Route aRoute, final int aZoomLevel, final IOpenStreetMapRendererInfo aRendererInfo, final OpenStreetMapView pOsmView, final OnProgressChangeListener pProgressListener, final boolean pSmoothed) throws IllegalArgumentException {
+		loadAllToCacheAsync(OSMMapTilePreloader.getNeededMaptiles(aRoute, aZoomLevel, aRendererInfo, pSmoothed), aZoomLevel, aRendererInfo, pOsmView, pProgressListener);
 	}
 
 	/**
 	 * Loads a series of MapTiles to the various caches at a specific zoomlevel.
 	 */
-	public void loadAllToCacheAsync(final OSMTileInfo[][] pTiles, final int uptoZoomLevel, final OSMMapTileProviderInfo aRendererInfo, final OSMMapTileManager pTileManager, final OnProgressChangeListener pProgressListener){
+	public void loadAllToCacheAsync(final OpenStreetMapTile[][] pTiles, final int uptoZoomLevel, final IOpenStreetMapRendererInfo aRendererInfo, final OpenStreetMapView pOsmView, final OnProgressChangeListener pProgressListener){
 		int tmpCount = 0;
-		for(final OSMTileInfo[] tiles : pTiles) {
+		for(final OpenStreetMapTile[] tiles : pTiles) {
 			tmpCount += tiles.length;
 		}
 
@@ -102,9 +102,9 @@ public class OSMMapTilePreloader implements OSMConstants, OSMMapViewConstants {
 			@Override
 			public void run() {
 				for(int i = 0; i < pTiles.length; i++){
-					final OSMTileInfo[] tileSet = pTiles[i];
-					for (final OSMTileInfo tile : tileSet) {
-						if(!pTileManager.preloadMaptileAsync(tile, h)) {
+					final OpenStreetMapTile[] tileSet = pTiles[i];
+					for (final OpenStreetMapTile tile : tileSet) {
+						if(!pOsmView.preloadMaptileAsync(tile, h)) {
 							h.sendEmptyMessage(OSMAbstractMapTileProvider.MAPTILEPROVIDER_SUCCESS_ID);
 						}
 					}
@@ -116,7 +116,7 @@ public class OSMMapTilePreloader implements OSMConstants, OSMMapViewConstants {
 	/**
 	 * Loads a series of MapTiles to the various caches at a specific zoomlevel.
 	 */
-	public void loadAllToCacheAsync(final OSMTileInfo[] pTiles, final int aZoomLevel, final OSMMapTileProviderInfo aRendererInfo, final OSMMapTileManager pTileManager, final OnProgressChangeListener pProgressListener){
+	public void loadAllToCacheAsync(final OpenStreetMapTile[] pTiles, final int aZoomLevel, final IOpenStreetMapRendererInfo aRendererInfo, final OpenStreetMapView pOsmView, final OnProgressChangeListener pProgressListener){
 		final int overallCount = pTiles.length;
 
 		final Counter overallCounter = new Counter();
@@ -152,8 +152,8 @@ public class OSMMapTilePreloader implements OSMConstants, OSMMapViewConstants {
 		new Thread(new Runnable(){
 			@Override
 			public void run() {
-				for (final OSMTileInfo tile : pTiles) {
-					if(!pTileManager.preloadMaptileAsync(tile, h)) {
+				for (final OpenStreetMapTile tile : pTiles) {
+					if(!pOsmView.preloadMaptileAsync(tile, h)) {
 						h.sendEmptyMessage(OSMAbstractMapTileProvider.MAPTILEPROVIDER_SUCCESS_ID);
 					}
 				}
@@ -171,7 +171,7 @@ public class OSMMapTilePreloader implements OSMConstants, OSMMapViewConstants {
 	 * @return
 	 * @throws IllegalArgumentException
 	 */
-	public static OSMTileInfo[] getNeededMaptiles(final Route aRoute, final int aZoomLevel, final OSMMapTileProviderInfo aProviderInfo, final boolean pSmoothed) throws IllegalArgumentException {
+	public static OpenStreetMapTile[] getNeededMaptiles(final Route aRoute, final int aZoomLevel, final IOpenStreetMapRendererInfo aProviderInfo, final boolean pSmoothed) throws IllegalArgumentException {
 		return getNeededMaptiles(aRoute.getPolyLine(), aZoomLevel, aProviderInfo, pSmoothed);
 	}
 
@@ -184,8 +184,8 @@ public class OSMMapTilePreloader implements OSMConstants, OSMMapViewConstants {
 	 * @return
 	 * @throws IllegalArgumentException
 	 */
-	public static OSMTileInfo[] getNeededMaptiles(final List<GeoPoint> aPath, final int aZoomLevel, final OSMMapTileProviderInfo aProviderInfo, final boolean pSmoothed) throws IllegalArgumentException {
-		if(aZoomLevel > aProviderInfo.ZOOM_MAXLEVEL) {
+	public static OpenStreetMapTile[] getNeededMaptiles(final List<GeoPoint> aPath, final int aZoomLevel, final IOpenStreetMapRendererInfo aProviderInfo, final boolean pSmoothed) throws IllegalArgumentException {
+		if(aZoomLevel > aProviderInfo.zoomMaxLevel()) {
 			throw new IllegalArgumentException("Zoomlevel higher than Renderer supplies!");
 		}
 
@@ -212,22 +212,22 @@ public class OSMMapTilePreloader implements OSMConstants, OSMMapViewConstants {
 			}
 		};
 
-		OSMTileInfo cur = null;
+		OpenStreetMapTile cur = null;
 
 		GeoPoint previous = null;
 		/* Get the mapTile-coords of every point in the polyline and add to the set. */
 		for (final GeoPoint gp : aPath) {
-			cur = Util.getMapTileFromCoordinates(gp, aZoomLevel);
-			needed.add(new ValuePair(cur.x, cur.y));
+			cur = Util.getMapTileFromCoordinates(aProviderInfo, gp, aZoomLevel);
+			needed.add(new ValuePair(cur.getX(), cur.getY()));
 
 			if(previous != null){
-				final int prevX = cur.x;
-				final int prevY = cur.y;
+				final int prevX = cur.getX();
+				final int prevY = cur.getY();
 
-				cur = Util.getMapTileFromCoordinates(GeoPoint.fromCenterBetween(gp, previous), aZoomLevel);
+				cur = Util.getMapTileFromCoordinates(aProviderInfo, GeoPoint.fromCenterBetween(gp, previous), aZoomLevel);
 
-				final int curX = cur.x;
-				final int curY = cur.y;
+				final int curX = cur.getX();
+				final int curY = cur.getY();
 
 				rasterLine.clear();
 				org.andnav2.osm.util.Util.rasterLine(prevX, prevY, curX, curY, rasterLinePixelSetter);
@@ -245,11 +245,11 @@ public class OSMMapTilePreloader implements OSMConstants, OSMMapViewConstants {
 
 		/* Put the unique MapTile-indices into an array. */
 		final int countNeeded = needed.size();
-		final OSMTileInfo[] out = new OSMTileInfo[countNeeded];
+		final OpenStreetMapTile[] out = new OpenStreetMapTile[countNeeded];
 
 		int i = 0;
 		for (final ValuePair valuePair : needed) {
-			out[i++] = new OSMTileInfo(valuePair.getValueA(), valuePair.getValueB(), aZoomLevel);
+			out[i++] = new OpenStreetMapTile(aProviderInfo, aZoomLevel, valuePair.getValueA(), valuePair.getValueB());
 		}
 
 		return out;

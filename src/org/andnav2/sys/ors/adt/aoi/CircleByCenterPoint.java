@@ -6,15 +6,12 @@ import java.util.Formatter;
 import junit.framework.Assert;
 
 import org.andnav.osm.util.GeoPoint;
-
-import org.andnav2.osm.views.OSMMapView.OSMMapViewProjection;
+import org.andnav.osm.views.OpenStreetMapView.OpenStreetMapViewProjection;
 
 import android.graphics.Canvas;
 import android.graphics.Point;
 import android.os.Parcel;
 import android.os.Parcelable;
-
-
 
 public class CircleByCenterPoint extends AreaOfInterest{
 
@@ -79,9 +76,9 @@ public class CircleByCenterPoint extends AreaOfInterest{
 	}
 
 	@Override
-	public void drawToCanvas(final Canvas c, final OSMMapViewProjection pj) {
-		final Point p = pj.toPixels(this.mCenter, null);
-		c.drawCircle(p.x, p.y, pj.meterDistanceToScreenPixelDistance(this.mRadiusMeters), this.mPaint);
+	public void drawToCanvas(final Canvas c, final OpenStreetMapViewProjection pj) {
+		final Point p = pj.toMapPixels(this.mCenter, null);
+		c.drawCircle(p.x, p.y, pj.metersToEquatorPixels(this.mRadiusMeters), this.mPaint);
 	}
 
 	// ===========================================================

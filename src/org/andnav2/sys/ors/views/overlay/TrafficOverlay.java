@@ -25,7 +25,7 @@ public class TrafficOverlay extends OSMMapViewSpacialIndexItemizedOverlayWithFoc
 	// Constructors
 	// ===========================================================
 
-	public TrafficOverlay(final Context ctx, final List<TrafficOverlayItem> pList, final OnItemTapListener<TrafficOverlayItem> onItemTapListener) {
+	public TrafficOverlay(final Context ctx, final List<TrafficOverlayItem> pList, final OnItemGestureListener<TrafficOverlayItem> onItemTapListener) {
 		super(ctx,
 				new TrafficOverlayManager(pList),
 				ctx.getResources().getDrawable(R.drawable.warning_severe_overlayitem),
@@ -34,12 +34,6 @@ public class TrafficOverlay extends OSMMapViewSpacialIndexItemizedOverlayWithFoc
 				new Point(16, 16),
 				Color.argb(255, 130, 172, 223),
 				onItemTapListener);
-
-		/* Force to draw the actual icon below the focusing one. */
-		this.mDrawBaseIntemUnderFocusedItem = true;
-
-		/* No padding is needed, because we will draw nothing to there. */
-		super.mPaddingTitleLeft = 0;
 	}
 
 	// ===========================================================

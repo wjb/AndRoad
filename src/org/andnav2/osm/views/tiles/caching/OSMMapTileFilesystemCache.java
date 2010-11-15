@@ -15,13 +15,14 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
+import org.andnav.osm.tileprovider.OpenStreetMapTile;
+
 import org.andnav2.exc.Exceptor;
 import org.andnav2.osm.exceptions.EmptyCacheException;
 import org.andnav2.osm.exceptions.ExternalStorageNotMountedException;
 import org.andnav2.osm.util.Util;
 import org.andnav2.osm.util.constants.OSMConstants;
 import org.andnav2.osm.views.tiles.OSMMapTileProviderInfo;
-import org.andnav2.osm.views.tiles.adt.OSMTileInfo;
 import org.andnav2.osm.views.util.NoMagicNumberException;
 import org.andnav2.osm.views.util.StreamUtils;
 import org.andnav2.osm.views.util.constants.OSMMapViewConstants;
@@ -214,8 +215,8 @@ public class OSMMapTileFilesystemCache extends AbstractOSMMapTileFilesystemCache
 	 * @param loadCallbackHandler
 	 * @return
 	 */
-	public boolean tryLoadMapTileByParentToMemCacheAsync(final OSMTileInfo aTileInfo, final String aSaveableTileURLString, final Handler loadCallbackHandler) {
-		final OSMTileInfo tileInfoParent = aTileInfo.getParentTile();
+	public boolean tryLoadMapTileByParentToMemCacheAsync(final OpenStreetMapTile aTileInfo, final String aSaveableTileURLString, final Handler loadCallbackHandler) {
+		final OpenStreetMapTile tileInfoParent = aTileInfo.getParentTile();
 		final String aSaveableTileURLStringParent = this.mProviderInfo.getSaveableTileURLString(tileInfoParent, this.getStoragePolicy());
 
 		final InputStream in;
@@ -262,15 +263,15 @@ public class OSMMapTileFilesystemCache extends AbstractOSMMapTileFilesystemCache
 					final int maptile_sizepx = OSMMapTileFilesystemCache.this.mProviderInfo.MAPTILE_SIZEPX;
 
 					switch(positionOfChildInParent){
-						case OSMTileInfo.POSITION_IN_PARENT_TOPLEFT:
+						case OpenStreetMapTile.POSITION_IN_PARENT_TOPLEFT:
 							break;
-						case OSMTileInfo.POSITION_IN_PARENT_TOPRIGHT:
+						case OpenStreetMapTile.POSITION_IN_PARENT_TOPRIGHT:
 							m.postTranslate(-maptile_sizepx, 0);
 							break;
-						case OSMTileInfo.POSITION_IN_PARENT_BOTTOMLEFT:
+						case OpenStreetMapTile.POSITION_IN_PARENT_BOTTOMLEFT:
 							m.postTranslate(0, -maptile_sizepx);
 							break;
-						case OSMTileInfo.POSITION_IN_PARENT_BOTTOMRIGHT:
+						case OpenStreetMapTile.POSITION_IN_PARENT_BOTTOMRIGHT:
 							m.postTranslate(-maptile_sizepx, -maptile_sizepx);
 							break;
 					}
@@ -283,8 +284,8 @@ public class OSMMapTileFilesystemCache extends AbstractOSMMapTileFilesystemCache
 					OSMMapTileFilesystemCache.this.mCache.putMapTile(aSaveableTileURLString + OSMMapTileMemoryCache.FLAG_DIRTY, bmpChild);
 
 					final Message successMessage = Message.obtain(loadCallbackHandler, MAPTILEFSCACHE_SUCCESS_ID);
-					successMessage.arg1 = aTileInfo.x;
-					successMessage.arg2 = aTileInfo.y;
+					successMessage.arg1 = aTileInfo.getX();
+					successMessage.arg2 = aTileInfo.getY();
 					successMessage.sendToTarget();
 
 					if(DEBUGMODE) {
@@ -314,7 +315,7 @@ public class OSMMapTileFilesystemCache extends AbstractOSMMapTileFilesystemCache
 	 * @return <code>true</code> when file is now loaded. <code>false</code> if file did not exist and should be downloaded/rendered.
 	 * @throws FileNotFoundException
 	 */
-	public boolean loadMapTileToMemCacheAsync(final OSMTileInfo aTileInfo, final String aSaveableTileURLString, final Handler loadCallbackHandler) {
+	public boolean loadMapTileToMemCacheAsync(final OpenStreetMapTile aTileInfo, final String aSaveableTileURLString, final Handler loadCallbackHandler) {
 		final InputStream in;
 		try{
 			final InputStream fileIn = this.openFileInputBasedOnStoragePolicy(aSaveableTileURLString);
@@ -354,8 +355,8 @@ public class OSMMapTileFilesystemCache extends AbstractOSMMapTileFilesystemCache
 					}
 
 					final Message successMessage = Message.obtain(loadCallbackHandler, MAPTILEFSCACHE_SUCCESS_ID);
-					successMessage.arg1 = aTileInfo.x;
-					successMessage.arg2 = aTileInfo.y;
+					successMessage.arg1 = aTileInfo.getX();
+					successMessage.arg2 = aTileInfo.getY();
 					successMessage.sendToTarget();
 
 					if(DEBUGMODE) {

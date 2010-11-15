@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.andnav.osm.util.GeoPoint;
+import org.andnav.osm.views.OpenStreetMapView;
+import org.andnav.osm.views.OpenStreetMapView.OpenStreetMapViewProjection;
 
-import org.andnav2.osm.views.OSMMapView;
-import org.andnav2.osm.views.OSMMapView.OSMMapViewProjection;
 import org.andnav2.sys.ors.adt.rs.Route;
 
 import android.graphics.Matrix;
@@ -52,9 +52,9 @@ public class PathCache {
 		return this.mSegments;
 	}
 
-	public void init(final OSMMapView aMapview, final Route aRoute) {
+	public void init(final OpenStreetMapView aMapview, final Route aRoute) {
 		this.mOrigCenteredStartGeoPoint = aRoute.getStart();
-		final OSMMapViewProjection pj = aMapview.getProjection(PATH_ZOOMLEVEL, this.mOrigCenteredStartGeoPoint);
+		final OpenStreetMapViewProjection pj = aMapview.getProjection(PATH_ZOOMLEVEL, this.mOrigCenteredStartGeoPoint);
 
 
 		if(aRoute == null) {
@@ -71,7 +71,7 @@ public class PathCache {
 		final int size = mPolyline.size();
 		for (int i = 0; i < size; i++) {
 			final GeoPoint gp = mPolyline.get(i);
-			pj.toPixels(gp, reuse);
+			pj.toMapPixels(gp, reuse);
 
 			if(i % PATHSEGMENT_SIZE == 0){
 				cur = new Path();
@@ -83,11 +83,11 @@ public class PathCache {
 		}
 	}
 
-	public Matrix getTransformationMatrix(final OSMMapViewProjection curProjection, final GeoPoint pCurrentCenter, final int aZoom) {
+	public Matrix getTransformationMatrix(final OpenStreetMapViewProjection curProjection, final GeoPoint pCurrentCenter, final int aZoom) {
 		final Matrix out = new Matrix();
 
-		final Point pOrig = curProjection.toPixels(this.mOrigCenteredStartGeoPoint, null);
-		final Point pNew = curProjection.toPixels(pCurrentCenter, null);
+		final Point pOrig = curProjection.toMapPixels(this.mOrigCenteredStartGeoPoint, null);
+		final Point pNew = curProjection.toMapPixels(pCurrentCenter, null);
 
 		final float dx = pNew.x - pOrig.x;
 		final float dy = pNew.y - pOrig.y;

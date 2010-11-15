@@ -2,18 +2,18 @@
 package org.andnav2.osm.views.overlay;
 
 import org.andnav.osm.util.BoundingBoxE6;
+import org.andnav.osm.views.OpenStreetMapView;
+import org.andnav.osm.views.overlay.OpenStreetMapViewOverlay;
 
-import org.andnav2.osm.views.OSMMapView;
-
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.DashPathEffect;
 import android.graphics.Paint;
-import android.graphics.RectF;
+import android.graphics.Rect;
 import android.graphics.Paint.Style;
 
-
-public class OSMMapViewSimpleRectangleOverlay extends OSMMapViewOverlay {
+public class OSMMapViewSimpleRectangleOverlay extends OpenStreetMapViewOverlay {
 	// ===========================================================
 	// Constants
 	// ===========================================================
@@ -29,11 +29,12 @@ public class OSMMapViewSimpleRectangleOverlay extends OSMMapViewOverlay {
 	// Constructors
 	// ===========================================================
 
-	public OSMMapViewSimpleRectangleOverlay() {
-		this(null);
+	public OSMMapViewSimpleRectangleOverlay(final Context ctx) {
+		this(ctx, null);
 	}
 
-	public OSMMapViewSimpleRectangleOverlay(final BoundingBoxE6 pBoundingBoxE6) {
+	public OSMMapViewSimpleRectangleOverlay(final Context ctx, final BoundingBoxE6 pBoundingBoxE6) {
+        super(ctx);
 		this.mBoundingBox = pBoundingBoxE6;
 	}
 
@@ -73,21 +74,16 @@ public class OSMMapViewSimpleRectangleOverlay extends OSMMapViewOverlay {
 	// ===========================================================
 
 	@Override
-	public void release() {
-		/* Nothing. */
-	}
-
-	@Override
-	protected void onDraw(final Canvas c, final OSMMapView osmv) {
+	protected void onDraw(final Canvas c, final OpenStreetMapView osmv) {
 		if(this.mBoundingBox != null){
-			final RectF bbox = osmv.getProjection().toPixels(this.mBoundingBox);
+			final Rect bbox = osmv.getProjection().toPixels(this.mBoundingBox);
 
 			c.drawRect(bbox, this.mPaint);
 		}
 	}
 
 	@Override
-	protected void onDrawFinished(final Canvas c, final OSMMapView osmv) {
+	protected void onDrawFinished(final Canvas c, final OpenStreetMapView osmv) {
 		/* Nothing. */
 	}
 

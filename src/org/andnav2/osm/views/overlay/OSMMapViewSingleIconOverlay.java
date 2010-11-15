@@ -2,8 +2,8 @@
 package org.andnav2.osm.views.overlay;
 
 import org.andnav.osm.util.GeoPoint;
-
-import org.andnav2.osm.views.OSMMapView;
+import org.andnav.osm.views.OpenStreetMapView;
+import org.andnav.osm.views.overlay.OpenStreetMapViewOverlay;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -13,7 +13,7 @@ import android.graphics.Paint;
 import android.graphics.Point;
 
 
-public class OSMMapViewSingleIconOverlay extends OSMMapViewOverlay {
+public class OSMMapViewSingleIconOverlay extends OpenStreetMapViewOverlay {
 	// ===========================================================
 	// Final Fields
 	// ===========================================================
@@ -32,6 +32,7 @@ public class OSMMapViewSingleIconOverlay extends OSMMapViewOverlay {
 	// ===========================================================
 
 	public OSMMapViewSingleIconOverlay(final Context ctx, final int mResID, final Point pHotSpot) {
+        super(ctx);
 		this.ICON = BitmapFactory.decodeResource(ctx.getResources(), mResID);
 		this.mHotSpot = pHotSpot;
 	}
@@ -52,7 +53,6 @@ public class OSMMapViewSingleIconOverlay extends OSMMapViewOverlay {
 	// Methods from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
 	public void release() {
 		this.ICON.recycle();
 	}
@@ -60,17 +60,17 @@ public class OSMMapViewSingleIconOverlay extends OSMMapViewOverlay {
 
 	/** This function does some fancy drawing, could be shortened a lot. */
 	@Override
-	public void onDraw(final Canvas canvas, final OSMMapView mapView) {
+	public void onDraw(final Canvas canvas, final OpenStreetMapView mapView) {
 		if(this.mLocation != null){
 			final Point p = new Point();
-			mapView.getProjection().toPixels(this.mLocation, p);
+			mapView.getProjection().toMapPixels(this.mLocation, p);
 
 			canvas.drawBitmap(this.ICON, p.x - this.mHotSpot.x, p.y - this.mHotSpot.y, this.myPaint);
 		}
 	}
 
 	@Override
-	protected void onDrawFinished(final Canvas c, final OSMMapView osmv) {
+	protected void onDrawFinished(final Canvas c, final OpenStreetMapView osmv) {
 		// Nothing
 	}
 

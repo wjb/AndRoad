@@ -8,7 +8,7 @@
 		android:id="@+id/rotator_wheramimap"
 		android:layout_width="fill_parent"
 		android:layout_height="fill_parent" >     
-		<view class="org.andnav2.osm.views.OSMMapView" 
+		<view class="org.andnav.osm.views.OpenStreetMapView" 
 			android:id="@+id/map_whereami"
 			android:layout_width="fill_parent"
 			android:layout_height="fill_parent"
@@ -16,16 +16,10 @@
 	        android:clickable="true" />
     </view>
     <!-- PinControl, Upper Middle -->
-	<view class="org.andnav2.osm.views.overlay.OSMMapViewItemizedOverlayControlView" 
+	<view class="org.andnav.osm.views.overlay.OpenStreetMapViewItemizedOverlayControlView" 
 		android:id="@+id/itemizedoverlaycontrol_whereami"
 		android:visibility="gone"
 		android:layout_alignParentTop="true"
-		android:layout_centerHorizontal="true"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"/>
-	<view class="org.andnav2.osm.views.OSMMapViewScaleIndicatorView" 
-		android:id="@+id/scaleindicatorview_whereami"
-		android:layout_below="@id/itemizedoverlaycontrol_whereami"
 		android:layout_centerHorizontal="true"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"/>

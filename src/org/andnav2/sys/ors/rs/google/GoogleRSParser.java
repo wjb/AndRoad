@@ -144,7 +144,6 @@ public class GoogleRSParser extends DefaultHandler implements TimeConstants, Con
         } else if(localName.equals("coordinates")){
 			this.coordinates = false;
             final String coords = this.sb.toString();
-            Log.w("Fabien", "coordinates " + Point + " " + LineString);
             if (Point) {
                 this.mRoute.getRouteInstructions().add(this.mTmpRouteInstruction);
 
@@ -177,10 +176,8 @@ public class GoogleRSParser extends DefaultHandler implements TimeConstants, Con
                         minLon = b;
                     }
                     final GeoPoint gp = new GeoPoint((int) (a * 1E6), (int) (b * 1E6));
-                    Log.w("Fabien", "create line point");
                     if (lastgp == null ||
                         !lastgp.equals(gp)) {
-                        Log.w("Fabien", "add line point");
                         this.mPolyline.add(gp);
                     }
                     lastgp = gp;

@@ -2,11 +2,13 @@
 package org.andnav2.osm.views.overlay;
 
 import org.andnav.osm.util.GeoPoint;
+import org.andnav.osm.views.OpenStreetMapView;
+import org.andnav.osm.views.OpenStreetMapView.OpenStreetMapViewProjection;
+import org.andnav.osm.views.overlay.OpenStreetMapViewOverlay;
 
 import org.andnav2.osm.util.constants.MathConstants;
-import org.andnav2.osm.views.OSMMapView;
-import org.andnav2.osm.views.OSMMapView.OSMMapViewProjection;
 import org.andnav2.osm.views.overlay.util.DirectionArrowDescriptor;
+import org.andnav2.util.constants.Constants;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -25,7 +27,7 @@ import android.util.Log;
  * @author Nicolas Gramlich
  *
  */
-public class OSMMapViewDirectedLocationOverlay extends OSMMapViewOverlay {
+public class OSMMapViewDirectedLocationOverlay extends OpenStreetMapViewOverlay {
 	// ===========================================================
 	// Constants
 	// ===========================================================
@@ -60,6 +62,7 @@ public class OSMMapViewDirectedLocationOverlay extends OSMMapViewOverlay {
 	// ===========================================================
 
 	public OSMMapViewDirectedLocationOverlay(final Context ctx, final DirectionArrowDescriptor pDirectionArrowDescriptor){
+        super(ctx);
 		this.DIRECTION_ARROW = BitmapFactory.decodeResource(ctx.getResources(), pDirectionArrowDescriptor.getDrawableID());
 
 		this.DIRECTION_ARROW_HEIGHT = this.DIRECTION_ARROW.getHeight();
@@ -112,26 +115,25 @@ public class OSMMapViewDirectedLocationOverlay extends OSMMapViewOverlay {
 	// Methods from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
 	public void release() {
 		this.DIRECTION_ARROW.recycle();
 	}
 
 	@Override
-	protected void onDrawFinished(final Canvas c, final OSMMapView osmv) {
+	protected void onDrawFinished(final Canvas c, final OpenStreetMapView osmv) {
 		return;
 	}
 
 	@Override
-	public void onDraw(final Canvas canvas, final OSMMapView osmv) {
+	public void onDraw(final Canvas canvas, final OpenStreetMapView osmv) {
 		try{
 			if(this.mLocation != null){
-				final OSMMapViewProjection pj = osmv.getProjection();
+				final OpenStreetMapViewProjection pj = osmv.getProjection();
 				final Point screenCoordsMe = new Point();
-				pj.toPixels(this.mLocation, screenCoordsMe);
+				pj.toMapPixels(this.mLocation, screenCoordsMe);
 
 				if(this.mShowAccuracy && this.mAccuracy > 10){
-					final float accuracyRadius = pj.meterDistanceToScreenPixelDistance(this.mAccuracy);
+					final float accuracyRadius = pj.metersToEquatorPixels(this.mAccuracy);
 					/* Only draw if the DirectionArrow doesn't cover it. */
 					if(accuracyRadius > 8){
 						/* Draw the inner shadow. */
@@ -170,7 +172,7 @@ public class OSMMapViewDirectedLocationOverlay extends OSMMapViewOverlay {
 				canvas.drawBitmap(rotatedDirection, screenCoordsMe.x - rotatedDirection.getWidth() / 2 + dx, screenCoordsMe.y - rotatedDirection.getHeight() / 2 - dy, this.mDirectionRotaterPaint);
 			}
 		}catch(final OutOfMemoryError e){ // OutOfMemoryError
-			Log.e(DEBUGTAG, "Error in: " + this.getClass().getSimpleName(), e);
+			Log.e(Constants.DEBUGTAG, "Error in: " + this.getClass().getSimpleName(), e);
 		}
 	}
 

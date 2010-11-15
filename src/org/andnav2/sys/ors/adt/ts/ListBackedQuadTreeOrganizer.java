@@ -7,11 +7,12 @@ import java.util.List;
 
 import org.andnav.osm.util.BoundingBoxE6;
 import org.andnav.osm.util.GeoPoint;
+import org.andnav.osm.views.overlay.OpenStreetMapViewOverlayItem;
 
 import com.openmap.util.quadtree.QuadTree;
 
 
-public class ListBackedQuadTreeOrganizer<T extends GeoPoint> implements ISpatialDataOrganizer<T> {
+public class ListBackedQuadTreeOrganizer<T extends OpenStreetMapViewOverlayItem> implements ISpatialDataOrganizer<T> {
 	// ===========================================================
 	// Constants
 	// ===========================================================
@@ -54,7 +55,7 @@ public class ListBackedQuadTreeOrganizer<T extends GeoPoint> implements ISpatial
 	@Override
 	public void add(final T pItem) {
 		if(pItem != null){
-			this.mQuadTree.put(pItem.getLatitudeE6(), pItem.getLongitudeE6(), pItem);
+			this.mQuadTree.put(pItem.getPoint().getLatitudeE6(), pItem.getPoint().getLongitudeE6(), pItem);
 			this.mFeatureList.add(pItem);
 		}
 	}

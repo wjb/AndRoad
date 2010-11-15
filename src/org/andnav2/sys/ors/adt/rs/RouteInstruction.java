@@ -27,7 +27,7 @@ public class RouteInstruction implements Parcelable, Serializable {
 	// Constants
 	// ===========================================================
 
-    static final long serialVersionUID = 4L;
+    static final long serialVersionUID = 5L;
 
 	// ===========================================================
 	// Fields

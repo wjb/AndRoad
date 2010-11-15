@@ -3,10 +3,10 @@ package org.andnav2.osm.views.tiles;
 
 import java.util.ArrayList;
 
+import org.andnav.osm.tileprovider.OpenStreetMapTile;
 import org.andnav.osm.util.GeoPoint;
 import org.andnav.osm.util.BoundingBoxE6;
 
-import org.andnav2.osm.views.tiles.adt.OSMTileInfo;
 import org.andnav2.osm.views.tiles.caching.OSMMapTileFilesystemCache.StoragePolicy;
 
 /**
@@ -232,18 +232,18 @@ public enum OSMMapTileProviderInfo {
 		return tmp.toArray(new OSMMapTileProviderInfo[tmp.size()]);
 	}
 
-	public String getTileURLString(final OSMTileInfo aTileInfo) {
+	public String getTileURLString(final OpenStreetMapTile aTileInfo) {
 		switch (this) {
 			case GOOGLEMAPS:
 			case GOOGLEMAPS_SATELLITE:
 			case GOOGLEMAPS_TERRAIN:
 				// "x=1&y=4&z=4"
-				return new StringBuilder().append(this.BASEURL).append("x=").append(aTileInfo.x)
-				.append("&y=").append(aTileInfo.y).append("&z=").append(aTileInfo.zoom)
-				.toString();
+				return new StringBuilder().append(this.BASEURL).append("x=").append(aTileInfo.getX())
+                    .append("&y=").append(aTileInfo.getY()).append("&z=").append(aTileInfo.getZoomLevel())
+                    .toString();
 			default:
-				return new StringBuilder().append(this.BASEURL).append(aTileInfo.zoom).append("/")
-				.append(aTileInfo.x).append("/").append(aTileInfo.y).append(
+				return new StringBuilder().append(this.BASEURL).append(aTileInfo.getZoomLevel()).append("/")
+                    .append(aTileInfo.getX()).append("/").append(aTileInfo.getY()).append(
 						this.IMAGE_FILENAMEENDING).toString();
 		}
 	}
@@ -268,20 +268,20 @@ public enum OSMMapTileProviderInfo {
 	 * 
 	 * @return saveable formatted URL as a String
 	 */
-	public String getSaveableTileURLString(final OSMTileInfo aTileInfo, final StoragePolicy aStoragePolicy) {
+	public String getSaveableTileURLString(final OpenStreetMapTile aTileInfo, final StoragePolicy aStoragePolicy) {
 		switch (aStoragePolicy) {
-			case EXTERNAL:
+        case EXTERNAL:
 				return new StringBuilder().append(this.FSFOLDERNAME).append("/")
-				.append(aTileInfo.zoom).append("/")
-				.append(aTileInfo.x).append("/")
-				.append(aTileInfo.y)
-				.append(this.IMAGE_FILENAMEENDING).append(FILENAME_APPENDIX).toString();
-			case INTERNALROM:
-			default:
-				return new StringBuilder().append(this.FSFOLDERNAME).append('_')
-				.append(aTileInfo.zoom).append('_')
-				.append(aTileInfo.x).append('_')
-				.append(aTileInfo.y)
+                    .append(aTileInfo.getZoomLevel()).append("/")
+                    .append(aTileInfo.getX()).append("/")
+                    .append(aTileInfo.getY())
+                    .append(this.IMAGE_FILENAMEENDING).append(FILENAME_APPENDIX).toString();
+        case INTERNALROM:
+        default:
+            return new StringBuilder().append(this.FSFOLDERNAME).append('_')
+				.append(aTileInfo.getZoomLevel()).append('_')
+				.append(aTileInfo.getX()).append('_')
+				.append(aTileInfo.getY())
 				.append(this.IMAGE_FILENAMEENDING).append(FILENAME_APPENDIX).toString();
 		}
 	}

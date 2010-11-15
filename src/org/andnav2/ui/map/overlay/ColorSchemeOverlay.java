@@ -1,17 +1,19 @@
 // Created by plusminus on 00:09:18 - 04.12.2008
 package org.andnav2.ui.map.overlay;
 
-import org.andnav2.osm.views.OSMMapView;
-import org.andnav2.osm.views.overlay.OSMMapViewOverlay;
+import org.andnav.osm.views.OpenStreetMapView;
+import org.andnav.osm.views.overlay.OpenStreetMapViewOverlay;
+
 import org.andnav2.preferences.PreferenceConstants;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.PorterDuff.Mode;
 
 
-public class ColorSchemeOverlay extends OSMMapViewOverlay implements PreferenceConstants {
+public class ColorSchemeOverlay extends OpenStreetMapViewOverlay implements PreferenceConstants {
 	// ===========================================================
 	// Constants
 	// ===========================================================
@@ -26,11 +28,13 @@ public class ColorSchemeOverlay extends OSMMapViewOverlay implements PreferenceC
 	// ===========================================================
 	// Constructors
 	// ===========================================================
-	public ColorSchemeOverlay() {
+	public ColorSchemeOverlay(final Context ctx) {
+        super(ctx);
 
 	}
 
-	public ColorSchemeOverlay(final int aColorScheme) {
+	public ColorSchemeOverlay(final Context ctx, final int aColorScheme) {
+        super(ctx);
 		setColorScheme(aColorScheme);
 	}
 
@@ -69,12 +73,7 @@ public class ColorSchemeOverlay extends OSMMapViewOverlay implements PreferenceC
 	// ===========================================================
 
 	@Override
-	public void release() {
-		// Nothing
-	}
-
-	@Override
-	protected void onDraw(final Canvas c, final OSMMapView osmv) {
+	protected void onDraw(final Canvas c, final OpenStreetMapView osmv) {
 		switch(this.mColorScheme){
 			case PREF_THEME_DAY_RESID:
 			case PREF_THEME_NIGHT_RESID:
@@ -87,7 +86,7 @@ public class ColorSchemeOverlay extends OSMMapViewOverlay implements PreferenceC
 	}
 
 	@Override
-	protected void onDrawFinished(final Canvas c, final OSMMapView osmv) {
+	protected void onDrawFinished(final Canvas c, final OpenStreetMapView osmv) {
 		return;
 	}
 

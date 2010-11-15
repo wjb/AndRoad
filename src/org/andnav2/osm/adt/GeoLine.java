@@ -12,7 +12,7 @@ public class GeoLine implements Serializable {
 	// Constants
 	// ===========================================================
 
-    static final long serialVersionUID = 4L;
+    static final long serialVersionUID = 3L;
 
 	// ===========================================================
 	// Fields

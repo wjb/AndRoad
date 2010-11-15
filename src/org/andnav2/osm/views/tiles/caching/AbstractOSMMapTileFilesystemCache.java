@@ -7,10 +7,11 @@ import java.util.HashSet;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import org.andnav.osm.tileprovider.OpenStreetMapTile;
+
 import org.andnav2.osm.exceptions.ExternalStorageNotMountedException;
 import org.andnav2.osm.util.constants.OSMConstants;
 import org.andnav2.osm.views.tiles.OSMMapTileProviderInfo;
-import org.andnav2.osm.views.tiles.adt.OSMTileInfo;
 import org.andnav2.osm.views.tiles.caching.OSMMapTileFilesystemCache.StoragePolicy;
 import org.andnav2.osm.views.util.constants.OSMMapViewConstants;
 
@@ -112,7 +113,7 @@ public abstract class AbstractOSMMapTileFilesystemCache implements OSMConstants,
 	 * @param loadCallbackHandler
 	 * @return
 	 */
-	public abstract boolean tryLoadMapTileByParentToMemCacheAsync(final OSMTileInfo aTileInfo, final String aSaveableTileURLString, final Handler loadCallbackHandler);
+	public abstract boolean tryLoadMapTileByParentToMemCacheAsync(final OpenStreetMapTile aTileInfo, final String aSaveableTileURLString, final Handler loadCallbackHandler);
 
 	protected abstract int updateCurrentFSCacheByteSize();
 	
@@ -124,7 +125,7 @@ public abstract class AbstractOSMMapTileFilesystemCache implements OSMConstants,
 	 * @return <code>true</code> when file is now loaded. <code>false</code> if file did not exist and should be downloaded/rendered.
 	 * @throws FileNotFoundException
 	 */
-	public abstract boolean loadMapTileToMemCacheAsync(final OSMTileInfo aTileInfo, final String aSaveableTileURLString, final Handler loadCallbackHandler);
+	public abstract boolean loadMapTileToMemCacheAsync(final OpenStreetMapTile aTileInfo, final String aSaveableTileURLString, final Handler loadCallbackHandler);
 
 	public void saveFile(final String aSaveableURLString, final Bitmap bmp) throws IOException {
 		final ByteArrayOutputStream bos = new ByteArrayOutputStream(20000);

@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.andnav.osm.util.BoundingBoxE6;
 import org.andnav.osm.util.GeoPoint;
+import org.andnav.osm.views.overlay.OpenStreetMapViewOverlayItem;
 
 /**
  * 
@@ -13,7 +14,7 @@ import org.andnav.osm.util.GeoPoint;
  *
  * @param <T>
  */
-public interface ISpatialDataOrganizer<T extends GeoPoint> {
+public interface ISpatialDataOrganizer<T extends OpenStreetMapViewOverlayItem> {
 	public abstract List<T> getItems();
 
 	public abstract void add(final T pItem);

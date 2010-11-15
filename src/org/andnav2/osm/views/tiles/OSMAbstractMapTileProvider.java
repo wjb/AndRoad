@@ -6,7 +6,8 @@ import java.util.concurrent.PriorityBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-import org.andnav2.osm.views.tiles.adt.OSMTileInfo;
+import org.andnav.osm.tileprovider.OpenStreetMapTile;
+
 import org.andnav2.osm.views.tiles.caching.OSMMapTileFilesystemCache;
 
 import android.content.Context;
@@ -64,7 +65,7 @@ public abstract class OSMAbstractMapTileProvider {
 	 * TODO Update comment
 	 * @return <code>false</code>, when MapTile is already pending for download. <code>false</code> otherwise.
 	 */
-	public abstract boolean requestMapTileAsync(final OSMTileInfo aTileInfo, final String aRawTileURLString, final String aSaveableURLString, final Handler callback);
+	public abstract boolean requestMapTileAsync(final OpenStreetMapTile aTileInfo, final String aRawTileURLString, final String aSaveableURLString, final Handler callback);
 
 	public void release() {
 		this.mThreadPool.shutdownNow();

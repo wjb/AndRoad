@@ -3,13 +3,13 @@ package org.andnav2.sys.ors.adt.aoi;
 
 import java.util.Formatter;
 
-import org.andnav2.osm.views.OSMMapView.OSMMapViewProjection;
+import org.andnav.osm.views.OpenStreetMapView.OpenStreetMapViewProjection;
+
 import org.andnav2.sys.ors.util.constants.ORSXMLConstants;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Parcelable;
-
 
 public abstract class AreaOfInterest implements ORSXMLConstants, Parcelable{
 	// ===========================================================
@@ -52,7 +52,7 @@ public abstract class AreaOfInterest implements ORSXMLConstants, Parcelable{
 	 */
 	public abstract void appendToStringBuilder(final StringBuilder sb, final Formatter f);
 
-	public abstract void drawToCanvas(final Canvas c, final OSMMapViewProjection pj);
+	public abstract void drawToCanvas(final Canvas c, final OpenStreetMapViewProjection pj);
 
 	// ===========================================================
 	// Inner and Anonymous Classes

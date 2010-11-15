@@ -4,8 +4,8 @@ package org.andnav2.ui.map.overlay.util;
 import java.util.List;
 
 import org.andnav.osm.util.GeoPoint;
+import org.andnav.osm.views.OpenStreetMapView.OpenStreetMapViewProjection;
 
-import org.andnav2.osm.views.OSMMapView.OSMMapViewProjection;
 import org.andnav2.preferences.PreferenceConstants;
 import org.andnav2.util.constants.Constants;
 import org.andnav2.util.constants.GeoConstants;
@@ -121,7 +121,7 @@ public class ArrowPathCreator implements MathematicalConstants, PreferenceConsta
 		return b;
 	}
 
-	public static void createArrowOverIndex(final OSMMapViewProjection pj, final int indexOfArrow, final List<GeoPoint> polyLine, final Path pathTurnSegment, final Path pathTurnSegmentPeak, final float aScaleFactor, final int zoomLevel, final float turnAngle) throws IndexOutOfBoundsException{
+	public static void createArrowOverIndex(final OpenStreetMapViewProjection pj, final int indexOfArrow, final List<GeoPoint> polyLine, final Path pathTurnSegment, final Path pathTurnSegmentPeak, final float aScaleFactor, final int zoomLevel, final float turnAngle) throws IndexOutOfBoundsException{
 		final Point screenCoords = new Point();
 		final Point screenCoordsBefore = new Point();
 
@@ -134,7 +134,7 @@ public class ArrowPathCreator implements MathematicalConstants, PreferenceConsta
 		float restLen = baseRestLen;
 
 		GeoPoint mpCur = polyLine.get(startIndex);
-		pj.toPixels(mpCur, screenCoords);
+		pj.toMapPixels(mpCur, screenCoords);
 
 		float lastLen = 0;
 		/* While restLen not < 0 include the next element. */
@@ -146,7 +146,7 @@ public class ArrowPathCreator implements MathematicalConstants, PreferenceConsta
 			screenCoordsBefore.y = screenCoords.y;
 
 			mpCur = polyLine.get(startIndex);
-			pj.toPixels(mpCur, screenCoords);
+			pj.toMapPixels(mpCur, screenCoords);
 
 			lastLen = FloatMath.sqrt(calculateScreenCoordDistanceSquared(screenCoords, screenCoordsBefore));
 
@@ -161,7 +161,7 @@ public class ArrowPathCreator implements MathematicalConstants, PreferenceConsta
 		restLen = baseRestLen / (float)Math.max(1, Math.pow(2, 14 - zoomLevel));
 
 		mpCur = polyLine.get(endIndex);
-		pj.toPixels(mpCur, screenCoords);
+		pj.toMapPixels(mpCur, screenCoords);
 
 		float lastAngle = Constants.NOT_SET;
 		lastLen = 0;
@@ -173,7 +173,7 @@ public class ArrowPathCreator implements MathematicalConstants, PreferenceConsta
 			screenCoordsBefore.y = screenCoords.y;
 
 			mpCur = polyLine.get(endIndex);
-			pj.toPixels(mpCur, screenCoords);
+			pj.toMapPixels(mpCur, screenCoords);
 
 			final float angle = org.andnav2.nav.util.Util.calculateBearing(screenCoordsBefore, screenCoords) - 90.0f;
 
@@ -194,10 +194,10 @@ public class ArrowPathCreator implements MathematicalConstants, PreferenceConsta
 		/* Create the path... */
 
 		mpCur = polyLine.get(startIndex);
-		pj.toPixels(mpCur, screenCoordsBefore);
+		pj.toMapPixels(mpCur, screenCoordsBefore);
 
 		mpCur = polyLine.get(startIndex+1);
-		pj.toPixels(mpCur, screenCoords);
+		pj.toMapPixels(mpCur, screenCoords);
 
 		/* First segment needs to get shrinked. */
 		shortenToDistance(screenCoords, screenCoordsBefore, shortenFirstTo, false);
@@ -207,7 +207,7 @@ public class ArrowPathCreator implements MathematicalConstants, PreferenceConsta
 
 		for(int i = startIndex + 1; i < endIndex; i++){
 			mpCur = polyLine.get(i);
-			pj.toPixels(mpCur, screenCoords);
+			pj.toMapPixels(mpCur, screenCoords);
 
 			/* Add the onTurn-Point as second. */
 			pathTurnSegment.lineTo(screenCoords.x, screenCoords.y);
@@ -217,7 +217,7 @@ public class ArrowPathCreator implements MathematicalConstants, PreferenceConsta
 		screenCoordsBefore.y = screenCoords.y;
 
 		mpCur = polyLine.get(endIndex);
-		pj.toPixels(mpCur, screenCoords);
+		pj.toMapPixels(mpCur, screenCoords);
 
 		/* Determine the Angle the peak of the turn-arrow will point to, BEFORE shrinking. */
 		final float endAngle = org.andnav2.nav.util.Util.calculateBearing(screenCoordsBefore, screenCoords) - 90.0f;

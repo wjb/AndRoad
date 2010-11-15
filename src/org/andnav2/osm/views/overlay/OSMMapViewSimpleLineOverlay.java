@@ -2,18 +2,19 @@
 package org.andnav2.osm.views.overlay;
 
 import org.andnav.osm.util.GeoPoint;
+import org.andnav.osm.views.OpenStreetMapView;
+import org.andnav.osm.views.overlay.OpenStreetMapViewOverlay;
 
 import org.andnav2.osm.adt.GeoLine;
-import org.andnav2.osm.views.OSMMapView;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.graphics.Point;
 
-
-public class OSMMapViewSimpleLineOverlay extends OSMMapViewOverlay {
+public class OSMMapViewSimpleLineOverlay extends OpenStreetMapViewOverlay {
 	// ===========================================================
 	// Constants
 	// ===========================================================
@@ -30,16 +31,17 @@ public class OSMMapViewSimpleLineOverlay extends OSMMapViewOverlay {
 	// Constructors
 	// ===========================================================
 
-	public OSMMapViewSimpleLineOverlay() {
-		this(null, null);
+	public OSMMapViewSimpleLineOverlay(final Context ctx) {
+		this(ctx, null, null);
 	}
 
 
-	public OSMMapViewSimpleLineOverlay(final GeoLine pGeoLine) {
-		this(pGeoLine.getGeoPointA(), pGeoLine.getGeoPointB());
+	public OSMMapViewSimpleLineOverlay(final Context ctx, final GeoLine pGeoLine) {
+		this(ctx, pGeoLine.getGeoPointA(), pGeoLine.getGeoPointB());
 	}
 
-	public OSMMapViewSimpleLineOverlay(final GeoPoint pGeoPointFrom, final GeoPoint pGeoPointTo) {
+	public OSMMapViewSimpleLineOverlay(final Context ctx, final GeoPoint pGeoPointFrom, final GeoPoint pGeoPointTo) {
+        super(ctx);
 		this.mGeoPointFrom = pGeoPointFrom;
 		this.mGeoPointTo = pGeoPointTo;
 	}
@@ -96,22 +98,17 @@ public class OSMMapViewSimpleLineOverlay extends OSMMapViewOverlay {
 	// ===========================================================
 
 	@Override
-	public void release() {
-		/* Nothing. */
-	}
-
-	@Override
-	protected void onDraw(final Canvas c, final OSMMapView osmv) {
+	protected void onDraw(final Canvas c, final OpenStreetMapView osmv) {
 		if(this.mGeoPointFrom != null && this.mGeoPointTo != null){
-			final Point from = osmv.getProjection().toPixels(this.mGeoPointFrom, null);
-			final Point to = osmv.getProjection().toPixels(this.mGeoPointTo, null);
+			final Point from = osmv.getProjection().toMapPixels(this.mGeoPointFrom, null);
+			final Point to = osmv.getProjection().toMapPixels(this.mGeoPointTo, null);
 
 			c.drawLine(from.x, from.y, to.x, to.y, this.mPaint);
 		}
 	}
 
 	@Override
-	protected void onDrawFinished(final Canvas c, final OSMMapView osmv) {
+	protected void onDrawFinished(final Canvas c, final OpenStreetMapView osmv) {
 		/* Nothing. */
 	}
 

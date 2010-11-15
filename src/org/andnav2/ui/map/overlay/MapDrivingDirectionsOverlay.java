@@ -5,14 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.andnav.osm.util.GeoPoint;
+import org.andnav.osm.views.OpenStreetMapView;
+import org.andnav.osm.views.OpenStreetMapView.OpenStreetMapViewProjection;
+import org.andnav.osm.views.overlay.OpenStreetMapViewOverlay;
 
 import org.andnav2.R;
 import org.andnav2.loc.AbstractAndNavLocationProvider;
 import org.andnav2.nav.Navigator;
 import org.andnav2.osm.util.constants.MathConstants;
-import org.andnav2.osm.views.OSMMapView;
-import org.andnav2.osm.views.OSMMapView.OSMMapViewProjection;
-import org.andnav2.osm.views.overlay.OSMMapViewOverlay;
 import org.andnav2.osm.views.overlay.util.DirectionArrowDescriptor;
 import org.andnav2.preferences.PreferenceConstants;
 import org.andnav2.sys.ors.adt.rs.Route;
@@ -39,7 +39,7 @@ import android.graphics.Paint.Style;
 import android.util.FloatMath;
 import android.util.Log;
 
-public class MapDrivingDirectionsOverlay extends OSMMapViewOverlay implements Constants, TimeConstants, MathematicalConstants, PreferenceConstants, GeoConstants {
+public class MapDrivingDirectionsOverlay extends OpenStreetMapViewOverlay implements Constants, TimeConstants, MathematicalConstants, PreferenceConstants, GeoConstants {
 	// ===========================================================
 	// Final Fields
 	// ===========================================================
@@ -104,6 +104,7 @@ public class MapDrivingDirectionsOverlay extends OSMMapViewOverlay implements Co
 	// ===========================================================
 
 	public MapDrivingDirectionsOverlay(final OpenStreetDDMap aMapAct, final int aDisplayQuality, final boolean aRealtimeNav, final DirectionArrowDescriptor pDirectionArrowDescriptor) {
+        super(aMapAct);
 		this.myDDMapActivity = aMapAct;
 		this.mRealtimeNav = aRealtimeNav;
 
@@ -215,7 +216,6 @@ public class MapDrivingDirectionsOverlay extends OSMMapViewOverlay implements Co
 	// Methods from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
 	public void release() {
 		this.mRoute = null;
 		this.MARKER_START.recycle();
@@ -227,13 +227,13 @@ public class MapDrivingDirectionsOverlay extends OSMMapViewOverlay implements Co
 	}
 
 	@Override
-	protected void onDrawFinished(final Canvas c, final OSMMapView osmv) {
+	protected void onDrawFinished(final Canvas c, final OpenStreetMapView osmv) {
 		// Nothing
 	}
 
 	/** This function does some fancy drawing, could be shortened a lot.*/
 	@Override
-	public void onDraw(final Canvas canvas, final OSMMapView mapView) {
+	public void onDraw(final Canvas canvas, final OpenStreetMapView mapView) {
 		try{
 			/* DEBUG Output */
 			//		final long startMs = System.currentTimeMillis();
@@ -292,7 +292,7 @@ public class MapDrivingDirectionsOverlay extends OSMMapViewOverlay implements Co
 				final GeoPoint startPoint = this.mRoute.getStart();
 				final GeoPoint endPoint = this.mRoute.getDestination();
 
-				final OSMMapViewProjection pj = mapView.getProjection();
+				final OpenStreetMapViewProjection pj = mapView.getProjection();
 
 				final ManagedLinePath pathDone = new ManagedLinePath();
 				final ManagedLinePath pathCurrentSegment = new ManagedLinePath();
@@ -333,27 +333,27 @@ public class MapDrivingDirectionsOverlay extends OSMMapViewOverlay implements Co
 
 						if(firstIndexPathDone != lastIndexPathDone) {
 							for(int i = firstIndexPathDone; i <= lastIndexPathDone; i += increment) {
-								pathDone.lineTo(pj.toPixels(polyLine.get(i), screenCoords));
+								pathDone.lineTo(pj.toMapPixels(polyLine.get(i), screenCoords));
 							}
 						}
-						pathDone.lineTo(pj.toPixels(polyLine.get(lastIndexPathDone), screenCoords)); // Ensures, that the this path and the next are connected.
+						pathDone.lineTo(pj.toMapPixels(polyLine.get(lastIndexPathDone), screenCoords)); // Ensures, that the this path and the next are connected.
 
 						if(myProjectedLocationGeoPoint != null){
-							pj.toPixels(myProjectedLocationGeoPoint, screenCoords);
+							pj.toMapPixels(myProjectedLocationGeoPoint, screenCoords);
 							pathDone.lineTo(screenCoords);
 							pathCurrentSegment.lineTo(screenCoords);
 						}
 
 						if(firstIndexPathCurrent != lastIndexPathCurrent) {
 							for(int i = firstIndexPathCurrent; i <= lastIndexPathCurrent; i += increment) {
-								pathCurrentSegment.lineTo(pj.toPixels(polyLine.get(i), screenCoords));
+								pathCurrentSegment.lineTo(pj.toMapPixels(polyLine.get(i), screenCoords));
 							}
 						}
-						pathCurrentSegment.lineTo(pj.toPixels(polyLine.get(lastIndexPathCurrent), screenCoords)); // Ensures, that the this path and the next are connected.
+						pathCurrentSegment.lineTo(pj.toMapPixels(polyLine.get(lastIndexPathCurrent), screenCoords)); // Ensures, that the this path and the next are connected.
 
 						if(firstIndexPathUpcoming != lastIndexPathUPcoming) {
 							for(int i = firstIndexPathUpcoming; i <= lastIndexPathUPcoming; i += increment) {
-								pathUpcoming.lineTo(pj.toPixels(polyLine.get(i), screenCoords));
+								pathUpcoming.lineTo(pj.toMapPixels(polyLine.get(i), screenCoords));
 							}
 						}
 
@@ -459,11 +459,11 @@ public class MapDrivingDirectionsOverlay extends OSMMapViewOverlay implements Co
 						//					minLongitude = Math.min(myLon, minLongitude);
 						//
 						//					int x1, x2, y1, y2;
-						//					pj.toPixels(new GeoPoint(minLatitude, minLongitude), screenCoords);
+						//					pj.toMapPixels(new GeoPoint(minLatitude, minLongitude), screenCoords);
 						//					x1 = screenCoords.x;
 						//					y1 = screenCoords.y;
 						//
-						//					pj.toPixels(new GeoPoint(maxLatitude, maxLongitude), screenCoords);
+						//					pj.toMapPixels(new GeoPoint(maxLatitude, maxLongitude), screenCoords);
 						//					x2 = screenCoords.x;
 						//					y2 = screenCoords.y;
 						////					Log.d(DEBUGTAG, "x1=" + x1 + ", y1=" + y1 + ", x2=" + x2 + ", y2="+ y2);
@@ -477,7 +477,7 @@ public class MapDrivingDirectionsOverlay extends OSMMapViewOverlay implements Co
 
 					{ /* Print Pin-MArkers. */
 						/* Finally draw a fancy PIN to mark the end... */
-						pj.toPixels(endPoint, screenCoords);
+						pj.toMapPixels(endPoint, screenCoords);
 
 						canvas.drawBitmap(this.MARKER_END,
 								screenCoords.x - MARKER_DESTINATION_HOTSPOT_X,
@@ -487,7 +487,7 @@ public class MapDrivingDirectionsOverlay extends OSMMapViewOverlay implements Co
 						/* ...for all via-points. */
 						final List<GeoPoint> vias = this.mRoute.getVias();
 						for(final GeoPoint mpVia : vias){
-							pj.toPixels(mpVia, screenCoords);
+							pj.toMapPixels(mpVia, screenCoords);
 
 							canvas.drawBitmap(this.MARKER_VIA,
 									screenCoords.x - MARKER_VIA_HOTSPOT_X,
@@ -497,7 +497,7 @@ public class MapDrivingDirectionsOverlay extends OSMMapViewOverlay implements Co
 
 
 						/* ...and the start of the route.*/
-						pj.toPixels(startPoint, screenCoords);
+						pj.toMapPixels(startPoint, screenCoords);
 
 						canvas.drawBitmap(this.MARKER_START,
 								screenCoords.x - MARKER_START_HOTSPOT_X,
@@ -516,14 +516,14 @@ public class MapDrivingDirectionsOverlay extends OSMMapViewOverlay implements Co
 
 				if(myCurrentLocationGeoPoint != null){
 					/* Draw ourself to our real location. */
-					pj.toPixels(myCurrentLocationGeoPoint, screenCoords);
+					pj.toMapPixels(myCurrentLocationGeoPoint, screenCoords);
 
 
 					/* Draw the HorizontalPositioningError if we have a location. */
 					if(this.mShowAccuracy){
 
 						final float accuracyRadius = (andNavLocationProvider.hasHorizontalPositioningError())
-						? pj.meterDistanceToScreenPixelDistance(andNavLocationProvider.getHorizontalPositioningError())
+						? pj.metersToEquatorPixels(andNavLocationProvider.getHorizontalPositioningError())
 								: RADIUS_NO_ACCURACY;
 
 						/* Only draw if the DirectionArrow doesn't cover it. */

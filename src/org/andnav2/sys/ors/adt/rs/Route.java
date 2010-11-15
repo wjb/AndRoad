@@ -28,7 +28,7 @@ public class Route implements Parcelable, Serializable {
 	// Constants
 	// ===========================================================
 
-    static final long serialVersionUID = 1L;
+    static final long serialVersionUID = 4L;
 	protected static final int LATITUDE_OVERMAX = (int)(81 * 1E6);
 	protected static final int LONGITUDE_OVERMAX = (int)(181 * 1E6);
 

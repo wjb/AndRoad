@@ -3,9 +3,11 @@ package org.andnav2.ui.map;
 
 import java.util.List;
 
+import org.andnav.osm.views.overlay.OpenStreetMapViewOverlay;
+import org.andnav.osm.views.util.OpenStreetMapRendererFactory;
+
 import org.andnav2.R;
 import org.andnav2.osm.OpenStreetMapActivity;
-import org.andnav2.osm.views.overlay.OSMMapViewOverlay;
 import org.andnav2.osm.views.overlay.OSMMapViewSimpleTraceOverlay;
 import org.andnav2.preferences.PreferenceConstants;
 import org.andnav2.preferences.Preferences;
@@ -62,13 +64,13 @@ public abstract class OpenStreetMapAndNavBaseActivity extends OpenStreetMapActiv
 
 		this.onSetupContentView();
 
-		final List<OSMMapViewOverlay> overlays = this.mOSMapView.getOverlays();
+		final List<OpenStreetMapViewOverlay> overlays = this.mOSMapView.getOverlays();
 
 		this.mSimpleTraceOverlay = new OSMMapViewSimpleTraceOverlay(this, super.getRouteRecorder().getRecordedGeoPoints(), PreferenceConstants.PREF_DISPLAYQUALITY_HIGH);
 		this.mSimpleTraceOverlay.setVisible(false);
 		overlays.add(this.mSimpleTraceOverlay);
 
-		this.mColorSchemeOverlay = new ColorSchemeOverlay();
+		this.mColorSchemeOverlay = new ColorSchemeOverlay(this);
 		overlays.add(this.mColorSchemeOverlay);
 
 		this.mMenuVoiceEnabled = Preferences.getMenuVoiceEnabled(this);

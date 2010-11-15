@@ -4,11 +4,12 @@ package org.andnav2.preferences;
 import java.util.HashMap;
 
 import org.andnav.osm.util.GeoPoint;
+import org.andnav.osm.views.util.IOpenStreetMapRendererInfo;
+import org.andnav.osm.views.util.OpenStreetMapRendererFactory;
 
 import org.andnav2.R;
 import org.andnav2.adt.UnitSystem;
 import org.andnav2.osm.views.overlay.util.DirectionArrowDescriptor;
-import org.andnav2.osm.views.tiles.OSMMapTileProviderInfo;
 import org.andnav2.osm.views.tiles.caching.OSMMapTileFilesystemCache;
 import org.andnav2.osm.views.tiles.caching.OSMMapTileFilesystemCache.StoragePolicy;
 import org.andnav2.sys.ors.adt.ORSServer;
@@ -773,20 +774,32 @@ public class Preferences implements Constants, PreferenceConstants {
 	// Stored-ProviderInfo
 	// ===========================================================
 
-	public static OSMMapTileProviderInfo getMapViewProviderInfoWhereAmI(final Context ctx){
-		return OSMMapTileProviderInfo.fromName(getInstance(ctx).getString(PREF_OSMMAPVIEW_PROVIDERINFO_WHEREAMI_ID, PREF_OSMMAPVIEW_PROVIDERINFO_WHEREAMI_DEFAULT));
+	public static IOpenStreetMapRendererInfo getMapViewProviderInfoWhereAmI(final Context ctx){
+ 		IOpenStreetMapRendererInfo res = null;
+        try {
+            res = OpenStreetMapRendererFactory.getRenderer(getInstance(ctx).getString(PREF_OSMMAPVIEW_PROVIDERINFO_WHEREAMI_ID, PREF_OSMMAPVIEW_PROVIDERINFO_WHEREAMI_DEFAULT));
+        } catch (Exception e) {
+            res = OpenStreetMapRendererFactory.DEFAULT_RENDERER;
+        }
+        return res;
 	}
 
-	public static void saveMapViewProviderInfoWhereAmI(final Context ctx, final OSMMapTileProviderInfo aInfo){
-		getEditorInstance(ctx).putString(PREF_OSMMAPVIEW_PROVIDERINFO_WHEREAMI_ID, aInfo.NAME).commit();
+	public static void saveMapViewProviderInfoWhereAmI(final Context ctx, final IOpenStreetMapRendererInfo aInfo){
+		getEditorInstance(ctx).putString(PREF_OSMMAPVIEW_PROVIDERINFO_WHEREAMI_ID, aInfo.name()).commit();
 	}
 
-	public static OSMMapTileProviderInfo getMapViewProviderInfoDDMap(final Context ctx){
-		return OSMMapTileProviderInfo.fromName(getInstance(ctx).getString(PREF_OSMMAPVIEW_PROVIDERINFO_DDMAP_ID, PREF_OSMMAPVIEW_PROVIDERINFO_DDMAP_DEFAULT));
+	public static IOpenStreetMapRendererInfo getMapViewProviderInfoDDMap(final Context ctx){
+ 		IOpenStreetMapRendererInfo res = null;
+        try {
+            res = OpenStreetMapRendererFactory.getRenderer(getInstance(ctx).getString(PREF_OSMMAPVIEW_PROVIDERINFO_DDMAP_ID, PREF_OSMMAPVIEW_PROVIDERINFO_DDMAP_DEFAULT));
+        } catch (Exception e) {
+            res = OpenStreetMapRendererFactory.DEFAULT_RENDERER;
+        }
+        return res;
 	}
 
-	public static void saveMapViewProviderInfoDDMap(final Context ctx, final OSMMapTileProviderInfo aInfo){
-		getEditorInstance(ctx).putString(PREF_OSMMAPVIEW_PROVIDERINFO_DDMAP_ID, aInfo.NAME).commit();
+	public static void saveMapViewProviderInfoDDMap(final Context ctx, final IOpenStreetMapRendererInfo aInfo){
+		getEditorInstance(ctx).putString(PREF_OSMMAPVIEW_PROVIDERINFO_DDMAP_ID, aInfo.name()).commit();
 	}
 
 	// ===========================================================

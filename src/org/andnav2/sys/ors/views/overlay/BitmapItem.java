@@ -3,8 +3,7 @@ package org.andnav2.sys.ors.views.overlay;
 import junit.framework.Assert;
 
 import org.andnav.osm.util.GeoPoint;
-
-import org.andnav2.osm.views.OSMMapView.OSMMapViewProjection;
+import org.andnav.osm.views.OpenStreetMapView.OpenStreetMapViewProjection;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -61,13 +60,13 @@ public class BitmapItem {
 	// Methods from SuperClass/Interfaces
 	// ===========================================================
 
-	public void drawToCanvas(final Canvas c, final OSMMapViewProjection pj) {
+	public void drawToCanvas(final Canvas c, final OpenStreetMapViewProjection pj) {
         final Point screenCoords = new Point();
-        pj.toPixels(this.mCenter, screenCoords);
+        pj.toMapPixels(this.mCenter, screenCoords);
         c.drawBitmap(this.icon, screenCoords.x, screenCoords.y, this.mPaint);
 	}
 
-    public boolean onSingleTapUp(final MotionEvent e, final OSMMapViewProjection pj) {
+    public boolean onSingleTapUp(final MotionEvent e, final OpenStreetMapViewProjection pj) {
         return false;
     }
 

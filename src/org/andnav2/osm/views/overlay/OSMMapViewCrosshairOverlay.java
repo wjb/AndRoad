@@ -1,15 +1,19 @@
 // Created by plusminus on 17:10:58 - 17.12.2008
 package org.andnav2.osm.views.overlay;
 
-import org.andnav2.osm.views.OSMMapView;
+import org.andnav.osm.util.GeoPoint;
+import org.andnav.osm.views.OpenStreetMapView;
+import org.andnav.osm.views.OpenStreetMapView.OpenStreetMapViewProjection;
+import org.andnav.osm.views.overlay.OpenStreetMapViewOverlay;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
+import android.graphics.Point;
 
-
-public class OSMMapViewCrosshairOverlay extends OSMMapViewOverlay {
+public class OSMMapViewCrosshairOverlay extends OpenStreetMapViewOverlay {
 	// ===========================================================
 	// Constants
 	// ===========================================================
@@ -25,17 +29,19 @@ public class OSMMapViewCrosshairOverlay extends OSMMapViewOverlay {
 	// Constructors
 	// ===========================================================
 
-	public OSMMapViewCrosshairOverlay(){
-		this(Color.BLACK, 1, 0);
+    public OSMMapViewCrosshairOverlay(final Context ctx){
+		this(ctx, Color.BLACK, 1, 0);
 	}
 
-	public OSMMapViewCrosshairOverlay(final int aCrosshairColor, final int aCrosshairWidth, final int aCenterCircleRadius) {
-		this(aCrosshairColor, aCrosshairWidth, aCenterCircleRadius, Style.STROKE, true);
+	public OSMMapViewCrosshairOverlay(final Context ctx, final int aCrosshairColor, final int aCrosshairWidth, final int aCenterCircleRadius) {
+		this(ctx, aCrosshairColor, aCrosshairWidth, aCenterCircleRadius, Style.STROKE, true);
 	}
 
-	public OSMMapViewCrosshairOverlay(final int aCrosshairColor, final int aCrosshairWidth, final int aCenterCircleRadius, final Style aCenterCircleStyle, final boolean aAntialiasing) {
+	public OSMMapViewCrosshairOverlay(final Context ctx, final int aCrosshairColor, final int aCrosshairWidth, final int aCenterCircleRadius, final Style aCenterCircleStyle, final boolean aAntialiasing) {
+        super(ctx);
+
 		this.mPaint = new Paint();
-		this.mPaint.setStyle(Style.STROKE);
+		this.mPaint.setStyle(aCenterCircleStyle);
 		this.mPaint.setAntiAlias(aAntialiasing);
 		this.mPaint.setColor(aCrosshairColor);
 		this.mPaint.setStrokeWidth(aCrosshairWidth);
@@ -51,7 +57,7 @@ public class OSMMapViewCrosshairOverlay extends OSMMapViewOverlay {
 	}
 
 	public void setCrosshairWidth(final int aWidth){
-		this.mPaint.setColor(aWidth);
+		this.mPaint.setStrokeWidth(aWidth);
 	}
 
 	// ===========================================================
@@ -59,35 +65,34 @@ public class OSMMapViewCrosshairOverlay extends OSMMapViewOverlay {
 	// ===========================================================
 
 	@Override
-	public void release() {
-		// Nothing to release
-	}
+	protected void onDraw(final Canvas canvas, final OpenStreetMapView osmv) {
+        final OpenStreetMapViewProjection pj = osmv.getProjection();
+        final GeoPoint mapcenter = osmv.getMapCenter();
+        final Point mappointcenter = pj.toMapPixels(mapcenter, null);
 
-	@Override
-	protected void onDraw(final Canvas c, final OSMMapView osmv) {
-		final int height = osmv.getHeight();
-		final int width = osmv.getWidth();
+		final int height = mappointcenter.y * 2;
+		final int width = mappointcenter.x * 2;
 
-		final int height_2 = height >> 1;
-		final int width_2 = width >> 1;
+		final int height_2 = mappointcenter.y;
+		final int width_2 = mappointcenter.x;
 
-		c.drawCircle(width_2, height_2, this.mCenterCircleRadius, this.mPaint);
+		canvas.drawCircle(width_2, height_2, this.mCenterCircleRadius, this.mPaint);
 
 		/* Draw line from left to the centercircle. */
-		c.drawLine(0, height_2, width_2 - this.mCenterCircleRadius, height_2, this.mPaint);
+		canvas.drawLine(0, height_2, width_2 - this.mCenterCircleRadius, height_2, this.mPaint);
 
 		/* Draw line from right to the centercircle. */
-		c.drawLine(width_2 + this.mCenterCircleRadius, height_2, width, height_2, this.mPaint);
+		canvas.drawLine(width_2 + this.mCenterCircleRadius, height_2, width, height_2, this.mPaint);
 
 		/* Draw line from top to the centercircle. */
-		c.drawLine(width_2, 0, width_2, height_2 - this.mCenterCircleRadius, this.mPaint);
+		canvas.drawLine(width_2, 0, width_2, height_2 - this.mCenterCircleRadius, this.mPaint);
 
 		/* Draw line from bottom to the centercircle. */
-		c.drawLine(width_2, height_2 + this.mCenterCircleRadius, width_2, height, this.mPaint);
+		canvas.drawLine(width_2, height_2 + this.mCenterCircleRadius, width_2, height, this.mPaint);
 	}
 
 	@Override
-	protected void onDrawFinished(final Canvas c, final OSMMapView osmv) {
+	protected void onDrawFinished(final Canvas c, final OpenStreetMapView osmv) {
 		// Nothing to draw.
 	}
 

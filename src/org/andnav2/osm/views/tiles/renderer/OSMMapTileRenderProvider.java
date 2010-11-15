@@ -4,10 +4,11 @@ package org.andnav2.osm.views.tiles.renderer;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import org.andnav.osm.tileprovider.OpenStreetMapTile;
+
 import org.andnav2.osm.util.constants.OSMConstants;
 import org.andnav2.osm.views.tiles.OSMAbstractMapTileProvider;
 import org.andnav2.osm.views.tiles.OSMMapTileProviderInfo;
-import org.andnav2.osm.views.tiles.adt.OSMTileInfo;
 import org.andnav2.osm.views.tiles.caching.OSMMapTileFilesystemCache;
 import org.andnav2.osm.views.util.StreamUtils;
 import org.andnav2.osm.views.util.constants.OSMMapViewConstants;
@@ -72,7 +73,7 @@ public class OSMMapTileRenderProvider extends OSMAbstractMapTileProvider impleme
 	}
 
 	@Override
-	public boolean requestMapTileAsync(final OSMTileInfo pTileInfo, final String aRawTileURLString, final String aSaveableURLString, final Handler callback) {
+	public boolean requestMapTileAsync(final OpenStreetMapTile pTileInfo, final String aRawTileURLString, final String aSaveableURLString, final Handler callback) {
 		if(this.mPending.contains(aRawTileURLString)) {
 			return false;
 		}
@@ -88,7 +89,7 @@ public class OSMMapTileRenderProvider extends OSMAbstractMapTileProvider impleme
 	// ===========================================================
 
 	/** Sets the Child-ImageView of this to the URL passed. */
-	protected void getRemoteImageAsync(final OSMTileInfo pTileInfo, final String aRawTileURLString, final String aSaveableURLString, final Handler callback) {
+	protected void getRemoteImageAsync(final OpenStreetMapTile pTileInfo, final String aRawTileURLString, final String aSaveableURLString, final Handler callback) {
 		this.mThreadPool.execute(new RenderRunner(pTileInfo, aRawTileURLString, callback, aSaveableURLString));
 	}
 
@@ -98,13 +99,13 @@ public class OSMMapTileRenderProvider extends OSMAbstractMapTileProvider impleme
 
 	private class RenderRunner implements Runnable, Comparable<RenderRunner>{
 
-		private final OSMTileInfo mTileInfo;
+		private final OpenStreetMapTile mTileInfo;
 		private final String mSaveableURLString;
 		private final String mRawURLString;
 		private final Handler mCallback;
 		private final long mTimeStamp = System.currentTimeMillis();
 
-		public RenderRunner(final OSMTileInfo pTileInfo, final String aRawTileURLString, final Handler aCallback, final String aSaveableURLString) {
+		public RenderRunner(final OpenStreetMapTile pTileInfo, final String aRawTileURLString, final Handler aCallback, final String aSaveableURLString) {
 			this.mTileInfo = pTileInfo;
 			this.mRawURLString = aRawTileURLString;
 			this.mCallback = aCallback;
@@ -133,8 +134,8 @@ public class OSMMapTileRenderProvider extends OSMAbstractMapTileProvider impleme
 				OSMMapTileRenderProvider.this.mPending.remove(this.mRawURLString);
 
 				final Message successMessage = Message.obtain(this.mCallback, MAPTILEPROVIDER_SUCCESS_ID);
-				successMessage.arg1 = this.mTileInfo.x;
-				successMessage.arg2 = this.mTileInfo.y;
+				successMessage.arg1 = this.mTileInfo.getX();
+				successMessage.arg2 = this.mTileInfo.getY();
 				successMessage.sendToTarget();
 			} catch (final Exception e) {
 				OSMMapTileRenderProvider.this.mPending.remove(this.mRawURLString);

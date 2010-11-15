@@ -2,6 +2,7 @@
 package org.andnav2.osm;
 
 import org.andnav.osm.util.GeoPoint;
+import org.andnav.osm.views.OpenStreetMapView;
 
 import org.andnav2.adt.AndNavLocation;
 import org.andnav2.loc.AbstractAndNavLocationProvider;
@@ -10,7 +11,6 @@ import org.andnav2.loc.AbstractAndNavLocationProvider.AndNavLocationCallback;
 import org.andnav2.osm.api.traces.TraceManager;
 import org.andnav2.osm.api.traces.util.RouteRecorder;
 import org.andnav2.osm.util.constants.OSMConstants;
-import org.andnav2.osm.views.OSMMapView;
 import org.andnav2.osm.views.util.constants.OSMMapViewConstants;
 import org.andnav2.ui.common.DataStateChangedListener;
 import org.andnav2.ui.common.MyDataStateChangedWatcher;
@@ -40,7 +40,7 @@ public abstract class OpenStreetMapActivity extends Activity implements DataStat
 
 	protected AbstractAndNavLocationProvider mLocationProvider;
 
-	protected OSMMapView mOSMapView;
+	protected OpenStreetMapView mOSMapView;
 
 	private final RouteRecorder mRouteRecorder = new RouteRecorder();
 
@@ -160,13 +160,6 @@ public abstract class OpenStreetMapActivity extends Activity implements DataStat
 	// ===========================================================
 
 	@Override
-	public void onLowMemory() {
-		Log.d(DEBUGTAG, "[onLowMemory] FreeMemory: " + Runtime.getRuntime().freeMemory());
-		this.mOSMapView.getMapTileManager().onLowMemory();
-		super.onLowMemory();
-	}
-
-	@Override
 	protected void onResume() {
 		super.onResume();
 		this.mLocationProvider.onResume();
@@ -218,8 +211,6 @@ public abstract class OpenStreetMapActivity extends Activity implements DataStat
 		if(this.mDoGPSRecordingAndContributing){
 			TraceManager.contributeAsync(this, this.mRouteRecorder.getRecordedGeoPoints());
 		}
-
-		this.mOSMapView.release();
 	}
 
 	/**
@@ -255,23 +246,23 @@ public abstract class OpenStreetMapActivity extends Activity implements DataStat
 		switch(keyCode){
 			case KeyEvent.KEYCODE_VOLUME_DOWN:
 				if(this.mTreatVolumeKeysAsZoom){
-					this.mOSMapView.zoomIn();
+					this.mOSMapView.getController().zoomIn();
 					return true;
 				}
 				break;
 			case KeyEvent.KEYCODE_VOLUME_UP:
 				if(this.mTreatVolumeKeysAsZoom){
-					this.mOSMapView.zoomOut();
+					this.mOSMapView.getController().zoomOut();
 					return true;
 				}
 				break;
 			case KeyEvent.KEYCODE_I:
 				// Zooming In
-				this.mOSMapView.zoomIn();
+				this.mOSMapView.getController().zoomIn();
 				return true;
 			case KeyEvent.KEYCODE_O:
 				// Zooming Out
-				this.mOSMapView.zoomOut();
+				this.mOSMapView.getController().zoomOut();
 				return true;
 		}
 

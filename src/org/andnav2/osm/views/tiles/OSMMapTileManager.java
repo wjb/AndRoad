@@ -1,10 +1,11 @@
 // Created by plusminus on 21:46:22 - 25.09.2008
 package org.andnav2.osm.views.tiles;
 
+import org.andnav.osm.tileprovider.OpenStreetMapTile;
+
 import org.andnav2.R;
 import org.andnav2.osm.exceptions.ExternalStorageNotMountedException;
 import org.andnav2.osm.util.constants.OSMConstants;
-import org.andnav2.osm.views.tiles.adt.OSMTileInfo;
 import org.andnav2.osm.views.tiles.caching.OSMMapTileFilesystemCache;
 import org.andnav2.osm.views.tiles.caching.OSMMapTileMemoryCache;
 import org.andnav2.osm.views.tiles.caching.OSMMapTileFilesystemCache.StoragePolicy;
@@ -146,7 +147,7 @@ public class OSMMapTileManager implements OSMConstants, OSMMapViewConstants{
 	 * @param h the Handler to send a message to success or failure.
 	 * @return <code>false</code>, when MapTile is already pending for download or already existing on the FS. <code>false</code> otherwise.
 	 */
-	public boolean preloadMaptileAsync(final OSMTileInfo aTileInfo, final Handler h){
+	public boolean preloadMaptileAsync(final OpenStreetMapTile aTileInfo, final Handler h){
 		final String aRawTileURLString = this.mProviderInfo.getTileURLString(aTileInfo);
 		final String aSaveableURLString = this.mProviderInfo.getSaveableTileURLString(aTileInfo, this.mFSTileCache.getStoragePolicy());
 
@@ -163,7 +164,7 @@ public class OSMMapTileManager implements OSMConstants, OSMMapViewConstants{
 	 * @param zoomLevel used together with <code>coords</code> to determine the final url. <b>Example:</b> <code>15</code> will result i.e. in <code>http://c.tile.openstreetmap.org/<b>15</b>/17171/11187.png</code>
 	 * @return Either: <ul><li><code>MAPTILE_DOWNLOADING</code> when the tile is currently being downloaded. </li><li><code>MAPTILE_LOADING</code> if the tile is currently being loaded from the FileSystem to the MemoryCache.</li><li> The actual bitmap if already was downloaded and loaded to the MemoryCache.</li></ul>
 	 */
-	public Bitmap getMapTile(final OSMTileInfo aTileInfo) {
+	public Bitmap getMapTile(final OpenStreetMapTile aTileInfo) {
 		final String aSaveableTileURLString = this.mProviderInfo.getSaveableTileURLString(aTileInfo, this.mFSTileCache.getStoragePolicy());
 
 		final Bitmap ret = this.mMemoryTileCache.getMapTile(aSaveableTileURLString);
@@ -216,7 +217,7 @@ public class OSMMapTileManager implements OSMConstants, OSMMapViewConstants{
 			}
 
 			/* If possible, try to create a bitmap from the parent and put it to the memcache. */
-			if(aTileInfo.zoom > 0 && retDirty == null && !this.mFSTileCache.isPending(formattedTileURLStringDirty)) {
+			if(aTileInfo.getZoomLevel() > 0 && retDirty == null && !this.mFSTileCache.isPending(formattedTileURLStringDirty)) {
 				this.mFSTileCache.tryLoadMapTileByParentToMemCacheAsync(aTileInfo, aSaveableTileURLString, this.mLoadCallbackHandler);
 			}
 		}

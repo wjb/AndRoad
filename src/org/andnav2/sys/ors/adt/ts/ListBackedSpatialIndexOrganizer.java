@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.andnav.osm.util.BoundingBoxE6;
 import org.andnav.osm.util.GeoPoint;
+import org.andnav.osm.views.overlay.OpenStreetMapViewOverlayItem;
 
 import org.andnav2.util.constants.Constants;
 
@@ -27,7 +28,7 @@ import com.att.research.storagemanager.PropertySet;
  *
  * @param <T>
  */
-public class ListBackedSpatialIndexOrganizer<T extends GeoPoint> implements ISpatialDataOrganizer<T> {
+public class ListBackedSpatialIndexOrganizer<T extends OpenStreetMapViewOverlayItem> implements ISpatialDataOrganizer<T> {
 	// ===========================================================
 	// Constants
 	// ===========================================================
@@ -120,8 +121,8 @@ public class ListBackedSpatialIndexOrganizer<T extends GeoPoint> implements ISpa
 			Log.d(Constants.DEBUGTAG, "Inserting: " + i);
 			final T ti = this.mFeatureList.get(i);
 
-			coords[0] = ti.getLatitudeE6() / 1E6;
-			coords[1] = ti.getLongitudeE6() / 1E6;
+			coords[0] = ti.getPoint().getLatitudeE6() / 1E6;
+			coords[1] = ti.getPoint().getLongitudeE6() / 1E6;
 			this.mSpatialIndex.insertData(null, new Point(coords), i);
 		}
 	}

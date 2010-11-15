@@ -6,15 +6,16 @@ import java.util.List;
 
 import junit.framework.Assert;
 
-import org.andnav2.osm.views.OSMMapView;
-import org.andnav2.osm.views.OSMMapView.OSMMapViewProjection;
-import org.andnav2.osm.views.overlay.OSMMapViewOverlay;
+import org.andnav.osm.views.OpenStreetMapView;
+import org.andnav.osm.views.OpenStreetMapView.OpenStreetMapViewProjection;
+import org.andnav.osm.views.overlay.OpenStreetMapViewOverlay;
+
 import org.andnav2.sys.ors.adt.aoi.AreaOfInterest;
 
+import android.content.Context;
 import android.graphics.Canvas;
 
-
-public class AreaOfInterestOverlay extends OSMMapViewOverlay{
+public class AreaOfInterestOverlay extends OpenStreetMapViewOverlay {
 	// ===========================================================
 	// Constants
 	// ===========================================================
@@ -30,16 +31,18 @@ public class AreaOfInterestOverlay extends OSMMapViewOverlay{
 	// Constructors
 	// ===========================================================
 
-	public AreaOfInterestOverlay(){
-		this(new ArrayList<AreaOfInterest>());
+	public AreaOfInterestOverlay(final Context ctx){
+		this(ctx, new ArrayList<AreaOfInterest>());
 	}
 
-	public AreaOfInterestOverlay(final AreaOfInterest pAOI){
+	public AreaOfInterestOverlay(final Context ctx, final AreaOfInterest pAOI){
+        super(ctx);
 		this.mAOIs = new ArrayList<AreaOfInterest>();
 		this.mAOIs.add(pAOI);
 	}
 
-	public AreaOfInterestOverlay(final ArrayList<AreaOfInterest> pAOIs){
+	public AreaOfInterestOverlay(final Context ctx, final ArrayList<AreaOfInterest> pAOIs){
+        super(ctx);
 		Assert.assertNotNull(pAOIs);
 		this.mAOIs = pAOIs;
 	}
@@ -64,14 +67,13 @@ public class AreaOfInterestOverlay extends OSMMapViewOverlay{
 	// Methods from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
 	public void release() {
 		this.mAOIs.clear();
 	}
 
 	@Override
-	protected void onDraw(final Canvas c, final OSMMapView osmv) {
-		final OSMMapViewProjection pj = osmv.getProjection();
+	protected void onDraw(final Canvas c, final OpenStreetMapView osmv) {
+		final OpenStreetMapViewProjection pj = osmv.getProjection();
 
 		final int limit = Math.min(this.mDrawnAreasLimit, this.mAOIs.size());
 		for(int i = 0; i < limit; i++){
@@ -81,7 +83,7 @@ public class AreaOfInterestOverlay extends OSMMapViewOverlay{
 	}
 
 	@Override
-	protected void onDrawFinished(final Canvas c, final OSMMapView osmv) {
+	protected void onDrawFinished(final Canvas c, final OpenStreetMapView osmv) {
 		// Nothing
 	}
 

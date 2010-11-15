@@ -18,7 +18,7 @@
 		android:id="@+id/rotator_ddmap"
 		android:layout_width="fill_parent"
 		android:layout_height="fill_parent" >
-	    <view class="org.andnav2.osm.views.OSMMapView" 
+	    <view class="org.andnav.osm.views.OpenStreetMapView" 
 	    	android:id="@+id/map_ddmap"
 	        android:layout_width="fill_parent" 
 	        android:layout_height="fill_parent"
@@ -74,19 +74,13 @@
 	</LinearLayout>
 
     <!-- Static Navigation Control, Upper Middle -->
-	<view class="org.andnav2.osm.views.overlay.OSMMapViewItemizedOverlayControlView" 
+	<view class="org.andnav.osm.views.overlay.OpenStreetMapViewItemizedOverlayControlView" 
 		android:id="@+id/itemizedoverlaycontrol_ddmap"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:visibility="gone"
 		android:layout_alignParentTop="true"
 		android:layout_centerHorizontal="true"/>
-	<view class="org.andnav2.osm.views.OSMMapViewScaleIndicatorView" 
-		android:id="@+id/scaleindicatorview_ddmap"
-		android:layout_below="@id/itemizedoverlaycontrol_ddmap"
-		android:layout_centerHorizontal="true"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"/>
 		
 	<!-- Zoom Controls, Upper Right edge -->
 	<ImageView

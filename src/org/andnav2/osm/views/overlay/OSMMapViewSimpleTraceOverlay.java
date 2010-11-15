@@ -3,11 +3,12 @@ package org.andnav2.osm.views.overlay;
 import java.util.List;
 
 import org.andnav.osm.util.GeoPoint;
+import org.andnav.osm.views.OpenStreetMapView;
+import org.andnav.osm.views.OpenStreetMapView.OpenStreetMapViewProjection;
+import org.andnav.osm.views.overlay.OpenStreetMapViewOverlay;
 
 import org.andnav2.R;
 import org.andnav2.osm.OpenStreetMapActivity;
-import org.andnav2.osm.views.OSMMapView;
-import org.andnav2.osm.views.OSMMapView.OSMMapViewProjection;
 import org.andnav2.preferences.PreferenceConstants;
 import org.andnav2.ui.map.overlay.util.ManagedLinePath;
 import org.andnav2.util.constants.Constants;
@@ -27,7 +28,7 @@ import android.graphics.Paint.Cap;
  * @author Nicolas Gramlich
  *
  */
-public class OSMMapViewSimpleTraceOverlay extends OSMMapViewOverlay implements Constants, TimeConstants, MathematicalConstants, PreferenceConstants, GeoConstants {
+public class OSMMapViewSimpleTraceOverlay extends OpenStreetMapViewOverlay implements Constants, TimeConstants, MathematicalConstants, PreferenceConstants, GeoConstants {
 	// ===========================================================
 	// Final Fields
 	// ===========================================================
@@ -54,6 +55,7 @@ public class OSMMapViewSimpleTraceOverlay extends OSMMapViewOverlay implements C
 	// ===========================================================
 
 	public OSMMapViewSimpleTraceOverlay(final OpenStreetMapActivity aMapAct, final List<GeoPoint> aPolyline, final int aDisplayQuality) {
+        super(aMapAct);
 		this.mMapActivity = aMapAct;
 		this.mPolyline = aPolyline;
 
@@ -96,20 +98,19 @@ public class OSMMapViewSimpleTraceOverlay extends OSMMapViewOverlay implements C
 	// Methods from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
 	public void release() {
 		this.MARKER_START.recycle();
 		this.mMapActivity = null;
 	}
 
 	@Override
-	protected void onDrawFinished(final Canvas c, final OSMMapView osmv) {
+	protected void onDrawFinished(final Canvas c, final OpenStreetMapView osmv) {
 		// Nothing
 	}
 
 	/** This function does some fancy drawing, could be shortened a lot.*/
 	@Override
-	public void onDraw(final Canvas canvas, final OSMMapView mapView) {
+	public void onDraw(final Canvas canvas, final OpenStreetMapView mapView) {
 		/* Get the width/height of the underlying MapView.*/
 		//		final int mapViewWidth = this.mMapActivity.getMapViewWidth();
 		//		final int mapViewHeight = this.mMapActivity.getMapViewHeight();
@@ -119,7 +120,7 @@ public class OSMMapViewSimpleTraceOverlay extends OSMMapViewOverlay implements C
 		final Point screenCoords = new Point();
 
 
-		final OSMMapViewProjection pj = mapView.getProjection();
+		final OpenStreetMapViewProjection pj = mapView.getProjection();
 
 		final ManagedLinePath path = new ManagedLinePath();
 
@@ -135,11 +136,11 @@ public class OSMMapViewSimpleTraceOverlay extends OSMMapViewOverlay implements C
 	
 			int i = 0;
 			while(i < polyLineLength){
-				path.lineTo(pj.toPixels(polyLine.get(i), screenCoords));
+				path.lineTo(pj.toMapPixels(polyLine.get(i), screenCoords));
 				i += increment;
 			}
 	
-			path.lineTo(pj.toPixels(polyLine.get(polyLineLength - 1), screenCoords));
+			path.lineTo(pj.toMapPixels(polyLine.get(polyLineLength - 1), screenCoords));
 	
 			/* Used for transforming all paths. */
 			//		final float scaleFactor = (this.mapRotationDegree == Constants.NOT_SET)
@@ -153,7 +154,7 @@ public class OSMMapViewSimpleTraceOverlay extends OSMMapViewOverlay implements C
 	
 			{ /* Print Pin-Markers. */
 				/* ...for the start of the route.*/
-				pj.toPixels(polyLine.get(0), screenCoords);
+				pj.toMapPixels(polyLine.get(0), screenCoords);
 	
 				canvas.drawBitmap(this.MARKER_START,
 						screenCoords.x - MARKER_START_HOTSPOT_X,

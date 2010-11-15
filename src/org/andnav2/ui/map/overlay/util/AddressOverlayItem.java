@@ -2,13 +2,13 @@
 package org.andnav2.ui.map.overlay.util;
 
 import org.andnav.osm.util.GeoPoint;
+import org.andnav.osm.views.overlay.OpenStreetMapViewOverlayItem;
 
 import org.andnav2.osm.adt.util.TypeConverter;
-import org.andnav2.osm.views.overlay.OSMMapViewOverlayItem;
 
 import android.location.Address;
 
-public class AddressOverlayItem extends OSMMapViewOverlayItem {
+public class AddressOverlayItem extends OpenStreetMapViewOverlayItem {
 
 
 	// ===========================================================

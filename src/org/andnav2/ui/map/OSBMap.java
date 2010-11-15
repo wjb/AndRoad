@@ -9,20 +9,20 @@ import junit.framework.Assert;
 
 import org.andnav.osm.util.BoundingBoxE6;
 import org.andnav.osm.util.GeoPoint;
+import org.andnav.osm.views.OpenStreetMapView;
+import org.andnav.osm.views.overlay.ScaleBarOverlay;
+import org.andnav.osm.views.OpenStreetMapView.OpenStreetMapViewProjection;
+import org.andnav.osm.views.OpenStreetMapViewController.AnimationType;
+import org.andnav.osm.views.overlay.OpenStreetMapViewOverlay;
+import org.andnav.osm.views.overlay.OpenStreetMapViewItemizedOverlay.OnItemGestureListener;
 
 import org.andnav2.R;
 import org.andnav2.adt.AndNavLocation;
+import org.andnav2.adt.UnitSystem;
 import org.andnav2.exc.Exceptor;
-import org.andnav2.osm.views.OSMMapView;
-import org.andnav2.osm.views.OSMMapViewScaleIndicatorView;
-import org.andnav2.osm.views.OSMMapView.OSMMapViewProjection;
-import org.andnav2.osm.views.OSMMapView.OnChangeListener;
-import org.andnav2.osm.views.controller.OSMMapViewController.AnimationType;
 import org.andnav2.osm.views.overlay.BaseOSMMapViewListItemizedOverlayWithFocus;
 import org.andnav2.osm.views.overlay.OSMMapViewCrosshairOverlay;
-import org.andnav2.osm.views.overlay.OSMMapViewOverlay;
 import org.andnav2.osm.views.overlay.OSMMapViewSimpleLocationOverlay;
-import org.andnav2.osm.views.overlay.AbstractOSMMapViewItemizedOverlay.OnItemTapListener;
 import org.andnav2.preferences.Preferences;
 import org.andnav2.sys.ftpc.api.FTPCRequester;
 import org.andnav2.sys.ors.adt.ds.POIGroup;
@@ -66,7 +66,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 
-public class OSBMap extends OpenStreetMapAndNavBaseActivity implements OnItemTapListener<OSMMapViewOSBOverlayItem> {
+public class OSBMap extends OpenStreetMapAndNavBaseActivity implements OnItemGestureListener<OSMMapViewOSBOverlayItem> {
 	// ===========================================================
 	// Constants
 	// ===========================================================
@@ -111,7 +111,7 @@ public class OSBMap extends OpenStreetMapAndNavBaseActivity implements OnItemTap
 	private OSMMapViewCrosshairOverlay mAddBugCrosshairOverlay;
 	private OSMMapViewSimpleLocationOverlay mMyLocationOverlay;
 
-	private OSMMapViewScaleIndicatorView mScaleIndicatorView;
+	private ScaleBarOverlay mScaleIndicatorView;
 
 	private POIType mAddOSMPOIType;
 	private int mNewOSMPOINodeID = NOT_SET;
@@ -119,28 +119,33 @@ public class OSBMap extends OpenStreetMapAndNavBaseActivity implements OnItemTap
 	@Override
 	protected void onSetupContentView() {
 		this.setContentView(R.layout.osbmap);
-		super.mOSMapView = (OSMMapView)findViewById(R.id.map_osbmap);
+		super.mOSMapView = (OpenStreetMapView)findViewById(R.id.map_osbmap);
 
 		this.mIbtnCommentWrite = (ImageButton)this.findViewById(R.id.ibtn_osbmap_comment_write);
 		this.mIbtnRefresh = (ImageButton)this.findViewById(R.id.ibtn_osbmap_refresh);
 		this.mIbtnAdd = (ImageButton)this.findViewById(R.id.ibtn_osbmap_add);
 		this.mIbtnAddCancel = (ImageButton)this.findViewById(R.id.ibtn_osbmap_add_cancel);
 
-		this.mScaleIndicatorView = (OSMMapViewScaleIndicatorView)this.findViewById(R.id.scaleindicatorview_osbmap);
-		this.mScaleIndicatorView.setUnitSystem(Preferences.getUnitSystem(this));
+		this.mScaleIndicatorView = new ScaleBarOverlay(this);
+        if (Preferences.getUnitSystem(this) == UnitSystem.IMPERIAL) {
+            this.mScaleIndicatorView.setImperial();
+        } else {
+            this.mScaleIndicatorView.setMetric();
+        }
+        this.mScaleIndicatorView.setScaleBarOffset(getResources().getDisplayMetrics().widthPixels/2 - getResources().getDisplayMetrics().xdpi/2, 10);
 
 		this.mIbtnCommentWrite.setEnabled(false);
 
-		final List<OSMMapViewOverlay> overlays = super.mOSMapView.getOverlays();
-
+		final List<OpenStreetMapViewOverlay> overlays = super.mOSMapView.getOverlays();
 		this.mOSBOverlay = new OSMMapViewOSBOverlay(this, this.mBugOverlayItems, this);
-		this.mOSBOverlay.setAutoFocusItemsOnTap(false);
+		this.mOSBOverlay.setFocusItemsOnTap(false);
 
+        overlays.add(this.mScaleIndicatorView);
 		overlays.add(this.mMyLocationOverlay = new OSMMapViewSimpleLocationOverlay(this));
 
 		overlays.add(this.mOSBOverlay);
 		/* Add AddBugOverlay after OSBOverlay to give it a higher zOrder. */
-		overlays.add(this.mAddBugCrosshairOverlay = new OSMMapViewCrosshairOverlay(Color.BLACK, 2, 17));
+		overlays.add(this.mAddBugCrosshairOverlay = new OSMMapViewCrosshairOverlay(this, Color.BLACK, 2, 17));
 		this.mAddBugCrosshairOverlay.setVisible(false);
 
 		super.mOSMapView.invalidate();
@@ -156,26 +161,14 @@ public class OSBMap extends OpenStreetMapAndNavBaseActivity implements OnItemTap
 		applyQuickButtonListeners();
 		applyMapViewLongPressListener();
 
-		this.mOSMapView.addChangeListener(new OnChangeListener(){
-			@Override
-			public void onChange() {
-				runOnUiThread(new Runnable(){
-					@Override
-					public void run() {
-						OSBMap.this.mScaleIndicatorView.refresh(OSBMap.this.mOSMapView);
-					}
-				});
-			}
-		});
-
 		/* Check if this is the first start, or a configuration-change. */
 		if(savedInstanceState == null){
 			final GeoPoint location = super.getLastKnownLocation(true);
 			if(location == null || Math.abs(location.getLatitudeE6()) <= 100 || Math.abs(location.getLongitudeE6()) <= 100) {
-				this.mOSMapView.setZoomLevel(3);
+				this.mOSMapView.getController().setZoom(3);
 			} else{
-				this.mOSMapView.setZoomLevel(13);
-				this.mOSMapView.setMapCenter(location);
+				this.mOSMapView.getController().setZoom(13);
+				this.mOSMapView.getController().setCenter(location);
 			}
 			/* Init the First bug-query a bit delayed, until the mapview offers a correct bounding-box. */
 			new Handler().postDelayed(new Runnable() {
@@ -458,11 +451,11 @@ public class OSBMap extends OpenStreetMapAndNavBaseActivity implements OnItemTap
 		final ArrayList<OSMMapViewOSBOverlayItem> items = in.getParcelableArrayList(STATE_BUGOVERLAYITEMS_ID);
 		this.mBugOverlayItems.addAll(items);
 		this.mBugOverlayItemsIndex = in.getInt(STATE_BUGOVERLAYITEMS_SELECTED_ID);
-		super.mOSMapView.setZoomLevel(in.getInt(STATE_ZOOMLEVEL_ID));
+		super.mOSMapView.getController().setZoom(in.getInt(STATE_ZOOMLEVEL_ID));
 
 		final GeoPoint mapCenter = in.getParcelable(STATE_MAPCENTER_ID);
 		if(mapCenter != null) {
-			super.mOSMapView.setMapCenter(mapCenter);
+			super.mOSMapView.getController().setCenter(mapCenter);
 		}
 
 
@@ -562,7 +555,7 @@ public class OSBMap extends OpenStreetMapAndNavBaseActivity implements OnItemTap
 
 
 	@Override
-	public boolean onItemTap(final int index, final OSMMapViewOSBOverlayItem item) {
+	public boolean onItemSingleTapUp(final int index, final OSMMapViewOSBOverlayItem item) {
 		if(index >= this.mBugOverlayItems.size()) {
 			throw new IllegalArgumentException();
 		}
@@ -577,10 +570,15 @@ public class OSBMap extends OpenStreetMapAndNavBaseActivity implements OnItemTap
 			this.mIbtnCommentWrite.setEnabled(false);
 		}
 
-		this.mOSMapView.getController().animateTo(item, AnimationType.MIDDLEPEAKSPEED);
+		this.mOSMapView.getController().animateTo(item.getPoint(), AnimationType.MIDDLEPEAKSPEED);
 
 		return true;
 	}
+
+    @Override
+    public boolean onItemLongPress(final int index, final OSMMapViewOSBOverlayItem item) {
+        return true;
+    }
 
 	@Override
 	public void onLocationLost(final AndNavLocation pLocation) {
@@ -616,11 +614,11 @@ public class OSBMap extends OpenStreetMapAndNavBaseActivity implements OnItemTap
 		final GestureDetector gd = new GestureDetector(new GestureDetector.SimpleOnGestureListener(){
 			@Override
 			public void onLongPress(final MotionEvent mv) {
-				final OSMMapView mapView = OSBMap.super.mOSMapView; // Drag to local field
-				final OSMMapViewProjection pj = mapView.getProjection();
+				final OpenStreetMapView mapView = OSBMap.super.mOSMapView; // Drag to local field
+				final OpenStreetMapViewProjection pj = mapView.getProjection();
 				final GeoPoint gp = pj.fromPixels((int)mv.getX(), (int)mv.getY());
 
-				OSBMap.this.mOSMapView.setMapCenter(gp);
+				OSBMap.this.mOSMapView.getController().setCenter(gp);
 				OSBMap.this.mOSMapView.invalidate();
 
 				handleAddAction();
@@ -751,14 +749,14 @@ public class OSBMap extends OpenStreetMapAndNavBaseActivity implements OnItemTap
 		this.findViewById(R.id.iv_osbmap_zoomin).setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(final View v) {
-				OSBMap.this.mOSMapView.zoomIn();
+				OSBMap.this.mOSMapView.getController().zoomIn();
 				OSBMap.this.mOSMapView.invalidate();
 			}
 		});
 		this.findViewById(R.id.iv_osbmap_zoomout).setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(final View v) {
-				OSBMap.this.mOSMapView.zoomOut();
+				OSBMap.this.mOSMapView.getController().zoomOut();
 				OSBMap.this.mOSMapView.invalidate();
 			}
 		});

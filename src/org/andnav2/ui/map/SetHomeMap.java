@@ -4,13 +4,13 @@ package org.andnav2.ui.map;
 import java.util.List;
 
 import org.andnav.osm.util.GeoPoint;
+import org.andnav.osm.views.OpenStreetMapView;
+import org.andnav.osm.views.OpenStreetMapView.OpenStreetMapViewProjection;
+import org.andnav.osm.views.OpenStreetMapViewController.AnimationType;
+import org.andnav.osm.views.overlay.OpenStreetMapViewOverlay;
 
 import org.andnav2.R;
 import org.andnav2.adt.AndNavLocation;
-import org.andnav2.osm.views.OSMMapView;
-import org.andnav2.osm.views.OSMMapView.OSMMapViewProjection;
-import org.andnav2.osm.views.controller.OSMMapViewController.AnimationType;
-import org.andnav2.osm.views.overlay.OSMMapViewOverlay;
 import org.andnav2.osm.views.overlay.OSMMapViewSimpleLocationOverlay;
 import org.andnav2.osm.views.overlay.OSMMapViewSingleIconOverlay;
 import org.andnav2.preferences.Preferences;
@@ -62,7 +62,7 @@ public class SetHomeMap extends OpenStreetMapAndNavBaseActivity {
 	@Override
 	protected void onSetupContentView() {
 		this.setContentView(R.layout.sethome_map);
-		super.mOSMapView = (OSMMapView)findViewById(R.id.map_sethome);
+		super.mOSMapView = (OpenStreetMapView)findViewById(R.id.map_sethome);
 	}
 
 	/** Called when the activity is first created. */
@@ -71,7 +71,7 @@ public class SetHomeMap extends OpenStreetMapAndNavBaseActivity {
 		super.onCreate(icicle);
 
 		/* Add a new instance of our fancy Overlay-Class to the MapView. */
-		final List<OSMMapViewOverlay> overlays = this.mOSMapView.getOverlays();
+		final List<OpenStreetMapViewOverlay> overlays = this.mOSMapView.getOverlays();
 		overlays.add(this.mSetHomeOverlay = new OSMMapViewSingleIconOverlay(this, R.drawable.home_set, new Point(0,0)));
 		overlays.add(this.mMyLocationOverlay = new OSMMapViewSimpleLocationOverlay(this));
 
@@ -90,7 +90,7 @@ public class SetHomeMap extends OpenStreetMapAndNavBaseActivity {
 		this.applyZoomButtonListeners();
 		this.applyMapViewLongPressListener();
 
-		this.mOSMapView.setZoomLevel(15);
+		this.mOSMapView.getController().setZoom(15);
 
 		final GeoPoint mp = Preferences.getHomeGeoPoint(this);
 		if(mp != null){
@@ -150,13 +150,13 @@ public class SetHomeMap extends OpenStreetMapAndNavBaseActivity {
 		this.findViewById(R.id.iv_sethome_map_zoomin).setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(final View v) {
-				SetHomeMap.this.mOSMapView.zoomIn();
+				SetHomeMap.this.mOSMapView.getController().zoomIn();
 			}
 		});
 		this.findViewById(R.id.iv_sethome_map_zoomout).setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(final View v) {
-				SetHomeMap.this.mOSMapView.zoomOut();
+				SetHomeMap.this.mOSMapView.getController().zoomOut();
 			}
 		});
 	}
@@ -222,8 +222,8 @@ public class SetHomeMap extends OpenStreetMapAndNavBaseActivity {
 		final GestureDetector gd = new GestureDetector(new GestureDetector.SimpleOnGestureListener(){
 			@Override
 			public void onLongPress(final MotionEvent mv) {
-				final OSMMapView mapView = SetHomeMap.super.mOSMapView; // Drag to local field
-				final OSMMapViewProjection pj = mapView.getProjection();
+				final OpenStreetMapView mapView = SetHomeMap.super.mOSMapView; // Drag to local field
+				final OpenStreetMapViewProjection pj = mapView.getProjection();
 				final GeoPoint mp = pj.fromPixels((int)mv.getX(), (int)mv.getY());
 
 				SetHomeMap.this.mHomeLocation = mp;
