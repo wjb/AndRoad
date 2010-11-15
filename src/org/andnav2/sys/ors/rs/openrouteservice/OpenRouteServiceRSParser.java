@@ -53,7 +53,6 @@ public class OpenRouteServiceRSParser extends DefaultHandler implements TimeCons
 	private boolean inRouteInstructionGeometry = false;
 
 	private RouteInstruction mTmpRouteInstruction;
-	private final List<GeoPoint> mVias;
 
 	// ===========================================================
 	// Constructors
@@ -61,11 +60,6 @@ public class OpenRouteServiceRSParser extends DefaultHandler implements TimeCons
 
 
 	public OpenRouteServiceRSParser() {
-		this.mVias = null;
-	}
-
-	public OpenRouteServiceRSParser(final List<GeoPoint> vias) {
-		this.mVias = vias;
 	}
 
 	// ===========================================================
@@ -273,8 +267,6 @@ public class OpenRouteServiceRSParser extends DefaultHandler implements TimeCons
 			// Modify the arrival-instruction that is just shows
 			final RouteInstruction last = this.mRoute.getRouteInstructions().get(this.mRoute.getRouteInstructions().size() - 1);
 			last.setFirstMotherPolylineIndex(this.mPolyline.size() - 1);
-
-			this.mRoute.finalizeRoute();
 		}
 		super.endDocument();
 	}

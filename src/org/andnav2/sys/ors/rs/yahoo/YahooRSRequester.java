@@ -104,52 +104,16 @@ public class YahooRSRequester implements Constants, OSMConstants, RSRequester {
 		/* Get the XMLReader of the SAXParser we created. */
 		final XMLReader xr = sp.getXMLReader();
 		/* Create a new ContentHandler and apply it to the XML-Reader*/
-		final YahooRSParser openLSParser = new YahooRSParser(null);
+		final YahooRSParser openLSParser = new YahooRSParser();
 		xr.setContentHandler(openLSParser);
 
 		/* Parse the xml-data from our URL. */
-        final Route r;
+        xr.parse(new InputSource(new BufferedInputStream(acon.getInputStream())));
 
-		if(!pSaveRoute){
-            try {
-                xr.parse(new InputSource(new BufferedInputStream(acon.getInputStream(), StreamUtils.IO_BUFFER_SIZE)));
-            } catch (final IOException e) {
-                if (pGetPartialsRoutes) {
-                    throw e;
-                } else {
-                    return null;
-                }
-            }
+        /* The Handler now provides the parsed data to us. */
+        final Route r = openLSParser.getRoute();
 
-			/* The Handler now provides the parsed data to us. */
-			r = openLSParser.getRoute();
-		}else{
-			final StringBuilder sb = new StringBuilder();
-
-			int read = 0;
-			final char[] buf = new char[StreamUtils.IO_BUFFER_SIZE];
-			final InputStreamReader isr;
-            try {
-                isr = new InputStreamReader(new BufferedInputStream(acon.getInputStream(), StreamUtils.IO_BUFFER_SIZE));
-            } catch (final IOException e) {
-                if (pGetPartialsRoutes) {
-                    throw e;
-                } else {
-                    return null;
-                }
-            }
-			while((read = isr.read(buf)) != -1) {
-				sb.append(buf, 0, read);
-			}
-            StreamUtils.closeStream(isr);
-
-			final byte[] readBytes = sb.toString().getBytes();
-
-			xr.parse(new InputSource(new ByteArrayInputStream(readBytes)));
-
-			/* The Handler now provides the parsed data to us. */
-			r = openLSParser.getRoute();
-
+		if(pSaveRoute){
 			/* Exception would have been thrown in invalid route. */
 			try {
 				// Ensure folder exists
@@ -194,7 +158,7 @@ public class YahooRSRequester implements Constants, OSMConstants, RSRequester {
             }
         }
 
-        r.finalizeRoute();
+        r.finalizeRoute(vias);
         return r;
     }
 }

@@ -359,7 +359,7 @@ public class Route implements Parcelable, Serializable {
         return add;
     }
 
-	public void finalizeRoute() {
+	public void finalizeRoute(List<GeoPoint> pVias) {
 		/* Drag to local variables, for performance reasons */
 		final List<GeoPoint> polyLine = getPolyLine();
 		final List<RouteInstruction> routeInstructions = getRouteInstructions();
@@ -391,8 +391,8 @@ public class Route implements Parcelable, Serializable {
 			final int polyLineLenght = polyLine.size();
 			for(final RouteInstruction ri : getRouteInstructions()){
 				curIndexInPolyLine = ri.getFirstMotherPolylineIndex();
-				if(this.mVias != null) {
-					for(final GeoPoint v : this.mVias) {
+				if(pVias != null) {
+					for(final GeoPoint v : pVias) {
 						if(this.mPolyLine.get(curIndexInPolyLine).equals(v)) {
 							ri.setIsWaypoint(true);
 						}

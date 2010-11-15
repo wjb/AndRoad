@@ -68,7 +68,6 @@ public class YahooRSParser extends DefaultHandler implements TimeConstants, Cons
 	private boolean inCopyRight = false;
 
 	private RouteInstruction mTmpRouteInstruction;
-	private final List<GeoPoint> mVias;
 
 	// ===========================================================
 	// Constructors
@@ -76,11 +75,6 @@ public class YahooRSParser extends DefaultHandler implements TimeConstants, Cons
 
 
 	public YahooRSParser() {
-		this.mVias = null;
-	}
-
-	public YahooRSParser(final List<GeoPoint> vias) {
-		this.mVias = vias;
 	}
 
 	// ===========================================================

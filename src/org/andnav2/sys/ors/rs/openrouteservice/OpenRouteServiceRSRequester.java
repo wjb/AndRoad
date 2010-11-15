@@ -117,7 +117,7 @@ public class OpenRouteServiceRSRequester implements Constants, OSMConstants, RSR
 		/* Get the XMLReader of the SAXParser we created. */
 		final XMLReader xr = sp.getXMLReader();
 		/* Create a new ContentHandler and apply it to the XML-Reader*/
-		final OpenRouteServiceRSParser openLSParser = new OpenRouteServiceRSParser(null);
+		final OpenRouteServiceRSParser openLSParser = new OpenRouteServiceRSParser();
 		xr.setContentHandler(openLSParser);
 
 		/* Parse the xml-data from our URL. */
@@ -167,33 +167,16 @@ public class OpenRouteServiceRSRequester implements Constants, OSMConstants, RSR
 		/* Get the XMLReader of the SAXParser we created. */
 		final XMLReader xr = sp.getXMLReader();
 		/* Create a new ContentHandler and apply it to the XML-Reader*/
-		final OpenRouteServiceRSParser openLSParser = new OpenRouteServiceRSParser(vias);
+		final OpenRouteServiceRSParser openLSParser = new OpenRouteServiceRSParser();
 		xr.setContentHandler(openLSParser);
 
 		/* Parse the xml-data from our URL. */
+        xr.parse(new InputSource(new BufferedInputStream(acon.getInputStream())));
 
-		if(!pSaveRoute){
-			xr.parse(new InputSource(new BufferedInputStream(acon.getInputStream())));
+        /* The Handler now provides the parsed data to us. */
+        final Route r = openLSParser.getRoute();
 
-			/* The Handler now provides the parsed data to us. */
-			return openLSParser.getRoute();
-		}else{
-			final StringBuilder sb = new StringBuilder();
-
-			int read = 0;
-			final char[] buf = new char[StreamUtils.IO_BUFFER_SIZE];
-			final InputStreamReader isr = new InputStreamReader(new BufferedInputStream(acon.getInputStream()));
-			while((read = isr.read(buf)) != -1) {
-				sb.append(buf, 0, read);
-			}
-
-			final byte[] readBytes = sb.toString().getBytes();
-
-			xr.parse(new InputSource(new ByteArrayInputStream(readBytes)));
-
-			/* The Handler now provides the parsed data to us. */
-			final Route r = openLSParser.getRoute();
-
+		if(pSaveRoute){
 			/* Exception would have been thrown in invalid route. */
 			try {
 				// Ensure folder exists
@@ -208,13 +191,14 @@ public class OpenRouteServiceRSRequester implements Constants, OSMConstants, RSR
 				final ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(dest));
 
                 out.writeObject(r);
-				out.flush();
-				out.close();
+                StreamUtils.closeStream(out);
 			} catch (final Exception e) {
 				Log.e(OSMConstants.DEBUGTAG, "File-Writing-Error", e);
 			}
-
-			return r;
 		}
+
+        
+        r.finalizeRoute(vias);
+        return r;
 	}
 }
