@@ -56,7 +56,6 @@
 	<string name="app_name_settings_cache">AndNav2! - Paramètres du cache...</string>
 	<string name="app_name_settings_selecthome">AndNav2! - Définir le domicile...</string>
 	<string name="app_name_settings_voice">AndNav2! - Paramètres de voix...</string>
-	<string name="app_name_settings_keylayout">AndNav2! - Configuration de clavier...</string>
 	<string name="app_name_settings_centermode">AndNav2! - Sélectionner le mode de centrage...</string>
 	<string name="app_name_settings_rotatemode">AndNav2! - Sélectionner le mode de rotation...</string>
 	<string name="app_name_settings_quality">AndNav2! - Qualité d\'affichage...</string>

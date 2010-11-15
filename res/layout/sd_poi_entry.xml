@@ -49,10 +49,4 @@
 				android:text="@string/ok"/>
 		</TableRow>
 	</TableLayout>
-	<GridView
-		android:id="@+id/grid_sd_poi_entry_keyboard"
-		android:orientation="vertical"
-		android:horizontalSpacing="0dip"
-		android:layout_width="fill_parent"
-		android:layout_height="fill_parent" />
 </LinearLayout>

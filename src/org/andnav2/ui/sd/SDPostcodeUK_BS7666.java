@@ -7,8 +7,6 @@ import java.util.List;
 import junit.framework.Assert;
 
 import org.andnav2.R;
-import org.andnav2.adt.keyboardlayouts.AbstractKeyBoardLayout;
-import org.andnav2.adt.keyboardlayouts.KeyBoardLayoutImpls;
 import org.andnav2.db.DBManager;
 import org.andnav2.db.DataBaseException;
 import org.andnav2.preferences.Preferences;
@@ -19,7 +17,6 @@ import org.andnav2.sys.postcode.uk_bs_7666.Requester;
 import org.andnav2.ui.AndNavBaseActivity;
 import org.andnav2.ui.common.InlineAutoCompleterCombined;
 import org.andnav2.ui.common.OnClickOnFocusChangedListenerAdapter;
-import org.andnav2.ui.common.adapters.KeyLayoutAdapter;
 import org.andnav2.ui.map.OpenStreetDDMap;
 
 import android.app.AlertDialog;
@@ -32,12 +29,8 @@ import android.text.Editable;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
-import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.GridView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
 
 public class SDPostcodeUK_BS7666 extends AndNavBaseActivity {
 
@@ -52,7 +45,6 @@ public class SDPostcodeUK_BS7666 extends AndNavBaseActivity {
 	// Fields
 	// ===========================================================
 
-	protected GridView keyBoardGrid;
 	protected EditText postcodeEditText_1;
 	protected EditText postcodeEditText_2;
 	protected Bundle bundleCreatedWith;
@@ -78,12 +70,6 @@ public class SDPostcodeUK_BS7666 extends AndNavBaseActivity {
 		 */
 		this.bundleCreatedWith = this.getIntent().getExtras();
 
-		final AbstractKeyBoardLayout aKeyBoardLayout = KeyBoardLayoutImpls.getNumberedVersion(Preferences
-				.getKeyboardLayout(this));
-		this.keyBoardGrid = (GridView) findViewById(R.id.grid_sd_postcode_uk_bs_7666_keyboard);
-		this.keyBoardGrid.setNumColumns(aKeyBoardLayout.getColumnsByDisplay(getWindowManager()
-				.getDefaultDisplay()));
-
 		this.postcodeEditText_1 = (EditText) findViewById(R.id.et_sd_postcode_uk_bs_7666_codeentered_1);
 		this.postcodeEditText_2 = (EditText) findViewById(R.id.et_sd_postcode_uk_bs_7666_codeentered_2);
 		this.lastFocusedPostcodeEditText = this.postcodeEditText_1;
@@ -97,14 +83,9 @@ public class SDPostcodeUK_BS7666 extends AndNavBaseActivity {
 		this.postcodeEditText_1.setOnFocusChangeListener(lis);
 		this.postcodeEditText_2.setOnFocusChangeListener(lis);
 
-		/* Make the Country-Grid be filled with all Countries available. */
-		this.keyBoardGrid.setAdapter(new KeyLayoutAdapter(this, aKeyBoardLayout,
-				this.mGridButtonListener));
-
 		this.applyTopMenuButtonListeners();
 		this.applyOkButtonListener();
 		this.applyAutoCompleteListeners();
-		this.applyKeyPadGridOnItemClickListener();
 
 		if (super.mMenuVoiceEnabled) {
 			MediaPlayer.create(this, R.raw.enter_a_zipcode).start();
@@ -383,42 +364,6 @@ public class SDPostcodeUK_BS7666 extends AndNavBaseActivity {
 		}
 	}
 
-	protected void handleButtonClickByCaption(final String buttonCaption) {
-		final EditText editText = this.lastFocusedPostcodeEditText;
-		if (buttonCaption.equals("" + AbstractKeyBoardLayout.BUTTONGRID_BACKCAPTION)) {
-			final Editable et = editText.getText();
-			final int len = et.length();
-			if (len > 0) {
-				editText.getText().delete(len - 1, len);
-			}
-		} else {
-			/* Append the Buttons caption it to the streetNameEditText. */
-			final int selStart = editText.getSelectionStart();
-			final int selEnd = editText.getSelectionEnd();
-			if (selStart < selEnd) {
-				editText.getText().replace(selStart, selEnd, "");
-			}
-			editText.getText().append(buttonCaption);
-			editText.invalidate();
-		}
-	}
-
-	/**
-	 * Applies a OnItemClickListener to the numberPadGrid which calls
-	 * handleButtonClick(String caption).
-	 */
-	protected void applyKeyPadGridOnItemClickListener() {
-		this.keyBoardGrid.setOnItemClickListener(new OnItemClickListener() {
-
-			@Override
-			public void onItemClick(final AdapterView<?> arg0, final View v, final int arg2, final long arg3) {
-				/* Extract the Caption of the Button. */
-				final String theCaption = ((Button) v).getText().toString();
-				SDPostcodeUK_BS7666.this.handleButtonClickByCaption(theCaption);
-			}
-		});
-	}
-
 	protected void applyOkButtonListener() {
 		/* Set OnClickListener for OK-Button. */
 		findViewById(R.id.btn_sd_postcode_uk_bs_7666_ok).setOnClickListener(new OnClickListener() {
@@ -476,18 +421,4 @@ public class SDPostcodeUK_BS7666 extends AndNavBaseActivity {
 	// ===========================================================
 	// Inner and Anonymous Classes
 	// ===========================================================
-
-	/**
-	 * Apply OnItemClickListener to add the letter pressed to the EditText. This
-	 * Listener will get called on actual CLICKS to the BUTTONS!
-	 */
-	protected OnClickListener mGridButtonListener = new OnClickListener() {
-
-		@Override
-		public void onClick(final View v) {
-			/* Extract the Caption of the Button. */
-			final String theCaption = ((Button) v).getText().toString();
-			SDPostcodeUK_BS7666.this.handleButtonClickByCaption(theCaption);
-		};
-	};
 }

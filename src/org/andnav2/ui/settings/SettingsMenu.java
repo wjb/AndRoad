@@ -24,8 +24,7 @@ public class SettingsMenu extends AndNavBaseActivity {
 	/* REQUEST-CODES for SubActivities. */
 	protected static final int REQUESTCODE_QUALITY = 0x1937;
 	protected static final int REQUESTCODE_DIRECTIONSLANGUAGE = REQUESTCODE_QUALITY + 1;
-	protected static final int REQUESTCODE_KEYLAYOUT = REQUESTCODE_DIRECTIONSLANGUAGE + 1;
-	protected static final int REQUESTCODE_SETHOME = REQUESTCODE_KEYLAYOUT + 1;
+	protected static final int REQUESTCODE_SETHOME = REQUESTCODE_DIRECTIONSLANGUAGE + 1;
 	protected static final int REQUESTCODE_UNITSYSTEM = REQUESTCODE_SETHOME + 1;
 	protected static final int REQUESTCODE_FAVORITES = REQUESTCODE_UNITSYSTEM + 1;
 	protected static final int REQUESTCODE_STATISTICS = REQUESTCODE_FAVORITES + 1;
@@ -256,21 +255,6 @@ public class SettingsMenu extends AndNavBaseActivity {
 			public void onClicked(final View me) {
 				final Intent colorschemeIntent = new Intent(SettingsMenu.this, SettingsColorscheme.class);
 				SettingsMenu.this.startActivityForResult(colorschemeIntent, REQUESTCODE_COLORSCHEME);
-			}
-		};
-
-		new OnClickOnFocusChangedListenerAdapter(this.findViewById(R.id.ibtn_settings_keylayout)){
-			@Override
-			public void onBoth(final View me, final boolean focused) {
-				if(focused) {
-					SettingsMenu.this.setQuickinfoPageUserTextByID(R.string.tv_settings_quickinfo_keylayout_focused);
-				}
-			}
-
-			@Override
-			public void onClicked(final View me) {
-				final Intent keyLayoutIntent = new Intent(SettingsMenu.this, SettingsKeyLayout.class);
-				SettingsMenu.this.startActivityForResult(keyLayoutIntent, REQUESTCODE_KEYLAYOUT);
 			}
 		};
 

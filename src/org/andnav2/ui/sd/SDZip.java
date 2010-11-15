@@ -4,8 +4,6 @@ package org.andnav2.ui.sd;
 import java.util.List;
 
 import org.andnav2.R;
-import org.andnav2.adt.keyboardlayouts.AbstractKeyBoardLayout;
-import org.andnav2.adt.keyboardlayouts.KeyBoardLayoutImpls;
 import org.andnav2.adt.voice.Voice;
 import org.andnav2.db.DBManager;
 import org.andnav2.db.DataBaseException;
@@ -14,8 +12,8 @@ import org.andnav2.sys.ors.adt.lus.Country;
 import org.andnav2.ui.AndNavBaseActivity;
 import org.andnav2.ui.common.InlineAutoCompleterConstant;
 import org.andnav2.ui.common.OnClickOnFocusChangedListenerAdapter;
-import org.andnav2.ui.common.adapters.KeyLayoutAdapter;
 
+import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -25,12 +23,9 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnKeyListener;
-import android.widget.AdapterView;
-import android.widget.Button;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.GridView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
 
 
 public class SDZip extends AndNavBaseActivity {
@@ -45,7 +40,6 @@ public class SDZip extends AndNavBaseActivity {
 	// Fields
 	// ===========================================================
 
-	protected GridView keyBoardGrid;
 	protected EditText zipCodeEditText;
 	protected Bundle bundleCreatedWith;
 
@@ -65,15 +59,9 @@ public class SDZip extends AndNavBaseActivity {
 		 * that will finally be used for the Yahoo GeoCode API. */
 		this.bundleCreatedWith = this.getIntent().getExtras();
 
-		final AbstractKeyBoardLayout aKeyBoardLayout = KeyBoardLayoutImpls.getNumberedVersion(Preferences.getKeyboardLayout(this));
-		this.keyBoardGrid = (GridView)findViewById(R.id.grid_sd_zip_keyboard);
-		this.keyBoardGrid.setNumColumns(aKeyBoardLayout.getColumnsByDisplay(getWindowManager().getDefaultDisplay()));
-
 		this.zipCodeEditText = (EditText)findViewById(R.id.et_sd_zip_zipentered);
-
-		/* Make the Country-Grid be filled with all Countries available. */
-		this.keyBoardGrid.setAdapter(new KeyLayoutAdapter(this, aKeyBoardLayout, this.mGridButtonListener));
-		this.applyNumberPadGridOnItemClickListener();
+        InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        mgr.showSoftInput(this.zipCodeEditText, InputMethodManager.SHOW_FORCED);
 
 		this.applyTopButtonListeners();
 		this.applyAutoCompleteListeners();
@@ -83,6 +71,13 @@ public class SDZip extends AndNavBaseActivity {
 			MediaPlayer.create(this, R.raw.enter_a_zipcode).start();
 		}
 	}
+
+    @Override
+    protected void onDestroy() {
+        InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        mgr.hideSoftInputFromWindow(this.zipCodeEditText.getWindowToken(), 0);
+        super.onDestroy();
+    }
 
 	// ===========================================================
 	// Getter & Setter
@@ -150,45 +145,6 @@ public class SDZip extends AndNavBaseActivity {
 
 			startActivityForResult(sdStreetSearchIntent, REQUESTCODE_SD_STREET);
 		}
-	}
-
-	protected void handleButtonClickByCaption(final String buttonCaption){
-		final Editable curText = this.zipCodeEditText.getText();
-		if(buttonCaption.equals("" + AbstractKeyBoardLayout.BUTTONGRID_BACKCAPTION)){
-			final int len = curText.length();
-			if (len > 0) {
-				curText.delete(len - 1, len);
-			}
-		}else{
-			/* Append the Buttons caption it to the streetNameEditText. */
-			final int selStart = this.zipCodeEditText.getSelectionStart();
-			final int selEnd = this.zipCodeEditText.getSelectionEnd();
-			if(selStart < selEnd) {
-				curText.replace(selStart, selEnd, "");
-			}
-
-			/* If previous character is a letter, the next one should be lowercase. */
-			if(curText.length() > 0 && Character.isLetter(curText.charAt(curText.length() - 1))) {
-				curText.append(buttonCaption.toLowerCase());
-			} else {
-				curText.append(buttonCaption.toUpperCase());
-			}
-
-			this.zipCodeEditText.invalidate();
-		}
-	}
-
-	/** Applies a OnItemClickListener to the numberPadGrid
-	 * which calls handleButtonClick(String caption).*/
-	protected void applyNumberPadGridOnItemClickListener() {
-		this.keyBoardGrid.setOnItemClickListener(new OnItemClickListener(){
-			@Override
-			public void onItemClick(final AdapterView<?> arg0, final View v, final int arg2, final long arg3) {
-				/* Extract the Caption of the Button. */
-				final String theCaption = ((Button)v).getText().toString();
-				SDZip.this.handleButtonClickByCaption(theCaption);
-			}
-		});
 	}
 
 	protected void applyOkButtonListener() {
@@ -267,15 +223,4 @@ public class SDZip extends AndNavBaseActivity {
 	// ===========================================================
 	// Inner and Anonymous Classes
 	// ===========================================================
-	/** Create an OnItemClickListener to add a digit to the EditText or to
-	 * advance to the next screen(Street-entry).
-	 * This Listener will get called on actual CLICKS to the BUTTONS! */
-	protected OnClickListener mGridButtonListener = new OnClickListener() {
-		@Override
-		public void onClick(final View v) {
-			/* Extract the Caption of the Button. */
-			final String theCaption = ((Button)v).getText().toString();
-			SDZip.this.handleButtonClickByCaption(theCaption);
-		};
-	};
 }

@@ -5,8 +5,6 @@ import java.util.HashMap;
 
 import org.andnav2.R;
 import org.andnav2.adt.UnitSystem;
-import org.andnav2.adt.keyboardlayouts.AbstractKeyBoardLayout;
-import org.andnav2.adt.keyboardlayouts.KeyBoardLayoutImpls;
 import org.andnav2.osm.adt.GeoPoint;
 import org.andnav2.osm.views.overlay.util.DirectionArrowDescriptor;
 import org.andnav2.osm.views.tiles.OSMMapTileProviderInfo;
@@ -235,34 +233,6 @@ public class Preferences implements Constants, PreferenceConstants {
 	 * @param aRotateMode RotateMode to be saved and used by the whole application. */
 	public static void saveRotateMode(final Context ctx, final int aRotateMode){
 		getEditorInstance(ctx).putInt(PREF_ROTATEMODE_ID, aRotateMode).commit();
-	}
-
-	// ===========================================================
-	// KeyboardLayout
-	// ===========================================================
-
-	/** Returns the KeyBoardLayout saved in Preferences to the Activity parameter.
-	 * 	@param ctx Activity-Context needed to retrieve the SharedPreferences. */
-	public static AbstractKeyBoardLayout getKeyboardLayout(final Context ctx){
-		switch(getInstance(ctx).getInt(PREF_KEYBOARDLAYOUT_ID, PREF_KEYBOARDLAYOUT_DEFAULT)){
-			case PREF_KEYBOARDLAYOUT_ABCDEF:
-				return new KeyBoardLayoutImpls.ABCKeyboardLayout();
-			case PREF_KEYBOARDLAYOUT_QWERTY:
-				return new KeyBoardLayoutImpls.QWERTYKeyBoardLayout();
-			case PREF_KEYBOARDLAYOUT_QWERTZ:
-				return new KeyBoardLayoutImpls.QWERTZKeyBoardLayout();
-			case PREF_KEYBOARDLAYOUT_CYRILLIC:
-				return new KeyBoardLayoutImpls.CyrillicKeyBoardLayout();
-			default:
-				throw new UnsupportedOperationException();
-		}
-	}
-
-	/** Save a KeyBoardLayout to be used by the whole application.
-	 * @param ctx Activity-Context needed to retrieve the SharedPreferences.
-	 * @param akbl AbstractKeyBoardLayout to be saved and used by the whole application. */
-	public static void saveKeyboardLayout(final Context ctx, final AbstractKeyBoardLayout akbl){
-		getEditorInstance(ctx).putInt(PREF_KEYBOARDLAYOUT_ID, akbl.getID()).commit();
 	}
 
 	// ===========================================================

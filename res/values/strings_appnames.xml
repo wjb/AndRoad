@@ -56,7 +56,6 @@
 	<string name="app_name_settings_cache">AndNav2! - Cache Settings...</string>
 	<string name="app_name_settings_selecthome">AndNav2! - Set Home...</string>
 	<string name="app_name_settings_voice">AndNav2! - Voice Settings...</string>
-	<string name="app_name_settings_keylayout">AndNav2! - Select KeyLayout...</string>
 	<string name="app_name_settings_centermode">AndNav2! - Select CenterMode...</string>
 	<string name="app_name_settings_rotatemode">AndNav2! - Select RotateMode...</string>
 	<string name="app_name_settings_quality">AndNav2! - Select DisplayQuality...</string>

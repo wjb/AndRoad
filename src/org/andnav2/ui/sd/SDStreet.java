@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.andnav2.R;
-import org.andnav2.adt.keyboardlayouts.AbstractKeyBoardLayout;
-import org.andnav2.adt.keyboardlayouts.KeyBoardLayoutImpls;
 import org.andnav2.db.DBManager;
 import org.andnav2.db.DataBaseException;
 import org.andnav2.preferences.Preferences;
@@ -18,8 +16,8 @@ import org.andnav2.sys.ors.lus.LUSRequester;
 import org.andnav2.ui.AndNavBaseActivity;
 import org.andnav2.ui.common.InlineAutoCompleterCombined;
 import org.andnav2.ui.common.OnClickOnFocusChangedListenerAdapter;
-import org.andnav2.ui.common.adapters.KeyLayoutAdapter;
 
+import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -31,12 +29,9 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnKeyListener;
-import android.widget.AdapterView;
-import android.widget.Button;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.GridView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
 
 public class SDStreet extends AndNavBaseActivity {
 	// ===========================================================
@@ -51,7 +46,6 @@ public class SDStreet extends AndNavBaseActivity {
 	// Fields
 	// ===========================================================
 
-	protected GridView keyBoardGrid;
 	protected EditText streetNameEditText;
 	protected Bundle bundleCreatedWith;
 
@@ -71,15 +65,10 @@ public class SDStreet extends AndNavBaseActivity {
 		 * that will finally be used for a GeoCode API. */
 		this.bundleCreatedWith = this.getIntent().getExtras();
 
-		final AbstractKeyBoardLayout aKeyBoardLayout = KeyBoardLayoutImpls.getNumberedVersion(Preferences.getKeyboardLayout(this));
-		this.keyBoardGrid = (GridView)findViewById(R.id.grid_searchstreet_keyboard);
-		this.keyBoardGrid.setNumColumns(aKeyBoardLayout.getColumnsByDisplay(getWindowManager().getDefaultDisplay()));
-
 		this.streetNameEditText = (EditText)findViewById(R.id.et_sd_street_streetentered);
 		this.streetNameEditText.setKeyListener(new TextKeyListener(Capitalize.WORDS,false)); // TODO Possible in XML !?!?!
-
-		/* Make the Country-Grid be filled with all Countries available. */
-		this.keyBoardGrid.setAdapter(new KeyLayoutAdapter(this, aKeyBoardLayout, this.mGridButtonListener));
+        InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        mgr.showSoftInput(this.streetNameEditText, InputMethodManager.SHOW_FORCED);
 
 		if(super.mMenuVoiceEnabled) {
 			MediaPlayer.create(this, R.raw.enter_a_streetname).start();
@@ -87,7 +76,6 @@ public class SDStreet extends AndNavBaseActivity {
 
 		this.applyTopMenuButtonListeners();
 		this.applyOkButtonListener();
-		this.applyKeyPadGridOnItemClickListener();
 
 		if(this.bundleCreatedWith.getInt(EXTRAS_MODE) == EXTRAS_MODE_STREETNAMESEARCH){
 			this.findViewById(R.id.ibtn_sd_street_skip).setVisibility(View.INVISIBLE);
@@ -95,6 +83,13 @@ public class SDStreet extends AndNavBaseActivity {
 			this.applyAutoCompleteListeners();
 		}
 	}
+
+    @Override
+    protected void onDestroy() {
+        InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        mgr.hideSoftInputFromWindow(this.streetNameEditText.getWindowToken(), 0);
+        super.onDestroy();
+    }
 
 	// ===========================================================
 	// Getter & Setter
@@ -244,45 +239,6 @@ public class SDStreet extends AndNavBaseActivity {
 		}
 	}
 
-	protected void handleButtonClickByCaption(final String buttonCaption){
-		final Editable curText = this.streetNameEditText.getText();
-		if(buttonCaption.equals("" + AbstractKeyBoardLayout.BUTTONGRID_BACKCAPTION)){
-			final int len = curText.length();
-			if (len > 0) {
-				curText.delete(len - 1, len);
-			}
-		}else{
-			/* Append the Buttons caption it to the streetNameEditText. */
-			final int selStart = this.streetNameEditText.getSelectionStart();
-			final int selEnd = this.streetNameEditText.getSelectionEnd();
-			if(selStart < selEnd) {
-				curText.replace(selStart, selEnd, "");
-			}
-
-			/* If previous character is a letter, the next one should be lowercase. */
-			if(curText.length() > 0 && Character.isLetter(curText.charAt(curText.length() - 1))) {
-				curText.append(buttonCaption.toLowerCase());
-			} else {
-				curText.append(buttonCaption.toUpperCase());
-			}
-
-			this.streetNameEditText.invalidate();
-		}
-	}
-
-	/** Applies a OnItemClickListener to the numberPadGrid
-	 * which calls handleButtonClick(String caption).*/
-	protected void applyKeyPadGridOnItemClickListener() {
-		this.keyBoardGrid.setOnItemClickListener(new OnItemClickListener(){
-			@Override
-			public void onItemClick(final AdapterView<?> arg0, final View v, final int arg2, final long arg3) {
-				/* Extract the Caption of the Button. */
-				final String theCaption = ((Button)v).getText().toString();
-				SDStreet.this.handleButtonClickByCaption(theCaption);
-			}
-		});
-	}
-
 	protected void applyOkButtonListener() {
 		/* Set Listener for OK-Button. */
 		new OnClickOnFocusChangedListenerAdapter(this.findViewById(R.id.btn_sd_street_ok)){
@@ -367,15 +323,4 @@ public class SDStreet extends AndNavBaseActivity {
 	// ===========================================================
 	// Inner and Anonymous Classes
 	// ===========================================================
-
-	/** Apply OnItemClickListener to add the letter pressed to the EditText.
-	 * This Listener will get called on actual CLICKS to the BUTTONS! */
-	protected OnClickListener mGridButtonListener = new OnClickListener() {
-		@Override
-		public void onClick(final View v) {
-			/* Extract the Caption of the Button. */
-			final String theCaption = ((Button)v).getText().toString();
-			SDStreet.this.handleButtonClickByCaption(theCaption);
-		};
-	};
 }

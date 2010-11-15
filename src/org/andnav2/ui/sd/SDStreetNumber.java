@@ -6,8 +6,8 @@ import org.andnav2.adt.voice.Voice;
 import org.andnav2.preferences.Preferences;
 import org.andnav2.ui.AndNavBaseActivity;
 import org.andnav2.ui.common.OnClickOnFocusChangedListenerAdapter;
-import org.andnav2.ui.common.adapters.NumberPadAdapter;
 
+import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -16,13 +16,10 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnKeyListener;
-import android.widget.AdapterView;
-import android.widget.Button;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.GridView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
-
 
 public class SDStreetNumber extends AndNavBaseActivity {
 	// ===========================================================
@@ -36,7 +33,6 @@ public class SDStreetNumber extends AndNavBaseActivity {
 	// Fields
 	// ===========================================================
 
-	protected GridView numberPadGrid;
 	protected EditText streetNumberEditText;
 	protected Bundle bundleCreatedWith;
 
@@ -56,13 +52,10 @@ public class SDStreetNumber extends AndNavBaseActivity {
 		 * that will finally be used for a GeoCode API. */
 		this.bundleCreatedWith = this.getIntent().getExtras();
 
-		this.numberPadGrid = (GridView)findViewById(R.id.grid_sd_streetnumber_numberpad);
-
 		this.streetNumberEditText = (EditText)findViewById(R.id.et_sd_streetnumber_numberentered);
-
-		/* Make the Country-Grid be filled with all Countries available. */
-		this.numberPadGrid.setAdapter(new NumberPadAdapter(this, this.gridButtonListener));
-		this.applyNumberPadGridOnItemClickListener();
+        this.streetNumberEditText.setInputType(EditorInfo.TYPE_CLASS_NUMBER);
+        InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        mgr.showSoftInput(this.streetNumberEditText, InputMethodManager.SHOW_FORCED);
 
 		this.applyTopButtonListeners();
 
@@ -70,6 +63,13 @@ public class SDStreetNumber extends AndNavBaseActivity {
 			MediaPlayer.create(this, R.raw.enter_a_streetnumber).start();
 		}
 	}
+
+    @Override
+    protected void onDestroy() {
+        InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        mgr.hideSoftInputFromWindow(this.streetNumberEditText.getWindowToken(), 0);
+        super.onDestroy();
+    }
 
 	// ===========================================================
 	// Getter & Setter
@@ -130,49 +130,6 @@ public class SDStreetNumber extends AndNavBaseActivity {
 
 			startActivityForResult(resolveIntent, REQUESTCODE_RESOLVER);
 		}
-	}
-
-	protected void handleButtonClickByCaption(final String buttonCaption){
-		if(buttonCaption.equals(NumberPadAdapter.BUTTONGRID_OKCAPTION)){
-			advanceToNextScreen(false);
-		}else if(buttonCaption.equals(NumberPadAdapter.BUTTONGRID_RESETCAPTION)){
-			/* Delete all digits entered so far. */
-			SDStreetNumber.this.streetNumberEditText.getText().clear();
-		}else{
-			try{
-				/* Parse the caption to an Integer. */
-				final int i = Integer.parseInt(buttonCaption);
-				/* And append it to the streetNumberEditText. */
-
-				/* Check if anything is selected. */
-				final int selStart = this.streetNumberEditText.getSelectionStart();
-				final int selEnd = this.streetNumberEditText.getSelectionEnd();
-				if(selStart != selEnd) {
-					this.streetNumberEditText.getText().delete(selStart, selEnd);
-				}
-
-				this.streetNumberEditText.getText().append("" + i);
-
-				if(super.mMenuVoiceEnabled) {
-					MediaPlayer.create(SDStreetNumber.this, Voice.getNumberVoice(i)).start();
-				}
-			}catch(final NumberFormatException nfe){
-				Log.e(DEBUGTAG, "numberPadGrid-onItemClick", nfe);
-			}
-		}
-	}
-
-	/** Applies a OnItemClickListener to the numberPadGrid
-	 * which calls handleButtonClick(String caption).*/
-	protected void applyNumberPadGridOnItemClickListener() {
-		this.numberPadGrid.setOnItemClickListener(new OnItemClickListener(){
-			@Override
-			public void onItemClick(final AdapterView<?> arg0, final View v, final int arg2, final long arg3) {
-				/* Extract the Caption of the Button. */
-				final String theCaption = ((Button)v).getText().toString();
-				SDStreetNumber.this.handleButtonClickByCaption(theCaption);
-			}
-		});
 	}
 
 	protected void applyTopButtonListeners() {
@@ -248,15 +205,4 @@ public class SDStreetNumber extends AndNavBaseActivity {
 	// ===========================================================
 	// Inner and Anonymous Classes
 	// ===========================================================
-	/** Create an OnItemClickListener to add a digit to the EditText or to
-	 * advance to the next screen(Street-entry).
-	 * This Listener will get called on actual CLICKS to the BUTTONS! */
-	protected OnClickListener gridButtonListener = new OnClickListener() {
-		@Override
-		public void onClick(final View v) {
-			/* Extract the Caption of the Button. */
-			final String theCaption = ((Button)v).getText().toString();
-			SDStreetNumber.this.handleButtonClickByCaption(theCaption);
-		};
-	};
 }

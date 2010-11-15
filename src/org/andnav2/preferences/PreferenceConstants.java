@@ -2,7 +2,6 @@
 package org.andnav2.preferences;
 
 import org.andnav2.adt.UnitSystem;
-import org.andnav2.adt.keyboardlayouts.KeyBoardLayoutImpls;
 import org.andnav2.osm.views.tiles.OSMMapTileProviderInfo;
 import org.andnav2.osm.views.tiles.caching.OSMMapTileFilesystemCache;
 import org.andnav2.sys.ors.adt.lus.Country;
@@ -153,12 +152,6 @@ public interface PreferenceConstants {
 	public static final int PREF_ROTATEMODE_NORTH_UP = 0; /* North is always to the top. */
 	public static final int PREF_ROTATEMODE_DRIVINGDIRECTION_UP = PREF_ROTATEMODE_NORTH_UP + 1; /* Driving direction is always to the top. */
 	public static final int PREF_ROTATEMODE_DEFAULT = PREF_ROTATEMODE_NORTH_UP;
-
-	public static final int PREF_KEYBOARDLAYOUT_ABCDEF = KeyBoardLayoutImpls.ABCKeyboardLayout.ID;
-	public static final int PREF_KEYBOARDLAYOUT_QWERTY = KeyBoardLayoutImpls.QWERTYKeyBoardLayout.ID;
-	public static final int PREF_KEYBOARDLAYOUT_QWERTZ = KeyBoardLayoutImpls.QWERTZKeyBoardLayout.ID;
-	public static final int PREF_KEYBOARDLAYOUT_CYRILLIC = KeyBoardLayoutImpls.CyrillicKeyBoardLayout.ID;
-	public static final int PREF_KEYBOARDLAYOUT_DEFAULT = PREF_KEYBOARDLAYOUT_ABCDEF;
 
 	public static final String PREF_THEME_RESID_ID = "theme_resid";
 
