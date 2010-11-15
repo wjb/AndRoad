@@ -136,7 +136,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 	private static final int MENU_SATELLITE_ID = MENU_QUIT_ID + 1;
 	private static final int MENU_SUBMENU_TRAFFIC_ID = MENU_SATELLITE_ID + 1;
 	private static final int MENU_WEATHER_ID = MENU_SUBMENU_TRAFFIC_ID + 1;
-   private static final int MENU_SHOWFAVORITE_ID = MENU_WEATHER_ID + 1;
+    private static final int MENU_SHOWFAVORITE_ID = MENU_WEATHER_ID + 1;
 	private static final int MENU_OSB_ID = MENU_SHOWFAVORITE_ID + 1;
 	private static final int MENU_COMPASS_ID = MENU_OSB_ID + 1;
 	private static final int MENU_PRELOAD_ID = MENU_COMPASS_ID + 1;
@@ -204,6 +204,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 
 	private AbstractOSMMapViewItemizedOverlayWithFocus<OSMMapViewOverlayItem> mItemOverlay;
 	private AreaOfInterestOverlay mAASOverlay;
+	private BitmapOverlay mFFOverlay;
 	private BitmapOverlay mFavoriteOverlay;
 	private TrafficOverlay mTrafficOverlay;
 	private OSMMapViewSingleIconOverlay mStartFlagOverlay;
@@ -269,6 +270,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 
 		this.mAASOverlay = new AreaOfInterestOverlay();
 		this.mAASOverlay.setDrawnAreasLimit(10);
+		this.mFFOverlay = new BitmapOverlay();
 		this.mFavoriteOverlay = new BitmapOverlay();
 		this.mAreaOfAvoidingsOverlay = new AreaOfInterestOverlay(this.mAvoidAreas);
 
@@ -282,6 +284,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 		this.mNavPointsConnectionLineOverlay.setVisible(false);
 
 		overlays.add(this.mAASOverlay);
+		overlays.add(this.mFFOverlay);
 		overlays.add(this.mFavoriteOverlay);
 		overlays.add(this.mAreaOfAvoidingsOverlay);
 		overlays.add(this.mTrafficOverlay);
@@ -1429,7 +1432,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 							case 3:
 								openWeatherDialog(WhereAmIMap.this.mGPLastMapClick);
 								break;
-							case 4:
+							case 5:
 								return;
 						}
 					}
