@@ -19,7 +19,6 @@
 	<string name="app_name_splash">AndNav2!</string>
 	<string name="app_name_startupwarning">Warnung...</string>
 	<string name="app_name_menu">AndNav2! - Hauptmenü</string>
-	<string name="app_name_donate">AndNav2! - Spenden</string>
 	<string name="app_name_about">AndNav2! - Über</string>
 	<string name="app_name_sd_mainchoose">AndNav2! - Methode wählen...</string>
 	<string name="app_name_sd_resolver">Address-Suche...</string>

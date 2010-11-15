@@ -8,7 +8,6 @@ import org.andnav2.ui.StartupWarning;
 import org.andnav2.ui.common.CommonCallbackAdapter;
 import org.andnav2.ui.common.CommonDialogFactory;
 import org.andnav2.ui.settings.SettingsORSServer;
-import org.andnav2.util.constants.AdFreeConstants;
 import org.andnav2.util.constants.Constants;
 
 import android.app.Activity;
@@ -21,7 +20,7 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.WindowManager.BadTokenException;
 
-public class Splash extends Activity implements Constants, AdFreeConstants {
+public class Splash extends Activity implements Constants {
 	// ===========================================================
 	// Constants
 	// ===========================================================

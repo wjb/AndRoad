@@ -898,25 +898,6 @@ public class Preferences implements Constants, PreferenceConstants {
 	}
 
 	// ===========================================================
-	// Ad Html-Code
-	// ===========================================================
-
-	public static void saveAdHtmlCode(final Context ctx, final String htmlData) {
-		final String base64Encoded = new String(Base64.encodeToChar(htmlData.getBytes(), false));
-		getEditorInstance(ctx).putString(PREF_ADHTMLCODE_ID, base64Encoded).commit();
-	}
-
-	public static String getAdHtmlCode(final Context ctx) {
-		try{
-			final String base64Encoded = getInstance(ctx).getString(PREF_ADHTMLCODE_ID, PREF_ADHTMLCODE_DEFAULT);
-			final byte[] decoded = Base64.decode(base64Encoded.toCharArray());
-			return new String(decoded);
-		}catch(final Throwable t){
-			return PREF_ADHTMLCODE_DEFAULT;
-		}
-	}
-
-	// ===========================================================
 	// ORSServer
 	// ===========================================================
 

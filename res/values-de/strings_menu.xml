@@ -15,6 +15,4 @@
 	<string name="menu_routehome">Nach Hause!</string>
 	<string name="menu_firstaid">Krankenhaus finden!</string>
 	<string name="menu_quit">Schließen!</string>
-	
-	<string name="menu_donate">Wir sind auf <b>Ihre Spenden</b> angewiesen...! (Info)</string>
 </resources>

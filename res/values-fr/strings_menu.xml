@@ -15,6 +15,4 @@
 	<string name="menu_routehome">Domicile !</string>
 	<string name="menu_firstaid">Trouver un hôpital !</string>
 	<string name="menu_quit">Quitter !</string>
-	
-	<string name="menu_donate">Nous dépendons de vos <b>dons</b>...! (Info)</string>
 </resources>

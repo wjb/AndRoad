@@ -44,8 +44,7 @@ public class Menu extends AndNavGPSActivity {
 	private static final int REQUESTCODE_FIRSTAID = REQUESTCODE_WHEREAMI + 1;
 	private static final int REQUESTCODE_SETHOME = REQUESTCODE_FIRSTAID + 1;
 	private static final int REQUESTCODE_ABOUT = REQUESTCODE_SETHOME + 1;
-	private static final int REQUESTCODE_DONATE = REQUESTCODE_ABOUT + 1;
-	private static final int REQUESTCODE_TTS_DATA_CHECK_CODE = REQUESTCODE_DONATE + 1;
+	private static final int REQUESTCODE_TTS_DATA_CHECK_CODE = REQUESTCODE_ABOUT + 1;
 
 	private static final int MENU_ABOUT_ID = android.view.Menu.FIRST;
 	private static final int MENU_VERSIONINFO_ID = MENU_ABOUT_ID + 1;
