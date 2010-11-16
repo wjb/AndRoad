@@ -98,7 +98,7 @@ public abstract class OpenStreetMapAndNavBaseActivity extends OpenStreetMapActiv
 		this.onSetupContentView();
 
         // Add multi touch zoom
-        this.mOSMapView.setBuiltInZoomControls(true);
+        this.mOSMapView.setBuiltInZoomControls(false);
         this.mOSMapView.setMultiTouchControls(true);
 
 		final List<OpenStreetMapViewOverlay> overlays = this.mOSMapView.getOverlays();
