@@ -1,24 +1,24 @@
 // Created by plusminus on 9:30:48 PM - Feb 28, 2009
-package org.andnav2.sys.ors.adt;
+package org.androad.sys.ors.adt;
 
 import java.io.IOException;
 
-import org.andnav2.sys.ors.adt.lus.Country;
-import org.andnav2.util.ping.IPingMethod;
-import org.andnav2.util.ping.PingResult;
+import org.androad.sys.ors.adt.lus.Country;
+import org.androad.util.ping.IPingMethod;
+import org.androad.util.ping.PingResult;
 
-import org.andnav2.sys.ors.ds.DSRequester;
-import org.andnav2.sys.ors.ds.google.GoogleDSRequester;
-import org.andnav2.sys.ors.ds.openrouteservice.OpenRouteServiceDSRequester;
-import org.andnav2.sys.ors.ds.yahoo.YahooDSRequester;
-import org.andnav2.sys.ors.lus.LUSRequester;
-import org.andnav2.sys.ors.lus.google.GoogleLUSRequester;
-import org.andnav2.sys.ors.lus.openrouteservice.OpenRouteServiceLUSRequester;
-import org.andnav2.sys.ors.lus.yahoo.YahooLUSRequester;
-import org.andnav2.sys.ors.rs.RSRequester;
-import org.andnav2.sys.ors.rs.google.GoogleRSRequester;
-import org.andnav2.sys.ors.rs.openrouteservice.OpenRouteServiceRSRequester;
-import org.andnav2.sys.ors.rs.yahoo.YahooRSRequester;
+import org.androad.sys.ors.ds.DSRequester;
+import org.androad.sys.ors.ds.google.GoogleDSRequester;
+import org.androad.sys.ors.ds.openrouteservice.OpenRouteServiceDSRequester;
+import org.androad.sys.ors.ds.yahoo.YahooDSRequester;
+import org.androad.sys.ors.lus.LUSRequester;
+import org.androad.sys.ors.lus.google.GoogleLUSRequester;
+import org.androad.sys.ors.lus.openrouteservice.OpenRouteServiceLUSRequester;
+import org.androad.sys.ors.lus.yahoo.YahooLUSRequester;
+import org.androad.sys.ors.rs.RSRequester;
+import org.androad.sys.ors.rs.google.GoogleRSRequester;
+import org.androad.sys.ors.rs.openrouteservice.OpenRouteServiceRSRequester;
+import org.androad.sys.ors.rs.yahoo.YahooRSRequester;
 
 import android.os.Parcel;
 import android.os.Parcelable;

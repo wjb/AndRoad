@@ -1,8 +1,8 @@
 // Created by plusminus on 17:36:42 - 03.02.2009
-package org.andnav2.ui.map.hud.impl.basic.views;
+package org.androad.ui.map.hud.impl.basic.views;
 
-import org.andnav2.adt.UnitSystem;
-import org.andnav2.ui.map.hud.IHUDNextActionView;
+import org.androad.adt.UnitSystem;
+import org.androad.ui.map.hud.IHUDNextActionView;
 
 import android.content.Context;
 import android.graphics.Bitmap;

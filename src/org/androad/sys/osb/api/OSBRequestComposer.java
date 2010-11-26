@@ -1,5 +1,5 @@
 // Created by plusminus on 17:36:07 - 15.12.2008
-package org.andnav2.sys.osb.api;
+package org.androad.sys.osb.api;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
@@ -8,7 +8,7 @@ import java.util.Locale;
 import org.andnav.osm.util.BoundingBoxE6;
 import org.andnav.osm.util.GeoPoint;
 
-import org.andnav2.sys.osb.adt.OpenStreetBug;
+import org.androad.sys.osb.adt.OpenStreetBug;
 import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.StringBody;
 

@@ -2,7 +2,7 @@
 /**
  * 
  */
-package org.andnav2.db;
+package org.androad.db;
 
 public class DataBaseException extends Exception {
 

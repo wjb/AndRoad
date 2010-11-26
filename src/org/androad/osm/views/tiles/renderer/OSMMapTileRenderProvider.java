@@ -1,17 +1,17 @@
 // Created by plusminus on 21:31:36 - 25.09.2008
-package org.andnav2.osm.views.tiles.renderer;
+package org.androad.osm.views.tiles.renderer;
 
 import java.io.InputStream;
 import java.io.OutputStream;
 
 import org.andnav.osm.tileprovider.OpenStreetMapTile;
 
-import org.andnav2.osm.util.constants.OSMConstants;
-import org.andnav2.osm.views.tiles.OSMAbstractMapTileProvider;
-import org.andnav2.osm.views.tiles.OSMMapTileProviderInfo;
-import org.andnav2.osm.views.tiles.caching.OSMMapTileFilesystemCache;
-import org.andnav2.osm.views.util.StreamUtils;
-import org.andnav2.osm.views.util.constants.OSMMapViewConstants;
+import org.androad.osm.util.constants.OSMConstants;
+import org.androad.osm.views.tiles.OSMAbstractMapTileProvider;
+import org.androad.osm.views.tiles.OSMMapTileProviderInfo;
+import org.androad.osm.views.tiles.caching.OSMMapTileFilesystemCache;
+import org.androad.osm.views.util.StreamUtils;
+import org.androad.osm.views.util.constants.OSMMapViewConstants;
 
 import android.content.Context;
 import android.graphics.Bitmap;

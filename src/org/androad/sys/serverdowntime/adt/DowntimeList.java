@@ -1,9 +1,9 @@
 // Created by plusminus on 13:52:12 - 04.02.2009
-package org.andnav2.sys.serverdowntime.adt;
+package org.androad.sys.serverdowntime.adt;
 
 import java.util.ArrayList;
 
-import org.andnav2.sys.serverdowntime.exc.DowntimeHasAlreadyPassedException;
+import org.androad.sys.serverdowntime.exc.DowntimeHasAlreadyPassedException;
 
 
 public class DowntimeList extends ArrayList<Downtime> {

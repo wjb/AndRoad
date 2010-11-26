@@ -1,5 +1,5 @@
 // Created by plusminus on 19:14:08 - 20.10.2008
-package org.andnav2.osm.views.util;
+package org.androad.osm.views.util;
 
 import java.io.Closeable;
 import java.io.IOException;

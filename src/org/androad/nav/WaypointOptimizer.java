@@ -1,5 +1,5 @@
 //Created by plusminus on 11:34:13 - 25.05.2008
-package org.andnav2.nav;
+package org.androad.nav;
 
 import java.util.ArrayList;
 import java.util.List;

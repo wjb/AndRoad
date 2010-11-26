@@ -1,9 +1,9 @@
 // Created by plusminus on 00:02:58 - 03.10.2008
-package org.andnav2.sys.osb.views.overlay;
+package org.androad.sys.osb.views.overlay;
 
 import org.andnav.osm.views.overlay.OpenStreetMapViewOverlayItem;
 
-import org.andnav2.sys.osb.adt.OpenStreetBug;
+import org.androad.sys.osb.adt.OpenStreetBug;
 
 import android.os.Parcel;
 import android.os.Parcelable;

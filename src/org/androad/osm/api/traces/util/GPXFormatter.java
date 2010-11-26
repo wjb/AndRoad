@@ -1,5 +1,5 @@
 // Created by plusminus on 13:23:45 - 21.09.2008
-package org.andnav2.osm.api.traces.util;
+package org.androad.osm.api.traces.util;
 
 
 import java.text.SimpleDateFormat;
@@ -11,9 +11,9 @@ import java.util.Locale;
 
 import org.andnav.osm.util.GeoPoint;
 
-import org.andnav2.osm.adt.GPSGeoLocation;
-import org.andnav2.osm.api.util.constants.OSMTraceAPIConstants;
-import org.andnav2.osm.util.constants.OSMConstants;
+import org.androad.osm.adt.GPSGeoLocation;
+import org.androad.osm.api.util.constants.OSMTraceAPIConstants;
+import org.androad.osm.util.constants.OSMConstants;
 
 
 /**

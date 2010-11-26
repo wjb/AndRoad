@@ -1,5 +1,5 @@
 // Created by plusminus on 10:33:46 - 12.02.2009
-package org.andnav2.osm.views.tiles.renderer.db.adt.constants;
+package org.androad.osm.views.tiles.renderer.db.adt.constants;
 
 
 public interface OSMWayConstants {

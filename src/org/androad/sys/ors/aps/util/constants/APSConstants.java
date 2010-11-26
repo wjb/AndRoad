@@ -1,5 +1,5 @@
 // Created by plusminus on 17:36:08 - 30.01.2009
-package org.andnav2.sys.ors.aps.util.constants;
+package org.androad.sys.ors.aps.util.constants;
 
 
 public interface APSConstants {

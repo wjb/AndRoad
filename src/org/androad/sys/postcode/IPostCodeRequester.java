@@ -1,10 +1,10 @@
 // Created by plusminus on 19:27:39 - 23.11.2008
-package org.andnav2.sys.postcode;
+package org.androad.sys.postcode;
 
 import java.io.IOException;
 
-import org.andnav2.sys.ors.adt.GeocodedAddress;
-import org.andnav2.sys.ors.exceptions.ORSException;
+import org.androad.sys.ors.adt.GeocodedAddress;
+import org.androad.sys.ors.exceptions.ORSException;
 
 
 public interface IPostCodeRequester {

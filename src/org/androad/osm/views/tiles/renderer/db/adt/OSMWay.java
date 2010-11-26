@@ -1,10 +1,10 @@
 // Created by plusminus on 22:33:10 - 11.02.2009
-package org.andnav2.osm.views.tiles.renderer.db.adt;
+package org.androad.osm.views.tiles.renderer.db.adt;
 
 import java.util.ArrayList;
 
-import org.andnav2.osm.views.tiles.renderer.db.adt.constants.OSMWayConstants;
-import org.andnav2.util.constants.Constants;
+import org.androad.osm.views.tiles.renderer.db.adt.constants.OSMWayConstants;
+import org.androad.util.constants.Constants;
 
 import android.util.Log;
 

@@ -1,11 +1,11 @@
 // Created by plusminus on 22:41:12 - 15.08.2008
-package org.andnav2.util;
+package org.androad.util;
 
 import java.util.ArrayList;
 
 import org.andnav.osm.util.GeoPoint;
 
-import org.andnav2.util.constants.Constants;
+import org.androad.util.constants.Constants;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;

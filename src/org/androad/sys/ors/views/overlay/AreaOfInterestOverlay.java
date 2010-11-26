@@ -1,5 +1,5 @@
 // Created by plusminus on 00:52:21 - 12.11.2008
-package org.andnav2.sys.ors.views.overlay;
+package org.androad.sys.ors.views.overlay;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ import org.andnav.osm.views.OpenStreetMapView;
 import org.andnav.osm.views.OpenStreetMapView.OpenStreetMapViewProjection;
 import org.andnav.osm.views.overlay.OpenStreetMapViewOverlay;
 
-import org.andnav2.sys.ors.adt.aoi.AreaOfInterest;
+import org.androad.sys.ors.adt.aoi.AreaOfInterest;
 
 import android.content.Context;
 import android.graphics.Canvas;

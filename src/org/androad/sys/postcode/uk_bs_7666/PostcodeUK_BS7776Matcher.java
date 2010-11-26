@@ -2,7 +2,7 @@
 /**
  * 
  */
-package org.andnav2.sys.postcode.uk_bs_7666;
+package org.androad.sys.postcode.uk_bs_7666;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

@@ -1,12 +1,12 @@
 // Created by plusminus on 23:47:09 - 02.02.2008
-package org.andnav2.ui.sd;
+package org.androad.ui.sd;
 
-import org.andnav2.R;
-import org.andnav2.preferences.Preferences;
-import org.andnav2.sys.ors.adt.lus.Country;
-import org.andnav2.sys.ors.adt.lus.ICountrySubdivision;
-import org.andnav2.ui.AndNavBaseActivity;
-import org.andnav2.ui.common.OnClickOnFocusChangedListenerAdapter;
+import org.androad.R;
+import org.androad.preferences.Preferences;
+import org.androad.sys.ors.adt.lus.Country;
+import org.androad.sys.ors.adt.lus.ICountrySubdivision;
+import org.androad.ui.AndNavBaseActivity;
+import org.androad.ui.common.OnClickOnFocusChangedListenerAdapter;
 
 import android.content.Intent;
 import android.media.MediaPlayer;

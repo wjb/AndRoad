@@ -1,13 +1,13 @@
 // Created by plusminus on 09:58:34 - 04.02.2009
-package org.andnav2.sys.serverdowntime.adt;
+package org.androad.sys.serverdowntime.adt;
 
 import java.text.ParseException;
 
 import junit.framework.Assert;
 
-import org.andnav2.sys.serverdowntime.exc.DowntimeHasAlreadyPassedException;
-import org.andnav2.util.TimeUtils;
-import org.andnav2.util.constants.TimeConstants;
+import org.androad.sys.serverdowntime.exc.DowntimeHasAlreadyPassedException;
+import org.androad.util.TimeUtils;
+import org.androad.util.constants.TimeConstants;
 
 
 public class Downtime implements Comparable<Downtime>, TimeConstants {

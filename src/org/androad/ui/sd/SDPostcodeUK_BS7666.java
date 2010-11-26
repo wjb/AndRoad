@@ -1,23 +1,23 @@
 // Created by plusminus on 21:30:10 - 15.05.2008
-package org.andnav2.ui.sd;
+package org.androad.ui.sd;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import junit.framework.Assert;
 
-import org.andnav2.R;
-import org.andnav2.db.DBManager;
-import org.andnav2.db.DataBaseException;
-import org.andnav2.preferences.Preferences;
-import org.andnav2.sys.ors.adt.GeocodedAddress;
-import org.andnav2.sys.ors.adt.lus.Country;
-import org.andnav2.sys.postcode.uk_bs_7666.PostcodeUK_BS7776Matcher;
-import org.andnav2.sys.postcode.uk_bs_7666.Requester;
-import org.andnav2.ui.AndNavBaseActivity;
-import org.andnav2.ui.common.InlineAutoCompleterCombined;
-import org.andnav2.ui.common.OnClickOnFocusChangedListenerAdapter;
-import org.andnav2.ui.map.OpenStreetDDMap;
+import org.androad.R;
+import org.androad.db.DBManager;
+import org.androad.db.DataBaseException;
+import org.androad.preferences.Preferences;
+import org.androad.sys.ors.adt.GeocodedAddress;
+import org.androad.sys.ors.adt.lus.Country;
+import org.androad.sys.postcode.uk_bs_7666.PostcodeUK_BS7776Matcher;
+import org.androad.sys.postcode.uk_bs_7666.Requester;
+import org.androad.ui.AndNavBaseActivity;
+import org.androad.ui.common.InlineAutoCompleterCombined;
+import org.androad.ui.common.OnClickOnFocusChangedListenerAdapter;
+import org.androad.ui.map.OpenStreetDDMap;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;

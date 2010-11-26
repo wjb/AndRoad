@@ -1,19 +1,19 @@
 // Created by plusminus on 6:43:53 PM - Feb 23, 2009
-package org.andnav2.ui.map.hud.impl.mavoric;
+package org.androad.ui.map.hud.impl.mavoric;
 
-import org.andnav2.R;
-import org.andnav2.adt.UnitSystem;
-import org.andnav2.osm.views.overlay.util.DirectionArrowDescriptor;
-import org.andnav2.ui.map.hud.IHUDImpl;
-import org.andnav2.ui.map.hud.IHUDImplVariation;
-import org.andnav2.ui.map.hud.IHUDNextActionView;
-import org.andnav2.ui.map.hud.IHUDRemainingSummaryView;
-import org.andnav2.ui.map.hud.IHUDTurnDescriptionView;
-import org.andnav2.ui.map.hud.impl.mavoric.views.HUDNextActionView;
-import org.andnav2.ui.map.hud.impl.mavoric.views.HUDUpperNextActionView;
-import org.andnav2.ui.map.hud.util.Util;
-import org.andnav2.util.TimeUtils;
-import org.andnav2.util.constants.Constants;
+import org.androad.R;
+import org.androad.adt.UnitSystem;
+import org.androad.osm.views.overlay.util.DirectionArrowDescriptor;
+import org.androad.ui.map.hud.IHUDImpl;
+import org.androad.ui.map.hud.IHUDImplVariation;
+import org.androad.ui.map.hud.IHUDNextActionView;
+import org.androad.ui.map.hud.IHUDRemainingSummaryView;
+import org.androad.ui.map.hud.IHUDTurnDescriptionView;
+import org.androad.ui.map.hud.impl.mavoric.views.HUDNextActionView;
+import org.androad.ui.map.hud.impl.mavoric.views.HUDUpperNextActionView;
+import org.androad.ui.map.hud.util.Util;
+import org.androad.util.TimeUtils;
+import org.androad.util.constants.Constants;
 
 import android.graphics.Point;
 import android.view.View;

@@ -1,5 +1,5 @@
 // Created by plusminus on 22:57:59 - 02.02.2009
-package org.andnav2.adt;
+package org.androad.adt;
 
 import org.andnav.osm.util.GeoPoint;
 import org.andnav.osm.views.util.constants.OpenStreetMapViewConstants;

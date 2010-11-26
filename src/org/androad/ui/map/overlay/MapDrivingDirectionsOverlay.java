@@ -1,5 +1,5 @@
 //Created by plusminus on 14:00:27 - 30.01.2008
-package org.andnav2.ui.map.overlay;
+package org.androad.ui.map.overlay;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,21 +9,21 @@ import org.andnav.osm.views.OpenStreetMapView;
 import org.andnav.osm.views.OpenStreetMapView.OpenStreetMapViewProjection;
 import org.andnav.osm.views.overlay.OpenStreetMapViewOverlay;
 
-import org.andnav2.R;
-import org.andnav2.loc.AbstractAndNavLocationProvider;
-import org.andnav2.nav.Navigator;
-import org.andnav2.osm.util.constants.MathConstants;
-import org.andnav2.osm.views.overlay.util.DirectionArrowDescriptor;
-import org.andnav2.preferences.PreferenceConstants;
-import org.andnav2.sys.ors.adt.rs.Route;
-import org.andnav2.sys.ors.adt.rs.RouteInstruction;
-import org.andnav2.ui.map.OpenStreetDDMap;
-import org.andnav2.ui.map.overlay.util.ArrowPathCreator;
-import org.andnav2.ui.map.overlay.util.ManagedLinePath;
-import org.andnav2.util.constants.Constants;
-import org.andnav2.util.constants.GeoConstants;
-import org.andnav2.util.constants.MathematicalConstants;
-import org.andnav2.util.constants.TimeConstants;
+import org.androad.R;
+import org.androad.loc.AbstractAndNavLocationProvider;
+import org.androad.nav.Navigator;
+import org.androad.osm.util.constants.MathConstants;
+import org.androad.osm.views.overlay.util.DirectionArrowDescriptor;
+import org.androad.preferences.PreferenceConstants;
+import org.androad.sys.ors.adt.rs.Route;
+import org.androad.sys.ors.adt.rs.RouteInstruction;
+import org.androad.ui.map.OpenStreetDDMap;
+import org.androad.ui.map.overlay.util.ArrowPathCreator;
+import org.androad.ui.map.overlay.util.ManagedLinePath;
+import org.androad.util.constants.Constants;
+import org.androad.util.constants.GeoConstants;
+import org.androad.util.constants.MathematicalConstants;
+import org.androad.util.constants.TimeConstants;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

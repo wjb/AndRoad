@@ -1,4 +1,4 @@
-package org.andnav2.sys.ors.lus;
+package org.androad.sys.ors.lus;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -6,11 +6,11 @@ import java.util.ArrayList;
 
 import org.andnav.osm.util.GeoPoint;
 
-import org.andnav2.sys.ors.adt.GeocodedAddress;
-import org.andnav2.sys.ors.adt.lus.Country;
-import org.andnav2.sys.ors.adt.lus.ICountrySubdivision;
-import org.andnav2.sys.ors.adt.lus.ReverseGeocodePreferenceType;
-import org.andnav2.sys.ors.exceptions.ORSException;
+import org.androad.sys.ors.adt.GeocodedAddress;
+import org.androad.sys.ors.adt.lus.Country;
+import org.androad.sys.ors.adt.lus.ICountrySubdivision;
+import org.androad.sys.ors.adt.lus.ReverseGeocodePreferenceType;
+import org.androad.sys.ors.exceptions.ORSException;
 
 import org.xml.sax.SAXException;
 

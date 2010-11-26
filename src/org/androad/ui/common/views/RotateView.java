@@ -1,7 +1,7 @@
 // Created by plusminus on 11:52:08 - 29.08.2008
-package org.andnav2.ui.common.views;
+package org.androad.ui.common.views;
 
-import org.andnav2.util.constants.Constants;
+import org.androad.util.constants.Constants;
 
 import android.content.Context;
 import android.graphics.Camera;

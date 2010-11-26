@@ -1,11 +1,11 @@
 // Created by plusminus on 23:36:12 - 18.01.2009
-package org.andnav2.sys.ors.views.overlay;
+package org.androad.sys.ors.views.overlay;
 
 import java.util.List;
 
-import org.andnav2.R;
-import org.andnav2.osm.views.overlay.OSMMapViewSpacialIndexItemizedOverlayWithFocus;
-import org.andnav2.sys.ors.adt.ts.TrafficOverlayManager;
+import org.androad.R;
+import org.androad.osm.views.overlay.OSMMapViewSpacialIndexItemizedOverlayWithFocus;
+import org.androad.sys.ors.adt.ts.TrafficOverlayManager;
 
 import android.content.Context;
 import android.graphics.Color;

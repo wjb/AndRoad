@@ -1,5 +1,5 @@
 // Created by plusminus on 21:38:52 - 17.01.2009
-package org.andnav2.sys.traffic.tpeg.tpegml.impl;
+package org.androad.sys.traffic.tpeg.tpegml.impl;
 
 import org.andnav2.traffic.tpeg.tpegml.AbstractTPEGMLTrafficReceiver;
 import org.andnav2.traffic.tpeg.util.IInputModifier;

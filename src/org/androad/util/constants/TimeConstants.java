@@ -1,5 +1,5 @@
 // Created by plusminus on 16:42:32 - 11.08.2008
-package org.andnav2.util.constants;
+package org.androad.util.constants;
 
 
 public interface TimeConstants {

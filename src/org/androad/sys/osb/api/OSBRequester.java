@@ -1,4 +1,4 @@
-package org.andnav2.sys.osb.api;
+package org.androad.sys.osb.api;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -12,9 +12,9 @@ import junit.framework.Assert;
 import org.andnav.osm.util.BoundingBoxE6;
 import org.andnav.osm.util.GeoPoint;
 
-import org.andnav2.osm.views.util.StreamUtils;
-import org.andnav2.sys.osb.adt.OpenStreetBug;
-import org.andnav2.sys.osb.exc.OSBException;
+import org.androad.osm.views.util.StreamUtils;
+import org.androad.sys.osb.adt.OpenStreetBug;
+import org.androad.sys.osb.exc.OSBException;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.HttpClient;

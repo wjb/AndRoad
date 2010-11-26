@@ -1,9 +1,9 @@
 // Created by plusminus on 20:45:48 - 25.04.2008
-package org.andnav2.adt.voice;
+package org.androad.adt.voice;
 
-import org.andnav2.R;
-import org.andnav2.preferences.PreferenceConstants;
-import org.andnav2.sys.ors.adt.rs.DirectionsLanguage;
+import org.androad.R;
+import org.androad.preferences.PreferenceConstants;
+import org.androad.sys.ors.adt.rs.DirectionsLanguage;
 
 import android.content.Context;
 
@@ -54,7 +54,7 @@ public enum DistanceVoiceElement implements PreferenceConstants {
 			case MI_ONE: case MI_TWO: case MI_FIVE: case MI_TEN: case MI_TWENTY_FIVE:
 				return pLanguage.getTurnInstructionsSet(ctx).getMiles();
 			default:
-				throw new IllegalStateException("Default-Branch in org.andnav2.nav.voice.DistanceVoiceElement.getUnitTextual()");
+				throw new IllegalStateException("Default-Branch in org.androad.nav.voice.DistanceVoiceElement.getUnitTextual()");
 		}
 	}
 }

@@ -1,5 +1,5 @@
 // Created by plusminus on 21:46:41 - 25.09.2008
-package org.andnav2.osm.views.tiles.caching;
+package org.androad.osm.views.tiles.caching;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -17,15 +17,15 @@ import java.util.Set;
 
 import org.andnav.osm.tileprovider.OpenStreetMapTile;
 
-import org.andnav2.exc.Exceptor;
-import org.andnav2.osm.exceptions.EmptyCacheException;
-import org.andnav2.osm.exceptions.ExternalStorageNotMountedException;
-import org.andnav2.osm.util.Util;
-import org.andnav2.osm.util.constants.OSMConstants;
-import org.andnav2.osm.views.tiles.OSMMapTileProviderInfo;
-import org.andnav2.osm.views.util.NoMagicNumberException;
-import org.andnav2.osm.views.util.StreamUtils;
-import org.andnav2.osm.views.util.constants.OSMMapViewConstants;
+import org.androad.exc.Exceptor;
+import org.androad.osm.exceptions.EmptyCacheException;
+import org.androad.osm.exceptions.ExternalStorageNotMountedException;
+import org.androad.osm.util.Util;
+import org.androad.osm.util.constants.OSMConstants;
+import org.androad.osm.views.tiles.OSMMapTileProviderInfo;
+import org.androad.osm.views.util.NoMagicNumberException;
+import org.androad.osm.views.util.StreamUtils;
+import org.androad.osm.views.util.constants.OSMMapViewConstants;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -527,7 +527,7 @@ public class OSMMapTileFilesystemCache extends AbstractOSMMapTileFilesystemCache
 
 			switch(aStoragePolicy){
 				case EXTERNAL:
-					// TODO java.lang.IllegalStateException: /sdcard/andnav2/osm_maptile_fscache_db.db SQLiteDatabase created and never closed
+					// TODO java.lang.IllegalStateException: /sdcard/androad/osm_maptile_fscache_db.db SQLiteDatabase created and never closed
 					this.mDatabase = SQLiteDatabase.openDatabase(OSMMapTileFilesystemCache.this.EXTERNAL_STORAGE_BASEDIRECTORY + aStoragePolicy.DATABASE_PATH, null, SQLiteDatabase.CREATE_IF_NECESSARY);
 
 					/* Determine if the database needs to be updated. */

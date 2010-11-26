@@ -1,5 +1,5 @@
 // Created by plusminus on 00:51:14 - 03.12.2008
-package org.andnav2.osm.adt;
+package org.androad.osm.adt;
 
 import java.util.GregorianCalendar;
 

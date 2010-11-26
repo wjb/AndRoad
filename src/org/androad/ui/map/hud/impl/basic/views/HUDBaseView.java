@@ -1,11 +1,11 @@
 // Created by plusminus on 21:37:42 - 09.09.2008
-package org.andnav2.ui.map.hud.impl.basic.views;
+package org.androad.ui.map.hud.impl.basic.views;
 
-import org.andnav2.adt.UnitSystem;
-import org.andnav2.preferences.PreferenceConstants;
-import org.andnav2.ui.map.hud.IHUDView;
-import org.andnav2.util.constants.Constants;
-import org.andnav2.util.constants.TimeConstants;
+import org.androad.adt.UnitSystem;
+import org.androad.preferences.PreferenceConstants;
+import org.androad.ui.map.hud.IHUDView;
+import org.androad.util.constants.Constants;
+import org.androad.util.constants.TimeConstants;
 
 import android.content.Context;
 import android.graphics.Paint;

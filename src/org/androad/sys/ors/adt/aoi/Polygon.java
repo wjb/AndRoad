@@ -1,5 +1,5 @@
 // Created by plusminus on 21:42:53 - 16.10.2008
-package org.andnav2.sys.ors.adt.aoi;
+package org.androad.sys.ors.adt.aoi;
 
 import java.util.ArrayList;
 import java.util.Formatter;
@@ -11,7 +11,7 @@ import org.andnav.osm.util.BoundingBoxE6;
 import org.andnav.osm.util.GeoPoint;
 import org.andnav.osm.views.OpenStreetMapView.OpenStreetMapViewProjection;
 
-import org.andnav2.ui.map.overlay.util.ManagedLinePath;
+import org.androad.ui.map.overlay.util.ManagedLinePath;
 
 import android.graphics.Canvas;
 import android.graphics.Point;

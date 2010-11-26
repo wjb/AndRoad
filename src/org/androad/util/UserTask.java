@@ -1,5 +1,5 @@
 // Created by plusminus on 23:11:29 - 07.12.2008
-package org.andnav2.util;
+package org.androad.util;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Callable;

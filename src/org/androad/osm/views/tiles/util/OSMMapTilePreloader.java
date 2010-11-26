@@ -1,5 +1,5 @@
 // Created by plusminus on 19:24:16 - 12.11.2008
-package org.andnav2.osm.views.tiles.util;
+package org.androad.osm.views.tiles.util;
 
 import java.util.Comparator;
 import java.util.List;
@@ -11,13 +11,13 @@ import org.andnav.osm.util.GeoPoint;
 import org.andnav.osm.views.OpenStreetMapView;
 import org.andnav.osm.views.util.IOpenStreetMapRendererInfo;
 
-import org.andnav2.osm.util.ValuePair;
-import org.andnav2.osm.util.Util.PixelSetter;
-import org.andnav2.osm.util.constants.OSMConstants;
-import org.andnav2.osm.views.tiles.OSMAbstractMapTileProvider;
-import org.andnav2.osm.views.util.Util;
-import org.andnav2.osm.views.util.constants.OSMMapViewConstants;
-import org.andnav2.sys.ors.adt.rs.Route;
+import org.androad.osm.util.ValuePair;
+import org.androad.osm.util.Util.PixelSetter;
+import org.androad.osm.util.constants.OSMConstants;
+import org.androad.osm.views.tiles.OSMAbstractMapTileProvider;
+import org.androad.osm.views.util.Util;
+import org.androad.osm.views.util.constants.OSMMapViewConstants;
+import org.androad.sys.ors.adt.rs.Route;
 
 import android.os.Handler;
 import android.os.Message;
@@ -230,11 +230,11 @@ public class OSMMapTilePreloader implements OSMConstants, OSMMapViewConstants {
 				final int curY = cur.getY();
 
 				rasterLine.clear();
-				org.andnav2.osm.util.Util.rasterLine(prevX, prevY, curX, curY, rasterLinePixelSetter);
+				org.androad.osm.util.Util.rasterLine(prevX, prevY, curX, curY, rasterLinePixelSetter);
 
 				/* If wanted smooth that line. */
 				if(pSmoothed){
-					org.andnav2.osm.util.Util.smoothLine(rasterLine);
+					org.androad.osm.util.Util.smoothLine(rasterLine);
 				}
 
 				needed.addAll(rasterLine);

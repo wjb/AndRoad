@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.andnav2.util.ping;
+package org.androad.util.ping;
 
 /**
  * @author Nicolas Gramlich

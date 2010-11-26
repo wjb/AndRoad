@@ -1,5 +1,5 @@
 // Created by plusminus on 17:43:50 - 28.08.2008
-package org.andnav2.adt.other;
+package org.androad.adt.other;
 
 public class GraphicsPoint extends android.graphics.Point {
 

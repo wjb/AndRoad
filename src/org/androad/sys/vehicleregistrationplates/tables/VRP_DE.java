@@ -1,7 +1,7 @@
 // Created by plusminus on 12:27:34 PM - Mar 6, 2009
-package org.andnav2.sys.vehicleregistrationplates.tables;
+package org.androad.sys.vehicleregistrationplates.tables;
 
-import org.andnav2.sys.ors.adt.lus.Country;
+import org.androad.sys.ors.adt.lus.Country;
 
 
 public enum VRP_DE implements IVRPElement {

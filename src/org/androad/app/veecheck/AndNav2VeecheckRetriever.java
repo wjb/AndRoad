@@ -1,5 +1,5 @@
 // Created by plusminus on 01:15:59 - 20.11.2008
-package org.andnav2.app.veecheck;
+package org.androad.app.veecheck;
 
 import android.content.Context;
 

@@ -1,8 +1,8 @@
-package org.andnav2.sys.ors.exceptions;
+package org.androad.sys.ors.exceptions;
 
 import java.util.ArrayList;
 
-import org.andnav2.sys.ors.adt.Error;
+import org.androad.sys.ors.adt.Error;
 
 /**
  * @since 2008-04-06 22:14:13

@@ -1,7 +1,7 @@
 // Created by plusminus on 10:12:13 - 14.04.2008
-package org.andnav2.ui;
+package org.androad.ui;
 
-import org.andnav2.R;
+import org.androad.R;
 
 import android.app.ListActivity;
 import android.content.Intent;

@@ -1,4 +1,4 @@
-package org.andnav2.osm.api.traces;
+package org.androad.osm.api.traces;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
@@ -9,8 +9,8 @@ import java.util.ArrayList;
 
 import org.andnav.osm.util.GeoPoint;
 
-import org.andnav2.osm.api.traces.util.GPXFormatter;
-import org.andnav2.osm.api.traces.util.Util;
+import org.androad.osm.api.traces.util.GPXFormatter;
+import org.androad.osm.api.traces.util.Util;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.HttpClient;

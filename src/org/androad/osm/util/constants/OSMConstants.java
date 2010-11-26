@@ -1,5 +1,5 @@
 // Created by plusminus on 23:11:31 - 22.09.2008
-package org.andnav2.osm.util.constants;
+package org.androad.osm.util.constants;
 
 /**
  * 
@@ -13,7 +13,7 @@ public interface OSMConstants {
 
 	public static final String DEBUGTAG = "OPENSTREETMAP";
 
-	public static final String BASEPATH_ON_EXTERNAL_MEDIA = "andnav2/";
+	public static final String BASEPATH_ON_EXTERNAL_MEDIA = "androad/";
 
 	public static final String SDCARD_SAVEDROUTES_PATH = "routes/";
 	public static final String SDCARD_SAVEDTRACES_PATH = "traces/";

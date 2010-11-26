@@ -1,4 +1,4 @@
-package org.andnav2.sys.ors.lus.openrouteservice;
+package org.androad.sys.ors.lus.openrouteservice;
 
 import java.util.Formatter;
 import java.util.Locale;
@@ -7,11 +7,11 @@ import junit.framework.Assert;
 
 import org.andnav.osm.util.GeoPoint;
 
-import org.andnav2.sys.ors.adt.lus.Country;
-import org.andnav2.sys.ors.adt.lus.ICountrySubdivision;
-import org.andnav2.sys.ors.adt.lus.ReverseGeocodePreferenceType;
-import org.andnav2.sys.ors.util.Util;
-import org.andnav2.sys.ors.util.constants.ORSXMLConstants;
+import org.androad.sys.ors.adt.lus.Country;
+import org.androad.sys.ors.adt.lus.ICountrySubdivision;
+import org.androad.sys.ors.adt.lus.ReverseGeocodePreferenceType;
+import org.androad.sys.ors.util.Util;
+import org.androad.sys.ors.util.constants.ORSXMLConstants;
 
 import android.content.Context;
 

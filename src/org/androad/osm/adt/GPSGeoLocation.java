@@ -1,5 +1,5 @@
 // Created by plusminus on 00:51:14 - 03.12.2008
-package org.andnav2.osm.adt;
+package org.androad.osm.adt;
 
 import java.util.Formatter;
 import java.util.GregorianCalendar;
@@ -7,7 +7,7 @@ import java.util.GregorianCalendar;
 import org.andnav.osm.contributor.util.RecordedRouteGPXFormatter;
 import org.andnav.osm.views.util.constants.OpenStreetMapViewConstants;
 
-import org.andnav2.osm.api.traces.util.Util;
+import org.androad.osm.api.traces.util.Util;
 
 public class GPSGeoLocation extends GeoLocation {
 	// ===========================================================

@@ -1,11 +1,11 @@
 // Created by plusminus on 18:26:58 - 05.04.2008
-package org.andnav2.exc;
+package org.androad.exc;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import org.andnav2.ui.util.Util;
-import org.andnav2.util.constants.Constants;
+import org.androad.ui.util.Util;
+import org.androad.util.constants.Constants;
 
 import android.content.Context;
 import android.util.Log;

@@ -1,5 +1,5 @@
 // Created by plusminus on 14:29:37 - 12.10.2008
-package org.andnav2.osm.exceptions;
+package org.androad.osm.exceptions;
 
 
 public class EmptyCacheException extends Exception {

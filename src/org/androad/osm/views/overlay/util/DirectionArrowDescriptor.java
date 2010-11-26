@@ -1,5 +1,5 @@
 // Created by plusminus on 12:22:45 AM - Feb 19, 2009
-package org.andnav2.osm.views.overlay.util;
+package org.androad.osm.views.overlay.util;
 
 import android.graphics.Point;
 

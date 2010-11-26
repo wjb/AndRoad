@@ -1,5 +1,5 @@
 // Created by plusminus on 19:19:01 - 15.11.2008
-package org.andnav2.sys.ors.adt.ds;
+package org.androad.sys.ors.adt.ds;
 
 
 public enum DirectoryType {

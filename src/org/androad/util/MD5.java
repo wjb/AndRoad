@@ -1,5 +1,5 @@
 // Created by plusminus on 10:35:21 - 01.02.2009
-package org.andnav2.util;
+package org.androad.util;
 
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;

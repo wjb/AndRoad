@@ -1,11 +1,11 @@
 // Created by plusminus on 11:57:59 PM - Mar 30, 2009
-package org.andnav2.adt.voice;
+package org.androad.adt.voice;
 
-import static org.andnav2.nav.util.Util.inBounds;
+import static org.androad.nav.util.Util.inBounds;
 
-import org.andnav2.adt.UnitSystem;
-import org.andnav2.sys.ors.adt.rs.RouteInstruction;
-import org.andnav2.util.constants.Constants;
+import org.androad.adt.UnitSystem;
+import org.androad.sys.ors.adt.rs.RouteInstruction;
+import org.androad.util.constants.Constants;
 
 
 public class AudibleTurnCommandManager {

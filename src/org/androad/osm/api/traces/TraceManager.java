@@ -1,15 +1,15 @@
-package org.andnav2.osm.api.traces;
+package org.androad.osm.api.traces;
 
 import java.util.ArrayList;
 
 import org.andnav.osm.util.GeoPoint;
 
-import org.andnav2.R;
-import org.andnav2.Splash;
-import org.andnav2.osm.api.traces.util.Util;
-import org.andnav2.osm.util.constants.OSMConstants;
-import org.andnav2.preferences.Preferences;
-import org.andnav2.ui.common.CommonCallback;
+import org.androad.R;
+import org.androad.Splash;
+import org.androad.osm.api.traces.util.Util;
+import org.androad.osm.util.constants.OSMConstants;
+import org.androad.preferences.Preferences;
+import org.androad.ui.common.CommonCallback;
 
 import android.app.Notification;
 import android.app.NotificationManager;

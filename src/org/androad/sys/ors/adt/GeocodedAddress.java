@@ -1,12 +1,12 @@
 // Created by plusminus on 01:20:48 - 02.11.2008
-package org.andnav2.sys.ors.adt;
+package org.androad.sys.ors.adt;
 
 import org.andnav.osm.util.GeoPoint;
 import org.andnav.osm.views.util.constants.OpenStreetMapViewConstants;
 
-import org.andnav2.R;
-import org.andnav2.adt.UnitSystem;
-import org.andnav2.sys.ors.adt.lus.Country;
+import org.androad.R;
+import org.androad.adt.UnitSystem;
+import org.androad.sys.ors.adt.lus.Country;
 
 import android.content.Context;
 import android.os.Parcel;

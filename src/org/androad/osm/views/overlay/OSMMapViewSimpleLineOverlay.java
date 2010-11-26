@@ -1,11 +1,11 @@
 // Created by plusminus on 5:29:23 PM - Mar 4, 2009
-package org.andnav2.osm.views.overlay;
+package org.androad.osm.views.overlay;
 
 import org.andnav.osm.util.GeoPoint;
 import org.andnav.osm.views.OpenStreetMapView;
 import org.andnav.osm.views.overlay.OpenStreetMapViewOverlay;
 
-import org.andnav2.osm.adt.GeoLine;
+import org.androad.osm.adt.GeoLine;
 
 import android.content.Context;
 import android.graphics.Canvas;

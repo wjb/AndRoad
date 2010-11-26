@@ -1,4 +1,4 @@
-package org.andnav2.sys.ors.rs.google;
+package org.androad.sys.ors.rs.google;
 
 import java.util.List;
 
@@ -6,9 +6,9 @@ import junit.framework.Assert;
 
 import org.andnav.osm.util.GeoPoint;
 
-import org.andnav2.sys.ors.adt.rs.DirectionsLanguage;
-import org.andnav2.sys.ors.adt.rs.RoutePreferenceType;
-import org.andnav2.sys.ors.util.constants.ORSXMLConstants;
+import org.androad.sys.ors.adt.rs.DirectionsLanguage;
+import org.androad.sys.ors.adt.rs.RoutePreferenceType;
+import org.androad.sys.ors.util.constants.ORSXMLConstants;
 
 public class GoogleRSRequestComposer implements ORSXMLConstants {
 

@@ -1,5 +1,5 @@
 // Created by Fabien Carrion
-package org.andnav2.sys.ors.ff;
+package org.androad.sys.ors.ff;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,8 +10,8 @@ import java.util.ArrayList;
 
 import org.andnav.osm.util.GeoPoint;
 
-import org.andnav2.sys.ors.views.overlay.FoxyTagPoint;
-import org.andnav2.util.constants.Constants;
+import org.androad.sys.ors.views.overlay.FoxyTagPoint;
+import org.androad.util.constants.Constants;
 
 import android.content.Context;
 import android.util.Log;

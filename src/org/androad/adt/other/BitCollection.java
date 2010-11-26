@@ -1,5 +1,5 @@
 // Created by plusminus on 23:50:40 - 13.06.2008
-package org.andnav2.adt.other;
+package org.androad.adt.other;
 
 
 @Deprecated

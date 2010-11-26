@@ -1,5 +1,5 @@
 // Created by plusminus on 19:15:38 - 23.11.2008
-package org.andnav2.sys.postcode.uk_bs_7666;
+package org.androad.sys.postcode.uk_bs_7666;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -7,10 +7,10 @@ import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 
-import org.andnav2.sys.ors.adt.Error;
-import org.andnav2.sys.ors.adt.GeocodedAddress;
-import org.andnav2.sys.ors.exceptions.ORSException;
-import org.andnav2.sys.postcode.IPostCodeRequester;
+import org.androad.sys.ors.adt.Error;
+import org.androad.sys.ors.adt.GeocodedAddress;
+import org.androad.sys.ors.exceptions.ORSException;
+import org.androad.sys.postcode.IPostCodeRequester;
 import org.apache.http.util.ByteArrayBuffer;
 
 
@@ -64,7 +64,7 @@ public class Requester implements IPostCodeRequester{
 		if(s.compareToIgnoreCase("error") == 0){
 			throw new ORSException(new Error(Error.ERRORCODE_UNKNOWN,
 					Error.SEVERITY_ERROR,
-					"org.andnav2.sys.postcode.PostCodeRequester.createFromResult(final String postCode)",
+					"org.androad.sys.postcode.PostCodeRequester.createFromResult(final String postCode)",
 			"Postcode could not be resolved."));
 		}
 

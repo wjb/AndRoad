@@ -1,5 +1,5 @@
 // Created by plusminus on 10:12:09 - 04.02.2009
-package org.andnav2.util;
+package org.androad.util;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -10,8 +10,8 @@ import java.util.GregorianCalendar;
 import java.util.StringTokenizer;
 import java.util.TimeZone;
 
-import org.andnav2.R;
-import org.andnav2.util.constants.TimeConstants;
+import org.androad.R;
+import org.androad.util.constants.TimeConstants;
 
 import android.content.Context;
 

@@ -1,4 +1,4 @@
-package org.andnav2.sys.ors.adt.lus;
+package org.androad.sys.ors.adt.lus;
 
 import android.os.Parcelable;
 

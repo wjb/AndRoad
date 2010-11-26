@@ -1,10 +1,10 @@
 // Created by plusminus on 18:54:36 - 09.09.2008
-package org.andnav2.ui.map.hud.impl.basic.views;
+package org.androad.ui.map.hud.impl.basic.views;
 
-import org.andnav2.adt.UnitSystem;
-import org.andnav2.ui.map.hud.IHUDRemainingSummaryView;
-import org.andnav2.util.TimeUtils;
-import org.andnav2.util.constants.Constants;
+import org.androad.adt.UnitSystem;
+import org.androad.ui.map.hud.IHUDRemainingSummaryView;
+import org.androad.util.TimeUtils;
+import org.androad.util.constants.Constants;
 
 import android.content.Context;
 import android.graphics.Canvas;

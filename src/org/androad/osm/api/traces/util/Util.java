@@ -1,5 +1,5 @@
 // Created by plusminus on 13:24:05 - 21.09.2008
-package org.andnav2.osm.api.traces.util;
+package org.androad.osm.api.traces.util;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -14,7 +14,7 @@ import java.util.zip.ZipOutputStream;
 import org.andnav.osm.util.GeoPoint;
 import org.andnav.osm.util.BoundingBoxE6;
 
-import org.andnav2.osm.api.util.constants.OSMTraceAPIConstants;
+import org.androad.osm.api.util.constants.OSMTraceAPIConstants;
 
 
 /**

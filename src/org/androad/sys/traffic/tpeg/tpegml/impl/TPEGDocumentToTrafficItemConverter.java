@@ -1,13 +1,13 @@
 // Created by plusminus on 21:49:02 - 17.01.2009
-package org.andnav2.sys.traffic.tpeg.tpegml.impl;
+package org.androad.sys.traffic.tpeg.tpegml.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.andnav.osm.util.GeoPoint;
 
-import org.andnav2.sys.ors.adt.ts.TrafficItem;
-import org.andnav2.sys.traffic.tpeg.tpegml.impl.util.TypeConverter;
+import org.androad.sys.ors.adt.ts.TrafficItem;
+import org.androad.sys.traffic.tpeg.tpegml.impl.util.TypeConverter;
 import org.andnav2.traffic.tpeg.adt.TPEGDocument;
 import org.andnav2.traffic.tpeg.adt.TPEGMessage;
 import org.andnav2.traffic.tpeg.adt.loc.LocationContainer;

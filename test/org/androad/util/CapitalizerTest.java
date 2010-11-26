@@ -1,5 +1,5 @@
 // Created by plusminus on 01:03:19 - 28.01.2009
-package org.andnav2.util;
+package org.androad.util;
 
 import org.junit.Assert;
 import org.junit.Test;

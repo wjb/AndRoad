@@ -1,7 +1,7 @@
 // Created by plusminus on 5:22:00 PM - Feb 18, 2009
-package org.andnav2.ui.map.hud;
+package org.androad.ui.map.hud;
 
-import org.andnav2.adt.UnitSystem;
+import org.androad.adt.UnitSystem;
 
 
 public interface IHUDView {

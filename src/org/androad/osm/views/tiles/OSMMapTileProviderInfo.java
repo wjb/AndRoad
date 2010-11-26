@@ -1,5 +1,5 @@
 // Created by plusminus on 18:23:16 - 25.09.2008
-package org.andnav2.osm.views.tiles;
+package org.androad.osm.views.tiles;
 
 import java.util.ArrayList;
 
@@ -7,7 +7,7 @@ import org.andnav.osm.tileprovider.OpenStreetMapTile;
 import org.andnav.osm.util.GeoPoint;
 import org.andnav.osm.util.BoundingBoxE6;
 
-import org.andnav2.osm.views.tiles.caching.OSMMapTileFilesystemCache.StoragePolicy;
+import org.androad.osm.views.tiles.caching.OSMMapTileFilesystemCache.StoragePolicy;
 
 /**
  * 

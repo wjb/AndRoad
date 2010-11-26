@@ -1,16 +1,16 @@
 // Created by plusminus on 21:11:40 - 13.06.2008
-package org.andnav2.ui.sd;
+package org.androad.ui.sd;
 
-import org.andnav2.R;
-import org.andnav2.adt.Favorite;
-import org.andnav2.db.DBManager;
-import org.andnav2.db.DataBaseException;
-import org.andnav2.preferences.Preferences;
-import org.andnav2.ui.AndNavBaseActivity;
-import org.andnav2.ui.common.CommonCallbackAdapter;
-import org.andnav2.ui.common.CommonDialogFactory;
-import org.andnav2.ui.common.OnClickOnFocusChangedListenerAdapter;
-import org.andnav2.ui.map.OpenStreetDDMap;
+import org.androad.R;
+import org.androad.adt.Favorite;
+import org.androad.db.DBManager;
+import org.androad.db.DataBaseException;
+import org.androad.preferences.Preferences;
+import org.androad.ui.AndNavBaseActivity;
+import org.androad.ui.common.CommonCallbackAdapter;
+import org.androad.ui.common.CommonDialogFactory;
+import org.androad.ui.common.OnClickOnFocusChangedListenerAdapter;
+import org.androad.ui.map.OpenStreetDDMap;
 
 import android.app.Dialog;
 import android.content.Intent;

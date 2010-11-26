@@ -1,7 +1,7 @@
-package org.andnav2.adt.voice;
+package org.androad.adt.voice;
 
-import org.andnav2.R;
-import org.andnav2.sys.ors.adt.rs.DirectionsLanguage;
+import org.androad.R;
+import org.androad.sys.ors.adt.rs.DirectionsLanguage;
 
 import android.content.Context;
 import android.widget.Toast;

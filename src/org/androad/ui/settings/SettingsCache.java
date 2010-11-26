@@ -1,16 +1,16 @@
 // Created by plusminus on 18:41:23 - 10.04.2008
-package org.andnav2.ui.settings;
+package org.androad.ui.settings;
 
 import java.io.File;
 
-import org.andnav2.R;
-import org.andnav2.osm.exceptions.ExternalStorageNotMountedException;
-import org.andnav2.osm.views.tiles.OSMMapTileProviderInfo;
-import org.andnav2.osm.views.tiles.caching.OSMMapTileFilesystemCache;
-import org.andnav2.osm.views.tiles.caching.OSMMapTileFilesystemCache.StoragePolicy;
-import org.andnav2.preferences.Preferences;
-import org.andnav2.ui.AndNavBaseActivity;
-import org.andnav2.ui.common.OnClickOnFocusChangedListenerAdapter;
+import org.androad.R;
+import org.androad.osm.exceptions.ExternalStorageNotMountedException;
+import org.androad.osm.views.tiles.OSMMapTileProviderInfo;
+import org.androad.osm.views.tiles.caching.OSMMapTileFilesystemCache;
+import org.androad.osm.views.tiles.caching.OSMMapTileFilesystemCache.StoragePolicy;
+import org.androad.preferences.Preferences;
+import org.androad.ui.AndNavBaseActivity;
+import org.androad.ui.common.OnClickOnFocusChangedListenerAdapter;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;

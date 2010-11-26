@@ -1,5 +1,5 @@
 // Created by plusminus on 18:27:21 - 24.11.2008
-package org.andnav2.app.veecheck.util.constants;
+package org.androad.app.veecheck.util.constants;
 
 
 public interface VeecheckConstants {

@@ -1,5 +1,5 @@
 // Created by plusminus on 14:22:37 - 10.02.2009
-package org.andnav2.osm.views.tiles.renderer.db;
+package org.androad.osm.views.tiles.renderer.db;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,12 +11,12 @@ import java.util.Map;
 
 import org.andnav.osm.util.BoundingBoxE6;
 
-import org.andnav2.db.DataBaseException;
-import org.andnav2.osm.views.tiles.renderer.db.adt.OSMNode;
-import org.andnav2.osm.views.tiles.renderer.db.adt.OSMWay;
-import org.andnav2.osm.views.tiles.renderer.util.constants.OSMDatabaseConstants;
-import org.andnav2.osm.views.util.MercatorSpherical;
-import org.andnav2.util.constants.Constants;
+import org.androad.db.DataBaseException;
+import org.androad.osm.views.tiles.renderer.db.adt.OSMNode;
+import org.androad.osm.views.tiles.renderer.db.adt.OSMWay;
+import org.androad.osm.views.tiles.renderer.util.constants.OSMDatabaseConstants;
+import org.androad.osm.views.util.MercatorSpherical;
+import org.androad.util.constants.Constants;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -57,7 +57,7 @@ public class OSMDatabaseManager implements OSMDatabaseConstants, Constants {
 
 	private static SQLiteDatabase ensureDBInstanceExists(final Context ctx) throws DataBaseException {
 		if(mInstance == null) {
-			mInstance = SQLiteDatabase.openDatabase("/sdcard/andnav2/osm/osm.sqlite.db", null, SQLiteDatabase.OPEN_READONLY | SQLiteDatabase.NO_LOCALIZED_COLLATORS);
+			mInstance = SQLiteDatabase.openDatabase("/sdcard/androad/osm/osm.sqlite.db", null, SQLiteDatabase.OPEN_READONLY | SQLiteDatabase.NO_LOCALIZED_COLLATORS);
 		}
 		/* Create the Database (no Errors if it already exists) */
 		return mInstance;

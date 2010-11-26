@@ -1,5 +1,5 @@
 // Created by plusminus on 19:07:24 - 16.02.2008
-package org.andnav2.preferences;
+package org.androad.preferences;
 
 import java.util.HashMap;
 
@@ -7,22 +7,22 @@ import org.andnav.osm.util.GeoPoint;
 import org.andnav.osm.views.util.IOpenStreetMapRendererInfo;
 import org.andnav.osm.views.util.OpenStreetMapRendererFactory;
 
-import org.andnav2.R;
-import org.andnav2.adt.UnitSystem;
-import org.andnav2.osm.views.overlay.util.DirectionArrowDescriptor;
-import org.andnav2.osm.views.tiles.caching.OSMMapTileFilesystemCache;
-import org.andnav2.osm.views.tiles.caching.OSMMapTileFilesystemCache.StoragePolicy;
-import org.andnav2.sys.ors.adt.ORSServer;
-import org.andnav2.sys.ors.adt.lus.Country;
-import org.andnav2.sys.ors.adt.lus.CountrySubdivisionRegistry;
-import org.andnav2.sys.ors.adt.lus.ICountrySubdivision;
-import org.andnav2.sys.ors.adt.rs.DirectionsLanguage;
-import org.andnav2.sys.ors.adt.rs.RoutePreferenceType;
-import org.andnav2.ui.map.hud.HUDRegistry;
-import org.andnav2.ui.map.hud.IHUDImpl;
-import org.andnav2.ui.map.hud.IHUDImplVariation;
-import org.andnav2.util.Base64;
-import org.andnav2.util.constants.Constants;
+import org.androad.R;
+import org.androad.adt.UnitSystem;
+import org.androad.osm.views.overlay.util.DirectionArrowDescriptor;
+import org.androad.osm.views.tiles.caching.OSMMapTileFilesystemCache;
+import org.androad.osm.views.tiles.caching.OSMMapTileFilesystemCache.StoragePolicy;
+import org.androad.sys.ors.adt.ORSServer;
+import org.androad.sys.ors.adt.lus.Country;
+import org.androad.sys.ors.adt.lus.CountrySubdivisionRegistry;
+import org.androad.sys.ors.adt.lus.ICountrySubdivision;
+import org.androad.sys.ors.adt.rs.DirectionsLanguage;
+import org.androad.sys.ors.adt.rs.RoutePreferenceType;
+import org.androad.ui.map.hud.HUDRegistry;
+import org.androad.ui.map.hud.IHUDImpl;
+import org.androad.ui.map.hud.IHUDImplVariation;
+import org.androad.util.Base64;
+import org.androad.util.constants.Constants;
 
 import android.app.Activity;
 import android.content.Context;

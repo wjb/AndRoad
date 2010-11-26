@@ -1,4 +1,4 @@
-package org.andnav2.osm.api.traces;
+package org.androad.osm.api.traces;
 
 /**
  * Copyright by Christof Dallermassl
@@ -22,10 +22,10 @@ import java.util.List;
 
 import org.andnav.osm.util.GeoPoint;
 
-import org.andnav2.osm.api.traces.util.GPXFormatter;
-import org.andnav2.osm.api.util.constants.OSMTraceAPIConstants;
-import org.andnav2.osm.util.constants.OSMConstants;
-import org.andnav2.ui.common.CommonCallback;
+import org.androad.osm.api.traces.util.GPXFormatter;
+import org.androad.osm.api.util.constants.OSMTraceAPIConstants;
+import org.androad.osm.util.constants.OSMConstants;
+import org.androad.ui.common.CommonCallback;
 import org.openstreetmap.api.exceptions.OSMAPIException;
 
 

@@ -1,12 +1,12 @@
 // Created by plusminus on 19:38:55 - 07.08.2008
-package org.andnav2.ui.settings;
+package org.androad.ui.settings;
 
-import org.andnav2.R;
-import org.andnav2.adt.UnitSystem;
-import org.andnav2.adt.UnitSystem.DistanceStringReturnValue;
-import org.andnav2.preferences.Preferences;
-import org.andnav2.ui.AndNavBaseActivity;
-import org.andnav2.ui.common.OnClickOnFocusChangedListenerAdapter;
+import org.androad.R;
+import org.androad.adt.UnitSystem;
+import org.androad.adt.UnitSystem.DistanceStringReturnValue;
+import org.androad.preferences.Preferences;
+import org.androad.ui.AndNavBaseActivity;
+import org.androad.ui.common.OnClickOnFocusChangedListenerAdapter;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;

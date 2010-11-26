@@ -1,5 +1,5 @@
 // Created by plusminus on 16:47:47 - 11.08.2008
-package org.andnav2.util.constants;
+package org.androad.util.constants;
 
 
 public interface MathematicalConstants {

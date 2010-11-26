@@ -1,11 +1,11 @@
 // Created by plusminus on 17:17:32 - 31.10.2008
-package org.andnav2.sys.ors.util.constants;
+package org.androad.sys.ors.util.constants;
 
-import org.andnav2.osm.util.constants.GMLXMLConstants;
-import org.andnav2.sys.ors.adt.ds.DirectoryType;
-import org.andnav2.sys.ors.adt.ds.POIType;
-import org.andnav2.sys.ors.adt.lus.ReverseGeocodePreferenceType;
-import org.andnav2.sys.ors.adt.rs.RoutePreferenceType;
+import org.androad.osm.util.constants.GMLXMLConstants;
+import org.androad.sys.ors.adt.ds.DirectoryType;
+import org.androad.sys.ors.adt.ds.POIType;
+import org.androad.sys.ors.adt.lus.ReverseGeocodePreferenceType;
+import org.androad.sys.ors.adt.rs.RoutePreferenceType;
 
 
 public interface ORSXMLConstants extends GMLXMLConstants {
@@ -20,7 +20,7 @@ public interface ORSXMLConstants extends GMLXMLConstants {
 	public static final String XML_BASE_TAG_UTF8 = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
 	public static final String XLS_OPENGIS_ROUTESERVICE_TAG_OPEN = "<xls:XLS xmlns:xls=\"http://www.opengis.net/xls\" xmlns:sch=\"http://www.ascc.net/xml/schematron\" xmlns:gml=\"http://www.opengis.net/gml\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.opengis.net/xls http://schemas.opengis.net/ols/1.1.0/RouteService.xsd\" version=\"1.1\" xls:lang=\"%s\">";
 	public static final String XLS_OPENGIS_ROUTESERVICE_TAG_CLOSE = "</xls:XLS>";
-	/** Needs to be formatted with the clientname, i.e.: "andnav2_0.9.3.2.1_beta" without parentheses. */
+	/** Needs to be formatted with the clientname, i.e.: "androad_0.9.3.2.1_beta" without parentheses. */
 	public static final String XLS_REQUESTHEADER_TAG = "<xls:RequestHeader clientName=\"%s\"/>";
 	public static final String XLS_REQUESTMETHOD_ROUTE_TAG_OPEN = "<xls:Request methodName=\"RouteRequest\" requestID=\"123456789\" version=\"1.1\">"; // ID = ?
 	public static final String XLS_REQUESTMETHOD_ROUTE_TAG_CLOSE = "</xls:Request>";

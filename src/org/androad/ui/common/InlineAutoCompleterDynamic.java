@@ -1,10 +1,10 @@
 //Created by plusminus on 13:33:21 - 16.05.2008
-package org.andnav2.ui.common;
+package org.androad.ui.common;
 
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
-import org.andnav2.util.constants.Constants;
+import org.androad.util.constants.Constants;
 
 import android.text.Editable;
 import android.text.TextWatcher;

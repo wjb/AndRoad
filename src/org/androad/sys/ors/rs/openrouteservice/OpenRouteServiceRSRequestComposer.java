@@ -1,4 +1,4 @@
-package org.andnav2.sys.ors.rs.openrouteservice;
+package org.androad.sys.ors.rs.openrouteservice;
 
 import java.util.ArrayList;
 import java.util.Formatter;
@@ -9,12 +9,12 @@ import junit.framework.Assert;
 
 import org.andnav.osm.util.GeoPoint;
 
-import org.andnav2.sys.ors.adt.AvoidFeature;
-import org.andnav2.sys.ors.adt.aoi.AreaOfInterest;
-import org.andnav2.sys.ors.adt.rs.DirectionsLanguage;
-import org.andnav2.sys.ors.adt.rs.RoutePreferenceType;
-import org.andnav2.sys.ors.util.Util;
-import org.andnav2.sys.ors.util.constants.ORSXMLConstants;
+import org.androad.sys.ors.adt.AvoidFeature;
+import org.androad.sys.ors.adt.aoi.AreaOfInterest;
+import org.androad.sys.ors.adt.rs.DirectionsLanguage;
+import org.androad.sys.ors.adt.rs.RoutePreferenceType;
+import org.androad.sys.ors.util.Util;
+import org.androad.sys.ors.util.constants.ORSXMLConstants;
 
 import android.content.Context;
 

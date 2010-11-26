@@ -1,5 +1,5 @@
 // Created by plusminus on 00:50:30 - 20.01.2009
-package org.andnav2.sys.ors.adt.ts;
+package org.androad.sys.ors.adt.ts;
 
 import org.andnav.osm.util.GeoPoint;
 

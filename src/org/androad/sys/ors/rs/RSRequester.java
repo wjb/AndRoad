@@ -1,4 +1,4 @@
-package org.andnav2.sys.ors.rs;
+package org.androad.sys.ors.rs;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -7,11 +7,11 @@ import java.util.List;
 
 import org.andnav.osm.util.GeoPoint;
 
-import org.andnav2.sys.ors.adt.aoi.AreaOfInterest;
-import org.andnav2.sys.ors.adt.rs.DirectionsLanguage;
-import org.andnav2.sys.ors.adt.rs.Route;
-import org.andnav2.sys.ors.adt.rs.RoutePreferenceType;
-import org.andnav2.sys.ors.exceptions.ORSException;
+import org.androad.sys.ors.adt.aoi.AreaOfInterest;
+import org.androad.sys.ors.adt.rs.DirectionsLanguage;
+import org.androad.sys.ors.adt.rs.Route;
+import org.androad.sys.ors.adt.rs.RoutePreferenceType;
+import org.androad.sys.ors.exceptions.ORSException;
 
 import org.xml.sax.SAXException;
 

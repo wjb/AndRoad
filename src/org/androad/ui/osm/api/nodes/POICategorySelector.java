@@ -1,11 +1,11 @@
 // Created by plusminus on 13:23:07 - 07.02.2009
-package org.andnav2.ui.osm.api.nodes;
+package org.androad.ui.osm.api.nodes;
 
 import java.util.HashMap;
 
-import org.andnav2.sys.ors.adt.ds.OSMRepresentation;
-import org.andnav2.sys.ors.adt.ds.POIType;
-import org.andnav2.ui.common.activities.BasePOICategorySelectionActivity;
+import org.androad.sys.ors.adt.ds.OSMRepresentation;
+import org.androad.sys.ors.adt.ds.POIType;
+import org.androad.ui.common.activities.BasePOICategorySelectionActivity;
 
 import android.view.View;
 import android.widget.ExpandableListView;

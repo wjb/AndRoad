@@ -1,4 +1,4 @@
-package org.andnav2.sys.ors.lus.yahoo;
+package org.androad.sys.ors.lus.yahoo;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -14,15 +14,15 @@ import javax.xml.parsers.SAXParserFactory;
 
 import org.andnav.osm.util.GeoPoint;
 
-import org.andnav2.preferences.Preferences;
-import org.andnav2.sys.ors.adt.Error;
-import org.andnav2.sys.ors.adt.GeocodedAddress;
-import org.andnav2.sys.ors.adt.lus.Country;
-import org.andnav2.sys.ors.adt.lus.ICountrySubdivision;
-import org.andnav2.sys.ors.adt.lus.ReverseGeocodePreferenceType;
-import org.andnav2.sys.ors.exceptions.ORSException;
-import org.andnav2.sys.ors.lus.LUSRequester;
-import org.andnav2.util.constants.Constants;
+import org.androad.preferences.Preferences;
+import org.androad.sys.ors.adt.Error;
+import org.androad.sys.ors.adt.GeocodedAddress;
+import org.androad.sys.ors.adt.lus.Country;
+import org.androad.sys.ors.adt.lus.ICountrySubdivision;
+import org.androad.sys.ors.adt.lus.ReverseGeocodePreferenceType;
+import org.androad.sys.ors.exceptions.ORSException;
+import org.androad.sys.ors.lus.LUSRequester;
+import org.androad.util.constants.Constants;
 
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -102,7 +102,7 @@ public class YahooLUSRequester implements Constants, LUSRequester {
 	private String structuredToFreeform(final ICountrySubdivision pCountrySubdivision, final String pCityOrZipCode, final String pStreetName, final String pStreetNumber) throws ORSException {
 		/* Either one of these has to be set. */
 		if((pCityOrZipCode == null || pCityOrZipCode.length() == 0) && (pStreetName == null || pStreetName.length() == 0)) {
-			throw new ORSException(new Error(Error.ERRORCODE_UNKNOWN, Error.SEVERITY_ERROR, "org.andnav2.ors.lus.structuredToFreeform.LUSRequester.structuredToFreeform()", "Either street/zip or streetname has to be set."));
+			throw new ORSException(new Error(Error.ERRORCODE_UNKNOWN, Error.SEVERITY_ERROR, "org.androad.ors.lus.structuredToFreeform.LUSRequester.structuredToFreeform()", "Either street/zip or streetname has to be set."));
 		}
 
 		final StringBuilder sb = new StringBuilder();

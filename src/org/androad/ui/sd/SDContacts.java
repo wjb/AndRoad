@@ -1,5 +1,5 @@
 // Created by plusminus on 14:51:34 - 02.11.2008
-package org.andnav2.ui.sd;
+package org.androad.ui.sd;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -8,13 +8,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.andnav2.R;
-import org.andnav2.exc.Exceptor;
-import org.andnav2.preferences.Preferences;
-import org.andnav2.ui.AndNavBaseActivity;
-import org.andnav2.ui.common.OnClickOnFocusChangedListenerAdapter;
-import org.andnav2.ui.common.views.FastScrollView;
-import org.andnav2.util.UserTask;
+import org.androad.R;
+import org.androad.exc.Exceptor;
+import org.androad.preferences.Preferences;
+import org.androad.ui.AndNavBaseActivity;
+import org.androad.ui.common.OnClickOnFocusChangedListenerAdapter;
+import org.androad.ui.common.views.FastScrollView;
+import org.androad.util.UserTask;
 
 import android.app.ProgressDialog;
 import android.content.Context;

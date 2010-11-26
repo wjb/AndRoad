@@ -1,18 +1,18 @@
 /**
  * 
  */
-package org.andnav2.ui.common.adapters;
+package org.androad.ui.common.adapters;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.andnav2.R;
-import org.andnav2.sys.ors.adt.ORSServer;
-import org.andnav2.sys.ors.adt.ORSServer.ServerStatus;
-import org.andnav2.util.constants.Constants;
-import org.andnav2.util.ping.PingResult;
+import org.androad.R;
+import org.androad.sys.ors.adt.ORSServer;
+import org.androad.sys.ors.adt.ORSServer.ServerStatus;
+import org.androad.util.constants.Constants;
+import org.androad.util.ping.PingResult;
 
 import android.content.Context;
 import android.os.Parcel;

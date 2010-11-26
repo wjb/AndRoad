@@ -1,5 +1,5 @@
 // Created by plusminus on 22:54:56 - 26.11.2008
-package org.andnav2.osm.exceptions;
+package org.androad.osm.exceptions;
 
 
 public class ExternalStorageNotMountedException extends Exception {

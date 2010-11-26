@@ -1,7 +1,7 @@
 // Created by plusminus on 7:20:47 PM - Feb 18, 2009
-package org.andnav2.ui.map.hud;
+package org.androad.ui.map.hud;
 
-import org.andnav2.osm.views.overlay.util.DirectionArrowDescriptor;
+import org.androad.osm.views.overlay.util.DirectionArrowDescriptor;
 
 
 

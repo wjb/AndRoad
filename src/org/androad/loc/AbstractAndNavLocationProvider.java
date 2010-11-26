@@ -1,7 +1,7 @@
-package org.andnav2.loc;
+package org.androad.loc;
 
-import org.andnav2.adt.AndNavLocation;
-import org.andnav2.nav.util.Util;
+import org.androad.adt.AndNavLocation;
+import org.androad.nav.util.Util;
 
 
 /**

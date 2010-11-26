@@ -1,9 +1,9 @@
 // Created by plusminus on 19:28:15 - 16.08.2008
-package org.andnav2.ui;
+package org.androad.ui;
 
-import org.andnav2.R;
-import org.andnav2.preferences.Preferences;
-import org.andnav2.ui.common.OnClickOnFocusChangedListenerAdapter;
+import org.androad.R;
+import org.androad.preferences.Preferences;
+import org.androad.ui.common.OnClickOnFocusChangedListenerAdapter;
 
 import android.os.Bundle;
 import android.view.View;

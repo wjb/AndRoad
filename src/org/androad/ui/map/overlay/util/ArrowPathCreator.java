@@ -1,15 +1,15 @@
 // Created by plusminus on 15:00:17 - 23.11.2008
-package org.andnav2.ui.map.overlay.util;
+package org.androad.ui.map.overlay.util;
 
 import java.util.List;
 
 import org.andnav.osm.util.GeoPoint;
 import org.andnav.osm.views.OpenStreetMapView.OpenStreetMapViewProjection;
 
-import org.andnav2.preferences.PreferenceConstants;
-import org.andnav2.util.constants.Constants;
-import org.andnav2.util.constants.GeoConstants;
-import org.andnav2.util.constants.MathematicalConstants;
+import org.androad.preferences.PreferenceConstants;
+import org.androad.util.constants.Constants;
+import org.androad.util.constants.GeoConstants;
+import org.androad.util.constants.MathematicalConstants;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -175,7 +175,7 @@ public class ArrowPathCreator implements MathematicalConstants, PreferenceConsta
 			mpCur = polyLine.get(endIndex);
 			pj.toMapPixels(mpCur, screenCoords);
 
-			final float angle = org.andnav2.nav.util.Util.calculateBearing(screenCoordsBefore, screenCoords) - 90.0f;
+			final float angle = org.androad.nav.util.Util.calculateBearing(screenCoordsBefore, screenCoords) - 90.0f;
 
 			if(lastAngle != Constants.NOT_SET && Math.abs(angle - lastAngle) > 30.0f){
 				restLen = 0;
@@ -220,7 +220,7 @@ public class ArrowPathCreator implements MathematicalConstants, PreferenceConsta
 		pj.toMapPixels(mpCur, screenCoords);
 
 		/* Determine the Angle the peak of the turn-arrow will point to, BEFORE shrinking. */
-		final float endAngle = org.andnav2.nav.util.Util.calculateBearing(screenCoordsBefore, screenCoords) - 90.0f;
+		final float endAngle = org.androad.nav.util.Util.calculateBearing(screenCoordsBefore, screenCoords) - 90.0f;
 
 		/* First segment needs to get shrinked. */
 		shortenToDistance(screenCoordsBefore, screenCoords, shortenLastTo, false);

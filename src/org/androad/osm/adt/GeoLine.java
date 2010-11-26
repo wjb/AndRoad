@@ -1,10 +1,10 @@
-package org.andnav2.osm.adt;
+package org.androad.osm.adt;
 
 import java.io.Serializable;
 
 import org.andnav.osm.util.GeoPoint;
 
-import org.andnav2.osm.util.Util;
+import org.androad.osm.util.Util;
 
 public class GeoLine implements Serializable {
 

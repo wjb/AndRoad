@@ -1,14 +1,14 @@
 //Created by plusminus on 19:32:25 - 01.02.2008
-package org.andnav2;
+package org.androad;
 
-import org.andnav2.preferences.Preferences;
-import org.andnav2.sys.serverdowntime.DowntimeManager;
-import org.andnav2.ui.Menu;
-import org.andnav2.ui.StartupWarning;
-import org.andnav2.ui.common.CommonCallbackAdapter;
-import org.andnav2.ui.common.CommonDialogFactory;
-import org.andnav2.ui.settings.SettingsORSServer;
-import org.andnav2.util.constants.Constants;
+import org.androad.preferences.Preferences;
+import org.androad.sys.serverdowntime.DowntimeManager;
+import org.androad.ui.Menu;
+import org.androad.ui.StartupWarning;
+import org.androad.ui.common.CommonCallbackAdapter;
+import org.androad.ui.common.CommonDialogFactory;
+import org.androad.ui.settings.SettingsORSServer;
+import org.androad.util.constants.Constants;
 
 import android.app.Activity;
 import android.app.Dialog;

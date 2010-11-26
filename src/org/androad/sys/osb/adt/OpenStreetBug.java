@@ -1,4 +1,4 @@
-package org.andnav2.sys.osb.adt;
+package org.androad.sys.osb.adt;
 
 import org.andnav.osm.util.GeoPoint;
 

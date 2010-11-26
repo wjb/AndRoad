@@ -1,4 +1,4 @@
-package org.andnav2.sys.ors.exceptions;
+package org.androad.sys.ors.exceptions;
 
 /**
  * @since 2008-04-06 17:19:30

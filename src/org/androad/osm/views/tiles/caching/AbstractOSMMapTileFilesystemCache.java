@@ -1,4 +1,4 @@
-package org.andnav2.osm.views.tiles.caching;
+package org.androad.osm.views.tiles.caching;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -9,11 +9,11 @@ import java.util.concurrent.Executors;
 
 import org.andnav.osm.tileprovider.OpenStreetMapTile;
 
-import org.andnav2.osm.exceptions.ExternalStorageNotMountedException;
-import org.andnav2.osm.util.constants.OSMConstants;
-import org.andnav2.osm.views.tiles.OSMMapTileProviderInfo;
-import org.andnav2.osm.views.tiles.caching.OSMMapTileFilesystemCache.StoragePolicy;
-import org.andnav2.osm.views.util.constants.OSMMapViewConstants;
+import org.androad.osm.exceptions.ExternalStorageNotMountedException;
+import org.androad.osm.util.constants.OSMConstants;
+import org.androad.osm.views.tiles.OSMMapTileProviderInfo;
+import org.androad.osm.views.tiles.caching.OSMMapTileFilesystemCache.StoragePolicy;
+import org.androad.osm.views.util.constants.OSMMapViewConstants;
 
 import android.content.Context;
 import android.graphics.Bitmap;

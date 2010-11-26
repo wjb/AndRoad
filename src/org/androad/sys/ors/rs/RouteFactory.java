@@ -1,5 +1,5 @@
 // Created by plusminus on 00:27:06 - 17.10.2008
-package org.andnav2.sys.ors.rs;
+package org.androad.sys.ors.rs;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -7,13 +7,13 @@ import java.util.ArrayList;
 
 import org.andnav.osm.util.GeoPoint;
 
-import org.andnav2.preferences.Preferences;
-import org.andnav2.sys.ors.adt.aoi.AreaOfInterest;
-import org.andnav2.sys.ors.adt.rs.DirectionsLanguage;
-import org.andnav2.sys.ors.adt.rs.Route;
-import org.andnav2.sys.ors.adt.rs.RoutePreferenceType;
-import org.andnav2.sys.ors.exceptions.ORSException;
-import org.andnav2.util.constants.Constants;
+import org.androad.preferences.Preferences;
+import org.androad.sys.ors.adt.aoi.AreaOfInterest;
+import org.androad.sys.ors.adt.rs.DirectionsLanguage;
+import org.androad.sys.ors.adt.rs.Route;
+import org.androad.sys.ors.adt.rs.RoutePreferenceType;
+import org.androad.sys.ors.exceptions.ORSException;
+import org.androad.util.constants.Constants;
 import org.xml.sax.SAXException;
 
 import android.content.Context;

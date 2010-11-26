@@ -1,7 +1,7 @@
 // Created by plusminus on 01:17:12 - 20.11.2008
-package org.andnav2.app.veecheck;
+package org.androad.app.veecheck;
 
-import org.andnav2.R;
+import org.androad.R;
 
 import android.content.Intent;
 

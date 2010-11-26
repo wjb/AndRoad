@@ -1,18 +1,18 @@
 // Created by plusminus on 11:17:18 AM - Feb 27, 2009
-package org.andnav2.ui.map.hud.impl.bigarrow;
+package org.androad.ui.map.hud.impl.bigarrow;
 
-import org.andnav2.R;
-import org.andnav2.adt.UnitSystem;
-import org.andnav2.osm.views.overlay.util.DirectionArrowDescriptor;
-import org.andnav2.ui.map.hud.IHUDImpl;
-import org.andnav2.ui.map.hud.IHUDImplVariation;
-import org.andnav2.ui.map.hud.IHUDNextActionView;
-import org.andnav2.ui.map.hud.IHUDRemainingSummaryView;
-import org.andnav2.ui.map.hud.IHUDTurnDescriptionView;
-import org.andnav2.ui.map.hud.impl.bigarrow.views.HUDNextActionView;
-import org.andnav2.ui.map.hud.util.Util;
-import org.andnav2.util.TimeUtils;
-import org.andnav2.util.constants.Constants;
+import org.androad.R;
+import org.androad.adt.UnitSystem;
+import org.androad.osm.views.overlay.util.DirectionArrowDescriptor;
+import org.androad.ui.map.hud.IHUDImpl;
+import org.androad.ui.map.hud.IHUDImplVariation;
+import org.androad.ui.map.hud.IHUDNextActionView;
+import org.androad.ui.map.hud.IHUDRemainingSummaryView;
+import org.androad.ui.map.hud.IHUDTurnDescriptionView;
+import org.androad.ui.map.hud.impl.bigarrow.views.HUDNextActionView;
+import org.androad.ui.map.hud.util.Util;
+import org.androad.util.TimeUtils;
+import org.androad.util.constants.Constants;
 
 import android.graphics.Point;
 import android.view.View;

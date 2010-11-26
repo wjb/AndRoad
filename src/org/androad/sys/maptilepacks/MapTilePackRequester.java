@@ -1,5 +1,5 @@
 // Created by plusminus on 11:39:39 - 04.02.2009
-package org.andnav2.sys.maptilepacks;
+package org.androad.sys.maptilepacks;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -10,8 +10,8 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-import org.andnav2.osm.views.util.StreamUtils;
-import org.andnav2.sys.maptilepacks.adt.MapTilePack;
+import org.androad.osm.views.util.StreamUtils;
+import org.androad.sys.maptilepacks.adt.MapTilePack;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
@@ -22,7 +22,7 @@ public class MapTilePackRequester {
 	// Constants
 	// ===========================================================
 
-	private static final String MAPTILEPACK_URL = "http://www.andnav.org/sys/maptilepacks/andnav2/maptilepacks.xml";
+	private static final String MAPTILEPACK_URL = "http://www.andnav.org/sys/maptilepacks/androad/maptilepacks.xml";
 
 	// ===========================================================
 	// Fields

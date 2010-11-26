@@ -1,5 +1,5 @@
 //Created by plusminus on 17:13:04 - 12.02.2008
-package org.andnav2.ui.map;
+package org.androad.ui.map;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
@@ -21,58 +21,58 @@ import org.andnav.osm.views.overlay.OpenStreetMapViewOverlay;
 import org.andnav.osm.views.util.IOpenStreetMapRendererInfo;
 import org.andnav.osm.views.util.OpenStreetMapRendererFactory;
 
-import org.andnav2.R;
-import org.andnav2.adt.AndNavLocation;
-import org.andnav2.adt.UnitSystem;
-import org.andnav2.adt.voice.AudibleTurnCommand;
-import org.andnav2.adt.voice.DirectionVoiceCommandListener;
-import org.andnav2.adt.voice.DistanceVoiceElement;
-import org.andnav2.adt.voice.SimpleAudibleTurnCommand;
-import org.andnav2.adt.voice.TurnVoiceElement;
-import org.andnav2.exc.Exceptor;
-import org.andnav2.nav.Navigator;
-import org.andnav2.nav.OffRouteListener;
-import org.andnav2.nav.WayPointListener;
-import org.andnav2.nav.WaypointOptimizer;
-import org.andnav2.nav.stats.StatisticsManager;
-import org.andnav2.nav.util.NavAlgorithm;
-import org.andnav2.osm.exceptions.ExternalStorageNotMountedException;
-import org.andnav2.osm.views.overlay.util.DirectionArrowDescriptor;
-import org.andnav2.osm.views.tiles.OSMMapTileManager;
-import org.andnav2.osm.views.tiles.OSMMapTileProviderInfo;
-import org.andnav2.osm.views.tiles.caching.OSMMapTileFilesystemCache;
-import org.andnav2.osm.views.tiles.util.OSMMapTilePreloader;
-import org.andnav2.osm.views.tiles.util.OSMMapTilePreloader.OnProgressChangeListener;
-import org.andnav2.preferences.PreferenceConstants;
-import org.andnav2.preferences.Preferences;
-import org.andnav2.sound.ISoundManager;
-import org.andnav2.sound.MediaPlayerManager;
-import org.andnav2.sound.tts.SpeechImprover;
-import org.andnav2.sys.ors.adt.aoi.AreaOfInterest;
-import org.andnav2.sys.ors.adt.aoi.CircleByCenterPoint;
-import org.andnav2.sys.ors.adt.lus.Country;
-import org.andnav2.sys.ors.adt.rs.DirectionsLanguage;
-import org.andnav2.sys.ors.adt.rs.Route;
-import org.andnav2.sys.ors.adt.rs.RouteInstruction;
-import org.andnav2.sys.ors.adt.rs.RoutePreferenceType;
-import org.andnav2.sys.ors.aps.APSRequester;
-import org.andnav2.sys.ors.exceptions.ORSException;
-import org.andnav2.sys.ors.rs.RSOfflineLoader;
-import org.andnav2.sys.ors.rs.RouteFactory;
-import org.andnav2.sys.ors.views.overlay.AreaOfInterestOverlay;
-import org.andnav2.ui.common.CommonCallback;
-import org.andnav2.ui.common.CommonDialogFactory;
-import org.andnav2.ui.common.views.RotateView;
-import org.andnav2.ui.map.hud.IHUDImpl;
-import org.andnav2.ui.map.overlay.MapDrivingDirectionsOverlay;
-import org.andnav2.ui.sd.SDMainChoose;
-import org.andnav2.ui.sd.SDPOISearchList;
-import org.andnav2.ui.settings.SettingsMenu;
-import org.andnav2.ui.settings.SettingsRoutingFlags;
-import org.andnav2.ui.util.Util;
-import org.andnav2.util.FileSizeFormatter;
-import org.andnav2.util.UserTask;
-import org.andnav2.util.constants.Constants;
+import org.androad.R;
+import org.androad.adt.AndNavLocation;
+import org.androad.adt.UnitSystem;
+import org.androad.adt.voice.AudibleTurnCommand;
+import org.androad.adt.voice.DirectionVoiceCommandListener;
+import org.androad.adt.voice.DistanceVoiceElement;
+import org.androad.adt.voice.SimpleAudibleTurnCommand;
+import org.androad.adt.voice.TurnVoiceElement;
+import org.androad.exc.Exceptor;
+import org.androad.nav.Navigator;
+import org.androad.nav.OffRouteListener;
+import org.androad.nav.WayPointListener;
+import org.androad.nav.WaypointOptimizer;
+import org.androad.nav.stats.StatisticsManager;
+import org.androad.nav.util.NavAlgorithm;
+import org.androad.osm.exceptions.ExternalStorageNotMountedException;
+import org.androad.osm.views.overlay.util.DirectionArrowDescriptor;
+import org.androad.osm.views.tiles.OSMMapTileManager;
+import org.androad.osm.views.tiles.OSMMapTileProviderInfo;
+import org.androad.osm.views.tiles.caching.OSMMapTileFilesystemCache;
+import org.androad.osm.views.tiles.util.OSMMapTilePreloader;
+import org.androad.osm.views.tiles.util.OSMMapTilePreloader.OnProgressChangeListener;
+import org.androad.preferences.PreferenceConstants;
+import org.androad.preferences.Preferences;
+import org.androad.sound.ISoundManager;
+import org.androad.sound.MediaPlayerManager;
+import org.androad.sound.tts.SpeechImprover;
+import org.androad.sys.ors.adt.aoi.AreaOfInterest;
+import org.androad.sys.ors.adt.aoi.CircleByCenterPoint;
+import org.androad.sys.ors.adt.lus.Country;
+import org.androad.sys.ors.adt.rs.DirectionsLanguage;
+import org.androad.sys.ors.adt.rs.Route;
+import org.androad.sys.ors.adt.rs.RouteInstruction;
+import org.androad.sys.ors.adt.rs.RoutePreferenceType;
+import org.androad.sys.ors.aps.APSRequester;
+import org.androad.sys.ors.exceptions.ORSException;
+import org.androad.sys.ors.rs.RSOfflineLoader;
+import org.androad.sys.ors.rs.RouteFactory;
+import org.androad.sys.ors.views.overlay.AreaOfInterestOverlay;
+import org.androad.ui.common.CommonCallback;
+import org.androad.ui.common.CommonDialogFactory;
+import org.androad.ui.common.views.RotateView;
+import org.androad.ui.map.hud.IHUDImpl;
+import org.androad.ui.map.overlay.MapDrivingDirectionsOverlay;
+import org.androad.ui.sd.SDMainChoose;
+import org.androad.ui.sd.SDPOISearchList;
+import org.androad.ui.settings.SettingsMenu;
+import org.androad.ui.settings.SettingsRoutingFlags;
+import org.androad.ui.util.Util;
+import org.androad.util.FileSizeFormatter;
+import org.androad.util.UserTask;
+import org.androad.util.constants.Constants;
 import org.xml.sax.SAXException;
 
 import android.app.AlertDialog;
@@ -728,7 +728,7 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 				startActivityForResult(settingsIntent, REQUESTCODE_SETTINGS);
 				return true;
 			case MENU_GPSSTATUS_ID:
-				org.andnav2.ui.util.Util.startUnknownActivity(this, "com.eclipsim.gpsstatus.VIEW", "com.eclipsim.gpsstatus");
+				org.androad.ui.util.Util.startUnknownActivity(this, "com.eclipsim.gpsstatus.VIEW", "com.eclipsim.gpsstatus");
 				return true;
 			case MENU_WAYPOINT_ADD_ID:
 				startWaypointActivity();
@@ -1963,7 +1963,7 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 						}
 					} while (doRetry);
 
-					OpenStreetDDMap.this.mLastWorkingWayPoints = org.andnav2.util.Util.cloneDeep(OpenStreetDDMap.this.mWayPoints);
+					OpenStreetDDMap.this.mLastWorkingWayPoints = org.androad.util.Util.cloneDeep(OpenStreetDDMap.this.mWayPoints);
 
 					Log.d(Constants.DEBUGTAG, "Route Found!");
 					/* Route was found... */

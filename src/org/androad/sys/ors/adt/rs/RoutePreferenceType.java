@@ -1,5 +1,5 @@
 // Created by plusminus on 22:01:49 - 16.10.2008
-package org.andnav2.sys.ors.adt.rs;
+package org.androad.sys.ors.adt.rs;
 
 
 public enum RoutePreferenceType {

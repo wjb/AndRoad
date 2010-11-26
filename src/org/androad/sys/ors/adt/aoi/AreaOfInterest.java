@@ -1,11 +1,11 @@
 // Created by plusminus on 21:42:38 - 16.10.2008
-package org.andnav2.sys.ors.adt.aoi;
+package org.androad.sys.ors.adt.aoi;
 
 import java.util.Formatter;
 
 import org.andnav.osm.views.OpenStreetMapView.OpenStreetMapViewProjection;
 
-import org.andnav2.sys.ors.util.constants.ORSXMLConstants;
+import org.androad.sys.ors.util.constants.ORSXMLConstants;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;

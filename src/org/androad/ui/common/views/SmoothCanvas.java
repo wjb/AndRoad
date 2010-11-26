@@ -1,5 +1,5 @@
 // Created by plusminus on 11:53:35 - 29.08.2008
-package org.andnav2.ui.common.views;
+package org.androad.ui.common.views;
 
 import javax.microedition.khronos.opengles.GL;
 

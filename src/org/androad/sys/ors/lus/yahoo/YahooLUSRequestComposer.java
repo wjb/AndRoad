@@ -1,4 +1,4 @@
-package org.andnav2.sys.ors.lus.yahoo;
+package org.androad.sys.ors.lus.yahoo;
 
 import android.net.Uri;
 
@@ -8,9 +8,9 @@ import junit.framework.Assert;
 
 import org.andnav.osm.util.GeoPoint;
 
-import org.andnav2.sys.ors.adt.lus.Country;
-import org.andnav2.sys.ors.adt.lus.ICountrySubdivision;
-import org.andnav2.sys.ors.util.constants.ORSXMLConstants;
+import org.androad.sys.ors.adt.lus.Country;
+import org.androad.sys.ors.adt.lus.ICountrySubdivision;
+import org.androad.sys.ors.util.constants.ORSXMLConstants;
 
 public class YahooLUSRequestComposer implements ORSXMLConstants {
 

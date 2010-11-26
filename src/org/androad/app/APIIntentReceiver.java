@@ -1,14 +1,14 @@
 // Created by plusminus on 15:15:39 - 12.04.2008
-package org.andnav2.app;
+package org.androad.app;
 
 import java.util.ArrayList;
 
 import org.andnav.osm.util.GeoPoint;
 
-import org.andnav2.R;
-import org.andnav2.ui.map.OpenStreetDDMap;
-import org.andnav2.ui.map.WhereAmIMap;
-import org.andnav2.util.constants.Constants;
+import org.androad.R;
+import org.androad.ui.map.OpenStreetDDMap;
+import org.androad.ui.map.WhereAmIMap;
+import org.androad.util.constants.Constants;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -25,9 +25,9 @@ public class APIIntentReceiver extends BroadcastReceiver implements Constants{
 	// ===========================================================
 
 	public static final int WHEREAMI_EXTRAS_MODE_VIEW_LOCATIONS = 0;
-	public static final String WHEREAMI_EXTRAS_LOCATIONS_ID = "org.andnav2.whereami_extras_locations_id";
-	public static final String WHEREAMI_EXTRAS_LOCATIONS_TITLES_ID = "org.andnav2.whereami_extras_locations_titles_id";
-	public static final String WHEREAMI_EXTRAS_LOCATIONS_DESCRIPTIONS_ID = "org.andnav2.whereami_extras_locations_descriptions_id";
+	public static final String WHEREAMI_EXTRAS_LOCATIONS_ID = "org.androad.whereami_extras_locations_id";
+	public static final String WHEREAMI_EXTRAS_LOCATIONS_TITLES_ID = "org.androad.whereami_extras_locations_titles_id";
+	public static final String WHEREAMI_EXTRAS_LOCATIONS_DESCRIPTIONS_ID = "org.androad.whereami_extras_locations_descriptions_id";
 
 	// ===========================================================
 	// Fields

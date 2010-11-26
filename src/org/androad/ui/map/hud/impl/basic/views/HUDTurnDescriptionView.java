@@ -1,7 +1,7 @@
 // Created by plusminus on 9:25:55 PM - Feb 18, 2009
-package org.andnav2.ui.map.hud.impl.basic.views;
+package org.androad.ui.map.hud.impl.basic.views;
 
-import org.andnav2.ui.map.hud.IHUDTurnDescriptionView;
+import org.androad.ui.map.hud.IHUDTurnDescriptionView;
 
 import android.content.Context;
 import android.util.AttributeSet;

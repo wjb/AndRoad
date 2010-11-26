@@ -1,5 +1,5 @@
 // Created by plusminus on 23:35:19 - 10.01.2009
-package org.andnav2.util;
+package org.androad.util;
 
 import java.util.Arrays;
 

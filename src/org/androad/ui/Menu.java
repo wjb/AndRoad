@@ -1,21 +1,21 @@
 //Created by plusminus on 19:47:09 - 01.02.2008
-package org.andnav2.ui;
+package org.androad.ui;
 
 import org.andnav.osm.util.GeoPoint;
 
-import org.andnav2.R;
-import org.andnav2.preferences.Preferences;
-import org.andnav2.sys.ors.adt.ds.POIType;
-import org.andnav2.ui.common.CommonCallbackAdapter;
-import org.andnav2.ui.common.CommonDialogFactory;
-import org.andnav2.ui.common.OnClickOnFocusChangedListenerAdapter;
-import org.andnav2.ui.map.OpenStreetDDMap;
-import org.andnav2.ui.map.WhereAmIMap;
-import org.andnav2.ui.sd.SDMainChoose;
-import org.andnav2.ui.sd.SDPOISearchList;
-import org.andnav2.ui.settings.SettingsMenu;
-import org.andnav2.ui.settings.SettingsSelectHome;
-import org.andnav2.ui.util.Util;
+import org.androad.R;
+import org.androad.preferences.Preferences;
+import org.androad.sys.ors.adt.ds.POIType;
+import org.androad.ui.common.CommonCallbackAdapter;
+import org.androad.ui.common.CommonDialogFactory;
+import org.androad.ui.common.OnClickOnFocusChangedListenerAdapter;
+import org.androad.ui.map.OpenStreetDDMap;
+import org.androad.ui.map.WhereAmIMap;
+import org.androad.ui.sd.SDMainChoose;
+import org.androad.ui.sd.SDPOISearchList;
+import org.androad.ui.settings.SettingsMenu;
+import org.androad.ui.settings.SettingsSelectHome;
+import org.androad.ui.util.Util;
 
 import android.app.AlertDialog;
 import android.app.Dialog;

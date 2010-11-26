@@ -1,12 +1,12 @@
 // Created by plusminus on 17:05:18 - 11.08.2008
-package org.andnav2.preferences;
+package org.androad.preferences;
 
-import org.andnav2.adt.UnitSystem;
-import org.andnav2.osm.views.tiles.OSMMapTileProviderInfo;
-import org.andnav2.osm.views.tiles.caching.OSMMapTileFilesystemCache;
-import org.andnav2.sys.ors.adt.lus.Country;
-import org.andnav2.ui.map.hud.IHUDImplVariation;
-import org.andnav2.ui.map.hud.impl.basic.BasicHUDImpl;
+import org.androad.adt.UnitSystem;
+import org.androad.osm.views.tiles.OSMMapTileProviderInfo;
+import org.androad.osm.views.tiles.caching.OSMMapTileFilesystemCache;
+import org.androad.sys.ors.adt.lus.Country;
+import org.androad.ui.map.hud.IHUDImplVariation;
+import org.androad.ui.map.hud.impl.basic.BasicHUDImpl;
 
 import android.content.pm.ActivityInfo;
 
@@ -111,9 +111,9 @@ public interface PreferenceConstants {
 	public static final boolean PREF_SAVEINITIALROUTE_DEFAULT = true;
 	public static final boolean PREF_MINIMALTRACEFILTERING_DEFAULT = true;
 	public static final String PREF_SKYHOOKREGISTRATIONREALM_DEFAULT = "andnav.org";
-	public static final String PREF_SKYHOOKREGISTRATIONUSERNAME_DEFAULT = "andnav2reg";
+	public static final String PREF_SKYHOOKREGISTRATIONUSERNAME_DEFAULT = "androadreg";
 	public static final String PREF_SKYHOOKFALLBACKREALM_DEFAULT = "andnav.org";
-	public static final String PREF_SKYHOOKFALLBACKUSERNAME_DEFAULT = "andnav2";
+	public static final String PREF_SKYHOOKFALLBACKUSERNAME_DEFAULT = "androad";
 	public static final int PREF_HUDID_DEFAULT = BasicHUDImpl.ID;
 	public static final int PREF_HUDVARIATIONID_DEFAULT = IHUDImplVariation.VARIATION_DEFAULT_ID;
 

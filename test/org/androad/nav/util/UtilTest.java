@@ -1,5 +1,5 @@
 // Created by plusminus on 22:30:58 - 20.01.2009
-package org.andnav2.nav.util;
+package org.androad.nav.util;
 
 import org.junit.Test;
 

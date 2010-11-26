@@ -1,5 +1,5 @@
 // Created by plusminus on 18:22:30 - 05.11.2008
-package org.andnav2.sys.ors.aas;
+package org.androad.sys.ors.aas;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -12,8 +12,8 @@ import junit.framework.Assert;
 
 import org.andnav.osm.util.GeoPoint;
 
-import org.andnav2.sys.ors.exceptions.ORSException;
-import org.andnav2.util.constants.Constants;
+import org.androad.sys.ors.exceptions.ORSException;
+import org.androad.util.constants.Constants;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.HttpClient;

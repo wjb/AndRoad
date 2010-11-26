@@ -1,9 +1,9 @@
-package org.andnav2.ui.camera;
+package org.androad.ui.camera;
 
 import java.lang.reflect.Method;
 
-import org.andnav2.R;
-import org.andnav2.ui.common.CommonDialogFactory;
+import org.androad.R;
+import org.androad.ui.common.CommonDialogFactory;
 
 import android.app.Activity;
 import android.content.Intent;

@@ -1,5 +1,5 @@
 // Created by plusminus on 17:27:54 - 30.09.2008
-package org.andnav2.osm.util.constants;
+package org.androad.osm.util.constants;
 
 /**
  * 

@@ -1,5 +1,5 @@
 // Created by plusminus on 20:43:25 - 25.04.2008
-package org.andnav2.adt.voice;
+package org.androad.adt.voice;
 
 
 public class AudibleTurnCommand extends

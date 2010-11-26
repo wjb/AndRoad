@@ -1,14 +1,14 @@
 // Created by plusminus on 18:22:30 - 05.11.2008
-package org.andnav2.sys.ors.ds;
+package org.androad.sys.ors.ds;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 import org.andnav.osm.util.GeoPoint;
 
-import org.andnav2.sys.ors.adt.ds.ORSPOI;
-import org.andnav2.sys.ors.adt.ds.POIType;
-import org.andnav2.sys.ors.exceptions.ORSException;
+import org.androad.sys.ors.adt.ds.ORSPOI;
+import org.androad.sys.ors.adt.ds.POIType;
+import org.androad.sys.ors.exceptions.ORSException;
 import org.xml.sax.SAXException;
 
 import android.content.Context;

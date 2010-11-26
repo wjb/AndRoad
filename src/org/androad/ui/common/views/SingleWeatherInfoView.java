@@ -1,4 +1,4 @@
-package org.andnav2.ui.common.views;
+package org.androad.ui.common.views;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -6,7 +6,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 
-import org.andnav2.R;
+import org.androad.R;
 
 import android.content.Context;
 import android.graphics.Bitmap;

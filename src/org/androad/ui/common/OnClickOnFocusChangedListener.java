@@ -1,7 +1,7 @@
 // Created by plusminus on 20:48:35 - 17.05.2008
-package org.andnav2.ui.common;
+package org.androad.ui.common;
 
-import org.andnav2.util.constants.Constants;
+import org.androad.util.constants.Constants;
 
 import android.app.Activity;
 import android.view.View;

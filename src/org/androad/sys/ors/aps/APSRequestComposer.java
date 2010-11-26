@@ -1,5 +1,5 @@
 // Created by plusminus on 17:09:24 - 25.01.2009
-package org.andnav2.sys.ors.aps;
+package org.androad.sys.ors.aps;
 
 import java.util.Formatter;
 import java.util.List;
@@ -7,8 +7,8 @@ import java.util.Locale;
 
 import org.andnav.osm.util.GeoPoint;
 
-import org.andnav2.sys.ors.aps.util.constants.APSConstants;
-import org.andnav2.sys.ors.util.constants.ORSXMLConstants;
+import org.androad.sys.ors.aps.util.constants.APSConstants;
+import org.androad.sys.ors.util.constants.ORSXMLConstants;
 
 
 public class APSRequestComposer implements ORSXMLConstants, APSConstants {

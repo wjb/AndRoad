@@ -1,16 +1,16 @@
 // Created by plusminus on 13:43:19 - 04.02.2009
-package org.andnav2.sys.serverdowntime;
+package org.androad.sys.serverdowntime;
 
 import java.util.Collections;
 
-import org.andnav2.R;
-import org.andnav2.Splash;
-import org.andnav2.sys.serverdowntime.adt.Downtime;
-import org.andnav2.sys.serverdowntime.adt.DowntimeList;
-import org.andnav2.util.TimeUtils;
-import org.andnav2.util.TimeUtils.DurationFormatter;
-import org.andnav2.util.constants.Constants;
-import org.andnav2.util.constants.TimeConstants;
+import org.androad.R;
+import org.androad.Splash;
+import org.androad.sys.serverdowntime.adt.Downtime;
+import org.androad.sys.serverdowntime.adt.DowntimeList;
+import org.androad.util.TimeUtils;
+import org.androad.util.TimeUtils.DurationFormatter;
+import org.androad.util.constants.Constants;
+import org.androad.util.constants.TimeConstants;
 
 import android.app.Notification;
 import android.app.NotificationManager;

@@ -1,5 +1,5 @@
 // Created by plusminus on 14:54:35 - 16.05.2008
-package org.andnav2.util;
+package org.androad.util;
 
 import java.util.Comparator;
 

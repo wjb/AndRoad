@@ -1,9 +1,9 @@
 // Created by plusminus on 11:04:35 PM - Mar 10, 2009
-package org.andnav2.sys.maptilepacks.adt;
+package org.androad.sys.maptilepacks.adt;
 
 import org.andnav.osm.util.BoundingBoxE6;
 
-import org.andnav2.util.TimeUtils;
+import org.androad.util.TimeUtils;
 
 
 public class MapTilePack {

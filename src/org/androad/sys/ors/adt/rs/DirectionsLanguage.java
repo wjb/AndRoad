@@ -1,10 +1,10 @@
 // Created by plusminus on 4:15:07 PM - Feb 26, 2009
-package org.andnav2.sys.ors.adt.rs;
+package org.androad.sys.ors.adt.rs;
 
-import org.andnav2.R;
-import org.andnav2.sys.ors.adt.lus.Country;
-import org.andnav2.sys.turninstructions.ITurnInstructionsSet;
-import org.andnav2.sys.turninstructions.TurnInstructionLoader;
+import org.androad.R;
+import org.androad.sys.ors.adt.lus.Country;
+import org.androad.sys.turninstructions.ITurnInstructionsSet;
+import org.androad.sys.turninstructions.TurnInstructionLoader;
 
 import android.content.Context;
 

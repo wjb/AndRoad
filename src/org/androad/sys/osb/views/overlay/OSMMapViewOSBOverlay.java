@@ -1,10 +1,10 @@
 // Created by plusminus on 20:25:32 - 15.12.2008
-package org.andnav2.sys.osb.views.overlay;
+package org.androad.sys.osb.views.overlay;
 
 import java.util.List;
 
-import org.andnav2.R;
-import org.andnav2.osm.views.overlay.BaseOSMMapViewListItemizedOverlayWithFocus;
+import org.androad.R;
+import org.androad.osm.views.overlay.BaseOSMMapViewListItemizedOverlayWithFocus;
 
 import android.content.Context;
 import android.graphics.Canvas;

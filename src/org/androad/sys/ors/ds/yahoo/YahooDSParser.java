@@ -1,15 +1,15 @@
-package org.andnav2.sys.ors.ds.yahoo;
+package org.androad.sys.ors.ds.yahoo;
 
 import java.util.ArrayList;
 
 import org.andnav.osm.util.GeoPoint;
 
-import org.andnav2.sys.ors.adt.Error;
-import org.andnav2.sys.ors.adt.ds.ORSPOI;
-import org.andnav2.sys.ors.adt.ds.POIType;
-import org.andnav2.sys.ors.exceptions.ORSException;
-import org.andnav2.util.constants.Constants;
-import org.andnav2.util.constants.TimeConstants;
+import org.androad.sys.ors.adt.Error;
+import org.androad.sys.ors.adt.ds.ORSPOI;
+import org.androad.sys.ors.adt.ds.POIType;
+import org.androad.sys.ors.exceptions.ORSException;
+import org.androad.util.constants.Constants;
+import org.androad.util.constants.TimeConstants;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

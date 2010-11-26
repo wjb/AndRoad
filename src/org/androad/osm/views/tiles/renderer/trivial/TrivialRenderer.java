@@ -1,21 +1,21 @@
 // Created by plusminus on 13:54:29 - 08.02.2009
-package org.andnav2.osm.views.tiles.renderer.trivial;
+package org.androad.osm.views.tiles.renderer.trivial;
 
 import java.util.List;
 
 import org.andnav.osm.tileprovider.OpenStreetMapTile;
 import org.andnav.osm.util.BoundingBoxE6;
 
-import org.andnav2.db.DataBaseException;
-import org.andnav2.osm.util.constants.OSMConstants;
-import org.andnav2.osm.views.tiles.renderer.IOSMRenderer;
-import org.andnav2.osm.views.tiles.renderer.db.OSMDatabaseManager;
-import org.andnav2.osm.views.tiles.renderer.db.adt.OSMNode;
-import org.andnav2.osm.views.tiles.renderer.db.adt.OSMWay;
-import org.andnav2.osm.views.tiles.renderer.db.adt.constants.OSMWayConstants;
-import org.andnav2.osm.views.util.Util;
-import org.andnav2.ui.map.overlay.util.ManagedLinePath;
-import org.andnav2.util.constants.Constants;
+import org.androad.db.DataBaseException;
+import org.androad.osm.util.constants.OSMConstants;
+import org.androad.osm.views.tiles.renderer.IOSMRenderer;
+import org.androad.osm.views.tiles.renderer.db.OSMDatabaseManager;
+import org.androad.osm.views.tiles.renderer.db.adt.OSMNode;
+import org.androad.osm.views.tiles.renderer.db.adt.OSMWay;
+import org.androad.osm.views.tiles.renderer.db.adt.constants.OSMWayConstants;
+import org.androad.osm.views.util.Util;
+import org.androad.ui.map.overlay.util.ManagedLinePath;
+import org.androad.util.constants.Constants;
 
 import android.content.Context;
 import android.graphics.Bitmap;

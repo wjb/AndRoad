@@ -1,5 +1,5 @@
 // Created by plusminus on 17:15:37 - 25.01.2009
-package org.andnav2.osm.util.constants;
+package org.androad.osm.util.constants;
 
 
 public interface GMLXMLConstants {

@@ -1,8 +1,8 @@
 // Created by plusminus on 17:58:57 - 25.09.2008
-package org.andnav2.osm.views.tiles.caching;
+package org.androad.osm.views.tiles.caching;
 
-import org.andnav2.osm.views.util.LRUMapTileCache;
-import org.andnav2.osm.views.util.constants.OSMMapViewConstants;
+import org.androad.osm.views.util.LRUMapTileCache;
+import org.androad.osm.views.util.constants.OSMMapViewConstants;
 
 import android.graphics.Bitmap;
 

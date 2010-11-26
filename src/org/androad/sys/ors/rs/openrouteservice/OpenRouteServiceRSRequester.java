@@ -1,4 +1,4 @@
-package org.andnav2.sys.ors.rs.openrouteservice;
+package org.androad.sys.ors.rs.openrouteservice;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -27,17 +27,17 @@ import javax.xml.parsers.SAXParserFactory;
 
 import org.andnav.osm.util.GeoPoint;
 
-import org.andnav2.osm.util.Util;
-import org.andnav2.osm.util.constants.OSMConstants;
-import org.andnav2.osm.views.util.StreamUtils;
-import org.andnav2.sys.ors.adt.Error;
-import org.andnav2.sys.ors.adt.aoi.AreaOfInterest;
-import org.andnav2.sys.ors.adt.rs.DirectionsLanguage;
-import org.andnav2.sys.ors.adt.rs.Route;
-import org.andnav2.sys.ors.adt.rs.RoutePreferenceType;
-import org.andnav2.sys.ors.exceptions.ORSException;
-import org.andnav2.sys.ors.rs.RSRequester;
-import org.andnav2.util.constants.Constants;
+import org.androad.osm.util.Util;
+import org.androad.osm.util.constants.OSMConstants;
+import org.androad.osm.views.util.StreamUtils;
+import org.androad.sys.ors.adt.Error;
+import org.androad.sys.ors.adt.aoi.AreaOfInterest;
+import org.androad.sys.ors.adt.rs.DirectionsLanguage;
+import org.androad.sys.ors.adt.rs.Route;
+import org.androad.sys.ors.adt.rs.RoutePreferenceType;
+import org.androad.sys.ors.exceptions.ORSException;
+import org.androad.sys.ors.rs.RSRequester;
+import org.androad.util.constants.Constants;
 
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -94,9 +94,9 @@ public class OpenRouteServiceRSRequester implements Constants, OSMConstants, RSR
 		try{
 			xmlOut = new BufferedWriter(new OutputStreamWriter(acon.getOutputStream()));
 		}catch(final SocketException se){
-			throw new ORSException(new Error(Error.ERRORCODE_UNKNOWN, Error.SEVERITY_ERROR, "org.andnav2.ors.rs.RSRequester.request(...)", "Host unreachable."));
+			throw new ORSException(new Error(Error.ERRORCODE_UNKNOWN, Error.SEVERITY_ERROR, "org.androad.ors.rs.RSRequester.request(...)", "Host unreachable."));
 		}catch(final UnknownHostException uhe){
-			throw new ORSException(new Error(Error.ERRORCODE_UNKNOWN, Error.SEVERITY_ERROR, "org.andnav2.ors.rs.RSRequester.request(...)", "Host unresolved."));
+			throw new ORSException(new Error(Error.ERRORCODE_UNKNOWN, Error.SEVERITY_ERROR, "org.androad.ors.rs.RSRequester.request(...)", "Host unresolved."));
 		}
 
 		final String routeRequest = OpenRouteServiceRSRequestComposer.create(ctx, nat, pRouteHandle);
@@ -144,9 +144,9 @@ public class OpenRouteServiceRSRequester implements Constants, OSMConstants, RSR
 		try{
 			xmlOut = new BufferedWriter(new OutputStreamWriter(acon.getOutputStream()));
 		}catch(final SocketException se){
-			throw new ORSException(new Error(Error.ERRORCODE_UNKNOWN, Error.SEVERITY_ERROR, "org.andnav2.ors.rs.RSRequester.request(...)", "Host unreachable."));
+			throw new ORSException(new Error(Error.ERRORCODE_UNKNOWN, Error.SEVERITY_ERROR, "org.androad.ors.rs.RSRequester.request(...)", "Host unreachable."));
 		}catch(final UnknownHostException uhe){
-			throw new ORSException(new Error(Error.ERRORCODE_UNKNOWN, Error.SEVERITY_ERROR, "org.andnav2.ors.rs.RSRequester.request(...)", "Host unresolved."));
+			throw new ORSException(new Error(Error.ERRORCODE_UNKNOWN, Error.SEVERITY_ERROR, "org.androad.ors.rs.RSRequester.request(...)", "Host unresolved."));
 		}
 
 		final String routeRequest = OpenRouteServiceRSRequestComposer.create(ctx, nat, start, vias, end, pRoutePreference, pProvideGeometry, pAvoidTolls, pAvoidHighways, pRequestHandle, pAvoidAreas);

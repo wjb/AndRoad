@@ -1,6 +1,6 @@
-package org.andnav2.sound.tts.speechimprovement.countries;
+package org.androad.sound.tts.speechimprovement.countries;
 
-import org.andnav2.sound.tts.speechimprovement.AbstractSpeechImprover;
+import org.androad.sound.tts.speechimprovement.AbstractSpeechImprover;
 
 
 /**

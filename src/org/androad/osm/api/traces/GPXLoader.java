@@ -1,5 +1,5 @@
 // Created by plusminus on 4:59:29 PM - Apr 8, 2009
-package org.andnav2.osm.api.traces;
+package org.androad.osm.api.traces;
 
 
 public class GPXLoader {

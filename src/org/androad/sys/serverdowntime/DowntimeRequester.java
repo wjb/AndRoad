@@ -1,5 +1,5 @@
 // Created by plusminus on 11:39:39 - 04.02.2009
-package org.andnav2.sys.serverdowntime;
+package org.androad.sys.serverdowntime;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -9,8 +9,8 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-import org.andnav2.osm.views.util.StreamUtils;
-import org.andnav2.sys.serverdowntime.adt.DowntimeList;
+import org.androad.osm.views.util.StreamUtils;
+import org.androad.sys.serverdowntime.adt.DowntimeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
@@ -21,7 +21,7 @@ public class DowntimeRequester {
 	// Constants
 	// ===========================================================
 
-	private static final String DOWNTIME_URL = "http://andnav.org/sys/downtimes/andnav2/downtimes.xml";
+	private static final String DOWNTIME_URL = "http://andnav.org/sys/downtimes/androad/downtimes.xml";
 
 	// ===========================================================
 	// Fields

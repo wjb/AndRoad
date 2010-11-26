@@ -1,17 +1,17 @@
 // Created by plusminus on 14:12:34 - 16.11.2008
-package org.andnav2.ui.common.activities;
+package org.androad.ui.common.activities;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.andnav2.R;
-import org.andnav2.preferences.Preferences;
-import org.andnav2.sys.ors.adt.ds.OSMRepresentation;
-import org.andnav2.sys.ors.adt.ds.POIGroup;
-import org.andnav2.sys.ors.adt.ds.POIType;
-import org.andnav2.ui.AndNavBaseActivity;
-import org.andnav2.ui.common.OnClickOnFocusChangedListenerAdapter;
+import org.androad.R;
+import org.androad.preferences.Preferences;
+import org.androad.sys.ors.adt.ds.OSMRepresentation;
+import org.androad.sys.ors.adt.ds.POIGroup;
+import org.androad.sys.ors.adt.ds.POIType;
+import org.androad.ui.AndNavBaseActivity;
+import org.androad.ui.common.OnClickOnFocusChangedListenerAdapter;
 
 import android.content.Intent;
 import android.media.MediaPlayer;

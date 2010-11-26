@@ -1,4 +1,4 @@
-package org.andnav2.sys.ors.rs.yahoo;
+package org.androad.sys.ors.rs.yahoo;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -23,17 +23,17 @@ import javax.xml.parsers.SAXParserFactory;
 
 import org.andnav.osm.util.GeoPoint;
 
-import org.andnav2.osm.util.Util;
-import org.andnav2.osm.util.constants.OSMConstants;
-import org.andnav2.osm.views.util.StreamUtils;
-import org.andnav2.sys.ors.adt.Error;
-import org.andnav2.sys.ors.adt.aoi.AreaOfInterest;
-import org.andnav2.sys.ors.adt.rs.DirectionsLanguage;
-import org.andnav2.sys.ors.adt.rs.Route;
-import org.andnav2.sys.ors.adt.rs.RoutePreferenceType;
-import org.andnav2.sys.ors.exceptions.ORSException;
-import org.andnav2.sys.ors.rs.RSRequester;
-import org.andnav2.util.constants.Constants;
+import org.androad.osm.util.Util;
+import org.androad.osm.util.constants.OSMConstants;
+import org.androad.osm.views.util.StreamUtils;
+import org.androad.sys.ors.adt.Error;
+import org.androad.sys.ors.adt.aoi.AreaOfInterest;
+import org.androad.sys.ors.adt.rs.DirectionsLanguage;
+import org.androad.sys.ors.adt.rs.Route;
+import org.androad.sys.ors.adt.rs.RoutePreferenceType;
+import org.androad.sys.ors.exceptions.ORSException;
+import org.androad.sys.ors.rs.RSRequester;
+import org.androad.util.constants.Constants;
 
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -73,7 +73,7 @@ public class YahooRSRequester implements Constants, OSMConstants, RSRequester {
 	// ====================================
 
 	public Route request(final Context ctx, final DirectionsLanguage nat, final long pRouteHandle) throws MalformedURLException, IOException, SAXException, ORSException {
-        throw new ORSException(new Error(Error.ERRORCODE_UNKNOWN, Error.SEVERITY_ERROR, "org.andnav2.ors.rs.RSRequester.request(...)", "Operation not suported."));
+        throw new ORSException(new Error(Error.ERRORCODE_UNKNOWN, Error.SEVERITY_ERROR, "org.androad.ors.rs.RSRequester.request(...)", "Operation not suported."));
     }
 
 	public Route request(final Context ctx, final DirectionsLanguage nat, final GeoPoint start, final List<GeoPoint> vias, final GeoPoint end, final RoutePreferenceType pRoutePreference, final boolean pProvideGeometry, final boolean pAvoidTolls, final boolean pAvoidHighways, final boolean pRequestHandle, final ArrayList<AreaOfInterest> pAvoidAreas, final boolean pSaveRoute) throws MalformedURLException, IOException, SAXException, ORSException{

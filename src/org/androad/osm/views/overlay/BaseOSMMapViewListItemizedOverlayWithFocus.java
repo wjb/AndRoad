@@ -1,5 +1,5 @@
 // Created by plusminus on 7:28:43 PM - Mar 27, 2009
-package org.andnav2.osm.views.overlay;
+package org.androad.osm.views.overlay;
 
 import java.util.List;
 

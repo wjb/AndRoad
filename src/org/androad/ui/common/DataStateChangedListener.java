@@ -1,5 +1,5 @@
 // Created by plusminus on 13:17:57 - 18.05.2008
-package org.andnav2.ui.common;
+package org.androad.ui.common;
 
 
 public interface DataStateChangedListener {

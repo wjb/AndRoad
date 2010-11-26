@@ -1,10 +1,10 @@
 // Created by plusminus on 7:56:23 PM - Feb 23, 2009
-package org.andnav2.ui.map.hud.impl.bigarrow.views;
+package org.androad.ui.map.hud.impl.bigarrow.views;
 
-import org.andnav2.R;
-import org.andnav2.adt.UnitSystem;
-import org.andnav2.ui.map.hud.IHUDNextActionView;
-import org.andnav2.util.constants.Constants;
+import org.androad.R;
+import org.androad.adt.UnitSystem;
+import org.androad.ui.map.hud.IHUDNextActionView;
+import org.androad.util.constants.Constants;
 
 import android.content.Context;
 import android.graphics.Color;

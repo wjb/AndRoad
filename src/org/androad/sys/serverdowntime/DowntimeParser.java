@@ -1,11 +1,11 @@
 // Created by plusminus on 10:48:38 - 04.02.2009
-package org.andnav2.sys.serverdowntime;
+package org.androad.sys.serverdowntime;
 
 import java.text.ParseException;
 
-import org.andnav2.sys.serverdowntime.adt.Downtime;
-import org.andnav2.sys.serverdowntime.adt.DowntimeList;
-import org.andnav2.util.constants.Constants;
+import org.androad.sys.serverdowntime.adt.Downtime;
+import org.androad.sys.serverdowntime.adt.DowntimeList;
+import org.androad.util.constants.Constants;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;

@@ -1,11 +1,11 @@
 // Created by plusminus on 23:51:49 - 24.02.2008
-package org.andnav2.nav.util;
+package org.androad.nav.util;
 
 import org.andnav.osm.util.GeoPoint;
 
-import org.andnav2.adt.other.GraphicsPoint;
-import org.andnav2.util.constants.GeoConstants;
-import org.andnav2.util.constants.MathematicalConstants;
+import org.androad.adt.other.GraphicsPoint;
+import org.androad.util.constants.GeoConstants;
+import org.androad.util.constants.MathematicalConstants;
 
 import android.graphics.Point;
 import android.location.Location;
@@ -65,15 +65,15 @@ public class Util implements MathematicalConstants, GeoConstants{
 		}
 
 		/* s is the vector from a to b. */
-		final Point s = org.andnav2.adt.other.GraphicsPoint.difference(b, a);
+		final Point s = org.androad.adt.other.GraphicsPoint.difference(b, a);
 		final float lenght_s = FloatMath.sqrt(((long)s.x) * s.x + ((long)s.y) * s.y);
 
 		/* r is the vector from a to p. */
-		final Point r = org.andnav2.adt.other.GraphicsPoint.difference(p, a);
+		final Point r = org.androad.adt.other.GraphicsPoint.difference(p, a);
 
 		/* The case when the angle at a is 'overstretched' */
 		/* Determine the angle between s and r. */
-		final double angleAtA = Math.acos(org.andnav2.adt.other.GraphicsPoint.dotProduct(r, s) / (lenght_s * FloatMath.sqrt(((long)r.x) * r.x + ((long)r.y) * r.y)));
+		final double angleAtA = Math.acos(org.androad.adt.other.GraphicsPoint.dotProduct(r, s) / (lenght_s * FloatMath.sqrt(((long)r.x) * r.x + ((long)r.y) * r.y)));
 		/* If it is bigger than |90°| return distance from p to a*/
 		if(Math.abs(angleAtA) > PI_HALF){
 			final int dx = p.x - a.x;

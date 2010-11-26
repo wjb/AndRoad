@@ -1,5 +1,5 @@
 // Created by plusminus on 22:13:10 - 28.09.2008
-package org.andnav2.osm.views.tiles.caching;
+package org.androad.osm.views.tiles.caching;
 
 import java.util.HashMap;
 import java.util.LinkedList;

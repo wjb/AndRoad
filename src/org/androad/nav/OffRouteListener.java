@@ -1,5 +1,5 @@
 // Created by plusminus on 23:36:41 - 24.02.2008
-package org.andnav2.nav;
+package org.androad.nav;
 
 
 public interface OffRouteListener {

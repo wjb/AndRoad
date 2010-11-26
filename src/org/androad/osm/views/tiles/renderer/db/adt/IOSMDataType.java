@@ -1,5 +1,5 @@
 // Created by plusminus on 22:35:21 - 11.02.2009
-package org.andnav2.osm.views.tiles.renderer.db.adt;
+package org.androad.osm.views.tiles.renderer.db.adt;
 
 
 public interface IOSMDataType {

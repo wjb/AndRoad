@@ -1,5 +1,5 @@
 // Created by plusminus on 21:08:55 - 25.01.2009
-package org.andnav2.sys.ors.aas;
+package org.androad.sys.ors.aas;
 
 import java.io.UnsupportedEncodingException;
 

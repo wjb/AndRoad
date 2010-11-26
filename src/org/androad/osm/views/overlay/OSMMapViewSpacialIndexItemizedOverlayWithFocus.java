@@ -1,5 +1,5 @@
 // Created by plusminus on 23:18:23 - 02.10.2008
-package org.andnav2.osm.views.overlay;
+package org.androad.osm.views.overlay;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,7 @@ import org.andnav.osm.views.overlay.OpenStreetMapViewOverlayItem;
 import org.andnav.osm.views.overlay.OpenStreetMapViewItemizedOverlayWithFocus;
 import org.andnav.osm.DefaultResourceProxyImpl;
 
-import org.andnav2.sys.ors.adt.ts.ISpatialDataOrganizer;
+import org.androad.sys.ors.adt.ts.ISpatialDataOrganizer;
 
 import android.content.Context;
 import android.graphics.Canvas;

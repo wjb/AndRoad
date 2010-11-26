@@ -1,9 +1,9 @@
 // Created by plusminus on 23:47:17 - 18.01.2009
-package org.andnav2.sys.ors.views.overlay;
+package org.androad.sys.ors.views.overlay;
 
 import org.andnav.osm.views.overlay.OpenStreetMapViewOverlayItem;
 
-import org.andnav2.sys.ors.adt.ts.TrafficItem;
+import org.androad.sys.ors.adt.ts.TrafficItem;
 
 import android.content.Context;
 

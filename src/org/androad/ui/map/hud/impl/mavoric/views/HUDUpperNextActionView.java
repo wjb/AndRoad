@@ -1,8 +1,8 @@
 // Created by plusminus on 7:56:33 PM - Feb 23, 2009
-package org.andnav2.ui.map.hud.impl.mavoric.views;
+package org.androad.ui.map.hud.impl.mavoric.views;
 
-import org.andnav2.R;
-import org.andnav2.ui.map.hud.impl.basic.views.HUDBaseNextActionView;
+import org.androad.R;
+import org.androad.ui.map.hud.impl.basic.views.HUDBaseNextActionView;
 
 import android.content.Context;
 import android.graphics.BitmapFactory;

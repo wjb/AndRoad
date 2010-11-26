@@ -1,9 +1,9 @@
 // Created by plusminus on 2:24:00 PM - Mar 6, 2009
-package org.andnav2.sys.vehicleregistrationplates;
+package org.androad.sys.vehicleregistrationplates;
 
-import org.andnav2.sys.ors.adt.lus.Country;
-import org.andnav2.sys.vehicleregistrationplates.tables.IVRPElement;
-import org.andnav2.sys.vehicleregistrationplates.tables.VRP_DE;
+import org.androad.sys.ors.adt.lus.Country;
+import org.androad.sys.vehicleregistrationplates.tables.IVRPElement;
+import org.androad.sys.vehicleregistrationplates.tables.VRP_DE;
 
 
 public class VRPRegistry {

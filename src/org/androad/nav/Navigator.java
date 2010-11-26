@@ -1,20 +1,20 @@
 //Created by plusminus on 22:47:16 - 24.02.2008
-package org.andnav2.nav;
+package org.androad.nav;
 
 import java.util.List;
 
 import org.andnav.osm.util.GeoPoint;
 
-import org.andnav2.adt.AndNavLocation;
-import org.andnav2.adt.UnitSystem;
-import org.andnav2.adt.voice.AudibleTurnCommand;
-import org.andnav2.adt.voice.AudibleTurnCommandManager;
-import org.andnav2.adt.voice.DirectionVoiceCommandListener;
-import org.andnav2.nav.util.NavAlgorithm;
-import org.andnav2.nav.util.Util;
-import org.andnav2.sys.ors.adt.rs.Route;
-import org.andnav2.sys.ors.adt.rs.RouteInstruction;
-import org.andnav2.util.constants.Constants;
+import org.androad.adt.AndNavLocation;
+import org.androad.adt.UnitSystem;
+import org.androad.adt.voice.AudibleTurnCommand;
+import org.androad.adt.voice.AudibleTurnCommandManager;
+import org.androad.adt.voice.DirectionVoiceCommandListener;
+import org.androad.nav.util.NavAlgorithm;
+import org.androad.nav.util.Util;
+import org.androad.sys.ors.adt.rs.Route;
+import org.androad.sys.ors.adt.rs.RouteInstruction;
+import org.androad.util.constants.Constants;
 
 import android.content.Context;
 import android.graphics.Point;

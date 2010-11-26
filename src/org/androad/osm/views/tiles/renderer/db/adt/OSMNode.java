@@ -1,5 +1,5 @@
 // Created by plusminus on 14:33:47 - 10.02.2009
-package org.andnav2.osm.views.tiles.renderer.db.adt;
+package org.androad.osm.views.tiles.renderer.db.adt;
 
 import org.andnav.osm.util.GeoPoint;
 

@@ -1,7 +1,7 @@
 // Created by plusminus on 19:32:00 - 10.04.2008
-package org.andnav2.ui.common.views;
+package org.androad.ui.common.views;
 
-import org.andnav2.sys.ors.adt.lus.Country;
+import org.androad.sys.ors.adt.lus.Country;
 
 import android.content.Context;
 import android.widget.ImageView;

@@ -1,7 +1,7 @@
 // Created by plusminus on 23:29:45 - 27.01.2009
-package org.andnav2.adt;
+package org.androad.adt;
 
-import org.andnav2.sys.ors.adt.lus.Country;
+import org.androad.sys.ors.adt.lus.Country;
 
 
 

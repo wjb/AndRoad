@@ -1,5 +1,5 @@
 // Created by plusminus on 18:59:46 - 19.01.2009
-package org.andnav2.sys.ors.tuks;
+package org.androad.sys.ors.tuks;
 
 import java.util.Formatter;
 import java.util.Locale;
@@ -8,7 +8,7 @@ import junit.framework.Assert;
 
 import org.andnav.osm.util.BoundingBoxE6;
 
-import org.andnav2.sys.ors.util.constants.ORSXMLConstants;
+import org.androad.sys.ors.util.constants.ORSXMLConstants;
 
 
 public class TUKSRequestComposer implements ORSXMLConstants {

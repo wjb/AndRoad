@@ -1,11 +1,11 @@
 //Created by plusminus on 13:59:14 - 12.02.2008
-package org.andnav2.ui.sd;
+package org.androad.ui.sd;
 
-import org.andnav2.R;
-import org.andnav2.adt.voice.Voice;
-import org.andnav2.preferences.Preferences;
-import org.andnav2.ui.AndNavBaseActivity;
-import org.andnav2.ui.common.OnClickOnFocusChangedListenerAdapter;
+import org.androad.R;
+import org.androad.adt.voice.Voice;
+import org.androad.preferences.Preferences;
+import org.androad.ui.AndNavBaseActivity;
+import org.androad.ui.common.OnClickOnFocusChangedListenerAdapter;
 
 import android.content.Context;
 import android.content.Intent;

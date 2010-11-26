@@ -1,19 +1,19 @@
-package org.andnav2.sys.ors.ds.google;
+package org.androad.sys.ors.ds.google;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-import org.andnav2.sys.ors.ds.DSRequester;
+import org.androad.sys.ors.ds.DSRequester;
 
 import org.andnav.osm.util.GeoPoint;
 
-import org.andnav2.sys.ors.adt.ds.ORSPOI;
-import org.andnav2.sys.ors.adt.ds.POIType;
-import org.andnav2.sys.ors.exceptions.ORSException;
-import org.andnav2.sys.ors.util.Util;
-import org.andnav2.util.constants.Constants;
+import org.androad.sys.ors.adt.ds.ORSPOI;
+import org.androad.sys.ors.adt.ds.POIType;
+import org.androad.sys.ors.exceptions.ORSException;
+import org.androad.sys.ors.util.Util;
+import org.androad.util.constants.Constants;
 
 import android.content.Context;
 

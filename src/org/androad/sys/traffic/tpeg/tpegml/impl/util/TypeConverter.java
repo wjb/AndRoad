@@ -1,5 +1,5 @@
 // Created by plusminus on 23:03:24 - 17.01.2009
-package org.andnav2.sys.traffic.tpeg.tpegml.impl.util;
+package org.androad.sys.traffic.tpeg.tpegml.impl.util;
 
 import org.andnav.osm.util.GeoPoint;
 

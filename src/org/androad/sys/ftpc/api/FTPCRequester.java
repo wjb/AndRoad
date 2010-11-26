@@ -1,5 +1,5 @@
 // Created by plusminus on 01:57:35 - 12.01.2009
-package org.andnav2.sys.ftpc.api;
+package org.androad.sys.ftpc.api;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -10,8 +10,8 @@ import junit.framework.Assert;
 
 import org.andnav.osm.util.GeoPoint;
 
-import org.andnav2.osm.views.util.StreamUtils;
-import org.andnav2.sys.ftpc.exc.FTPCException;
+import org.androad.osm.views.util.StreamUtils;
+import org.androad.sys.ftpc.exc.FTPCException;
 
 
 public class FTPCRequester {

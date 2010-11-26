@@ -1,10 +1,10 @@
 // Created by plusminus on 00:09:18 - 04.12.2008
-package org.andnav2.ui.map.overlay;
+package org.androad.ui.map.overlay;
 
 import org.andnav.osm.views.OpenStreetMapView;
 import org.andnav.osm.views.overlay.OpenStreetMapViewOverlay;
 
-import org.andnav2.preferences.PreferenceConstants;
+import org.androad.preferences.PreferenceConstants;
 
 import android.content.Context;
 import android.graphics.Canvas;

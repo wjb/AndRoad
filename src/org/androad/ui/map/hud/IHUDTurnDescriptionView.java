@@ -1,5 +1,5 @@
 // Created by plusminus on 8:39:01 PM - Feb 18, 2009
-package org.andnav2.ui.map.hud;
+package org.androad.ui.map.hud;
 
 import android.view.View.OnClickListener;
 

@@ -1,7 +1,7 @@
 // Created by plusminus on 7:01:38 PM - Feb 23, 2009
-package org.andnav2.ui.map.hud.util;
+package org.androad.ui.map.hud.util;
 
-import org.andnav2.ui.map.hud.IHUDImplVariation;
+import org.androad.ui.map.hud.IHUDImplVariation;
 
 
 public class Util {

@@ -1,14 +1,14 @@
 // Created by plusminus on 00:47:05 - 02.10.2008
-package org.andnav2.osm.adt.util;
+package org.androad.osm.adt.util;
 
 
 import java.util.GregorianCalendar;
 
 import org.andnav.osm.util.GeoPoint;
 
-import org.andnav2.adt.AndNavLocation;
-import org.andnav2.osm.adt.GPSGeoLocation;
-import org.andnav2.osm.util.constants.OSMConstants;
+import org.androad.adt.AndNavLocation;
+import org.androad.osm.adt.GPSGeoLocation;
+import org.androad.osm.util.constants.OSMConstants;
 
 import android.location.Address;
 import android.location.Location;

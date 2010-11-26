@@ -1,12 +1,12 @@
 // Created by plusminus on 16:49:55 - 22.05.2008
-package org.andnav2.adt;
+package org.androad.adt;
 
 import java.text.DecimalFormat;
 
-import org.andnav2.R;
-import org.andnav2.adt.voice.DistanceVoiceElement;
-import org.andnav2.sys.ors.adt.rs.DirectionsLanguage;
-import org.andnav2.util.constants.UnitConstants;
+import org.androad.R;
+import org.androad.adt.voice.DistanceVoiceElement;
+import org.androad.sys.ors.adt.rs.DirectionsLanguage;
+import org.androad.util.constants.UnitConstants;
 
 import android.content.Context;
 

@@ -1,4 +1,4 @@
-package org.andnav2.ui.settings;
+package org.androad.ui.settings;
 
 
 /**

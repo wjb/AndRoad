@@ -1,7 +1,7 @@
 // Created by plusminus on 17:13:49 - 16.05.2008
-package org.andnav2.ui.sd;
+package org.androad.ui.sd;
 
-import org.andnav2.util.constants.Constants;
+import org.androad.util.constants.Constants;
 
 import android.os.Bundle;
 

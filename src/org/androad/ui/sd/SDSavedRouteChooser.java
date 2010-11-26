@@ -1,24 +1,24 @@
 // Created by plusminus on 20:58:26 - 09.12.2008
-package org.andnav2.ui.sd;
+package org.androad.ui.sd;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.andnav2.R;
-import org.andnav2.exc.Exceptor;
-import org.andnav2.osm.util.Util;
-import org.andnav2.osm.util.constants.OSMConstants;
-import org.andnav2.preferences.Preferences;
-import org.andnav2.ui.AndNavBaseActivity;
-import org.andnav2.ui.common.CommonCallbackAdapter;
-import org.andnav2.ui.common.CommonDialogFactory;
-import org.andnav2.ui.common.OnClickOnFocusChangedListenerAdapter;
-import org.andnav2.ui.common.CommonDialogFactory.CreateSavedRouteSelectionOptions;
-import org.andnav2.ui.common.views.FastScrollView;
-import org.andnav2.ui.map.OpenStreetDDMap;
-import org.andnav2.util.UserTask;
+import org.androad.R;
+import org.androad.exc.Exceptor;
+import org.androad.osm.util.Util;
+import org.androad.osm.util.constants.OSMConstants;
+import org.androad.preferences.Preferences;
+import org.androad.ui.AndNavBaseActivity;
+import org.androad.ui.common.CommonCallbackAdapter;
+import org.androad.ui.common.CommonDialogFactory;
+import org.androad.ui.common.OnClickOnFocusChangedListenerAdapter;
+import org.androad.ui.common.CommonDialogFactory.CreateSavedRouteSelectionOptions;
+import org.androad.ui.common.views.FastScrollView;
+import org.androad.ui.map.OpenStreetDDMap;
+import org.androad.util.UserTask;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;

@@ -1,10 +1,10 @@
 // Created by plusminus on 13:59:37 - 29.06.2008
-package org.andnav2.nav.stats;
+package org.androad.nav.stats;
 
-import org.andnav2.adt.AndNavLocation;
-import org.andnav2.adt.UnitSystem;
-import org.andnav2.preferences.Preferences;
-import org.andnav2.util.constants.Constants;
+import org.androad.adt.AndNavLocation;
+import org.androad.adt.UnitSystem;
+import org.androad.preferences.Preferences;
+import org.androad.util.constants.Constants;
 
 import android.app.Activity;
 import android.util.Log;

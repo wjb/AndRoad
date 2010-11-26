@@ -1,5 +1,5 @@
 // Created by plusminus on 20:59:46 - 17.05.2008
-package org.andnav2.ui.common;
+package org.androad.ui.common;
 
 import android.app.Activity;
 import android.view.View;

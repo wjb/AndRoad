@@ -1,5 +1,5 @@
 // Created by plusminus on 18:17:25 - 12.12.2008
-package org.andnav2.ui.sd;
+package org.androad.ui.sd;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,22 +7,22 @@ import java.util.List;
 
 import org.andnav.osm.util.GeoPoint;
 
-import org.andnav2.R;
-import org.andnav2.db.DBManager;
-import org.andnav2.db.DataBaseException;
-import org.andnav2.exc.Exceptor;
-import org.andnav2.preferences.Preferences;
-import org.andnav2.sys.ors.adt.GeocodedAddress;
-import org.andnav2.sys.ors.adt.lus.Country;
-import org.andnav2.sys.ors.adt.lus.ICountrySubdivision;
-import org.andnav2.sys.ors.exceptions.ORSException;
-import org.andnav2.sys.ors.lus.LUSRequester;
-import org.andnav2.ui.AndNavBaseActivity;
-import org.andnav2.ui.common.OnClickOnFocusChangedListenerAdapter;
-import org.andnav2.ui.map.OpenStreetDDMap;
-import org.andnav2.ui.sd.util.StreetInfoExtractor;
-import org.andnav2.util.UserTask;
-import org.andnav2.util.constants.Constants;
+import org.androad.R;
+import org.androad.db.DBManager;
+import org.androad.db.DataBaseException;
+import org.androad.exc.Exceptor;
+import org.androad.preferences.Preferences;
+import org.androad.sys.ors.adt.GeocodedAddress;
+import org.androad.sys.ors.adt.lus.Country;
+import org.androad.sys.ors.adt.lus.ICountrySubdivision;
+import org.androad.sys.ors.exceptions.ORSException;
+import org.androad.sys.ors.lus.LUSRequester;
+import org.androad.ui.AndNavBaseActivity;
+import org.androad.ui.common.OnClickOnFocusChangedListenerAdapter;
+import org.androad.ui.map.OpenStreetDDMap;
+import org.androad.ui.sd.util.StreetInfoExtractor;
+import org.androad.util.UserTask;
+import org.androad.util.constants.Constants;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -335,7 +335,7 @@ public class SDResolver extends AndNavBaseActivity {
 				sb.append(getString(nat.NAMERESID));
 				sb.append(' ');
 
-				final String zipCodeOrCityName = org.andnav2.ui.sd.Util.getZipCodeOrCityName(this.mBundleCreatedWith);
+				final String zipCodeOrCityName = org.androad.ui.sd.Util.getZipCodeOrCityName(this.mBundleCreatedWith);
 				sb.append(zipCodeOrCityName);
 				sb.append(' ');
 

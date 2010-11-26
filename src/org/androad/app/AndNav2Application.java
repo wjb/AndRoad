@@ -1,7 +1,7 @@
 // Created by plusminus on 01:40:43 - 20.11.2008
-package org.andnav2.app;
+package org.androad.app;
 
-import org.andnav2.util.constants.TimeConstants;
+import org.androad.util.constants.TimeConstants;
 
 import android.app.Application;
 import android.content.Intent;
@@ -17,7 +17,7 @@ public class AndNav2Application extends Application implements TimeConstants{
 	// Constants
 	// ===========================================================
 
-	private static final String VERSIONS_URL = "http://www.andnav.org/sys/veecheck/andnav2/versions.xml";
+	private static final String VERSIONS_URL = "http://www.andnav.org/sys/veecheck/androad/versions.xml";
 
 	// ===========================================================
 	// Fields

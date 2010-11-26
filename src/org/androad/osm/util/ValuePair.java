@@ -1,4 +1,4 @@
-package org.andnav2.osm.util;
+package org.androad.osm.util;
 
 public class ValuePair implements Comparable<ValuePair>{
 	// ===========================================================

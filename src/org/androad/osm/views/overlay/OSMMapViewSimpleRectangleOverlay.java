@@ -1,5 +1,5 @@
 // Created by plusminus on 5:29:23 PM - Mar 4, 2009
-package org.andnav2.osm.views.overlay;
+package org.androad.osm.views.overlay;
 
 import org.andnav.osm.util.BoundingBoxE6;
 import org.andnav.osm.views.OpenStreetMapView;

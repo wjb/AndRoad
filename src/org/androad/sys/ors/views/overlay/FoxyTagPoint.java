@@ -1,8 +1,8 @@
-package org.andnav2.sys.ors.views.overlay;
+package org.androad.sys.ors.views.overlay;
 
 import org.andnav.osm.util.GeoPoint;
 
-import org.andnav2.R;
+import org.androad.R;
 
 import android.content.Context;
 

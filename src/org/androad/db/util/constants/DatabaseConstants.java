@@ -1,5 +1,5 @@
 //Created by plusminus on 14:02:36 - 15.02.2008
-package org.andnav2.db.util.constants;
+package org.androad.db.util.constants;
 
 
 public interface DatabaseConstants {

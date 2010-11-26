@@ -1,8 +1,8 @@
 //Created by plusminus on 00:26:29 - 18.05.2008
-package org.andnav2.adt.voice;
+package org.androad.adt.voice;
 
-import org.andnav2.R;
-import org.andnav2.util.constants.Constants;
+import org.androad.R;
+import org.androad.util.constants.Constants;
 
 import android.view.KeyEvent;
 

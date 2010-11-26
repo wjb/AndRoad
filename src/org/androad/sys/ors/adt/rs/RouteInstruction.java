@@ -1,5 +1,5 @@
 // Created by plusminus on 10:27:21 - 07.04.2008
-package org.andnav2.sys.ors.adt.rs;
+package org.androad.sys.ors.adt.rs;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -8,7 +8,7 @@ import java.util.List;
 import org.andnav.osm.util.BoundingBoxE6;
 import org.andnav.osm.util.GeoPoint;
 
-import org.andnav2.sys.ors.util.Util;
+import org.androad.sys.ors.util.Util;
 
 import android.os.Parcel;
 import android.os.Parcelable;

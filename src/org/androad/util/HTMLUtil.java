@@ -1,5 +1,5 @@
 // Created by plusminus on 18:50:47 - 15.12.2008
-package org.andnav2.util;
+package org.androad.util;
 
 
 public class HTMLUtil {

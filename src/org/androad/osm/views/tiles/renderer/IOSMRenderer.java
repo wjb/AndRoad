@@ -1,5 +1,5 @@
 // Created by plusminus on 20:10:36 - 14.11.2008
-package org.andnav2.osm.views.tiles.renderer;
+package org.androad.osm.views.tiles.renderer;
 
 import org.andnav.osm.tileprovider.OpenStreetMapTile;
 

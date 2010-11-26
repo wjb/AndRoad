@@ -1,5 +1,5 @@
 // Created by plusminus on 10:20:06 - 04.02.2009
-package org.andnav2.sys.serverdowntime.adt;
+package org.androad.sys.serverdowntime.adt;
 
 
 public enum Period {

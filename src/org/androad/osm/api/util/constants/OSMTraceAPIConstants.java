@@ -1,5 +1,5 @@
 // Created by plusminus on 14:11:09 - 21.09.2008
-package org.andnav2.osm.api.util.constants;
+package org.androad.osm.api.util.constants;
 
 import org.openstreetmap.api.constants.OSMBaseAPIConstants;
 

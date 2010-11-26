@@ -1,4 +1,4 @@
-package org.andnav2.sys.ors.views.overlay;
+package org.androad.sys.ors.views.overlay;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -11,10 +11,10 @@ import android.widget.Toast;
 import org.andnav.osm.util.GeoPoint;
 import org.andnav.osm.views.OpenStreetMapView.OpenStreetMapViewProjection;
 
-import org.andnav2.R;
-import org.andnav2.adt.Favorite;
-import org.andnav2.osm.views.util.Util;
-import org.andnav2.util.constants.Constants;
+import org.androad.R;
+import org.androad.adt.Favorite;
+import org.androad.osm.views.util.Util;
+import org.androad.util.constants.Constants;
 
 public class FavoritePoint extends BitmapItem {
 

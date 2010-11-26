@@ -1,5 +1,5 @@
 // Created by plusminus on 01:22:18 - 26.01.2009
-package org.andnav2.osm.views.util;
+package org.androad.osm.views.util;
 
 /**
  * Adapted Knuth-Morris-Pratt Algorithm to find byte[]-patterns in byte[].

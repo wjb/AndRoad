@@ -1,5 +1,5 @@
 // Created by plusminus on 19:33:48 - 05.11.2008
-package org.andnav2.sys.ors.adt.lus;
+package org.androad.sys.ors.adt.lus;
 
 
 public enum ReverseGeocodePreferenceType {

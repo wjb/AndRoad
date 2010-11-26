@@ -1,4 +1,4 @@
-package org.andnav2.sys.ors.adt.rs;
+package org.androad.sys.ors.adt.rs;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -7,8 +7,8 @@ import java.util.List;
 import org.andnav.osm.util.BoundingBoxE6;
 import org.andnav.osm.util.GeoPoint;
 
-import org.andnav2.adt.other.GraphicsPoint;
-import org.andnav2.util.constants.Constants;
+import org.androad.adt.other.GraphicsPoint;
+import org.androad.util.constants.Constants;
 
 import android.graphics.Point;
 import android.os.Parcel;

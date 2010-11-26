@@ -1,12 +1,12 @@
 //Created by plusminus on 16:36:15 - 16.05.2008
-package org.andnav2.ui.common;
+package org.androad.ui.common;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import org.andnav2.util.LexicographicalComparator;
+import org.androad.util.LexicographicalComparator;
 
 import android.util.Log;
 import android.widget.EditText;

@@ -1,7 +1,7 @@
 // Created by plusminus on 18:54:36 - 09.09.2008
-package org.andnav2.ui.map.hud.impl.basic.views;
+package org.androad.ui.map.hud.impl.basic.views;
 
-import org.andnav2.R;
+import org.androad.R;
 
 import android.content.Context;
 import android.graphics.BitmapFactory;

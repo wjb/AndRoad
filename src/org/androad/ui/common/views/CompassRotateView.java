@@ -1,8 +1,8 @@
 // Created by plusminus on 22:55:26 - 06.09.2008
-package org.andnav2.ui.common.views;
+package org.androad.ui.common.views;
 
-import org.andnav2.R;
-import org.andnav2.util.constants.Constants;
+import org.androad.R;
+import org.androad.util.constants.Constants;
 
 import android.content.Context;
 import android.hardware.Sensor;

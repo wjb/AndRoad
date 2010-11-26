@@ -1,5 +1,5 @@
 // Created by plusminus on 22:42:55 - 12.11.2008
-package org.andnav2.util;
+package org.androad.util;
 
 
 public class FileSizeFormatter {

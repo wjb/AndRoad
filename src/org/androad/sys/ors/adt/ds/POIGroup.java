@@ -1,7 +1,7 @@
 // Created by plusminus on 18:49:50 - 15.11.2008
-package org.andnav2.sys.ors.adt.ds;
+package org.androad.sys.ors.adt.ds;
 
-import org.andnav2.R;
+import org.androad.R;
 
 public enum POIGroup {
 	UNKNOWN("_unknown_", R.string.unknown),

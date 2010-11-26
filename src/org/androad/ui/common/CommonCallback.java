@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.andnav2.ui.common;
+package org.androad.ui.common;
 
 /**
  * @author Nicolas Gramlich

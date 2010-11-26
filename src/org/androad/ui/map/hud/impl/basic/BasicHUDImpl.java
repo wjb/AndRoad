@@ -1,18 +1,18 @@
 // Created by plusminus on 7:18:35 PM - Feb 18, 2009
-package org.andnav2.ui.map.hud.impl.basic;
+package org.androad.ui.map.hud.impl.basic;
 
-import org.andnav2.R;
-import org.andnav2.osm.views.overlay.util.DirectionArrowDescriptor;
-import org.andnav2.ui.map.hud.IHUDImpl;
-import org.andnav2.ui.map.hud.IHUDImplVariation;
-import org.andnav2.ui.map.hud.IHUDNextActionView;
-import org.andnav2.ui.map.hud.IHUDRemainingSummaryView;
-import org.andnav2.ui.map.hud.IHUDTurnDescriptionView;
-import org.andnav2.ui.map.hud.impl.basic.views.HUDNextActionView;
-import org.andnav2.ui.map.hud.impl.basic.views.HUDRemainingSummaryView;
-import org.andnav2.ui.map.hud.impl.basic.views.HUDTurnDescriptionView;
-import org.andnav2.ui.map.hud.impl.basic.views.HUDUpperNextActionView;
-import org.andnav2.ui.map.hud.util.Util;
+import org.androad.R;
+import org.androad.osm.views.overlay.util.DirectionArrowDescriptor;
+import org.androad.ui.map.hud.IHUDImpl;
+import org.androad.ui.map.hud.IHUDImplVariation;
+import org.androad.ui.map.hud.IHUDNextActionView;
+import org.androad.ui.map.hud.IHUDRemainingSummaryView;
+import org.androad.ui.map.hud.IHUDTurnDescriptionView;
+import org.androad.ui.map.hud.impl.basic.views.HUDNextActionView;
+import org.androad.ui.map.hud.impl.basic.views.HUDRemainingSummaryView;
+import org.androad.ui.map.hud.impl.basic.views.HUDTurnDescriptionView;
+import org.androad.ui.map.hud.impl.basic.views.HUDUpperNextActionView;
+import org.androad.ui.map.hud.util.Util;
 
 import android.graphics.Point;
 import android.view.View;

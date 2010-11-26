@@ -1,5 +1,5 @@
 // Created by plusminus on 6:15:04 PM - Mar 27, 2009
-package org.andnav2.sys.ors.adt.ts;
+package org.androad.sys.ors.adt.ts;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -9,7 +9,7 @@ import org.andnav.osm.util.BoundingBoxE6;
 import org.andnav.osm.util.GeoPoint;
 import org.andnav.osm.views.overlay.OpenStreetMapViewOverlayItem;
 
-import org.andnav2.util.constants.Constants;
+import org.androad.util.constants.Constants;
 
 import android.util.Log;
 

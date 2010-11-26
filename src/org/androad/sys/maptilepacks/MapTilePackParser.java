@@ -1,13 +1,13 @@
 // Created by plusminus on 10:48:38 - 04.02.2009
-package org.andnav2.sys.maptilepacks;
+package org.androad.sys.maptilepacks;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.andnav.osm.util.BoundingBoxE6;
 
-import org.andnav2.sys.maptilepacks.adt.MapTilePack;
-import org.andnav2.util.constants.Constants;
+import org.androad.sys.maptilepacks.adt.MapTilePack;
+import org.androad.util.constants.Constants;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;

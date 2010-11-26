@@ -1,10 +1,10 @@
 // Created by plusminus on 18:41:23 - 10.04.2008
-package org.andnav2.ui.settings;
+package org.androad.ui.settings;
 
-import org.andnav2.R;
-import org.andnav2.preferences.Preferences;
-import org.andnav2.ui.AndNavBaseActivity;
-import org.andnav2.ui.common.OnClickOnFocusChangedListenerAdapter;
+import org.androad.R;
+import org.androad.preferences.Preferences;
+import org.androad.ui.AndNavBaseActivity;
+import org.androad.ui.common.OnClickOnFocusChangedListenerAdapter;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;

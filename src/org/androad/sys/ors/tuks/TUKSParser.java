@@ -1,16 +1,16 @@
 // Created by plusminus on 00:16:36 - 20.01.2009
-package org.andnav2.sys.ors.tuks;
+package org.androad.sys.ors.tuks;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.andnav.osm.util.GeoPoint;
 
-import org.andnav2.sys.ors.adt.GeocodedAddress;
-import org.andnav2.sys.ors.adt.ts.TrafficItem;
+import org.androad.sys.ors.adt.GeocodedAddress;
+import org.androad.sys.ors.adt.ts.TrafficItem;
 import org.andnav2.traffic.tpeg.adt.IIDFinder;
 import org.andnav2.traffic.tpeg.adt.rtm.table.RTM31_general_magnitude;
-import org.andnav2.util.constants.Constants;
+import org.androad.util.constants.Constants;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;

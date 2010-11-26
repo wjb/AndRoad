@@ -1,12 +1,12 @@
 // Created by plusminus on 18:33:37 - 15.12.2008
-package org.andnav2.sys.osb.api;
+package org.androad.sys.osb.api;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import org.andnav2.sys.osb.adt.OpenStreetBug;
-import org.andnav2.sys.osb.exc.OSBException;
-import org.andnav2.util.HTMLUtil;
+import org.androad.sys.osb.adt.OpenStreetBug;
+import org.androad.sys.osb.exc.OSBException;
+import org.androad.util.HTMLUtil;
 
 
 public class OSBAjaxResponseParser {

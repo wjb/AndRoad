@@ -1,4 +1,4 @@
-package org.andnav2.osm.views.overlay;
+package org.androad.osm.views.overlay;
 
 import java.util.List;
 
@@ -7,14 +7,14 @@ import org.andnav.osm.views.OpenStreetMapView;
 import org.andnav.osm.views.OpenStreetMapView.OpenStreetMapViewProjection;
 import org.andnav.osm.views.overlay.OpenStreetMapViewOverlay;
 
-import org.andnav2.R;
-import org.andnav2.osm.OpenStreetMapActivity;
-import org.andnav2.preferences.PreferenceConstants;
-import org.andnav2.ui.map.overlay.util.ManagedLinePath;
-import org.andnav2.util.constants.Constants;
-import org.andnav2.util.constants.GeoConstants;
-import org.andnav2.util.constants.MathematicalConstants;
-import org.andnav2.util.constants.TimeConstants;
+import org.androad.R;
+import org.androad.osm.OpenStreetMapActivity;
+import org.androad.preferences.PreferenceConstants;
+import org.androad.ui.map.overlay.util.ManagedLinePath;
+import org.androad.util.constants.Constants;
+import org.androad.util.constants.GeoConstants;
+import org.androad.util.constants.MathematicalConstants;
+import org.androad.util.constants.TimeConstants;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

@@ -1,7 +1,7 @@
 // Created by plusminus on 14:30:07 - 08.02.2009
-package org.andnav2.osm.views.tiles.renderer;
+package org.androad.osm.views.tiles.renderer;
 
-import org.andnav2.osm.views.tiles.OSMMapTileProviderInfo;
+import org.androad.osm.views.tiles.OSMMapTileProviderInfo;
 
 import android.content.Context;
 

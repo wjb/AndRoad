@@ -1,14 +1,14 @@
 // Created by plusminus on 12:28:16 - 21.09.2008
-package org.andnav2.osm.api.traces.util;
+package org.androad.osm.api.traces.util;
 
 import java.util.ArrayList;
 
 import org.andnav.osm.util.GeoPoint;
 
-import org.andnav2.adt.AndNavLocation;
-import org.andnav2.osm.adt.GPSGeoLocation;
-import org.andnav2.osm.adt.util.TypeConverter;
-import org.andnav2.osm.util.constants.OSMConstants;
+import org.androad.adt.AndNavLocation;
+import org.androad.osm.adt.GPSGeoLocation;
+import org.androad.osm.adt.util.TypeConverter;
+import org.androad.osm.util.constants.OSMConstants;
 
 import android.location.Location;
 import android.os.Parcel;

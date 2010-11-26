@@ -1,20 +1,20 @@
 // Created by plusminus on 01:08:10 - 12.10.2008
-package org.andnav2.ui.map;
+package org.androad.ui.map;
 
 import java.util.List;
 
 import org.andnav.osm.views.overlay.OpenStreetMapViewOverlay;
 import org.andnav.osm.views.util.OpenStreetMapRendererFactory;
 
-import org.andnav2.R;
-import org.andnav2.osm.OpenStreetMapActivity;
-import org.andnav2.osm.views.overlay.OSMMapViewSimpleTraceOverlay;
-import org.andnav2.osm.views.util.OSMMapGoogleRenderer;
-import org.andnav2.osm.views.util.OSMMapMicrosoftRenderer;
-import org.andnav2.osm.views.util.OSMMapYahooRenderer;
-import org.andnav2.preferences.PreferenceConstants;
-import org.andnav2.preferences.Preferences;
-import org.andnav2.ui.map.overlay.ColorSchemeOverlay;
+import org.androad.R;
+import org.androad.osm.OpenStreetMapActivity;
+import org.androad.osm.views.overlay.OSMMapViewSimpleTraceOverlay;
+import org.androad.osm.views.util.OSMMapGoogleRenderer;
+import org.androad.osm.views.util.OSMMapMicrosoftRenderer;
+import org.androad.osm.views.util.OSMMapYahooRenderer;
+import org.androad.preferences.PreferenceConstants;
+import org.androad.preferences.Preferences;
+import org.androad.ui.map.overlay.ColorSchemeOverlay;
 
 import android.os.Bundle;
 import android.view.Menu;

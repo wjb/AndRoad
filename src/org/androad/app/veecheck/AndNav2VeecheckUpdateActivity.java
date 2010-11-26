@@ -1,8 +1,8 @@
 // Created by plusminus on 01:22:04 - 20.11.2008
-package org.andnav2.app.veecheck;
+package org.androad.app.veecheck;
 
-import org.andnav2.R;
-import org.andnav2.app.veecheck.util.constants.VeecheckConstants;
+import org.androad.R;
+import org.androad.app.veecheck.util.constants.VeecheckConstants;
 
 import android.os.Bundle;
 import android.view.View;

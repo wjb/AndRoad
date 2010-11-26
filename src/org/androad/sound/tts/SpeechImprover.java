@@ -1,9 +1,9 @@
 // Created by plusminus on 23:42:39 - 17.12.2008
-package org.andnav2.sound.tts;
+package org.androad.sound.tts;
 
-import org.andnav2.sound.tts.speechimprovement.countries.SpeechImproverDE;
-import org.andnav2.sound.tts.speechimprovement.countries.SpeechImproverUS;
-import org.andnav2.sys.ors.adt.lus.Country;
+import org.androad.sound.tts.speechimprovement.countries.SpeechImproverDE;
+import org.androad.sound.tts.speechimprovement.countries.SpeechImproverUS;
+import org.androad.sys.ors.adt.lus.Country;
 
 
 /**

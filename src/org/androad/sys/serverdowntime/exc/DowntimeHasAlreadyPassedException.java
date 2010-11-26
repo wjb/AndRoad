@@ -1,5 +1,5 @@
 // Created by plusminus on 14:10:25 - 04.02.2009
-package org.andnav2.sys.serverdowntime.exc;
+package org.androad.sys.serverdowntime.exc;
 
 
 public class DowntimeHasAlreadyPassedException extends Exception {

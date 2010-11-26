@@ -1,4 +1,4 @@
-package org.andnav2.osm.views.util;
+package org.androad.osm.views.util;
 
 /**
  * 

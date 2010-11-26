@@ -1,5 +1,5 @@
 // Created by plusminus on 17:27:31 - 15.12.2008
-package org.andnav2.sys.osb.exc;
+package org.androad.sys.osb.exc;
 
 
 public class OSBException extends Exception {

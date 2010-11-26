@@ -1,5 +1,5 @@
 // Created by plusminus on 12:47:27 - 26.10.2008
-package org.andnav2.ui.sd;
+package org.androad.ui.sd;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,24 +7,24 @@ import java.util.List;
 
 import org.andnav.osm.util.GeoPoint;
 
-import org.andnav2.R;
-import org.andnav2.adt.DBPOI;
-import org.andnav2.adt.UnitSystem;
-import org.andnav2.db.DBManager;
-import org.andnav2.db.DataBaseException;
-import org.andnav2.osm.adt.util.TypeConverter;
-import org.andnav2.preferences.Preferences;
-import org.andnav2.sys.ors.adt.GeocodedAddress;
-import org.andnav2.sys.ors.adt.ds.ORSPOI;
-import org.andnav2.sys.ors.adt.ds.POIType;
-import org.andnav2.sys.ors.ds.DSRequester;
-import org.andnav2.sys.ors.exceptions.ORSException;
-import org.andnav2.sys.ors.lus.LUSRequester;
-import org.andnav2.ui.AndNavGPSActivity;
-import org.andnav2.ui.common.OnClickOnFocusChangedListenerAdapter;
-import org.andnav2.ui.map.OpenStreetDDMap;
-import org.andnav2.ui.sd.util.StreetInfoExtractor;
-import org.andnav2.util.UserTask;
+import org.androad.R;
+import org.androad.adt.DBPOI;
+import org.androad.adt.UnitSystem;
+import org.androad.db.DBManager;
+import org.androad.db.DataBaseException;
+import org.androad.osm.adt.util.TypeConverter;
+import org.androad.preferences.Preferences;
+import org.androad.sys.ors.adt.GeocodedAddress;
+import org.androad.sys.ors.adt.ds.ORSPOI;
+import org.androad.sys.ors.adt.ds.POIType;
+import org.androad.sys.ors.ds.DSRequester;
+import org.androad.sys.ors.exceptions.ORSException;
+import org.androad.sys.ors.lus.LUSRequester;
+import org.androad.ui.AndNavGPSActivity;
+import org.androad.ui.common.OnClickOnFocusChangedListenerAdapter;
+import org.androad.ui.map.OpenStreetDDMap;
+import org.androad.ui.sd.util.StreetInfoExtractor;
+import org.androad.util.UserTask;
 
 import android.app.ProgressDialog;
 import android.content.Context;

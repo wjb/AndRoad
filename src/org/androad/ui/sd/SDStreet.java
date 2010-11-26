@@ -1,21 +1,21 @@
 //Created by plusminus on 20:51:30 - 10.02.2008
-package org.andnav2.ui.sd;
+package org.androad.ui.sd;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.andnav2.R;
-import org.andnav2.db.DBManager;
-import org.andnav2.db.DataBaseException;
-import org.andnav2.preferences.Preferences;
-import org.andnav2.sys.ors.adt.GeocodedAddress;
-import org.andnav2.sys.ors.adt.lus.Country;
-import org.andnav2.sys.ors.adt.lus.ICountrySubdivision;
-import org.andnav2.sys.ors.exceptions.ORSException;
-import org.andnav2.sys.ors.lus.LUSRequester;
-import org.andnav2.ui.AndNavBaseActivity;
-import org.andnav2.ui.common.InlineAutoCompleterCombined;
-import org.andnav2.ui.common.OnClickOnFocusChangedListenerAdapter;
+import org.androad.R;
+import org.androad.db.DBManager;
+import org.androad.db.DataBaseException;
+import org.androad.preferences.Preferences;
+import org.androad.sys.ors.adt.GeocodedAddress;
+import org.androad.sys.ors.adt.lus.Country;
+import org.androad.sys.ors.adt.lus.ICountrySubdivision;
+import org.androad.sys.ors.exceptions.ORSException;
+import org.androad.sys.ors.lus.LUSRequester;
+import org.androad.ui.AndNavBaseActivity;
+import org.androad.ui.common.InlineAutoCompleterCombined;
+import org.androad.ui.common.OnClickOnFocusChangedListenerAdapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -146,7 +146,7 @@ public class SDStreet extends AndNavBaseActivity {
 
 			if(this.bundleCreatedWith.getInt(EXTRAS_MODE) != EXTRAS_MODE_STREETNAMESEARCH){
 				try {
-					final String zipCodeOrCityName = org.andnav2.ui.sd.Util.getZipCodeOrCityName(this.bundleCreatedWith);
+					final String zipCodeOrCityName = org.androad.ui.sd.Util.getZipCodeOrCityName(this.bundleCreatedWith);
 					final Country nat = this.bundleCreatedWith.getParcelable(EXTRAS_COUNTRY_ID);
 					DBManager.addStreet(this, streetName, zipCodeOrCityName, nat.COUNTRYCODE);
 				} catch (final DataBaseException e) {
@@ -169,7 +169,7 @@ public class SDStreet extends AndNavBaseActivity {
 		try{
 			final Country nat = this.bundleCreatedWith.getParcelable(EXTRAS_COUNTRY_ID);
 			final ICountrySubdivision subdivision = this.bundleCreatedWith.getParcelable(EXTRAS_COUNTRYSUBDIVISIONCODE_ID);
-			final String zipCodeOrCityName = org.andnav2.ui.sd.Util.getZipCodeOrCityName(this.bundleCreatedWith);
+			final String zipCodeOrCityName = org.androad.ui.sd.Util.getZipCodeOrCityName(this.bundleCreatedWith);
 
 			final List<String> usedStreetNames = DBManager.getStreetNames(this, zipCodeOrCityName, nat.COUNTRYCODE);
 

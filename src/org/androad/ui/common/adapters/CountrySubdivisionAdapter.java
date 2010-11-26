@@ -1,8 +1,8 @@
 // Created by plusminus on 19:28:20 - 10.04.2008
-package org.andnav2.ui.common.adapters;
+package org.androad.ui.common.adapters;
 
-import org.andnav2.R;
-import org.andnav2.sys.ors.adt.lus.ICountrySubdivision;
+import org.androad.R;
+import org.androad.sys.ors.adt.lus.ICountrySubdivision;
 
 import android.content.Context;
 import android.view.LayoutInflater;

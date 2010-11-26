@@ -1,9 +1,9 @@
 // Created by plusminus on 10:47:26 PM - Feb 18, 2009
-package org.andnav2.ui.map.hud;
+package org.androad.ui.map.hud;
 
-import org.andnav2.ui.map.hud.impl.basic.BasicHUDImpl;
-import org.andnav2.ui.map.hud.impl.bigarrow.BigArrowHUDImpl;
-import org.andnav2.ui.map.hud.impl.mavoric.MavoricHUDImpl;
+import org.androad.ui.map.hud.impl.basic.BasicHUDImpl;
+import org.androad.ui.map.hud.impl.bigarrow.BigArrowHUDImpl;
+import org.androad.ui.map.hud.impl.mavoric.MavoricHUDImpl;
 
 
 public class HUDRegistry {

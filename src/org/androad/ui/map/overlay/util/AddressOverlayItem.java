@@ -1,10 +1,10 @@
 // Created by plusminus on 20:12:07 - 11.09.2008
-package org.andnav2.ui.map.overlay.util;
+package org.androad.ui.map.overlay.util;
 
 import org.andnav.osm.util.GeoPoint;
 import org.andnav.osm.views.overlay.OpenStreetMapViewOverlayItem;
 
-import org.andnav2.osm.adt.util.TypeConverter;
+import org.androad.osm.adt.util.TypeConverter;
 
 import android.location.Address;
 

@@ -1,6 +1,6 @@
-package org.andnav2.sys.mylieu.api;
+package org.androad.sys.mylieu.api;
 
-import org.andnav2.adt.AndNavLocation;
+import org.androad.adt.AndNavLocation;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;

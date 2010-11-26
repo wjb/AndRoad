@@ -1,12 +1,12 @@
 // Created by plusminus on 22:01:11 - 29.09.2008
-package org.andnav2.osm.views.overlay;
+package org.androad.osm.views.overlay;
 
 import org.andnav.osm.util.GeoPoint;
 import org.andnav.osm.views.OpenStreetMapView;
 import org.andnav.osm.views.OpenStreetMapView.OpenStreetMapViewProjection;
 import org.andnav.osm.views.overlay.OpenStreetMapViewOverlay;
 
-import org.andnav2.R;
+import org.androad.R;
 
 import android.content.Context;
 import android.graphics.Bitmap;

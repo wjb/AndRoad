@@ -1,4 +1,4 @@
-package org.andnav2.sys.ors.ds.openrouteservice;
+package org.androad.sys.ors.ds.openrouteservice;
 import java.util.Formatter;
 import java.util.Locale;
 
@@ -6,10 +6,10 @@ import junit.framework.Assert;
 
 import org.andnav.osm.util.GeoPoint;
 
-import org.andnav2.sys.ors.adt.ds.DirectoryType;
-import org.andnav2.sys.ors.adt.ds.POIType;
-import org.andnav2.sys.ors.util.Util;
-import org.andnav2.sys.ors.util.constants.ORSXMLConstants;
+import org.androad.sys.ors.adt.ds.DirectoryType;
+import org.androad.sys.ors.adt.ds.POIType;
+import org.androad.sys.ors.util.Util;
+import org.androad.sys.ors.util.constants.ORSXMLConstants;
 
 import android.content.Context;
 

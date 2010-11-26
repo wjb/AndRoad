@@ -1,23 +1,23 @@
 // Created by plusminus on 23:44:27 - 18.12.2008
-package org.andnav2.ui.common;
+package org.androad.ui.common;
 
 import java.util.List;
 
 import org.andnav.osm.util.Direction;
 import org.andnav.osm.util.GeoPoint;
 
-import org.andnav2.R;
-import org.andnav2.adt.TrafficFeed;
-import org.andnav2.db.DBManager;
-import org.andnav2.preferences.Preferences;
-import org.andnav2.sys.ors.adt.ds.POIType;
-import org.andnav2.sys.ors.adt.lus.Country;
-import org.andnav2.sys.ors.adt.rs.DirectionsLanguage;
-import org.andnav2.sys.osb.adt.OpenStreetBug;
-import org.andnav2.ui.camera.CameraFavorite;
-import org.andnav2.ui.map.WhereAmIMap;
-import org.andnav2.ui.sd.SDPOICategories;
-import org.andnav2.ui.sd.SDPOIEntry;
+import org.androad.R;
+import org.androad.adt.TrafficFeed;
+import org.androad.db.DBManager;
+import org.androad.preferences.Preferences;
+import org.androad.sys.ors.adt.ds.POIType;
+import org.androad.sys.ors.adt.lus.Country;
+import org.androad.sys.ors.adt.rs.DirectionsLanguage;
+import org.androad.sys.osb.adt.OpenStreetBug;
+import org.androad.ui.camera.CameraFavorite;
+import org.androad.ui.map.WhereAmIMap;
+import org.androad.ui.sd.SDPOICategories;
+import org.androad.ui.sd.SDPOIEntry;
 import org.openstreetmap.api.exceptions.OSMAPIException;
 
 import android.app.Activity;
@@ -703,9 +703,9 @@ public class CommonDialogFactory {
 		final StringBuilder sb = new StringBuilder();
 		sb.append(ctx.getString(R.string.app_name))
 		.append('\n')
-		.append("VersionName: ").append(org.andnav2.util.Util.getVersionName(ctx))
+		.append("VersionName: ").append(org.androad.util.Util.getVersionName(ctx))
 		.append('\n')
-		.append("VersionNumber: ").append(org.andnav2.util.Util.getVersionNumber(ctx))
+		.append("VersionNumber: ").append(org.androad.util.Util.getVersionNumber(ctx))
 		.append('\n');
 
 		return new AlertDialog.Builder(ctx)

@@ -1,5 +1,5 @@
 // Created by plusminus on 00:12:51 - 20.01.2009
-package org.andnav2.sys.ors.tuks;
+package org.androad.sys.ors.tuks;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedWriter;
@@ -18,9 +18,9 @@ import javax.xml.parsers.SAXParserFactory;
 
 import org.andnav.osm.util.BoundingBoxE6;
 
-import org.andnav2.sys.ors.adt.Error;
-import org.andnav2.sys.ors.adt.ts.TrafficItem;
-import org.andnav2.sys.ors.exceptions.ORSException;
+import org.androad.sys.ors.adt.Error;
+import org.androad.sys.ors.adt.ts.TrafficItem;
+import org.androad.sys.ors.exceptions.ORSException;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
@@ -73,9 +73,9 @@ public class TUKSRequester {
 		try{
 			xmlOut = new BufferedWriter(new OutputStreamWriter(acon.getOutputStream()));
 		}catch(final SocketException se){
-			throw new ORSException(new Error(Error.ERRORCODE_UNKNOWN, Error.SEVERITY_ERROR, "org.andnav2.ors.rs.RSRequester.request(...)", "Host unreachable."));
+			throw new ORSException(new Error(Error.ERRORCODE_UNKNOWN, Error.SEVERITY_ERROR, "org.androad.ors.rs.RSRequester.request(...)", "Host unreachable."));
 		}catch(final UnknownHostException uhe){
-			throw new ORSException(new Error(Error.ERRORCODE_UNKNOWN, Error.SEVERITY_ERROR, "org.andnav2.ors.rs.RSRequester.request(...)", "Host unresolved."));
+			throw new ORSException(new Error(Error.ERRORCODE_UNKNOWN, Error.SEVERITY_ERROR, "org.androad.ors.rs.RSRequester.request(...)", "Host unresolved."));
 		}
 
 		//		final String trafficRequest = TUKSRequestComposer.createGML1(pBoundingBoxE6);

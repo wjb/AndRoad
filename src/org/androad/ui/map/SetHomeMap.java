@@ -1,5 +1,5 @@
 // Created by plusminus on 20:07:18 - 21.05.2008
-package org.andnav2.ui.map;
+package org.androad.ui.map;
 
 import java.util.List;
 
@@ -9,13 +9,13 @@ import org.andnav.osm.views.OpenStreetMapView.OpenStreetMapViewProjection;
 import org.andnav.osm.views.OpenStreetMapViewController.AnimationType;
 import org.andnav.osm.views.overlay.OpenStreetMapViewOverlay;
 
-import org.andnav2.R;
-import org.andnav2.adt.AndNavLocation;
-import org.andnav2.osm.views.overlay.OSMMapViewSimpleLocationOverlay;
-import org.andnav2.osm.views.overlay.OSMMapViewSingleIconOverlay;
-import org.andnav2.preferences.Preferences;
-import org.andnav2.ui.common.OnClickOnFocusChangedListenerAdapter;
-import org.andnav2.util.constants.Constants;
+import org.androad.R;
+import org.androad.adt.AndNavLocation;
+import org.androad.osm.views.overlay.OSMMapViewSimpleLocationOverlay;
+import org.androad.osm.views.overlay.OSMMapViewSingleIconOverlay;
+import org.androad.preferences.Preferences;
+import org.androad.ui.common.OnClickOnFocusChangedListenerAdapter;
+import org.androad.util.constants.Constants;
 
 import android.graphics.Point;
 import android.media.MediaPlayer;

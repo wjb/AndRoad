@@ -1,5 +1,5 @@
 //Created by plusminus on 14:01:14 - 15.02.2008
-package org.andnav2.db;
+package org.androad.db;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -7,12 +7,12 @@ import java.util.List;
 
 import org.andnav.osm.util.GeoPoint;
 
-import org.andnav2.adt.DBPOI;
-import org.andnav2.adt.Favorite;
-import org.andnav2.adt.TrafficFeed;
-import org.andnav2.db.util.constants.DatabaseConstants;
-import org.andnav2.sys.ors.adt.lus.Country;
-import org.andnav2.util.constants.Constants;
+import org.androad.adt.DBPOI;
+import org.androad.adt.Favorite;
+import org.androad.adt.TrafficFeed;
+import org.androad.db.util.constants.DatabaseConstants;
+import org.androad.sys.ors.adt.lus.Country;
+import org.androad.util.constants.Constants;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -208,7 +208,7 @@ public class DBManager implements DatabaseConstants{
 			ensureFavoritesTableExists(myDB);
 
 			final int usedBefore = checkFavoriteExists(myDB, aFavName);
-			if(usedBefore != org.andnav2.util.constants.Constants.NOT_SET){
+			if(usedBefore != org.androad.util.constants.Constants.NOT_SET){
 				incrementFavoriteUses(myDB, aFavName, usedBefore);
 			}else{
 				/* Query for the fav-name passed as parameter. */
@@ -321,7 +321,7 @@ public class DBManager implements DatabaseConstants{
 		if(c != null && c.getCount() > 0 && c.moveToFirst()){
 			uses = c.getInt(c.getColumnIndexOrThrow(T_FAVS_COL_USES));
 		}else{
-			uses = org.andnav2.util.constants.Constants.NOT_SET;
+			uses = org.androad.util.constants.Constants.NOT_SET;
 		}
 
 		if(c != null) {

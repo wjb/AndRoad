@@ -1,5 +1,5 @@
 // Created by plusminus on 17:57:05 - 21.10.2008
-package org.andnav2.ui.map.overlay.util;
+package org.androad.ui.map.overlay.util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,7 @@ import org.andnav.osm.util.GeoPoint;
 import org.andnav.osm.views.OpenStreetMapView;
 import org.andnav.osm.views.OpenStreetMapView.OpenStreetMapViewProjection;
 
-import org.andnav2.sys.ors.adt.rs.Route;
+import org.androad.sys.ors.adt.rs.Route;
 
 import android.graphics.Matrix;
 import android.graphics.Path;

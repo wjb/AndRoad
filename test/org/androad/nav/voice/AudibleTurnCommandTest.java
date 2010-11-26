@@ -2,16 +2,16 @@
 /**
  * 
  */
-package org.andnav2.nav.voice;
+package org.androad.nav.voice;
 
 import junit.framework.Assert;
 
-import org.andnav2.adt.UnitSystem;
-import org.andnav2.adt.voice.AudibleTurnCommand;
-import org.andnav2.adt.voice.AudibleTurnCommandManager;
-import org.andnav2.adt.voice.SimpleAudibleTurnCommand;
-import org.andnav2.adt.voice.TurnVoiceElement;
-import org.andnav2.sys.ors.adt.rs.RouteInstruction;
+import org.androad.adt.UnitSystem;
+import org.androad.adt.voice.AudibleTurnCommand;
+import org.androad.adt.voice.AudibleTurnCommandManager;
+import org.androad.adt.voice.SimpleAudibleTurnCommand;
+import org.androad.adt.voice.TurnVoiceElement;
+import org.androad.sys.ors.adt.rs.RouteInstruction;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

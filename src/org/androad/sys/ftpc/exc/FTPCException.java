@@ -1,5 +1,5 @@
 // Created by plusminus on 19:39:30 - 12.01.2009
-package org.andnav2.sys.ftpc.exc;
+package org.androad.sys.ftpc.exc;
 
 
 public class FTPCException extends Exception {

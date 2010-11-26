@@ -1,18 +1,18 @@
 // Created by plusminus on 21:46:22 - 25.09.2008
-package org.andnav2.osm.views.tiles;
+package org.androad.osm.views.tiles;
 
 import org.andnav.osm.tileprovider.OpenStreetMapTile;
 
-import org.andnav2.R;
-import org.andnav2.osm.exceptions.ExternalStorageNotMountedException;
-import org.andnav2.osm.util.constants.OSMConstants;
-import org.andnav2.osm.views.tiles.caching.OSMMapTileFilesystemCache;
-import org.andnav2.osm.views.tiles.caching.OSMMapTileMemoryCache;
-import org.andnav2.osm.views.tiles.caching.OSMMapTileFilesystemCache.StoragePolicy;
-import org.andnav2.osm.views.tiles.downloader.OSMMapTileDownloadProvider;
-import org.andnav2.osm.views.tiles.renderer.OSMMapTileRenderProvider;
-import org.andnav2.osm.views.util.constants.OSMMapViewConstants;
-import org.andnav2.preferences.Preferences;
+import org.androad.R;
+import org.androad.osm.exceptions.ExternalStorageNotMountedException;
+import org.androad.osm.util.constants.OSMConstants;
+import org.androad.osm.views.tiles.caching.OSMMapTileFilesystemCache;
+import org.androad.osm.views.tiles.caching.OSMMapTileMemoryCache;
+import org.androad.osm.views.tiles.caching.OSMMapTileFilesystemCache.StoragePolicy;
+import org.androad.osm.views.tiles.downloader.OSMMapTileDownloadProvider;
+import org.androad.osm.views.tiles.renderer.OSMMapTileRenderProvider;
+import org.androad.osm.views.util.constants.OSMMapViewConstants;
+import org.androad.preferences.Preferences;
 
 import android.content.Context;
 import android.graphics.Bitmap;

@@ -1,7 +1,7 @@
 // Created by plusminus on 00:17:35 - 07.07.2008
-package org.andnav2.ui.util;
+package org.androad.ui.util;
 
-import org.andnav2.util.constants.Constants;
+import org.androad.util.constants.Constants;
 
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -54,7 +54,7 @@ public class Util implements Constants{
 		final Intent mailIntent = new Intent(android.content.Intent.ACTION_SEND);
 		mailIntent.setType("plain/text");
 		mailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{"support@andnav.org"});
-		mailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "AndNav2-Bug (v" + org.andnav2.util.Util.getVersionName(ctx) + ")");
+		mailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "AndNav2-Bug (v" + org.androad.util.Util.getVersionName(ctx) + ")");
 		mailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "My Error: ");
 
 		ctx.startActivity(Intent.createChooser(mailIntent, "Send Bug-Mail"));
@@ -62,7 +62,7 @@ public class Util implements Constants{
 	}
 
 	public static void sendExceptionEmail(final Context ctx, final String pBody) {
-		openEmail(ctx, pBody, "AndNav2-Exception (v" + org.andnav2.util.Util.getVersionName(ctx) + ")", new String[]{"support@andnav.org"});
+		openEmail(ctx, pBody, "AndNav2-Exception (v" + org.androad.util.Util.getVersionName(ctx) + ")", new String[]{"support@andnav.org"});
 		Toast.makeText(ctx, "Please describe your bug!", Toast.LENGTH_LONG).show();
 	}
 

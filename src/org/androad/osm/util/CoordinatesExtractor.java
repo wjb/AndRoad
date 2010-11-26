@@ -1,4 +1,4 @@
-package org.andnav2.osm.util;
+package org.androad.osm.util;
 
 import java.util.StringTokenizer;
 import java.util.regex.Matcher;

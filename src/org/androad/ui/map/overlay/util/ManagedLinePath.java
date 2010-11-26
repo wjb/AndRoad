@@ -1,5 +1,5 @@
 // Created by plusminus on 10:07:46 - 26.10.2008
-package org.andnav2.ui.map.overlay.util;
+package org.androad.ui.map.overlay.util;
 
 import android.graphics.Path;
 import android.graphics.Point;

@@ -1,19 +1,19 @@
 // Created by plusminus on 00:14:42 - 02.10.2008
-package org.andnav2.osm;
+package org.androad.osm;
 
 import org.andnav.osm.util.GeoPoint;
 import org.andnav.osm.views.OpenStreetMapView;
 
-import org.andnav2.adt.AndNavLocation;
-import org.andnav2.loc.AbstractAndNavLocationProvider;
-import org.andnav2.loc.NetworkFallbackLocationProvider;
-import org.andnav2.loc.AbstractAndNavLocationProvider.AndNavLocationCallback;
-import org.andnav2.osm.api.traces.TraceManager;
-import org.andnav2.osm.api.traces.util.RouteRecorder;
-import org.andnav2.osm.util.constants.OSMConstants;
-import org.andnav2.osm.views.util.constants.OSMMapViewConstants;
-import org.andnav2.ui.common.DataStateChangedListener;
-import org.andnav2.ui.common.MyDataStateChangedWatcher;
+import org.androad.adt.AndNavLocation;
+import org.androad.loc.AbstractAndNavLocationProvider;
+import org.androad.loc.NetworkFallbackLocationProvider;
+import org.androad.loc.AbstractAndNavLocationProvider.AndNavLocationCallback;
+import org.androad.osm.api.traces.TraceManager;
+import org.androad.osm.api.traces.util.RouteRecorder;
+import org.androad.osm.util.constants.OSMConstants;
+import org.androad.osm.views.util.constants.OSMMapViewConstants;
+import org.androad.ui.common.DataStateChangedListener;
+import org.androad.ui.common.MyDataStateChangedWatcher;
 
 import android.app.Activity;
 import android.content.Context;

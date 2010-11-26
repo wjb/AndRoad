@@ -1,5 +1,5 @@
 // Created by plusminus on 17:34:39 - 25.01.2009
-package org.andnav2.sys.ors.aps;
+package org.androad.sys.ors.aps;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -18,10 +18,10 @@ import java.util.List;
 
 import org.andnav.osm.util.GeoPoint;
 
-import org.andnav2.osm.views.util.StreamUtils;
-import org.andnav2.sys.ors.adt.Error;
-import org.andnav2.sys.ors.aps.util.constants.APSConstants;
-import org.andnav2.sys.ors.exceptions.ORSException;
+import org.androad.osm.views.util.StreamUtils;
+import org.androad.sys.ors.adt.Error;
+import org.androad.sys.ors.aps.util.constants.APSConstants;
+import org.androad.sys.ors.exceptions.ORSException;
 import org.xml.sax.SAXException;
 
 import android.graphics.Bitmap;
@@ -132,9 +132,9 @@ public class APSRequester implements APSConstants {
 		try{
 			xmlOut = new BufferedWriter(new OutputStreamWriter(acon.getOutputStream()));
 		}catch(final SocketException se){
-			throw new ORSException(new Error(Error.ERRORCODE_UNKNOWN, Error.SEVERITY_ERROR, "org.andnav2.ors.rs.RSRequester.request(...)", "Host unreachable."));
+			throw new ORSException(new Error(Error.ERRORCODE_UNKNOWN, Error.SEVERITY_ERROR, "org.androad.ors.rs.RSRequester.request(...)", "Host unreachable."));
 		}catch(final UnknownHostException uhe){
-			throw new ORSException(new Error(Error.ERRORCODE_UNKNOWN, Error.SEVERITY_ERROR, "org.andnav2.ors.rs.RSRequester.request(...)", "Host unresolved."));
+			throw new ORSException(new Error(Error.ERRORCODE_UNKNOWN, Error.SEVERITY_ERROR, "org.androad.ors.rs.RSRequester.request(...)", "Host unresolved."));
 		}
 
 		final String apsRequest = APSRequestComposer.createXMLPostRequest(pGeoPoints, pStartIndex);

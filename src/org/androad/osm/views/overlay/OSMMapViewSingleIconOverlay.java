@@ -1,5 +1,5 @@
 // Created by plusminus on 21:46:01 - 16.12.2008
-package org.andnav2.osm.views.overlay;
+package org.androad.osm.views.overlay;
 
 import org.andnav.osm.util.GeoPoint;
 import org.andnav.osm.views.OpenStreetMapView;

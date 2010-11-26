@@ -1,5 +1,5 @@
 // Created by plusminus on 12:40:07 AM - Apr 5, 2009
-package org.andnav2.sys.turninstructions;
+package org.androad.sys.turninstructions;
 
 public class TurnInstructionSet implements ITurnInstructionsSet {
 	// ===========================================================

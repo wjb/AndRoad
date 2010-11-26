@@ -1,7 +1,7 @@
 // Created by plusminus on 19:03:37 - 02.12.2008
-package org.andnav2.ui.common.views;
+package org.androad.ui.common.views;
 
-import org.andnav2.R;
+import org.androad.R;
 
 import android.content.Context;
 import android.content.res.Resources;

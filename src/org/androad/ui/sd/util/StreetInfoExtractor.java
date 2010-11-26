@@ -1,8 +1,8 @@
 // Created by plusminus on 14:00:09 - 31.01.2009
-package org.andnav2.ui.sd.util;
+package org.androad.ui.sd.util;
 
-import org.andnav2.R;
-import org.andnav2.sys.ors.adt.lus.Country;
+import org.androad.R;
+import org.androad.sys.ors.adt.lus.Country;
 
 import android.content.Context;
 

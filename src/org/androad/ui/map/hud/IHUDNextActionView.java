@@ -1,7 +1,7 @@
 // Created by plusminus on 5:29:31 PM - Feb 18, 2009
-package org.andnav2.ui.map.hud;
+package org.androad.ui.map.hud;
 
-import org.andnav2.adt.UnitSystem;
+import org.androad.adt.UnitSystem;
 
 import android.view.View.OnClickListener;
 

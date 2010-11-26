@@ -1,5 +1,5 @@
 // Created by plusminus on 13:55:54 - 08.02.2009
-package org.andnav2.osm.views.tiles.renderer.util.constants;
+package org.androad.osm.views.tiles.renderer.util.constants;
 
 
 public interface OSMDatabaseConstants {

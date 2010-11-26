@@ -1,5 +1,5 @@
 // Created by plusminus on 20:49:09 - 04.12.2008
-package org.andnav2.osm.api.traces;
+package org.androad.osm.api.traces;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -11,10 +11,10 @@ import java.util.Date;
 
 import org.andnav.osm.util.GeoPoint;
 
-import org.andnav2.osm.api.traces.util.GPXFormatter;
-import org.andnav2.osm.util.Util;
-import org.andnav2.osm.util.constants.OSMConstants;
-import org.andnav2.osm.views.util.StreamUtils;
+import org.androad.osm.api.traces.util.GPXFormatter;
+import org.androad.osm.util.Util;
+import org.androad.osm.util.constants.OSMConstants;
+import org.androad.osm.views.util.StreamUtils;
 
 import android.util.Log;
 
@@ -61,7 +61,7 @@ public class GPXToFileWriter implements OSMConstants {
 
 					// Write Data
 					final OutputStream out = new BufferedOutputStream(new FileOutputStream(dest),StreamUtils.IO_BUFFER_SIZE);
-					final byte[] data = org.andnav2.osm.api.traces.util.Util.zipBytes(GPXFormatter.create(recordedGeoPoints).getBytes(), filename);
+					final byte[] data = org.androad.osm.api.traces.util.Util.zipBytes(GPXFormatter.create(recordedGeoPoints).getBytes(), filename);
 
 					out.write(data);
 					out.flush();

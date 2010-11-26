@@ -1,15 +1,15 @@
 // Created by plusminus on 17:53:07 - 25.09.2008
-package org.andnav2.osm.views.util;
+package org.androad.osm.views.util;
 
 import org.andnav.osm.tileprovider.OpenStreetMapTile;
 import org.andnav.osm.util.BoundingBoxE6;
 import org.andnav.osm.util.GeoPoint;
 import org.andnav.osm.views.util.IOpenStreetMapRendererInfo;
 
-import org.andnav2.osm.util.constants.MathConstants;
-import org.andnav2.osm.util.constants.OSMConstants;
-import org.andnav2.osm.views.tiles.caching.LRUCache;
-import org.andnav2.osm.views.util.constants.OSMMapViewConstants;
+import org.androad.osm.util.constants.MathConstants;
+import org.androad.osm.util.constants.OSMConstants;
+import org.androad.osm.views.tiles.caching.LRUCache;
+import org.androad.osm.views.util.constants.OSMMapViewConstants;
 
 import android.util.FloatMath;
 

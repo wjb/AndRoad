@@ -1,6 +1,6 @@
-package org.andnav2.sys.ors.util;
+package org.androad.sys.ors.util;
 
-import org.andnav2.sys.ors.util.constants.ORSXMLConstants;
+import org.androad.sys.ors.util.constants.ORSXMLConstants;
 
 import android.content.Context;
 
@@ -43,7 +43,7 @@ public class Util implements ORSXMLConstants{
 	// ===========================================================
 
 	public static String getORSClientName(final Context ctx){
-		return CLIENTNAME_ANDNAV_PREFIX + CLIENTNAME_SPACER + org.andnav2.util.Util.getVersionName(ctx) + CLIENTNAME_SPACER + org.andnav2.util.Util.getDeviceIDHashed(ctx);
+		return CLIENTNAME_ANDNAV_PREFIX + CLIENTNAME_SPACER + org.androad.util.Util.getVersionName(ctx) + CLIENTNAME_SPACER + org.androad.util.Util.getDeviceIDHashed(ctx);
 	}
 
 	public static String removeHtmlTags(final String pInput) {

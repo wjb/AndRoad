@@ -1,7 +1,7 @@
-package org.andnav2.sys.ors.adt.lus;
+package org.androad.sys.ors.adt.lus;
 
-import org.andnav2.R;
-import org.andnav2.util.Capitalizer;
+import org.androad.R;
+import org.androad.util.Capitalizer;
 
 import android.os.Parcel;
 import android.os.Parcelable;

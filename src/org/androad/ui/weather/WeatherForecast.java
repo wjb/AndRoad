@@ -1,5 +1,5 @@
 // Created by plusminus on 15:55:01 - 23.05.2008
-package org.andnav2.ui.weather;
+package org.androad.ui.weather;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -7,11 +7,11 @@ import java.net.URL;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-import org.andnav2.R;
-import org.andnav2.adt.UnitSystem;
-import org.andnav2.preferences.Preferences;
-import org.andnav2.ui.common.views.SingleWeatherInfoView;
-import org.andnav2.util.constants.Constants;
+import org.androad.R;
+import org.androad.adt.UnitSystem;
+import org.androad.preferences.Preferences;
+import org.androad.ui.common.views.SingleWeatherInfoView;
+import org.androad.util.constants.Constants;
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
 

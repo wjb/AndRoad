@@ -1,7 +1,7 @@
 // Created by plusminus on 20:36:01 - 26.09.2008
-package org.andnav2.util;
+package org.androad.util;
 
-import org.andnav2.osm.util.constants.MathConstants;
+import org.androad.osm.util.constants.MathConstants;
 
 /**
  * 

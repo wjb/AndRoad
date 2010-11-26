@@ -1,11 +1,11 @@
 // Created by plusminus on 20:34:07 - 17.05.2008
-package org.andnav2.ui;
+package org.androad.ui;
 
-import org.andnav2.preferences.PreferenceConstants;
-import org.andnav2.preferences.Preferences;
-import org.andnav2.ui.common.DataStateChangedListener;
-import org.andnav2.ui.common.MyDataStateChangedWatcher;
-import org.andnav2.util.constants.Constants;
+import org.androad.preferences.PreferenceConstants;
+import org.androad.preferences.Preferences;
+import org.androad.ui.common.DataStateChangedListener;
+import org.androad.ui.common.MyDataStateChangedWatcher;
+import org.androad.util.constants.Constants;
 
 import android.app.Activity;
 import android.os.Bundle;

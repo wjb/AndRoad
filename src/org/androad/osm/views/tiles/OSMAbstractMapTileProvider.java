@@ -1,4 +1,4 @@
-package org.andnav2.osm.views.tiles;
+package org.androad.osm.views.tiles;
 
 import java.util.HashSet;
 import java.util.concurrent.ExecutorService;
@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.andnav.osm.tileprovider.OpenStreetMapTile;
 
-import org.andnav2.osm.views.tiles.caching.OSMMapTileFilesystemCache;
+import org.androad.osm.views.tiles.caching.OSMMapTileFilesystemCache;
 
 import android.content.Context;
 import android.os.Handler;

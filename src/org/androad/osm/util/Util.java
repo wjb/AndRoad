@@ -1,12 +1,12 @@
 // Created by plusminus on 13:24:05 - 21.09.2008
-package org.andnav2.osm.util;
+package org.androad.osm.util;
 
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
 
-import org.andnav2.osm.util.constants.OSMConstants;
+import org.androad.osm.util.constants.OSMConstants;
 
 public class Util implements OSMConstants {
 	// ===========================================================
@@ -35,7 +35,7 @@ public class Util implements OSMConstants {
 
 	/**
 	 * May crash when External-Media is not mounted.
-	 * @return path, like <code>"/sdcard/andnav2/"</code> always ending with a <code>"/"</code>
+	 * @return path, like <code>"/sdcard/androad/"</code> always ending with a <code>"/"</code>
 	 */
 	public static final String getAndNavExternalStoragePath(){
 		final String absoluteExternalPath = android.os.Environment.getExternalStorageDirectory().getAbsolutePath();

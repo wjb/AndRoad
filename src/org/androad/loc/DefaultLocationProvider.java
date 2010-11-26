@@ -1,7 +1,7 @@
-package org.andnav2.loc;
+package org.androad.loc;
 
-import org.andnav2.adt.AndNavLocation;
-import org.andnav2.util.constants.Constants;
+import org.androad.adt.AndNavLocation;
+import org.androad.util.constants.Constants;
 
 import android.content.Context;
 import android.location.Location;

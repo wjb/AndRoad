@@ -1,5 +1,5 @@
 // Created by plusminus on 21:38:11 - 08.02.2009
-package org.andnav2.sys.ors.adt.ds;
+package org.androad.sys.ors.adt.ds;
 
 
 public enum OSMRepresentation {
