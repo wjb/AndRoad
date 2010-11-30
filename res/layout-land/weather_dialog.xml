@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >        	
-    <org.andnav2.ui.common.views.SingleWeatherInfoView
+    <org.androad.ui.common.views.SingleWeatherInfoView
     	android:id="@+id/weather_today"
     	android:orientation="horizontal"
        	android:layout_width="fill_parent" 
@@ -21,7 +21,7 @@
     		<TableRow
   				android:layout_width="fill_parent"
   				android:layout_height="wrap_content">
-        		<org.andnav2.ui.common.views.SingleWeatherInfoView
+        		<org.androad.ui.common.views.SingleWeatherInfoView
         			android:id="@+id/weather_1"
         			android:layout_width="wrap_content" 
 		    		android:layout_height="wrap_content"
@@ -29,7 +29,7 @@
         			android:paddingLeft="3px"
         			android:paddingRight="3px"
         			android:orientation="vertical" />
-        		<org.andnav2.ui.common.views.SingleWeatherInfoView
+        		<org.androad.ui.common.views.SingleWeatherInfoView
         			android:id="@+id/weather_2"
         			android:layout_width="wrap_content" 
 		    		android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
         			android:paddingLeft="3px"
         			android:paddingRight="3px"
         			android:orientation="vertical" />
-        		<org.andnav2.ui.common.views.SingleWeatherInfoView
+        		<org.androad.ui.common.views.SingleWeatherInfoView
         			android:id="@+id/weather_3"
         			android:layout_width="wrap_content" 
 		    		android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
         			android:paddingLeft="3px"
         			android:paddingRight="3px"
         			android:orientation="vertical" />
-        		<org.andnav2.ui.common.views.SingleWeatherInfoView
+        		<org.androad.ui.common.views.SingleWeatherInfoView
         			android:id="@+id/weather_4"
         			android:layout_width="wrap_content" 
 		    		android:layout_height="wrap_content"

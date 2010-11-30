@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:admobsdk="http://schemas.android.com/apk/res/org.andnav2"
+              xmlns:admobsdk="http://schemas.android.com/apk/res/org.androad"
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
 	<!-- Background (rotatable) -->
-	<view class="org.andnav2.ui.common.views.CompassRotateView" 
+	<view class="org.androad.ui.common.views.CompassRotateView" 
 		android:id="@+id/rotator_wheramimap"
 		android:layout_width="fill_parent"
 		android:layout_height="fill_parent" >     
@@ -60,7 +60,7 @@
 		android:layout_above="@+id/ibtn_whereami_whereami"
 		android:layout_alignParentRight="true"
 		android:src="@drawable/world_small"/>	
-	<view class="org.andnav2.ui.common.views.CompassImageView" 
+	<view class="org.androad.ui.common.views.CompassImageView" 
 		android:id="@+id/iv_whereami_compass"
 		android:layout_alignParentRight="true"
 		android:layout_above="@id/ibtn_whereami_choose_renderer" 

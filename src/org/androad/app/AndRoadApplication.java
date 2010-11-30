@@ -1,15 +1,11 @@
-// Created by plusminus on 01:15:59 - 20.11.2008
-package org.androad.app.veecheck;
+// Created by plusminus on 01:40:43 - 20.11.2008
+package org.androad.app;
 
-import android.content.Context;
+import org.androad.util.constants.TimeConstants;
 
-import com.tomgibara.android.veecheck.VeecheckReceiver;
-import com.tomgibara.android.veecheck.VeecheckSettings;
-import com.tomgibara.android.veecheck.VeecheckState;
-import com.tomgibara.android.veecheck.util.PrefSettings;
-import com.tomgibara.android.veecheck.util.PrefState;
+import android.app.Application;
 
-public class AndNav2VeecheckRetriever  extends VeecheckReceiver {
+public class AndRoadApplication extends Application implements TimeConstants{
 	// ===========================================================
 	// Constants
 	// ===========================================================
@@ -22,6 +18,11 @@ public class AndNav2VeecheckRetriever  extends VeecheckReceiver {
 	// Constructors
 	// ===========================================================
 
+	@Override
+	public void onCreate() {
+		super.onCreate();
+	}
+
 	// ===========================================================
 	// Getter & Setter
 	// ===========================================================
@@ -29,16 +30,6 @@ public class AndNav2VeecheckRetriever  extends VeecheckReceiver {
 	// ===========================================================
 	// Methods from SuperClass/Interfaces
 	// ===========================================================
-
-	@Override
-	protected VeecheckSettings createSettings(final Context context) {
-		return new PrefSettings(context);
-	}
-
-	@Override
-	protected VeecheckState createState(final Context context) {
-		return new PrefState(context);
-	}
 
 	// ===========================================================
 	// Methods

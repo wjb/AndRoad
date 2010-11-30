@@ -22,7 +22,7 @@
 				android:layout_height="wrap_content"
 				android:src="@drawable/close" />
 	</LinearLayout>
-	<view class="org.andnav2.ui.common.views.FastScrollView" 
+	<view class="org.androad.ui.common.views.FastScrollView" 
 		android:layout_width="fill_parent"
 		android:layout_height="fill_parent" >
 		<ListView android:id="@+id/list_savedroutes"

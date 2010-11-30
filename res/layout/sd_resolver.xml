@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-				xmlns:admobsdk="http://schemas.android.com/apk/res/org.andnav2"
+				xmlns:admobsdk="http://schemas.android.com/apk/res/org.androad"
 	android:orientation="vertical" android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
 	<LinearLayout 
@@ -23,7 +23,7 @@
 			android:layout_height="wrap_content"
 			android:src="@drawable/close" />
 	</LinearLayout>
-	<view class="org.andnav2.ui.common.views.FastScrollView" 
+	<view class="org.androad.ui.common.views.FastScrollView" 
 		android:layout_width="fill_parent"
 		android:layout_height="fill_parent"
 		android:layout_weight="1">

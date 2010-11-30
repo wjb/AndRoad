@@ -14,7 +14,7 @@
 	android:layout_height="fill_parent">
 			
 	<!-- The map, wrapped into a RotateView. -->
-	<view class="org.andnav2.ui.common.views.RotateView" 
+	<view class="org.androad.ui.common.views.RotateView" 
 		android:id="@+id/rotator_ddmap"
 		android:layout_width="fill_parent"
 		android:layout_height="fill_parent" >
@@ -101,7 +101,7 @@
 		android:src="@drawable/btn_zoom_out_green"/>
 		
 	<!-- Next+UpperNext ActionView, stacked to the upper left. -->
-	<view class="org.andnav2.ui.map.hud.impl.mavoric.views.HUDNextActionView" 
+	<view class="org.androad.ui.map.hud.impl.mavoric.views.HUDNextActionView" 
 		android:id="@+id/hud_ddmap_mavoric_nextaction"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
@@ -110,7 +110,7 @@
 		android:layout_alignParentLeft="true"
 		android:layout_alignParentTop="true"
 		android:src="@drawable/hud_mavoric_variation_default_next_action"/>
-	<view class="org.andnav2.ui.map.hud.impl.mavoric.views.HUDUpperNextActionView" 
+	<view class="org.androad.ui.map.hud.impl.mavoric.views.HUDUpperNextActionView" 
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_marginLeft="5px"
