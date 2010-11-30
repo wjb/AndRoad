@@ -1,12 +1,16 @@
 // Created by plusminus on 19:24:16 - 12.11.2008
 package org.androad.osm.views.tiles.util;
 
+import java.io.InputStream;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
+import org.andnav.osm.tileprovider.CloudmadeException;
+import org.andnav.osm.tileprovider.IOpenStreetMapTileProviderCallback;
 import org.andnav.osm.tileprovider.OpenStreetMapTile;
+import org.andnav.osm.tileprovider.OpenStreetMapTileFilesystemProvider;
 import org.andnav.osm.util.GeoPoint;
 import org.andnav.osm.views.OpenStreetMapView;
 import org.andnav.osm.views.util.IOpenStreetMapRendererInfo;
@@ -14,7 +18,6 @@ import org.andnav.osm.views.util.IOpenStreetMapRendererInfo;
 import org.androad.osm.util.ValuePair;
 import org.androad.osm.util.Util.PixelSetter;
 import org.androad.osm.util.constants.OSMConstants;
-import org.androad.osm.views.tiles.OSMAbstractMapTileProvider;
 import org.androad.osm.views.util.Util;
 import org.androad.osm.views.util.constants.OSMMapViewConstants;
 import org.androad.sys.ors.adt.rs.Route;
@@ -28,6 +31,9 @@ public class OSMMapTilePreloader implements OSMConstants, OSMMapViewConstants {
 	// ===========================================================
 	// Constants
 	// ===========================================================
+	
+	private static final int PRELOAD_SUCCESS = 0;
+	private static final int PRELOAD_FAIL = PRELOAD_SUCCESS + 1;
 
 	// ===========================================================
 	// Fields
@@ -69,33 +75,43 @@ public class OSMMapTilePreloader implements OSMConstants, OSMMapViewConstants {
 
 		final Counter overallCounter = new Counter();
 		final Counter successCounter = new Counter();
-
-		final Handler h = new Handler(){
+		final IOpenStreetMapTileProviderCallback cbk = new IOpenStreetMapTileProviderCallback(){
 			@Override
-			public void handleMessage(final Message msg) {
-				final int what = msg.what;
-				overallCounter.increment();
-				switch(what){
-					case OSMAbstractMapTileProvider.MAPTILEPROVIDER_SUCCESS_ID:
-						successCounter.increment();
-						pProgressListener.onProgressChange(successCounter.getCount(), overallCount);
-						if(DEBUGMODE) {
-							Log.i(DEBUGTAG, "MapTile download success.");
-						}
-						break;
-					case OSMAbstractMapTileProvider.MAPTILEPROVIDER_FAIL_ID:
-						if(DEBUGMODE) {
-							Log.e(DEBUGTAG, "MapTile download error.");
-						}
-						break;
-				}
+			public String getCloudmadeKey() throws CloudmadeException {
+				return null;
+			}
+
+			@Override
+			public void mapTileRequestCompleted(OpenStreetMapTile aTile, String aTilePath) {
+				successCounter.increment();
+				pProgressListener.onProgressChange(successCounter.getCount(), overallCount);
 				if(overallCounter.getCount() == overallCount
 						&& successCounter.getCount() != overallCount) {
 					pProgressListener.onProgressChange(overallCount, overallCount);
 				}
-
-				super.handleMessage(msg);
+				if(DEBUGMODE) {
+					Log.i(DEBUGTAG, "MapTile download success.");
+				}
 			}
+
+			@Override
+			public void mapTileRequestCompleted(OpenStreetMapTile aTile, InputStream aTileInputStream) {
+				mapTileRequestCompleted(aTile, "");
+			}
+
+			@Override
+			public void mapTileRequestCompleted(OpenStreetMapTile aTile) {
+				if(overallCounter.getCount() == overallCount
+						&& successCounter.getCount() != overallCount) {
+					pProgressListener.onProgressChange(overallCount, overallCount);
+				}
+				if(DEBUGMODE) {
+					Log.e(DEBUGTAG, "MapTile download error.");
+				}
+			}
+
+			@Override
+			public boolean useDataConnection(){return true;}
 		};
 
 		new Thread(new Runnable(){
@@ -104,9 +120,7 @@ public class OSMMapTilePreloader implements OSMConstants, OSMMapViewConstants {
 				for(int i = 0; i < pTiles.length; i++){
 					final OpenStreetMapTile[] tileSet = pTiles[i];
 					for (final OpenStreetMapTile tile : tileSet) {
-						if(!pOsmView.preloadMaptileAsync(tile, h)) {
-							h.sendEmptyMessage(OSMAbstractMapTileProvider.MAPTILEPROVIDER_SUCCESS_ID);
-						}
+						new OpenStreetMapTileFilesystemProvider(cbk, null).loadMapTileAsync(tile);
 					}
 				}
 			}
@@ -121,41 +135,50 @@ public class OSMMapTilePreloader implements OSMConstants, OSMMapViewConstants {
 
 		final Counter overallCounter = new Counter();
 		final Counter successCounter = new Counter();
-		final Handler h = new Handler(){
+		final IOpenStreetMapTileProviderCallback cbk = new IOpenStreetMapTileProviderCallback(){
 			@Override
-			public void handleMessage(final Message msg) {
-				final int what = msg.what;
-				overallCounter.increment();
-				switch(what){
-					case OSMAbstractMapTileProvider.MAPTILEPROVIDER_SUCCESS_ID:
-						successCounter.increment();
-						pProgressListener.onProgressChange(successCounter.getCount(), overallCount);
-						if(DEBUGMODE) {
-							Log.i(DEBUGTAG, "MapTile download success.");
-						}
-						break;
-					case OSMAbstractMapTileProvider.MAPTILEPROVIDER_FAIL_ID:
-						if(DEBUGMODE) {
-							Log.e(DEBUGTAG, "MapTile download error.");
-						}
-						break;
-				}
+			public String getCloudmadeKey() throws CloudmadeException {
+				return null;
+			}
+
+			@Override
+			public void mapTileRequestCompleted(OpenStreetMapTile aTile, String aTilePath) {
+				successCounter.increment();
+				pProgressListener.onProgressChange(successCounter.getCount(), overallCount);
 				if(overallCounter.getCount() == overallCount
 						&& successCounter.getCount() != overallCount) {
 					pProgressListener.onProgressChange(overallCount, overallCount);
 				}
-
-				super.handleMessage(msg);
+				if(DEBUGMODE) {
+					Log.i(DEBUGTAG, "MapTile download success.");
+				}
 			}
+
+			@Override
+			public void mapTileRequestCompleted(OpenStreetMapTile aTile, InputStream aTileInputStream) {
+				mapTileRequestCompleted(aTile, "");
+			}
+
+			@Override
+			public void mapTileRequestCompleted(OpenStreetMapTile aTile) {
+				if(overallCounter.getCount() == overallCount
+						&& successCounter.getCount() != overallCount) {
+					pProgressListener.onProgressChange(overallCount, overallCount);
+				}
+				if(DEBUGMODE) {
+					Log.e(DEBUGTAG, "MapTile download error.");
+				}
+			}
+
+			@Override
+			public boolean useDataConnection(){return true;}
 		};
 
 		new Thread(new Runnable(){
 			@Override
 			public void run() {
 				for (final OpenStreetMapTile tile : pTiles) {
-					if(!pOsmView.preloadMaptileAsync(tile, h)) {
-						h.sendEmptyMessage(OSMAbstractMapTileProvider.MAPTILEPROVIDER_SUCCESS_ID);
-					}
+					new OpenStreetMapTileFilesystemProvider(cbk, null).loadMapTileAsync(tile);
 				}
 			}
 		}, "Maptile-Preloader preparer").start();

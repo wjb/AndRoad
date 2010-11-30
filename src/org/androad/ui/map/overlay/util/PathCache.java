@@ -54,7 +54,7 @@ public class PathCache {
 
 	public void init(final OpenStreetMapView aMapview, final Route aRoute) {
 		this.mOrigCenteredStartGeoPoint = aRoute.getStart();
-		final OpenStreetMapViewProjection pj = aMapview.getProjection(PATH_ZOOMLEVEL, this.mOrigCenteredStartGeoPoint);
+		final OpenStreetMapViewProjection pj = aMapview.getProjection();
 
 
 		if(aRoute == null) {
