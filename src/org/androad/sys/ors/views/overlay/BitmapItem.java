@@ -63,7 +63,9 @@ public class BitmapItem {
 	public void drawToCanvas(final Canvas c, final OpenStreetMapViewProjection pj) {
         final Point screenCoords = new Point();
         pj.toMapPixels(this.mCenter, screenCoords);
-        c.drawBitmap(this.icon, screenCoords.x, screenCoords.y, this.mPaint);
+        int xpos = screenCoords.x - this.icon.getWidth() / 2;
+        int ypos = screenCoords.y - this.icon.getHeight() / 2;
+        c.drawBitmap(this.icon, xpos, ypos, this.mPaint);
 	}
 
     public boolean onSingleTapUp(final MotionEvent e, final OpenStreetMapViewProjection pj) {
