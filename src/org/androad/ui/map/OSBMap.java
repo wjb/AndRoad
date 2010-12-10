@@ -114,7 +114,6 @@ public class OSBMap extends OpenStreetMapAndNavBaseActivity implements OnItemGes
 	private ScaleBarOverlay mScaleIndicatorView;
 
 	private POIType mAddOSMPOIType;
-	private int mNewOSMPOINodeID = NOT_SET;
 
 	@Override
 	protected void onSetupContentView() {
@@ -331,13 +330,9 @@ public class OSBMap extends OpenStreetMapAndNavBaseActivity implements OnItemGes
 								final String username = Preferences.getOSMAccountUsername(OSBMap.this);
 								final String password = Preferences.getOSMAccountPassword(OSBMap.this);
 
-								OSBMap.this.mNewOSMPOINodeID = NodeCreationRequester
-								.requestAddPOI(username, password,
-										pResultName,
-										mapCenter.getLatitudeE6() / 1E6,
-										mapCenter.getLongitudeE6() / 1E6,
-										utcTimestamp,
-										poi.OSMKEYNAME, poi.RAWNAME);
+								NodeCreationRequester.requestAddPOI(username, password, pResultName,
+										mapCenter.getLatitudeE6() / 1E6, mapCenter.getLongitudeE6() / 1E6,
+										utcTimestamp, poi.OSMKEYNAME, poi.RAWNAME);
 								showDialog(DIALOG_SHOW_OSM_POI_SUCCESS);
 							} catch (final Throwable t) {
 								onFailure(t);

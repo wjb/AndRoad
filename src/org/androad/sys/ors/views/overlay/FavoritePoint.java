@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.Toast;
 
-import org.andnav.osm.util.GeoPoint;
 import org.andnav.osm.views.OpenStreetMapView.OpenStreetMapViewProjection;
 
 import org.androad.R;

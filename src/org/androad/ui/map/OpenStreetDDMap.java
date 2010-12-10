@@ -38,8 +38,6 @@ import org.androad.nav.stats.StatisticsManager;
 import org.androad.nav.util.NavAlgorithm;
 import org.androad.osm.exceptions.ExternalStorageNotMountedException;
 import org.androad.osm.views.overlay.util.DirectionArrowDescriptor;
-import org.androad.osm.views.tiles.OSMMapTileProviderInfo;
-import org.androad.osm.views.tiles.caching.OSMMapTileFilesystemCache;
 import org.androad.osm.views.tiles.util.OSMMapTilePreloader;
 import org.androad.osm.views.tiles.util.OSMMapTilePreloader.OnProgressChangeListener;
 import org.androad.preferences.PreferenceConstants;
@@ -250,7 +248,6 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 	private boolean mSnapToRouteEnabled = PREF_SNAPTOROUTE_DEFAULT;
 	private int mSnapToRouteRadius = PREF_SNAPTOROUTE_RADIUS_DEFAULT;
 	private boolean mAutoZoomEnabled = PREF_AUTOZOOM_DEFAULT;
-	private int mAutoZoomMaxLevel;
 
 	private DirectionsLanguage mDrivingDirectionsLanguage;
 
@@ -1289,7 +1286,6 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 		NavAlgorithm.setDISTANCE_TO_TOGGLE_OFF_ROUTE(this.mSnapToRouteRadius);
 
 		this.mAutoZoomEnabled = Preferences.getAutoZoomEnabled(this);
-		this.mAutoZoomMaxLevel = Preferences.getAutoZoomMaxLevel(this);
 		this.mDirectionVoiceEnabled = Preferences.getDirectionVoiceEnabled(this);
 		this.mStatisticsEnabled = Preferences.getStatisticsEnabled(this);
 		this.mDrivingDirectionsLanguage = Preferences.getDrivingDirectionsLanguage(this);

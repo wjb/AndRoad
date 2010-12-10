@@ -32,7 +32,7 @@ import android.util.Log;
  *           &lt;xls:StreetAddress&gt;
  *             &lt;xls:Street officialName=&quot;Quellenweg&quot;/&gt;
  *           &lt;/xls:StreetAddress&gt;
- *           &lt;xls:Place type=&quot;CountrySubdivision&quot;&gt;Baden-Württemberg&lt;/xls:Place&gt;
+ *           &lt;xls:Place type=&quot;CountrySubdivision&quot;&gt;Baden-Wï¿½rttemberg&lt;/xls:Place&gt;
  *           &lt;xls:Place type=&quot;Municipality&quot;&gt;Heidelberg&lt;/xls:Place&gt;
  *           &lt;xls:PostalCode&gt;69118&lt;/xls:PostalCode&gt;
  *         &lt;/xls:Address&gt;
@@ -46,9 +46,6 @@ public class OpenRouteServiceLUSReverseGeocodeParser extends DefaultHandler impl
 	// ====================================
 	// Constants
 	// ====================================
-
-	private static final int LATITUDE_OVERMAX = (int)(81 * 1E6);
-	private static final int LONGITUDE_OVERMAX = (int)(181 * 1E6);
 
 	// ====================================
 	// Fields

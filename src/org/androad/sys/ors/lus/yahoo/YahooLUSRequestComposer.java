@@ -2,11 +2,7 @@ package org.androad.sys.ors.lus.yahoo;
 
 import android.net.Uri;
 
-import java.util.List;
-
 import junit.framework.Assert;
-
-import org.andnav.osm.util.GeoPoint;
 
 import org.androad.sys.ors.adt.lus.Country;
 import org.androad.sys.ors.adt.lus.ICountrySubdivision;

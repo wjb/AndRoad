@@ -248,8 +248,8 @@ public class SDMainChoose extends AndNavBaseActivity {
 			};
 
 			final View loadTraceButton = this.findViewById(R.id.ibtn_sd_mainchoose_load_trace);
-			/* Loading only for Destinatio-Search. */
-			loadTraceButton.setEnabled(false && externalMediaMounted && this.bundleCreatedWith.getInt(MODE_SD) == MODE_SD_DESTINATION); // TODO Remove false.
+			/* Loading only for Destination-Search. */
+			loadTraceButton.setEnabled(externalMediaMounted && this.bundleCreatedWith.getInt(MODE_SD) == MODE_SD_DESTINATION);
 
 			/* Set OnClickListener for Contacts-Button. */
 			new OnClickOnFocusChangedListenerAdapter(loadTraceButton) {

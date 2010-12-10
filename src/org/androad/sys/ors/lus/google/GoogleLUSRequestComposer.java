@@ -2,8 +2,6 @@ package org.androad.sys.ors.lus.google;
 
 import android.net.Uri;
 
-import java.util.List;
-
 import junit.framework.Assert;
 
 import org.andnav.osm.util.GeoPoint;

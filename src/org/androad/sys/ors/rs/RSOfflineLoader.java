@@ -1,6 +1,5 @@
 package org.androad.sys.ors.rs;
 
-import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -12,9 +11,6 @@ import org.androad.osm.util.constants.OSMConstants;
 import org.androad.sys.ors.adt.Error;
 import org.androad.sys.ors.adt.rs.Route;
 import org.androad.sys.ors.exceptions.ORSException;
-import org.androad.sys.ors.rs.RSRequester;
-import org.androad.sys.ors.rs.openrouteservice.OpenRouteServiceRSParser;
-import org.androad.sys.ors.rs.yahoo.YahooRSParser;
 
 import android.content.Context;
 import android.util.Log;

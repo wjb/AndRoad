@@ -22,8 +22,6 @@ import org.androad.osm.views.util.Util;
 import org.androad.osm.views.util.constants.OSMMapViewConstants;
 import org.androad.sys.ors.adt.rs.Route;
 
-import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
 
 
@@ -32,9 +30,6 @@ public class OSMMapTilePreloader implements OSMConstants, OSMMapViewConstants {
 	// Constants
 	// ===========================================================
 	
-	private static final int PRELOAD_SUCCESS = 0;
-	private static final int PRELOAD_FAIL = PRELOAD_SUCCESS + 1;
-
 	// ===========================================================
 	// Fields
 	// ===========================================================

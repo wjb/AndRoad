@@ -2,7 +2,6 @@
 package org.androad.ui.sd;
 
 import org.androad.R;
-import org.androad.adt.voice.Voice;
 import org.androad.preferences.Preferences;
 import org.androad.ui.AndNavBaseActivity;
 import org.androad.ui.common.OnClickOnFocusChangedListenerAdapter;
@@ -11,10 +10,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.View.OnKeyListener;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;

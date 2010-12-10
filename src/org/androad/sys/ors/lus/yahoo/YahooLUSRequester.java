@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -14,7 +13,6 @@ import javax.xml.parsers.SAXParserFactory;
 
 import org.andnav.osm.util.GeoPoint;
 
-import org.androad.preferences.Preferences;
 import org.androad.sys.ors.adt.Error;
 import org.androad.sys.ors.adt.GeocodedAddress;
 import org.androad.sys.ors.adt.lus.Country;
