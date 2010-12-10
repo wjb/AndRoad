@@ -21,7 +21,6 @@ import org.androad.sys.ors.adt.rs.RoutePreferenceType;
 import org.androad.ui.map.hud.HUDRegistry;
 import org.androad.ui.map.hud.IHUDImpl;
 import org.androad.ui.map.hud.IHUDImplVariation;
-import org.androad.util.Base64;
 import org.androad.util.constants.Constants;
 
 import android.app.Activity;

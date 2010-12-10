@@ -40,7 +40,6 @@ import org.androad.osm.views.overlay.OSMMapViewCrosshairOverlay;
 import org.androad.osm.views.overlay.OSMMapViewDirectedLocationOverlay;
 import org.androad.osm.views.overlay.OSMMapViewSimpleLineOverlay;
 import org.androad.osm.views.overlay.OSMMapViewSingleIconOverlay;
-import org.androad.osm.views.tiles.OSMMapTileManager;
 import org.androad.osm.views.tiles.OSMMapTileProviderInfo;
 import org.androad.osm.views.tiles.caching.OSMMapTileFilesystemCache;
 import org.androad.osm.views.tiles.util.OSMMapTilePreloader;

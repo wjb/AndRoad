@@ -38,7 +38,6 @@ import org.androad.nav.stats.StatisticsManager;
 import org.androad.nav.util.NavAlgorithm;
 import org.androad.osm.exceptions.ExternalStorageNotMountedException;
 import org.androad.osm.views.overlay.util.DirectionArrowDescriptor;
-import org.androad.osm.views.tiles.OSMMapTileManager;
 import org.androad.osm.views.tiles.OSMMapTileProviderInfo;
 import org.androad.osm.views.tiles.caching.OSMMapTileFilesystemCache;
 import org.androad.osm.views.tiles.util.OSMMapTilePreloader;

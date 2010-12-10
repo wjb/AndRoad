@@ -22,7 +22,7 @@
     <uses-feature android:name="android.hardware.camera"/>
     <uses-feature android:name="android.hardware.camera.autofocus"/>
     <uses-feature android:name="android.hardware.camera.flash"/>
-    <application android:debuggable="false" android:name=".app.AndRoadApplication" android:icon="@drawable/icon" android:label="@string/app_name" android:description="@string/app_description" 
+    <application android:debuggable="false" android:icon="@drawable/icon" android:label="@string/app_name" android:description="@string/app_description" 
     	android:manageSpaceActivity=".ui.settings.SettingsCache">
         <activity android:name=".Splash" android:label="@string/app_name">
             <intent-filter>
@@ -348,29 +348,5 @@
             	<data android:scheme="http" android:host="maps.google.com" android:path="/maps" />
             </intent-filter>
         </receiver>
-		<!-- Veecheck -->
-		<activity android:name=".app.veecheck.AndRoadVeecheckUpdateActivity" android:label="@string/veecheck_confirm_title"/>
-		<receiver android:name=".app.veecheck.AndRoadVeecheckRetriever">
-			<intent-filter>
-				<action
-					android:name="org.androad.VEECHECK_RESCHEDULE_CHECKS">
-				</action>
-			</intent-filter>
-			<intent-filter>
-				<action
-					android:name="org.androad.VEECHECK_CONSIDER_CHECK">
-				</action>
-			</intent-filter>
-		</receiver>
-		<service android:name=".app.veecheck.AndRoadVeecheckService">
-			<intent-filter>
-				<action
-					android:name="org.androad.VEECHECK_PERFORM_CHECK">
-				</action>
-				<data android:scheme="http"></data>
-			</intent-filter>
-		</service>
-		<!-- The application's publisher ID assigned by AdMob -->
-		<meta-data android:value="a1498285839c82e" android:name="ADMOB_PUBLISHER_ID" />
 	</application>
 </manifest>

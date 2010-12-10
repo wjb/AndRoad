@@ -3,9 +3,9 @@
 	<classpathentry excluding="**/.svn/**" kind="src" path="src"/>
 	<classpathentry excluding="**/.svn/**" kind="src" path="test"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="libs/libTpegML.jar" sourcepath="/libTpegML"/>
+	<classpathentry kind="lib" path="libs/libTpegML.jar"/>
 	<classpathentry kind="lib" path="libs/libSpatialIndex.jar"/>
-	<classpathentry kind="lib" path="libs/libQuadTree.jar" sourcepath="/libQuadTree"/>
+	<classpathentry kind="lib" path="libs/libQuadTree.jar"/>
 	<classpathentry kind="lib" path="libs/libosmapi.jar"/>
 	<classpathentry kind="lib" path="libs/libgoogleweatherapi.jar"/>
 	<classpathentry excluding="**/.svn/**" kind="src" path="gen"/>

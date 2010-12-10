@@ -5,8 +5,6 @@ import org.andnav.osm.util.GeoPoint;
 import org.andnav.osm.views.OpenStreetMapView;
 import org.andnav.osm.views.overlay.OpenStreetMapViewOverlay;
 
-import org.androad.osm.adt.GeoLine;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -35,10 +33,6 @@ public class OSMMapViewSimpleLineOverlay extends OpenStreetMapViewOverlay {
 		this(ctx, null, null);
 	}
 
-
-	public OSMMapViewSimpleLineOverlay(final Context ctx, final GeoLine pGeoLine) {
-		this(ctx, pGeoLine.getGeoPointA(), pGeoLine.getGeoPointB());
-	}
 
 	public OSMMapViewSimpleLineOverlay(final Context ctx, final GeoPoint pGeoPointFrom, final GeoPoint pGeoPointTo) {
         super(ctx);
