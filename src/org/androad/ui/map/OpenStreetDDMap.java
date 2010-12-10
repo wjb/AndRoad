@@ -468,7 +468,7 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 	}
 
 	private void initGeneratedVoice() {
-		//		final String pkgName = AndNav2Application.class.getPackage().getName(); // Root Package!
+		//		final String pkgName = AndRoadApplication.class.getPackage().getName(); // Root Package!
 	}
 
 	// ===========================================================
@@ -794,8 +794,8 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 
 	private void handleShareRoute(final long pRouteHandleID) {
 		Util.openEmail(this,
-				"Hi,\n\nHave a look at this AndRoad-route:\nRouteHandleID = " + pRouteHandleID + "\n\nSee you =)\n\n\nTo view the route, open AndRoad, then open the Map and type the RouteHandleID from above to the SearchBox.\n\nYou can download AndNav2 for free at:\nhttp://download.andnav.org",
-				"AndNav2 Shared Route",
+				"Hi,\n\nHave a look at this AndRoad-route:\nRouteHandleID = " + pRouteHandleID + "\n\nSee you =)\n\n\nTo view the route, open AndRoad, then open the Map and type the RouteHandleID from above to the SearchBox.",
+				"AndRoad Shared Route",
 				null);
 	}
 
