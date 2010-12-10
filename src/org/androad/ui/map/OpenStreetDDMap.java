@@ -794,7 +794,7 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 
 	private void handleShareRoute(final long pRouteHandleID) {
 		Util.openEmail(this,
-				"Hi,\n\nHave a look at this AndNav2-route:\nRouteHandleID = " + pRouteHandleID + "\n\nSee you =)\n\n\nTo view the route, open AndNav2, then open the Map and type the RouteHandleID from above to the SearchBox.\n\nYou can download AndNav2 for free at:\nhttp://download.andnav.org",
+				"Hi,\n\nHave a look at this AndRoad-route:\nRouteHandleID = " + pRouteHandleID + "\n\nSee you =)\n\n\nTo view the route, open AndRoad, then open the Map and type the RouteHandleID from above to the SearchBox.\n\nYou can download AndNav2 for free at:\nhttp://download.andnav.org",
 				"AndNav2 Shared Route",
 				null);
 	}

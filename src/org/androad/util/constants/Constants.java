@@ -9,9 +9,8 @@ public interface Constants {
 
 	public static final int NOT_SET = Integer.MIN_VALUE;
 
-	public static final String ANDNAV_NAV_ACTION = "org.andnav.intent.ACTION_NAV_TO";
-	public static final String ANDNAV2_NAV_ACTION = "org.androad.intent.ACTION_NAV_TO";
-	public static final String ANDNAV2_VIEW_ACTION = "org.androad.intent.ACTION_VIEW";
+	public static final String ANDROAD_NAV_ACTION = "org.androad.intent.ACTION_NAV_TO";
+	public static final String ANDROAD_VIEW_ACTION = "org.androad.intent.ACTION_VIEW";
 
 	/** Overall DebugTag for whole AndNav. */
 	public static final String DEBUGTAG = "ANDNAV_DEBUGTAG";

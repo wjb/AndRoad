@@ -12,7 +12,7 @@
 	<string name="tv_settings_quickinfo_orsserver_focused">Server Einstelllungen</string>
 	<string name="tv_settings_orsserver_quickinfo_caption">Server auswählen...</string>
 	
-	<string name="orsserver_selection_instructions">Auf diesem Bildschirm können Sie einen passenden Server zu Ihrer Geo-Position wählen. Server die Offline sind werden zu diesem Zeitpunkt keine Resultate liefern. Insbesondere beim "@Home"-Server sind zahlreiche Ausfälle zu erwarten.\n\nDer Server kann jederzeit in den AndNav2-Einstellungen geändert werden.</string>
+	<string name="orsserver_selection_instructions">Auf diesem Bildschirm können Sie einen passenden Server zu Ihrer Geo-Position wählen. Server die Offline sind werden zu diesem Zeitpunkt keine Resultate liefern. Insbesondere beim "@Home"-Server sind zahlreiche Ausfälle zu erwarten.\n\nDer Server kann jederzeit in den AndRoad-Einstellungen geändert werden.</string>
 	<string name="orsserver_pingall">Ping all</string>
 	<string name="orsserver_serverinfo_title">Serverinfo</string>
 	

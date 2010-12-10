@@ -11,7 +11,7 @@
 <resources>
 	<string name="toast_osbmap_refresh_error">Chyba při načítání Bug...</string>
 	
-	<string name="dlg_osb_default_commentername">AndNav2-User</string>
+	<string name="dlg_osb_default_commentername">AndRoad-User</string>
 	
 	<string name="dlg_osb_bug_invalid_comment">Prosím zadejte platný komentář..."</string>
 	<string name="dlg_osb_commentername">Jméno:</string>

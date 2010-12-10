@@ -106,7 +106,7 @@ public interface PreferenceConstants {
 	public static final String PREF_OSMACCOUNT_PASSWORD_DEFAULT = "";
 	public static final String PREF_TRAILMAPPINGACCOUNT_USERNAME_DEFAULT = "";
 	public static final String PREF_TRAILMAPPINGACCOUNT_PASSWORD_DEFAULT = "";
-	public static final String PREF_COMMENTERNAME_DEFAULT = "AndNav2-User";
+	public static final String PREF_COMMENTERNAME_DEFAULT = "AndRoad-User";
 	public static final String PREF_FTPC_CONFIRMATIONMAIL_DEFAULT = "your@mail.com";
 	public static final boolean PREF_SAVEINITIALROUTE_DEFAULT = true;
 	public static final boolean PREF_MINIMALTRACEFILTERING_DEFAULT = true;

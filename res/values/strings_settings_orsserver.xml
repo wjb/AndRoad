@@ -12,7 +12,7 @@
 	<string name="tv_settings_quickinfo_orsserver_focused">Change Server...</string>
 	<string name="tv_settings_orsserver_quickinfo_caption">Select Server...</string>
 	
-	<string name="orsserver_selection_instructions">On this screen you can select an appropriate server for your location. Offline servers will not return any results. Especially the "@Home"-Server is expected to have several downtimes!\n\nYou can change the server at any times in the AndNav2-Settings.</string>
+	<string name="orsserver_selection_instructions">On this screen you can select an appropriate server for your location. Offline servers will not return any results. Especially the "@Home"-Server is expected to have several downtimes!\n\nYou can change the server at any times in the AndRoad-Settings.</string>
 	<string name="orsserver_pingall">Ping all</string>
 	<string name="orsserver_serverinfo_title">Serverinfo</string>
 		

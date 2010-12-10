@@ -1,7 +1,7 @@
 <resources>
 	<string name="toast_osbmap_refresh_error">Erreur lors de l\'actualisation des bugs...</string>
 	
-	<string name="dlg_osb_default_commentername">Utilisateur AndNav2</string>
+	<string name="dlg_osb_default_commentername">Utilisateur AndRoad</string>
 	
 	<string name="dlg_osb_bug_invalid_comment">Veuillez entrer un commentaire valide..."</string>
 	<string name="dlg_osb_commentername">Nom :</string>

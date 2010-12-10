@@ -59,7 +59,7 @@
 	<string name="not_yet_implemented_title">Sorry...</string>
 	<string name="not_yet_implemented_message">This functionality is not yet implemented :(</string>
 	
-	<string name="notif_serverdowntime_tickertext">AndNav2 - ServerDowntime</string>
+	<string name="notif_serverdowntime_tickertext">AndRoad - ServerDowntime</string>
 	<string name="notif_serverdowntime_title">Downtime: </string>
 	<string name="notif_serverdowntime_message">Starting: </string>
 	

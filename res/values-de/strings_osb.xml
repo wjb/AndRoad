@@ -1,7 +1,7 @@
 <resources>
 	<string name="toast_osbmap_refresh_error">Fehler beim holen der Bugs...</string>
 	
-	<string name="dlg_osb_default_commentername">AndNav2-User</string>
+	<string name="dlg_osb_default_commentername">AndRoad-User</string>
 	
 	<string name="dlg_osb_bug_invalid_comment">Bitte gültigen Kommentar eingeben..."</string>
 	<string name="dlg_osb_commentername">Name:</string>

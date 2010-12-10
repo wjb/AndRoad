@@ -430,7 +430,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 		final Intent iStartedWith = this.getIntent();
 		final String action = iStartedWith.getAction();
 		if(action != null){
-			if(action.equals(ANDNAV2_VIEW_ACTION)){
+			if(action.equals(ANDROAD_VIEW_ACTION)){
 				final Bundle extras = iStartedWith.getExtras();
 				/* Extract geopoint-Strings from the Bundle. */
 				final ArrayList<String> geoPointStrings = extras.getStringArrayList(APIIntentReceiver.WHEREAMI_EXTRAS_LOCATIONS_ID);
@@ -1787,7 +1787,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 	}
 
 	private void doNavToGeoPoint(final GeoPoint gp) {
-		final Intent navTo = new Intent(Constants.ANDNAV2_NAV_ACTION);
+		final Intent navTo = new Intent(Constants.ANDROAD_NAV_ACTION);
 
 		final Bundle b = new Bundle();
 		b.putString("to", gp.toDoubleString()); // i.e.: "to" --> "37.465259,-122.126456"
@@ -1797,7 +1797,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 	}
 
 	private void doNavBetweenGeoPoints(final GeoPoint pGPStart, final GeoPoint pGPDestination) {
-		final Intent navTo = new Intent(Constants.ANDNAV2_NAV_ACTION);
+		final Intent navTo = new Intent(Constants.ANDROAD_NAV_ACTION);
 
 		final Bundle b = new Bundle();
 		b.putString("from", pGPStart.toDoubleString()); // i.e.: "to" --> "37.465259,-122.126456"

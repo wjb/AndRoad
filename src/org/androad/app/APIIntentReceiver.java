@@ -50,9 +50,9 @@ public class APIIntentReceiver extends BroadcastReceiver implements Constants{
 	public void onReceive(final Context ctx, final Intent i) {
 		Log.d(Constants.DEBUGTAG, "NavIntent recieved. Raw: " + i.toString());
 		final String action = i.getAction();
-		if(action.equals(Constants.ANDNAV_NAV_ACTION) || action.equals(Constants.ANDNAV2_NAV_ACTION)){
+		if(action.equals(Constants.ANDROAD_NAV_ACTION) || action.equals(Constants.ANDROAD_NAV_ACTION)){
 			handleNavToIntent(ctx, i);
-		}else if(action.equals(Constants.ANDNAV2_VIEW_ACTION)){
+		}else if(action.equals(Constants.ANDROAD_VIEW_ACTION)){
 			handleViewIntent(ctx, i);
 		}else if(action.equals(android.content.Intent.ACTION_VIEW)){
 			final String scheme = i.getScheme();
@@ -103,7 +103,7 @@ public class APIIntentReceiver extends BroadcastReceiver implements Constants{
 
 		/* Parsing was correct. */
 		final Intent mapIntent = new Intent(ctx, WhereAmIMap.class);
-		mapIntent.setAction(ANDNAV2_VIEW_ACTION);
+		mapIntent.setAction(ANDROAD_VIEW_ACTION);
 		mapIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		final Bundle bOut = new Bundle();
 
