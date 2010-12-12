@@ -12,7 +12,7 @@
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry kind="lib" path="libs/apache-mime4j-0.4.jar"/>
 	<classpathentry kind="lib" path="libs/httpmime-4.0-beta1.jar"/>
-	<classpathentry kind="lib" path="libs/osmdroid-android-1.09.jar" sourcepath="/home/valentin/AndroidDev/osmdroid/svn/trunk/osmdroid-android/src"/>
 	<classpathentry kind="lib" path="libs/slf4j-android-1.5.8.jar"/>
+	<classpathentry kind="lib" path="libs/osmdroid-android-1.10.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
