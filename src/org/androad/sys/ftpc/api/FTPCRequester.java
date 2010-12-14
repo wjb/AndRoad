@@ -9,10 +9,9 @@ import java.net.URL;
 import junit.framework.Assert;
 
 import org.andnav.osm.util.GeoPoint;
+import org.andnav.osm.tileprovider.StreamUtils;
 
-import org.androad.osm.views.util.StreamUtils;
 import org.androad.sys.ftpc.exc.FTPCException;
-
 
 public class FTPCRequester {
 	// ===========================================================

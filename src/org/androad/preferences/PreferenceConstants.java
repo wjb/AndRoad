@@ -1,9 +1,9 @@
 // Created by plusminus on 17:05:18 - 11.08.2008
 package org.androad.preferences;
 
+import org.andnav.osm.views.util.OpenStreetMapRendererFactory;
+
 import org.androad.adt.UnitSystem;
-import org.androad.osm.views.tiles.OSMMapTileProviderInfo;
-import org.androad.osm.views.tiles.caching.OSMMapTileFilesystemCache;
 import org.androad.sys.ors.adt.lus.Country;
 import org.androad.ui.map.hud.IHUDImplVariation;
 import org.androad.ui.map.hud.impl.basic.BasicHUDImpl;
@@ -94,9 +94,8 @@ public interface PreferenceConstants {
 	public static final boolean PREF_REALTIMENAV_DEFAULT = true;
 	public static final int PREF_CACHSIZEMAX_INTERNAL_DEFAULT = 5;
 	public static final int PREF_CACHSIZEMAX_EXTERNAL_DEFAULT = 256;
-	public static final int PREF_FSCACHE_STORAGEPOLICY_DEFAULT = OSMMapTileFilesystemCache.StoragePolicy.EXTERNAL.ordinal();
-	public static final String PREF_OSMMAPVIEW_PROVIDERINFO_WHEREAMI_DEFAULT = OSMMapTileProviderInfo.MAPNIK.NAME;
-	public static final String PREF_OSMMAPVIEW_PROVIDERINFO_DDMAP_DEFAULT = OSMMapTileProviderInfo.MAPNIK.NAME;
+	public static final String PREF_OSMMAPVIEW_PROVIDERINFO_WHEREAMI_DEFAULT = OpenStreetMapRendererFactory.DEFAULT_RENDERER.name();
+	public static final String PREF_OSMMAPVIEW_PROVIDERINFO_DDMAP_DEFAULT = OpenStreetMapRendererFactory.DEFAULT_RENDERER.name();
 	public static final boolean PREF_TRACEPOLICY_OSM_DEFAULT = false;
 	public static final boolean PREF_TRACEPOLICY_TRAILMAPPING_DEFAULT = false;
 	public static final boolean PREF_ADFREESTATE_DEFAULT = false;

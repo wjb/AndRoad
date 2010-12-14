@@ -17,8 +17,8 @@ import java.net.UnknownHostException;
 import java.util.List;
 
 import org.andnav.osm.util.GeoPoint;
+import org.andnav.osm.tileprovider.StreamUtils;
 
-import org.androad.osm.views.util.StreamUtils;
 import org.androad.sys.ors.adt.Error;
 import org.androad.sys.ors.aps.util.constants.APSConstants;
 import org.androad.sys.ors.exceptions.ORSException;
@@ -89,7 +89,7 @@ public class APSRequester implements APSConstants {
 			InputStream chartStream = null;
 			try{
 				chartStream = new URL(chartURL).openStream();
-				return StreamUtils.loadBitmapFromStream(chartStream);
+				return BitmapFactory.decodeStream(chartStream);
 			}finally{
 				StreamUtils.closeStream(chartStream);
 			}
@@ -109,7 +109,7 @@ public class APSRequester implements APSConstants {
 			/* Read repsonse to StringBuilder. */
 			in = new BufferedInputStream(new URL(urlString).openStream(), StreamUtils.IO_BUFFER_SIZE);
 
-			return StreamUtils.loadBitmapFromStreamDetectingPNGMagicNumber(in);
+			return BitmapFactory.decodeStream(in);
 		} catch (final Exception e) {
 			throw new ORSException("Error during RestFul APS-query", e, null);
 		} finally {

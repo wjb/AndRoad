@@ -22,10 +22,10 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
 import org.andnav.osm.util.GeoPoint;
+import org.andnav.osm.tileprovider.StreamUtils;
 
 import org.androad.osm.util.Util;
 import org.androad.osm.util.constants.OSMConstants;
-import org.androad.osm.views.util.StreamUtils;
 import org.androad.sys.ors.adt.Error;
 import org.androad.sys.ors.adt.aoi.AreaOfInterest;
 import org.androad.sys.ors.adt.rs.DirectionsLanguage;
