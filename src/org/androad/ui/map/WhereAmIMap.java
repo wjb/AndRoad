@@ -1263,36 +1263,6 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 				new Thread(new Runnable(){
 					@Override
 					public void run() {
-						/*final OSMMapTileFilesystemCache fsProvider = pTileManager.getFileSystemCache();
-						if(fsProvider.getMaxFSCacheByteSize() < bytesEpectedNeeded){
-							final int newCacheByteSize = (int)(bytesEpectedNeeded * 1.1f);
-
-							runOnUiThread(new Runnable(){
-								@Override
-								public void run() {
-									pd.setMessage(getString(R.string.pdg_settings_cache_clear_cache_title));
-									Toast.makeText(WhereAmIMap.this, String.format(getString(R.string.toast_preloader_cache_increased_message), FileSizeFormatter.formatFileSize(newCacheByteSize)), Toast.LENGTH_LONG).show();
-								}
-							});
-
-							final int cacheSizeForPreferences = Math.min(OSMMapTileFilesystemCache.MAXIMUM_CACHESIZE, 1 + newCacheByteSize / (1024 * 1024));
-							Preferences.saveMaxCacheSize(WhereAmIMap.this, cacheSizeForPreferences);*/
-							/* Cache size needs to be increased. */
-							/*fsProvider.setMaxFSCacheByteSize(cacheSizeForPreferences * 1024 * 1024); // 10% margin
-							fsProvider.clearCurrentFSCache();
-						} else {
-							final int fsCacheBytesFree = fsProvider.getMaxFSCacheByteSize() - fsProvider.getCurrentFSCacheByteSize();
-							if(bytesEpectedNeeded > fsCacheBytesFree * 0.9f){ // 10% margin
-								runOnUiThread(new Runnable(){
-									@Override
-									public void run() {
-										pd.setMessage(getString(R.string.pdg_settings_cache_clear_cache_title));
-									}
-								});
-								fsProvider.cutCurrentFSCacheBy((int)(bytesEpectedNeeded - fsCacheBytesFree * 0.9f)); // 10% margin
-							}
-                            }*/
-
 						runOnUiThread(new Runnable(){
 							@Override
 							public void run() {

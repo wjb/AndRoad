@@ -10,8 +10,6 @@ import org.andnav.osm.views.util.OpenStreetMapRendererFactory;
 import org.androad.R;
 import org.androad.adt.UnitSystem;
 import org.androad.osm.views.overlay.util.DirectionArrowDescriptor;
-import org.androad.osm.views.tiles.caching.OSMMapTileFilesystemCache;
-import org.androad.osm.views.tiles.caching.OSMMapTileFilesystemCache.StoragePolicy;
 import org.androad.sys.ors.adt.ORSServer;
 import org.androad.sys.ors.adt.lus.Country;
 import org.androad.sys.ors.adt.lus.CountrySubdivisionRegistry;
@@ -678,54 +676,6 @@ public class Preferences implements Constants, PreferenceConstants {
 
 	public static boolean getShowOSBInstructions(final Context ctx) {
 		return getInstance(ctx).getBoolean(PREF_OSB_SHOWINSTRUCTIONS_ID, PREF_OSB_SHOWINSTRUCTIONS_DEFAULT);
-	}
-
-	// ===========================================================
-	// MaxCacheSite
-	// ===========================================================
-
-	public static int getMaxCacheSizeUpperLimit(final Context ctx){
-		return getMaxCacheSize(ctx, Preferences.getFilesystemCachePolicy(ctx));
-	}
-
-	/** Returns the Maximum Cachesize used for the OSMapTiles.
-	 * 	@param ctx Activity-Context needed to retrieve the SharedPreferences. */
-	public static int getMaxCacheSize(final Context ctx, final StoragePolicy aStoragePolicy){
-
-		final int maxCacheDefault;
-		switch(aStoragePolicy){
-			case EXTERNAL:
-				maxCacheDefault = PREF_CACHSIZEMAX_EXTERNAL_DEFAULT;
-				break;
-			case INTERNALROM:
-			default:
-				maxCacheDefault = PREF_CACHSIZEMAX_INTERNAL_DEFAULT;
-				break;
-		}
-		return getInstance(ctx).getInt(PREF_CACHSIZEMAX_ID + " " + aStoragePolicy, maxCacheDefault);
-	}
-
-	public static void saveMaxCacheSize(final Context ctx, final int aMaximumCacheSize){
-		saveMaxCacheSize(ctx, Preferences.getFilesystemCachePolicy(ctx), aMaximumCacheSize);
-	}
-
-	/** Save a DisplayQuality to be used by the whole application.
-	 * @param ctx Activity-Context needed to retrieve the SharedPreferences.
-	 * @param aMaximumCacheSize in MegaBytes. */
-	public static void saveMaxCacheSize(final Context ctx, final StoragePolicy aStoragePolicy, final int aMaximumCacheSize){
-		getEditorInstance(ctx).putInt(PREF_CACHSIZEMAX_ID + " " + aStoragePolicy, aMaximumCacheSize).commit();
-	}
-
-	// ===========================================================
-	// OSMMapView-StoragePolicy
-	// ===========================================================
-
-	public static OSMMapTileFilesystemCache.StoragePolicy getFilesystemCachePolicy(final Context ctx){
-		return StoragePolicy.values()[getInstance(ctx).getInt(PREF_FSCACHE_STORAGEPOLICY_ID, PREF_FSCACHE_STORAGEPOLICY_DEFAULT)];
-	}
-
-	public static void saveFilesystemCachePolicy(final Context ctx, final StoragePolicy aPolicy){
-		getEditorInstance(ctx).putInt(PREF_FSCACHE_STORAGEPOLICY_ID, aPolicy.ordinal()).commit();
 	}
 
 	// ===========================================================

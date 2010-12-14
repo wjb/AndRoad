@@ -870,27 +870,6 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 		new AlertDialog.Builder(this)
 		.setTitle(R.string.dlg_preloader_title)
 		.setMessage(String.format(getString(R.string.dlg_preloader_message), tilesNeeded.length , formattedFileSize))
-		.setNeutralButton(R.string.btn_settings_cache_clear_cache_caption, new DialogInterface.OnClickListener(){
-			@Override
-			public void onClick(final DialogInterface d, final int which) {
-				final ProgressDialog pd = ProgressDialog.show(OpenStreetDDMap.this,
-						getString(R.string.pdg_settings_cache_clear_cache_title),
-						getString(R.string.pdg_settings_cache_clear_cache_message), true, true);
-				new Thread(new Runnable(){
-					@Override
-					public void run() {
-						/* Clear FileSystem-Cache. */
-						//pTileProvider.getFileSystemCache().clearCurrentFSCache();
-						runOnUiThread(new Runnable(){
-							@Override
-							public void run() {
-								pd.dismiss();
-							}
-						});
-					}
-				}, "Cache-Clearer-Thread").start();
-			}
-		})
 		.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener(){
 			@Override
 			public void onClick(final DialogInterface d, final int which) {
@@ -899,36 +878,6 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 				new Thread(new Runnable(){
 					@Override
 					public void run() {
-						/*final OSMMapTileFilesystemCache fsProvider = pTileProvider.getFileSystemCache();
-						if(fsProvider.getMaxFSCacheByteSize() < bytesEpectedNeeded){
-							final int newCacheByteSize = (int)(bytesEpectedNeeded * 1.1f);
-
-							runOnUiThread(new Runnable(){
-								@Override
-								public void run() {
-									pd.setMessage(getString(R.string.pdg_settings_cache_clear_cache_title));
-									Toast.makeText(OpenStreetDDMap.this, String.format(getString(R.string.toast_preloader_cache_increased_message), FileSizeFormatter.formatFileSize(newCacheByteSize)), Toast.LENGTH_LONG).show();
-								}
-							});
-
-							final int cacheSizeForPreferences = Math.min(OSMMapTileFilesystemCache.MAXIMUM_CACHESIZE, 1 + newCacheByteSize / (1024 * 1024));
-							Preferences.saveMaxCacheSize(OpenStreetDDMap.this, cacheSizeForPreferences);*/
-							/* Cache size needs to be increased. */
-							/*fsProvider.setMaxFSCacheByteSize(cacheSizeForPreferences * 1024 * 1024); // 10% margin
-							fsProvider.clearCurrentFSCache();
-						} else {
-							final int fsCacheBytesFree = fsProvider.getMaxFSCacheByteSize() - fsProvider.getCurrentFSCacheByteSize();
-							if(bytesEpectedNeeded > fsCacheBytesFree * 0.9f){ // 10% margin
-								runOnUiThread(new Runnable(){
-									@Override
-									public void run() {
-										pd.setMessage(getString(R.string.pdg_settings_cache_clear_cache_title));
-									}
-								});
-								fsProvider.cutCurrentFSCacheBy((int)(bytesEpectedNeeded - fsCacheBytesFree * 0.9f)); // 10% margin
-							}
-                            }*/
-
 						runOnUiThread(new Runnable(){
 							@Override
 							public void run() {
