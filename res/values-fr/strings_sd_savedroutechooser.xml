@@ -11,7 +11,7 @@
 <resources>
 	<string name="tv_sd_savedroutechooser_quickinfo_caption">Charger une route...</string>
 	<string name="dlg_sd_savedroutechooser_loading_title">Chargement des routes...</string>
-	<string name="dlg_sd_savedroutechooser_loading_progress">Avancement : %d %%  (%d de %d routes)</string>
+	<string name="dlg_sd_savedroutechooser_loading_progress">Avancement : %1$d %%  (%2$d de %3$d routes)</string>
 	
 	<string name="dlg_sd_savedroutechooser_contextmenu_use">Utiliser</string>
 	<string name="dlg_sd_savedroutechooser_contextmenu_rename">Renommer</string>

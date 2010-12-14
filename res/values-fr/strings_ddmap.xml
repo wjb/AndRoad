@@ -10,7 +10,7 @@
 	<!-- Shown while loading a saved route -->
 	<string name="pdg_fetchroute_loading_saved_route">Chargement de la route...</string>
 	<!-- Shown while loading a shared route -->
-	<string name="pdg_fetchroute_loading_routebyhandle">Chargement de la route depuis RouteHandleID = %d</string>
+	<string name="pdg_fetchroute_loading_routebyhandle">Chargement de la route depuis RouteHandleID = %1$d</string>
 	
 	<string name="ddmap_info_waypoint_passed">Point de passage dépassé.</string>
 	<string name="ddmap_info_gps_resolving">Recherche Gps...</string>
@@ -37,12 +37,12 @@
 	<string name="ddmap_info_preloader_autozoom_disabled">Zoom automatique désactivé.</string>
 	
 	<string name="dlg_preloader_title">Préchargeur</string>
-	<string name="dlg_preloader_message">Précharger %d tuiles pour la route actuelle ?\n\nTaille approximative : %s</string>
+	<string name="dlg_preloader_message">Précharger %1$d tuiles pour la route actuelle ?\n\nTaille approximative : %2$s</string>
 	
 	<string name="pdg_preloader_title">Préchargement des tuiles...</string>
-	<string name="pdg_preloader_message">Avancement : %d de %d\n\n<i>Appuyer sur RETOUR pour cacher.</i></string>
+	<string name="pdg_preloader_message">Avancement : %1$d de %2$d\n\n<i>Appuyer sur RETOUR pour cacher.</i></string>
 	
-	<string name="toast_preloader_cache_increased_message">La taille du cache a été augmentée à : %s</string>
+	<string name="toast_preloader_cache_increased_message">La taille du cache a été augmentée à : %1$s</string>
 		
 	<!-- Pseudo Context Menu-String -->
 	<string name="ddmap_contextmenu_add_as_waypoint">Ajouter comme point de passage</string>

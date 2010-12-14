@@ -11,7 +11,7 @@
 <resources>
 	<string name="tv_sd_savedtracechooser_quickinfo_caption">Lade Trace...</string>
 	<string name="dlg_sd_savedtracechooser_loading_title">Lade gespeicherte Traces...</string>
-	<string name="dlg_sd_savedtracechooser_loading_progress">Fortschritt: %d %%  (%d von %d Traces)</string>
+	<string name="dlg_sd_savedtracechooser_loading_progress">Fortschritt: %1$d %%  (%2$d von %3$d Traces)</string>
 	
 	<string name="dlg_sd_savedtracechooser_contextmenu_use">Nutzen</string>
 	<string name="dlg_sd_savedtracechooser_contextmenu_rename">Umbenenen</string>

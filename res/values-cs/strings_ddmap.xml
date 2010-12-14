@@ -19,7 +19,7 @@
 	<!-- Shown while loading a saved route -->
 	<string name="pdg_fetchroute_loading_saved_route">Načítám uloženou trasu...</string>
 	<!-- Shown while loading a shared route -->
-	<string name="pdg_fetchroute_loading_routebyhandle">Načítám trasu z RouteHandleID = %d</string>
+	<string name="pdg_fetchroute_loading_routebyhandle">Načítám trasu z RouteHandleID = %1$d</string>
 	
 	<string name="ddmap_info_waypoint_passed">Bod projet.</string>
 	<string name="ddmap_info_target_reached">Cíl dosažen!</string>
@@ -47,12 +47,12 @@
 	<string name="ddmap_info_preloader_autozoom_disabled">Autozoom je nyní vypnut.</string>
 	
 	<string name="dlg_preloader_title">Přednačtení</string>
-	<string name="dlg_preloader_message">Přednačíst %d mapových podkladů pro aktuální trasu?\n\nPřibližná velikost: %s</string>
+	<string name="dlg_preloader_message">Přednačíst %1$d mapových podkladů pro aktuální trasu?\n\nPřibližná velikost: %2$s</string>
 	
 	<string name="pdg_preloader_title">Načítám mapové podklady...</string>
-	<string name="pdg_preloader_message">Načítám: %d z %d\n\n<i>Zpět pro schování okna.</i></string>
+	<string name="pdg_preloader_message">Načítám: %1$d z %2$d\n\n<i>Zpět pro schování okna.</i></string>
 	
-	<string name="toast_preloader_cache_increased_message">Velikost Cache byle zvětšena na: %s</string>
+	<string name="toast_preloader_cache_increased_message">Velikost Cache byle zvětšena na: %1$s</string>
 		
 	<!-- Pseudo Context Menu-String -->
 	<string name="ddmap_contextmenu_add_as_waypoint">Přidat jako otočný bod</string>

@@ -40,19 +40,16 @@
 	<string name="sd_poi_category_nightclub">Noční klub</string>
 	<string name="sd_poi_category_parking">Parkoviště</string>
 	<string name="sd_poi_category_pharmacy">Lékárna</string>
-	<string name="sd_poi_category_place_of_worship">Památník</string>
 	<string name="sd_poi_category_police">Policie</string>
 	<string name="sd_poi_category_post_box">Poštovní schránka</string>
 	<string name="sd_poi_category_post_office">Pošta</string>
 	<string name="sd_poi_category_pub">Bar / Pub</string>
-	<string name="sd_poi_category_public_building">Veřejná budova</string>
 	<string name="sd_poi_category_restaurant">Restaurace</string>
 	<string name="sd_poi_category_school">Škola</string>
 	<string name="sd_poi_category_taxi">Taxi</string>
 	<string name="sd_poi_category_telephone">Telefón</string>
 	<string name="sd_poi_category_theatre">Divadlo</string>
 	<string name="sd_poi_category_toilets">Toalety</string>
-	<string name="sd_poi_category_townhall">Radnice</string>
 	<string name="sd_poi_category_university">Univerzita</string>
 	
 	<string name="sd_poi_category_supermarket">Supermarkt</string>

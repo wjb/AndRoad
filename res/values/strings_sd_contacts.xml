@@ -8,5 +8,5 @@
 	<string name="sd_contacts_address_type_work">Work</string>
 	
 	<string name="sd_contacts_loading_title">Loading Contacts...</string>
-	<string name="sd_contacts_loading_progress">Progress: %d %%  (%d of %d Contacts)</string>
+	<string name="sd_contacts_loading_progress">Progress: %1$d %%  (%2$d of %3$d Contacts)</string>
 </resources>

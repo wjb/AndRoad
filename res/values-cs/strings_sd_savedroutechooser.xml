@@ -11,5 +11,5 @@
 <resources>
 	<string name="tv_sd_savedroutechooser_quickinfo_caption">Načítám trasu...</string>
 	<string name="dlg_sd_savedroutechooser_loading_title">Načítám uloženou trasu...</string>
-	<string name="dlg_sd_savedroutechooser_loading_progress">Průběh: %d %%  (%d z %d tras)</string>
+	<string name="dlg_sd_savedroutechooser_loading_progress">Průběh: %1$d %%  (%2$d z %3$d tras)</string>
 </resources>

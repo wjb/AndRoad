@@ -10,7 +10,7 @@
 	<!-- Shown while loading a saved route -->
 	<string name="pdg_fetchroute_loading_saved_route">Loading saved Route...</string>
 	<!-- Shown while loading a shared route -->
-	<string name="pdg_fetchroute_loading_routebyhandle">Loading Route from RouteHandleID = %d</string>
+	<string name="pdg_fetchroute_loading_routebyhandle">Loading Route from RouteHandleID = %1$d</string>
 	
 	<string name="ddmap_info_waypoint_passed">Waypoint passed.</string>
 	<string name="ddmap_info_gps_resolving">Resolving Gps...</string>
@@ -37,12 +37,12 @@
 	<string name="ddmap_info_preloader_autozoom_disabled">Autozooming is now disabled.</string>
 	
 	<string name="dlg_preloader_title">Preloader</string>
-	<string name="dlg_preloader_message">Preload %d Maptiles for current Route?\n\nExpected size: %s</string>
+	<string name="dlg_preloader_message">Preload %1$d Maptiles for current Route?\n\nExpected size: %2$s</string>
 	
 	<string name="pdg_preloader_title">Preloading MapTiles...</string>
-	<string name="pdg_preloader_message">Progress: %d of %d\n\n<i>Press BACK to hide.</i></string>
+	<string name="pdg_preloader_message">Progress: %1$d of %2$d\n\n<i>Press BACK to hide.</i></string>
 	
-	<string name="toast_preloader_cache_increased_message">Cachesize was increased to: %s</string>
+	<string name="toast_preloader_cache_increased_message">Cachesize was increased to: %1$s</string>
 		
 	<!-- Pseudo Context Menu-String -->
 	<string name="ddmap_contextmenu_add_as_waypoint">Add as waypoint</string>

@@ -53,7 +53,7 @@
 	<string name="dlg_preloader_rect_maxzoom_title">Maximales Zoomlevel wählen.</string>
 	<string name="dlg_preloader_rect_reducezoom">Zoom reduzieren</string>
 	<string name="dlg_preloader_rect_title">Rechecks-Vorlader</string>
-	<string name="dlg_preloader_rect_message">Lade %d Kartenkacheln im sichtbaren Bereich?\n\nUngefähre Größe: %s</string>
+	<string name="dlg_preloader_rect_message">Lade %1$d Kartenkacheln im sichtbaren Bereich?\n\nUngefähre Größe: %2$s</string>
 	
 	<!-- The Dialog where the user can add a new Traffic Feed. -->
 	<string name="dlg_customtrafficfeed_title">Feed-Daten eingeben...</string>

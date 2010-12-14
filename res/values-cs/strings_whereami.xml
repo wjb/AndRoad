@@ -51,7 +51,7 @@
 	<string name="dlg_preloader_rect_maxzoom_title">Zvolte maximálné zvětšení.</string>
 	<string name="dlg_preloader_rect_reducezoom">Zmenšit zvětšení</string>
 	<string name="dlg_preloader_rect_title">Načtení mapy</string>
-	<string name="dlg_preloader_rect_message">Načíst %d mapové podklady v zobrazeném poli?\n\nPřibližná velikost: %s</string>
+	<string name="dlg_preloader_rect_message">Načíst %1$d mapové podklady v zobrazeném poli?\n\nPřibližná velikost: %2$s</string>
 	
 	<!-- The Dialog where the user can add a new Traffic Feed. -->
 	<string name="dlg_customtrafficfeed_title">Zadat Feed-Data...</string>

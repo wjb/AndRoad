@@ -31,7 +31,7 @@
 	<string name="dlg_osb_add_bug_new_comment">Comment:</string>
 	<string name="dlg_osb_add_bug_default_comment">Bug: ...</string>
 	<string name="toast_osbmap_position_buglocation_in_crosshair">Position the <b>crosshair</b> above the desired location...</string>
-	<string name="toast_osbmap_add_bug_zoom_too_low">You need to zoom in %d levels closer to contribute something...</string>
+	<string name="toast_osbmap_add_bug_zoom_too_low">You need to zoom in %1$d levels closer to contribute something...</string>
 	<string name="dlg_osb_add_bug_error">Error while adding bug...</string>
 	<string name="dlg_osb_add_bug_success">Successfully added bug.\n\nRefresh visible bugs now?</string>
 	

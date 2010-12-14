@@ -9,7 +9,7 @@
 	<string name="tv_sd_poi_entry_quickinfo_caption">Entrer POI...</string>	
 	<string name="tv_sd_poi_searchlist_quickinfo_caption">Selectionner un POI...</string>
 	<string name="toast_sd_poi_getting_gps_and_poi_search">Obtention de la localisation GPS et recherche de POI...</string>
-	<string name="toast_sd_poi_could_not_find">Désolé, impossible de trouver \'%s\' dans %s.</string>
+	<string name="toast_sd_poi_could_not_find">Désolé, impossible de trouver \'%1$s\' dans %2$s.</string>
 	
 	<string name="tv_sd_poi_categories_quickinfo_caption">Choisir une categorie...</string>
 	

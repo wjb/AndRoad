@@ -53,7 +53,7 @@
 	<string name="dlg_preloader_rect_maxzoom_title">Selectionner le niveau max de zoom.</string>
 	<string name="dlg_preloader_rect_reducezoom">Reduire zoom</string>
 	<string name="dlg_preloader_rect_title">Préchargeur de rectangle</string>
-	<string name="dlg_preloader_rect_message">Précharger %d tuiles pour le rectangle visible ?\n\nTaille estimée : %s</string>
+	<string name="dlg_preloader_rect_message">Précharger %1$d tuiles pour le rectangle visible ?\n\nTaille estimée : %2$s</string>
 	
 	<!-- The Dialog where the user can add a new Traffic Feed. -->
 	<string name="dlg_customtrafficfeed_title">Entrer la source de données...</string>

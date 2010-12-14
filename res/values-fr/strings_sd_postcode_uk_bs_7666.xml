@@ -2,11 +2,11 @@
 	<string name="toast_sd_postcode_bs_7666_empty">Veuillez entrer un code postal...</string>
 	<string name="toast_sd_postcode_bs_7666_no_match_found">Le code postal n\'est pas au bon format.\n\nExemple : \'SW1A 0AA\'</string>
 	<string name="sd_postcode_bs_7666_bad_format_title">Mauvais format de code postal</string>
-	<string name="sd_postcode_bs_7666_bad_format_message">Entré : \'%s\'\nCorrigé : \'%s\'\n\nExemple: \'SW1A 0AA\'\n\nAvez-vous oublié un ESPACE ?</string>
+	<string name="sd_postcode_bs_7666_bad_format_message">Entré : \'%1$s\'\nCorrigé : \'%2$s\'\n\nExemple: \'SW1A 0AA\'\n\nAvez-vous oublié un ESPACE ?</string>
 	<string name="sd_postcode_bs_7666_correct">Correct</string>
 	
 	
 	<string name="sd_postcode_bs_7666_use_closes_match">Utiliser le résultat le plus proche</string>
 	<string name="sd_postcode_bs_7666_closest_databasematch_title">Code postal absent de la base de données</string>
-	<string name="sd_postcode_bs_7666_closest_databasematch_message">Entré : \'%s\'\nRésultat le plus proche : \'%s\'</string>
+	<string name="sd_postcode_bs_7666_closest_databasematch_message">Entré : \'%1$s\'\nRésultat le plus proche : \'%2$s\'</string>
 </resources>
