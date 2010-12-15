@@ -9,10 +9,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import org.andnav.osm.util.GeoPoint;
+import org.andnav.osm.contributor.util.RecordedGeoPoint;
+import org.andnav.osm.contributor.util.RecordedRouteGPXFormatter;
 import org.andnav.osm.tileprovider.StreamUtils;
 
-import org.androad.osm.api.traces.util.GPXFormatter;
 import org.androad.osm.util.Util;
 import org.androad.osm.util.constants.OSMConstants;
 
@@ -46,7 +46,7 @@ public class GPXToFileWriter implements OSMConstants {
 	// Methods
 	// ===========================================================
 
-	public static void writeToFileAsync(final ArrayList<GeoPoint> recordedGeoPoints){
+	public static void writeToFileAsync(final ArrayList<RecordedGeoPoint> recordedGeoPoints){
 		new Thread(new Runnable(){
 			@Override
 			public void run() {
@@ -61,7 +61,7 @@ public class GPXToFileWriter implements OSMConstants {
 
 					// Write Data
 					final OutputStream out = new BufferedOutputStream(new FileOutputStream(dest),StreamUtils.IO_BUFFER_SIZE);
-					final byte[] data = org.androad.osm.api.traces.util.Util.zipBytes(GPXFormatter.create(recordedGeoPoints).getBytes(), filename);
+					final byte[] data = org.androad.osm.api.traces.util.Util.zipBytes(RecordedRouteGPXFormatter.create(recordedGeoPoints).getBytes(), filename);
 
 					out.write(data);
 					out.flush();

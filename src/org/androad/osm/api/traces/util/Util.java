@@ -11,6 +11,7 @@ import java.util.TimeZone;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
+import org.andnav.osm.contributor.util.RecordedGeoPoint;
 import org.andnav.osm.util.GeoPoint;
 import org.andnav.osm.util.BoundingBoxE6;
 
@@ -56,7 +57,7 @@ public class Util implements OSMTraceAPIConstants{
 		return UTCSimpleDateFormat.format(new Date(aTimestamp));
 	}
 
-	public static boolean isSufficienDataForUpload(final ArrayList<GeoPoint> recordedGeoPoints){
+	public static boolean isSufficienDataForUpload(final ArrayList<RecordedGeoPoint> recordedGeoPoints){
 		if(recordedGeoPoints == null) {
 			return false;
 		}

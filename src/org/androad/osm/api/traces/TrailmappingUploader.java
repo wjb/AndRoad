@@ -19,9 +19,9 @@ import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import org.andnav.osm.util.GeoPoint;
+import org.andnav.osm.contributor.util.RecordedGeoPoint;
+import org.andnav.osm.contributor.util.RecordedRouteGPXFormatter;
 
-import org.androad.osm.api.traces.util.GPXFormatter;
 import org.androad.osm.api.util.constants.OSMTraceAPIConstants;
 import org.androad.osm.util.constants.OSMConstants;
 import org.androad.ui.common.CommonCallback;
@@ -64,7 +64,7 @@ public class TrailmappingUploader implements OSMConstants, OSMTraceAPIConstants 
 	 * NOTE: This method is not blocking!
 	 * @param recordedGeoPointslist of GeoPoints.
 	 */
-	public static void uploadAsync(final List<GeoPoint> recordedGeoPoints, final String username, final String password, final CommonCallback<Void> pCallback) {
+	public static void uploadAsync(final List<RecordedGeoPoint> recordedGeoPoints, final String username, final String password, final CommonCallback<Void> pCallback) {
 		uploadAsync(recordedGeoPoints, username, password, DEFAULT_TITLE, DEFAULT_BODY, pseudoFileNameFormat.format(new GregorianCalendar().getTime()) + "_" + username + ".gpx", pCallback);
 	}
 
@@ -73,7 +73,7 @@ public class TrailmappingUploader implements OSMConstants, OSMTraceAPIConstants 
 	 * NOTE: This method is blocking!
 	 * @param recordedGeoPointslist of GeoPoints.
 	 */
-	public static void upload(final List<GeoPoint> recordedGeoPoints, final String username, final String password) throws OSMAPIException {
+	public static void upload(final List<RecordedGeoPoint> recordedGeoPoints, final String username, final String password) throws OSMAPIException {
 		upload(recordedGeoPoints, username, password, DEFAULT_TITLE, DEFAULT_BODY, pseudoFileNameFormat.format(new GregorianCalendar().getTime()) + "_" + username + ".gpx");
 	}
 
@@ -86,7 +86,7 @@ public class TrailmappingUploader implements OSMConstants, OSMTraceAPIConstants 
 	 * @param pseudoFileName ending with "<code>.gpx</code>"
 	 * @param recordedGeoPointslist of GeoPoints.
 	 */
-	public static void uploadAsync(final List<GeoPoint> recordedGeoPoints, final String username, final String password, final String title, final String body, final String pseudoFileName, final CommonCallback<Void> pCallback) {
+	public static void uploadAsync(final List<RecordedGeoPoint> recordedGeoPoints, final String username, final String password, final String title, final String body, final String pseudoFileName, final CommonCallback<Void> pCallback) {
 		new Thread(new Runnable(){
 			@Override
 			public void run() {
@@ -99,7 +99,7 @@ public class TrailmappingUploader implements OSMConstants, OSMTraceAPIConstants 
 		}, "TrailmappingUpload-Thread").start();
 	}
 
-	public static void upload(final List<GeoPoint> recordedGeoPoints, final String username, final String password, final String title, final String body, final String pseudoFileName) throws OSMAPIException {
+	public static void upload(final List<RecordedGeoPoint> recordedGeoPoints, final String username, final String password, final String title, final String body, final String pseudoFileName) throws OSMAPIException {
 		if(username == null || username.length() == 0) {
 			return;
 		}
@@ -116,7 +116,7 @@ public class TrailmappingUploader implements OSMConstants, OSMTraceAPIConstants 
 			return;
 		}
 
-		final InputStream gpxInputStream = new ByteArrayInputStream(GPXFormatter.create(recordedGeoPoints).getBytes());
+		final InputStream gpxInputStream = new ByteArrayInputStream(RecordedRouteGPXFormatter.create(recordedGeoPoints).getBytes());
 
 		//		Log.d(DEBUGTAG, "Uploading " + pseudoFileName + " to openstreetmap.org");
 		try {

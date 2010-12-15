@@ -2,6 +2,7 @@ package org.androad.osm.views.overlay;
 
 import java.util.List;
 
+import org.andnav.osm.contributor.util.RecordedGeoPoint;
 import org.andnav.osm.util.GeoPoint;
 import org.andnav.osm.views.OpenStreetMapView;
 import org.andnav.osm.views.OpenStreetMapView.OpenStreetMapViewProjection;
@@ -44,7 +45,7 @@ public class OSMMapViewSimpleTraceOverlay extends OpenStreetMapViewOverlay imple
 
 	//	private float mMapRotationDegree = 0;
 
-	private List<GeoPoint> mPolyline;
+	private List<RecordedGeoPoint> mPolyline;
 
 	private OpenStreetMapActivity mMapActivity;
 	private final Paint mPathPaint;
@@ -54,7 +55,7 @@ public class OSMMapViewSimpleTraceOverlay extends OpenStreetMapViewOverlay imple
 	// Constructors
 	// ===========================================================
 
-	public OSMMapViewSimpleTraceOverlay(final OpenStreetMapActivity aMapAct, final List<GeoPoint> aPolyline, final int aDisplayQuality) {
+	public OSMMapViewSimpleTraceOverlay(final OpenStreetMapActivity aMapAct, final List<RecordedGeoPoint> aPolyline, final int aDisplayQuality) {
         super(aMapAct);
 		this.mMapActivity = aMapAct;
 		this.mPolyline = aPolyline;
@@ -86,7 +87,7 @@ public class OSMMapViewSimpleTraceOverlay extends OpenStreetMapViewOverlay imple
 	// Getter & Setter
 	// ===========================================================
 
-	public void setPolyline(final List<GeoPoint> pPolyline) {
+	public void setPolyline(final List<RecordedGeoPoint> pPolyline) {
 		this.mPolyline = pPolyline;
 	}
 
@@ -124,7 +125,7 @@ public class OSMMapViewSimpleTraceOverlay extends OpenStreetMapViewOverlay imple
 
 		final ManagedLinePath path = new ManagedLinePath();
 
-		final List<GeoPoint> polyLine = this.mPolyline;
+		final List<RecordedGeoPoint> polyLine = this.mPolyline;
 		if(polyLine.size() > 0){
 	
 			/* Loop through all MapPoints returned. */

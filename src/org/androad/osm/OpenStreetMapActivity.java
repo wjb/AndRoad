@@ -1,6 +1,8 @@
 // Created by plusminus on 00:14:42 - 02.10.2008
 package org.androad.osm;
 
+import org.andnav.osm.views.util.constants.OpenStreetMapViewConstants;
+import org.andnav.osm.contributor.RouteRecorder;
 import org.andnav.osm.util.GeoPoint;
 import org.andnav.osm.views.OpenStreetMapView;
 
@@ -9,7 +11,6 @@ import org.androad.loc.AbstractAndNavLocationProvider;
 import org.androad.loc.NetworkFallbackLocationProvider;
 import org.androad.loc.AbstractAndNavLocationProvider.AndNavLocationCallback;
 import org.androad.osm.api.traces.TraceManager;
-import org.androad.osm.api.traces.util.RouteRecorder;
 import org.androad.osm.util.constants.OSMConstants;
 import org.androad.osm.views.util.constants.OSMMapViewConstants;
 import org.androad.ui.common.DataStateChangedListener;
@@ -41,7 +42,7 @@ public abstract class OpenStreetMapActivity extends Activity implements DataStat
 
 	protected OpenStreetMapView mOSMapView;
 
-	private final RouteRecorder mRouteRecorder = new RouteRecorder();
+	private RouteRecorder mRouteRecorder = new RouteRecorder();
 
 	private boolean mDoGPSRecordingAndContributing;
 
@@ -176,7 +177,7 @@ public abstract class OpenStreetMapActivity extends Activity implements DataStat
 	@Override
 	public void fireLocationChanged(final AndNavLocation pLocation) {
 		if(OpenStreetMapActivity.this.mDoGPSRecordingAndContributing) {
-			OpenStreetMapActivity.this.mRouteRecorder.add(pLocation);
+			OpenStreetMapActivity.this.mRouteRecorder.add(pLocation, OpenStreetMapViewConstants.NOT_SET);
 		}
 
 		//		Log.d(DEBUGTAG, "[onLocationChanged] FreeMemory: " + Runtime.getRuntime().freeMemory());
@@ -298,7 +299,7 @@ public abstract class OpenStreetMapActivity extends Activity implements DataStat
 		/* 'Clear' the recordedGeopoints.
 		 * this.mRouteRecorder.getRecordedGeoPoints().clear();
 		 * is not possible, as the previous 'contributeAsync' is asynchronous. */
-		this.mRouteRecorder.newRecordedGeoPoints();
+		this.mRouteRecorder = new RouteRecorder();
 
 		this.mDoGPSRecordingAndContributing = false;
 	}
