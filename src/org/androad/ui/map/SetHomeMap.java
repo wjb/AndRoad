@@ -8,10 +8,10 @@ import org.andnav.osm.views.OpenStreetMapView;
 import org.andnav.osm.views.OpenStreetMapView.OpenStreetMapViewProjection;
 import org.andnav.osm.views.OpenStreetMapViewController.AnimationType;
 import org.andnav.osm.views.overlay.OpenStreetMapViewOverlay;
+import org.andnav.osm.views.overlay.OpenStreetMapViewSimpleLocationOverlay;
 
 import org.androad.R;
 import org.androad.adt.AndNavLocation;
-import org.androad.osm.views.overlay.OSMMapViewSimpleLocationOverlay;
 import org.androad.osm.views.overlay.OSMMapViewSingleIconOverlay;
 import org.androad.preferences.Preferences;
 import org.androad.ui.common.OnClickOnFocusChangedListenerAdapter;
@@ -49,7 +49,7 @@ public class SetHomeMap extends OpenStreetMapAndNavBaseActivity {
 	protected ImageButton ibtnClose;
 	protected ImageButton ibtnSetHome;
 	protected OSMMapViewSingleIconOverlay mSetHomeOverlay;
-	protected OSMMapViewSimpleLocationOverlay mMyLocationOverlay;
+	protected OpenStreetMapViewSimpleLocationOverlay mMyLocationOverlay;
 
 	protected GeoPoint mHomeLocation;
 
@@ -73,7 +73,7 @@ public class SetHomeMap extends OpenStreetMapAndNavBaseActivity {
 		/* Add a new instance of our fancy Overlay-Class to the MapView. */
 		final List<OpenStreetMapViewOverlay> overlays = this.mOSMapView.getOverlays();
 		overlays.add(this.mSetHomeOverlay = new OSMMapViewSingleIconOverlay(this, R.drawable.home_set, new Point(0,0)));
-		overlays.add(this.mMyLocationOverlay = new OSMMapViewSimpleLocationOverlay(this));
+		overlays.add(this.mMyLocationOverlay = new OpenStreetMapViewSimpleLocationOverlay(this));
 
 		// Load the animation from XML (XML file is res/anim/move_animation.xml).
 		final Animation anim = AnimationUtils.loadAnimation(this, R.anim.button_beat);

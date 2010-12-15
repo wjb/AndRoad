@@ -13,8 +13,9 @@ import org.andnav.osm.views.OpenStreetMapView;
 import org.andnav.osm.views.overlay.ScaleBarOverlay;
 import org.andnav.osm.views.OpenStreetMapView.OpenStreetMapViewProjection;
 import org.andnav.osm.views.OpenStreetMapViewController.AnimationType;
-import org.andnav.osm.views.overlay.OpenStreetMapViewOverlay;
 import org.andnav.osm.views.overlay.OpenStreetMapViewItemizedOverlay.OnItemGestureListener;
+import org.andnav.osm.views.overlay.OpenStreetMapViewOverlay;
+import org.andnav.osm.views.overlay.OpenStreetMapViewSimpleLocationOverlay;
 
 import org.androad.R;
 import org.androad.adt.AndNavLocation;
@@ -22,7 +23,6 @@ import org.androad.adt.UnitSystem;
 import org.androad.exc.Exceptor;
 import org.androad.osm.views.overlay.BaseOSMMapViewListItemizedOverlayWithFocus;
 import org.androad.osm.views.overlay.OSMMapViewCrosshairOverlay;
-import org.androad.osm.views.overlay.OSMMapViewSimpleLocationOverlay;
 import org.androad.preferences.Preferences;
 import org.androad.sys.ftpc.api.FTPCRequester;
 import org.androad.sys.ors.adt.ds.POIGroup;
@@ -109,7 +109,7 @@ public class OSBMap extends OpenStreetMapAndNavBaseActivity implements OnItemGes
 	private ImageButton mIbtnAddCancel;
 
 	private OSMMapViewCrosshairOverlay mAddBugCrosshairOverlay;
-	private OSMMapViewSimpleLocationOverlay mMyLocationOverlay;
+	private OpenStreetMapViewSimpleLocationOverlay mMyLocationOverlay;
 
 	private ScaleBarOverlay mScaleIndicatorView;
 
@@ -140,7 +140,7 @@ public class OSBMap extends OpenStreetMapAndNavBaseActivity implements OnItemGes
 		this.mOSBOverlay.setFocusItemsOnTap(false);
 
         overlays.add(this.mScaleIndicatorView);
-		overlays.add(this.mMyLocationOverlay = new OSMMapViewSimpleLocationOverlay(this));
+		overlays.add(this.mMyLocationOverlay = new OpenStreetMapViewSimpleLocationOverlay(this));
 
 		overlays.add(this.mOSBOverlay);
 		/* Add AddBugOverlay after OSBOverlay to give it a higher zOrder. */
