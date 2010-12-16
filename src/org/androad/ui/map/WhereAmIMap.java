@@ -14,6 +14,7 @@ import org.andnav.osm.views.OpenStreetMapView;
 import org.andnav.osm.views.overlay.ScaleBarOverlay;
 import org.andnav.osm.views.OpenStreetMapView.OpenStreetMapViewProjection;
 import org.andnav.osm.views.OpenStreetMapViewController.AnimationType;
+import org.andnav.osm.views.overlay.OpenStreetMapViewDirectedLocationOverlay;
 import org.andnav.osm.views.overlay.OpenStreetMapViewItemizedOverlay;
 import org.andnav.osm.views.overlay.OpenStreetMapViewItemizedOverlayWithFocus;
 import org.andnav.osm.views.overlay.OpenStreetMapViewItemizedOverlayControlView;
@@ -36,7 +37,6 @@ import org.androad.exc.Exceptor;
 import org.androad.osm.util.CoordinatesExtractor;
 import org.androad.osm.views.overlay.BaseOSMMapViewListItemizedOverlayWithFocus;
 import org.androad.osm.views.overlay.OSMMapViewCrosshairOverlay;
-import org.androad.osm.views.overlay.OSMMapViewDirectedLocationOverlay;
 import org.androad.osm.views.overlay.OSMMapViewSimpleLineOverlay;
 import org.androad.osm.views.overlay.OSMMapViewSingleIconOverlay;
 import org.androad.osm.views.tiles.util.OSMMapTilePreloader;
@@ -195,7 +195,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 	private OpenStreetMapViewItemizedOverlayControlView mMapItemControlView;
 	private ScaleBarOverlay mScaleIndicatorView;
 
-	private OSMMapViewDirectedLocationOverlay mMyLocationOverlay;
+	private OpenStreetMapViewDirectedLocationOverlay mMyLocationOverlay;
 	private OSMMapViewCrosshairOverlay mCrosshairOverlay;
 
 	private TrafficFeed mCurrentTrafficFeed;
@@ -244,7 +244,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 
 		/* Add a new instance of our fancy Overlay-Class to the MapView. */
 
-		this.mMyLocationOverlay = new OSMMapViewDirectedLocationOverlay(this, Preferences.getHUDImplVariationDirectionArrowDescriptor(this));
+		this.mMyLocationOverlay = new OpenStreetMapViewDirectedLocationOverlay(this);
 		this.mMyLocationOverlay.setLocation(getLastKnownLocation(true));
 
 		this.mTrafficOverlay = new TrafficOverlay(this, new ArrayList<TrafficOverlayItem>(), new OnItemGestureListener<TrafficOverlayItem>(){
