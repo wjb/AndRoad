@@ -9,6 +9,8 @@ import org.andnav.osm.views.OpenStreetMapView.OpenStreetMapViewProjection;
 import org.andnav.osm.views.OpenStreetMapViewController.AnimationType;
 import org.andnav.osm.views.overlay.OpenStreetMapViewOverlay;
 import org.andnav.osm.views.overlay.OpenStreetMapViewSimpleLocationOverlay;
+import org.andnav.osm.views.util.IOpenStreetMapRendererInfo;
+import org.andnav.osm.views.util.OpenStreetMapRendererFactory;
 
 import org.androad.R;
 import org.androad.adt.AndNavLocation;
@@ -17,9 +19,16 @@ import org.androad.preferences.Preferences;
 import org.androad.ui.common.OnClickOnFocusChangedListenerAdapter;
 import org.androad.util.constants.Constants;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Point;
+import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.RelativeSizeSpan;
+import android.text.style.StyleSpan;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -63,6 +72,7 @@ public class SetHomeMap extends OpenStreetMapAndNavBaseActivity {
 	protected void onSetupContentView() {
 		this.setContentView(R.layout.sethome_map);
 		super.mOSMapView = (OpenStreetMapView)findViewById(R.id.map_sethome);
+		super.mOSMapView.setRenderer(Preferences.getMapViewProviderInfoWhereAmI(this));
 	}
 
 	/** Called when the activity is first created. */
@@ -179,7 +189,29 @@ public class SetHomeMap extends OpenStreetMapAndNavBaseActivity {
 		new OnClickOnFocusChangedListenerAdapter(this.ibtnToggleSatellite){
 			@Override
 			public void onClicked(final View arg0) {
-				// TODO Show Layers-Menu
+				final IOpenStreetMapRendererInfo[] providers = OpenStreetMapRendererFactory.getRenderers();
+
+				final SpannableString[] renderersNames = new SpannableString[providers.length];
+
+				for(int j = 0; j < providers.length; j ++){
+					final SpannableString itemTitle = new SpannableString(providers[j].name());
+					itemTitle.setSpan(new StyleSpan(Typeface.ITALIC), providers[j].name().length(), itemTitle.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+					itemTitle.setSpan(new RelativeSizeSpan(0.5f), providers[j].name().length(), itemTitle.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+					renderersNames[j] = itemTitle;
+				}
+
+				final int curRendererIndex = SetHomeMap.this.mOSMapView.getRenderer().ordinal();
+
+				new AlertDialog.Builder(SetHomeMap.this)
+				.setTitle(R.string.maps_menu_submenu_renderers)
+				.setSingleChoiceItems(renderersNames, curRendererIndex , new DialogInterface.OnClickListener(){
+					@Override
+					public void onClick(final DialogInterface d, final int which) {
+						changeProviderInfo(providers[which]);
+						d.dismiss();
+					}
+				}).create().show();
 			}
 		};
 
@@ -247,4 +279,12 @@ public class SetHomeMap extends OpenStreetMapAndNavBaseActivity {
 	// ===========================================================
 	// Inner and Anonymous Classes
 	// ===========================================================
+	private void changeProviderInfo(final IOpenStreetMapRendererInfo aProviderInfo) {
+		/* Remember changes to the provider to start the next time with the same provider. */
+		Preferences.saveMapViewProviderInfoWhereAmI(this, aProviderInfo);
+
+		/* Check if Auto-Follow has to be disabled. */
+        super.mOSMapView.setRenderer(aProviderInfo);
+	}
+
 }
