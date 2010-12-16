@@ -74,7 +74,7 @@ public class Util implements MathematicalConstants, GeoConstants{
 		/* The case when the angle at a is 'overstretched' */
 		/* Determine the angle between s and r. */
 		final double angleAtA = Math.acos(org.androad.adt.other.GraphicsPoint.dotProduct(r, s) / (lenght_s * FloatMath.sqrt(((long)r.x) * r.x + ((long)r.y) * r.y)));
-		/* If it is bigger than |90°| return distance from p to a*/
+		/* If it is bigger than |90Â°| return distance from p to a*/
 		if(Math.abs(angleAtA) > PI_HALF){
 			final int dx = p.x - a.x;
 			final int dy = p.y - a.y;
@@ -91,7 +91,7 @@ public class Util implements MathematicalConstants, GeoConstants{
 		/* The case when the angle at b is 'overstretched' */
 		/* Determine the angle between s and r. */
 		final double angleAtB = Math.acos(GraphicsPoint.dotProduct(s, t) / (lenght_s * FloatMath.sqrt(((long)t.x * t.x) + ((long)t.y) * t.y)));
-		/* If it is bigger than |90°| return distance from p to a*/
+		/* If it is bigger than |90Â°| return distance from p to a*/
 		if(Math.abs(angleAtB) > PI_HALF){
 			final int dx = p.x - b.x;
 			final int dy = p.y - b.y;
@@ -143,7 +143,7 @@ public class Util implements MathematicalConstants, GeoConstants{
 		/* The case when the angle at a is 'overstretched' */
 		/* Determine the angle between s and r. */
 		final double angleAtA = Math.acos(GraphicsPoint.dotProduct(r, s) / (lenght_s * FloatMath.sqrt(((long)r.x) * r.x + ((long)r.y) * r.y)));
-		/* If it is bigger than |90°| return null. */
+		/* If it is bigger than |90Â°| return null. */
 		if(Math.abs(angleAtA) > PI_HALF) {
 			return null;
 		} else if(Double.isNaN(angleAtA)) {
@@ -160,7 +160,7 @@ public class Util implements MathematicalConstants, GeoConstants{
 		/* The case when the angle at b is 'overstretched' */
 		/* Determine the angle between s and r. */
 		final float angleAtB = (float)Math.acos(GraphicsPoint.dotProduct(s, t) / (lenght_s * FloatMath.sqrt(((long)t.x) * t.x + ((long)t.y) * t.y)));
-		/* If it is bigger than |90°| return b*/
+		/* If it is bigger than |90Â°| return b*/
 		if(Math.abs(angleAtB) > PI_HALF) {
 			return null;
 			// NOTE: Not needed because angleAtA would also be NaN !
@@ -203,7 +203,7 @@ public class Util implements MathematicalConstants, GeoConstants{
 	/**
 	 * Calculates the bearing of the two Locations supplied and returns the
 	 * Angle in the following (GPS-likely) manner: <br />
-	 * <code>N:0°, E:90°, S:180°, W:270°</code>
+	 * <code>N:0Â°, E:90Â°, S:180Â°, W:270Â°</code>
 	 */
 	public static float calculateBearing(final GeoPoint before, final GeoPoint after) {
 		final Point pBefore = geoPoint2Point(before);
@@ -222,7 +222,7 @@ public class Util implements MathematicalConstants, GeoConstants{
 	/**
 	 * Calculates the bearing of the two Locations supplied and returns the
 	 * Angle in the following (GPS-likely) manner: <br />
-	 * <code>N:0°, E:90°, S:180°, W:270°</code>
+	 * <code>N:0Â°, E:90Â°, S:180Â°, W:270Â°</code>
 	 */
 	public static float calculateBearing(final Location before, final Location after) {
 		final Point pBefore = location2Point(before);
@@ -241,7 +241,7 @@ public class Util implements MathematicalConstants, GeoConstants{
 	/**
 	 * Calculates the bearing of the two Locations supplied and returns the
 	 * Angle in mathematical manner: <br />
-	 * <code>Right: 0° ; Up: 90°; Left: 180°, Down: 270°</code>
+	 * <code>Right: 0Â° ; Up: 90Â°; Left: 180Â°, Down: 270Â°</code>
 	 */
 	public static float calculateBearing(final Point coordsA, final Point coordsB) {
 		// !!!!!! UNTESTED !!!!!!

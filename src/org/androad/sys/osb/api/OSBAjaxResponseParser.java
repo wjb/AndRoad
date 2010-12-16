@@ -36,8 +36,8 @@ public class OSBAjaxResponseParser {
 	/**
 	 * <pre>putAJAXMarker(31824,-1.654381,48.116183,"manque une ruelle ici [Xav]",0);
 	 * putAJAXMarker(31823,-1.654124,48.114908,"manque deux ruelles dans ce coin [Xav]",0);
-	 * putAJAXMarker(15396,-1.664939,48.112645,"Dans le sens E-&gt;O, portion de la rue de Paris réservée au bus (de Rue Armand Barbes à de Rue de Châteaudun) [Xav]<hr />et autorisée aux vélos [Xav]",0);
-	 * putAJAXMarker(8525,-1.662450,48.113433,"Lycée ??? [gwenn]<hr />&quot;Ensemble scolaire Saint-Vincent Providence&quot; [NoName]",0);
+	 * putAJAXMarker(15396,-1.664939,48.112645,"Dans le sens E-&gt;O, portion de la rue de Paris reservee au bus (de Rue Armand Barbes a de Rue de Chateaudun) [Xav]<hr />et autorisee aux velos [Xav]",0);
+	 * putAJAXMarker(8525,-1.662450,48.113433,"Lycee ??? [gwenn]<hr />&quot;Ensemble scolaire Saint-Vincent Providence&quot; [NoName]",0);
 	 * putAJAXMarker(8008,-1.658083,48.120044,"Terrains de tennis [gwenn]",0);</pre>
 	 */
 	public static final ArrayList<OpenStreetBug> parseResponse(final String pResponse) throws OSBException {
@@ -55,14 +55,14 @@ public class OSBAjaxResponseParser {
 			final String trimmedLine = line.substring("putAJAXMarker(".length(), line.length() - 2);
 
 			/* String is now:
-			 * "8525,-1.662450,48.113433,"Lycée ??? [gwenn]<hr />&quot;Ensemble scolaire Saint-Vincent Providence&quot; [NoName]""*/
+			 * "8525,-1.662450,48.113433,"Lycee ??? [gwenn]<hr />&quot;Ensemble scolaire Saint-Vincent Providence&quot; [NoName]""*/
 
 			final String[] segments = trimmedLine.split(",", 4);
 			/* Parts are:
 			 * [0] = "8525"
 			 * [1] = "-1.662450"
 			 * [2] = "48.113433"
-			 * [3] = ""Lycée ??? [gwenn]<hr />&quot;Ensemble scolaire Saint-Vincent Providence&quot; [NoName]",1"*/
+			 * [3] = ""Lycee ??? [gwenn]<hr />&quot;Ensemble scolaire Saint-Vincent Providence&quot; [NoName]",1"*/
 
 			final int id = Integer.parseInt(segments[0]);
 			final double lon = Double.parseDouble(segments[1]);
@@ -75,10 +75,10 @@ public class OSBAjaxResponseParser {
 			final char openStatusChar = segments[3].charAt(segments[3].length() - 1);
 			final boolean isOpen = openStatusChar == '0';
 
-			/* Prepare comment: ""Lycée ??? [gwenn]<hr />&quot;Ensemble scolaire Saint-Vincent Providence&quot; [NoName]",1"*/
+			/* Prepare comment: ""Lycee ??? [gwenn]<hr />&quot;Ensemble scolaire Saint-Vincent Providence&quot; [NoName]",1"*/
 			String comment = segments[3].substring(1, segments[3].length() - 3);
 
-			/* Comment is now: "Lycée ??? [gwenn]<hr />&quot;Ensemble scolaire Saint-Vincent Providence&quot; [NoName]"*/
+			/* Comment is now: "Lycee ??? [gwenn]<hr />&quot;Ensemble scolaire Saint-Vincent Providence&quot; [NoName]"*/
 			comment = comment.replace("<hr />", "\n");
 			comment = HTMLUtil.htmlDecode(comment);
 

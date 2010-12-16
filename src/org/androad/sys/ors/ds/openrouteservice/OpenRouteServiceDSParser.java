@@ -35,7 +35,7 @@ import android.util.Log;
  * 			&lt;/xls:POIContext&gt;
  * 			...
  * 			&lt;xls:POIContext&gt;
- * 				&lt;xls:POI POIName=&quot;Domgörgen&quot; description=&quot;bakery&quot; ID=&quot;270495053&quot;&gt;
+ * 				&lt;xls:POI POIName=&quot;Domgorgen&quot; description=&quot;bakery&quot; ID=&quot;270495053&quot;&gt;
  * 					&lt;gml:Point&gt;
  * 						&lt;gml:pos srsName=&quot;EPSG:4326&quot;&gt;7.0922473 50.7741497&lt;/gml:pos&gt;
  * 					&lt;/gml:Point&gt;

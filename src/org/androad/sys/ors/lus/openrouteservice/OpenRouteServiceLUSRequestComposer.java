@@ -71,7 +71,7 @@ public class OpenRouteServiceLUSRequestComposer implements ORSXMLConstants {
 	 * 		&lt;xls:GeocodeRequest&gt;
 	 * 			&lt;xls:Address countryCode=&quot;DE&quot;&gt;
 	 * 				&lt;xls:StreetAddress&gt;
-	 * 				  &lt;xls:Street&gt;Mannheimer Straﬂe&lt;/xls:Street&gt;
+	 * 				  &lt;xls:Street&gt;Mannheimer Strasse&lt;/xls:Street&gt;
 	 * 				&lt;/xls:StreetAddress&gt;
 	 * 				&lt;xls:Place type=&quot;Municipality&quot;&gt;Schriesheim&lt;/xls:Place&gt;
 	 * 			&lt;/xls:Address&gt;
@@ -178,7 +178,7 @@ public class OpenRouteServiceLUSRequestComposer implements ORSXMLConstants {
 	 * 	&lt;xls:Request methodName=&quot;GeocodeRequest&quot; requestID=&quot;123456789&quot; version=&quot;1.1&quot;&gt;
 	 * 		&lt;xls:GeocodeRequest&gt;
 	 * 			&lt;xls:Address countryCode=&quot;DE&quot;&gt;
-	 * 				&lt;xls:freeFormAddress&gt;bonn maximilianstraﬂe&lt;/xls:freeFormAddress&gt;
+	 * 				&lt;xls:freeFormAddress&gt;bonn maximilianstrasse&lt;/xls:freeFormAddress&gt;
 	 * 			&lt;/xls:Address&gt;
 	 * 		&lt;/xls:GeocodeRequest&gt;
 	 * 	&lt;/xls:Request&gt;

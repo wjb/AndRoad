@@ -12,8 +12,6 @@ public class SpeechImproverDE extends AbstractSpeechImprover {
 	// Constants
 	// ===========================================================
 
-	//	private static final String[][] SPEECH_IMPROVEMENTS = {{"traﬂe", "trasse"}};
-
 	// ===========================================================
 	// Fields
 	// ===========================================================
@@ -31,8 +29,7 @@ public class SpeechImproverDE extends AbstractSpeechImprover {
 	// ===========================================================
 
 	public static String improve(final String aTurnDescription) {
-		return aTurnDescription.replace("ﬂ", "hs");
-		//		return improve(aTurnDescription, SPEECH_IMPROVEMENTS);
+		return aTurnDescription.replace("√ü", "hs");
 	}
 
 	// ===========================================================

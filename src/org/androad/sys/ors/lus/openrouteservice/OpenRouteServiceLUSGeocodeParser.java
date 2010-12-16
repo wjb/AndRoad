@@ -31,7 +31,7 @@ import android.util.Log;
  *           &lt;/gml:Point&gt;
  *           &lt;xls:Address countryCode=&quot;de&quot;&gt;
  *             &lt;xls:StreetAddress&gt;
- *               &lt;xls:Street officialName=&quot;Maximilianstraﬂe&quot;/&gt;
+ *               &lt;xls:Street officialName=&quot;Maximilianstrasse&quot;/&gt;
  *             &lt;/xls:StreetAddress&gt;
  *             &lt;xls:Place type=&quot;CountrySubdivision&quot;&gt;Nordrhein-Westfalen&lt;/xls:Place&gt;
  *             &lt;xls:Place type=&quot;Municipality&quot;&gt;Bonn&lt;/xls:Place&gt;

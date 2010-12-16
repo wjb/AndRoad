@@ -17,13 +17,13 @@ public enum UnitSystem {
 		public float calculate(final float f) {
 			return f;
 		}
-	}, "°C", "metric"),
+	}, "Â°C", "metric"),
 	IMPERIAL(UnitConstants.METERTOYARD, "y", R.string.units_yards, UnitConstants.KILOMETERTOMILE, "mi", R.string.units_miles , UnitConstants.METERSPERSECONDTOMILESPERHOUR, "mph", new FloatToFloatMethod(){
 		@Override
 		public float calculate(final float f) {
 			return 9.0f / 5.0f * f + 32;
 		}
-	}, "°F", "us");
+	}, "Â°F", "us");
 
 	public static final int DISTSTRINGS_DIST_ID = 0;
 	public static final int DISTSTRINGS_UNIT_ID = 1;

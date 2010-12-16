@@ -69,9 +69,9 @@ public class Navigator implements Constants{
 	private float mPercentageDone = 0;
 
 	/**
-	 * Supposed to hold the Angle of the next turn. <code>0°;</code> straight<br/>
-	 * <code>+x°;</code> left turn (<code>0 < x <= 180</code>)<br/>
-	 * <code>-x°;</code> right turn (<code>0 > x >= -180</code>)
+	 * Supposed to hold the Angle of the next turn. <code>0Â°;</code> straight<br/>
+	 * <code>+xÂ°;</code> left turn (<code>0 < x <= 180</code>)<br/>
+	 * <code>-xÂ°;</code> right turn (<code>0 > x >= -180</code>)
 	 */
 	private float mTurnAngle = NOT_SET;
 
@@ -259,9 +259,9 @@ public class Navigator implements Constants{
 	}
 
 	/**
-	 * Provides the angle of the next turn. <code>0°;</code> straight<br/>
-	 * <code>+x°;</code> left turn (<code>0 < x <= 180</code>)<br/>
-	 * <code>-x°;</code> right turn (<code>0 > x >= -180</code>)
+	 * Provides the angle of the next turn. <code>0Â°;</code> straight<br/>
+	 * <code>+xÂ°;</code> left turn (<code>0 < x <= 180</code>)<br/>
+	 * <code>-xÂ°;</code> right turn (<code>0 > x >= -180</code>)
 	 */
 	public float getTurnAngle() {
 		return this.mTurnAngle;

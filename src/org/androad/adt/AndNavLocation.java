@@ -87,7 +87,7 @@ public class AndNavLocation extends GeoPoint {
 	/** TODO CHeck description
 	 * Provides the calculated bearing (between the last two Locations supplied)
 	 * and returns the Angle in the following (GPS-likely) manner: <br />
-	 * <code>N:0°, E:90°, S:180°, W:270°</code>
+	 * <code>N:0Â°, E:90Â°, S:180Â°, W:270Â°</code>
 	 */
 	public float getBearing() {
 		return this.mBearing;

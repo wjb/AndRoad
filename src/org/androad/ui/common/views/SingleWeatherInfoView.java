@@ -52,7 +52,7 @@ public class SingleWeatherInfoView extends LinearLayout {
 
 		/* Setup the textView that will show the temperature. */
 		this.mTempTextView = new TextView(context);
-		this.mTempTextView.setText("? °C");
+		this.mTempTextView.setText("? Â°C");
 		this.mTempTextView.setTextSize(16);
 		this.mTempTextView.setTypeface(Typeface.create("Tahoma", Typeface.BOLD));
 
@@ -71,7 +71,7 @@ public class SingleWeatherInfoView extends LinearLayout {
 
 	public void reset() {
 		this.mWeatherImageView.setImageDrawable(getResources().getDrawable(R.drawable.questionmark));
-		this.mTempTextView.setText("? °C");
+		this.mTempTextView.setText("? Â°C");
 	}
 
 	/** Sets the Child-ImageView of this to the URL passed. */
