@@ -5,11 +5,10 @@ import org.andnav.osm.tileprovider.OpenStreetMapTile;
 import org.andnav.osm.util.BoundingBoxE6;
 import org.andnav.osm.util.GeoPoint;
 import org.andnav.osm.views.util.IOpenStreetMapRendererInfo;
+import org.andnav.osm.views.util.constants.MathConstants;
+import org.andnav.osm.views.util.constants.OpenStreetMapViewConstants;
 
-import org.androad.osm.util.constants.MathConstants;
 import org.androad.osm.util.constants.OSMConstants;
-import org.androad.osm.views.tiles.caching.LRUCache;
-import org.androad.osm.views.util.constants.OSMMapViewConstants;
 
 import android.util.FloatMath;
 
@@ -18,7 +17,7 @@ import android.util.FloatMath;
  * @author Nicolas Gramlich
  *
  */
-public class Util implements OSMMapViewConstants, OSMConstants, MathConstants{
+public class Util implements OpenStreetMapViewConstants, OSMConstants, MathConstants{
 	// ===========================================================
 	// Constants
 	// ===========================================================
@@ -81,29 +80,6 @@ public class Util implements OSMMapViewConstants, OSMConstants, MathConstants{
 		final int x = (int) Math.floor((aLon + 180) / 360 * (1 << zoom));
 
 		return new OpenStreetMapTile(aRenderer, x, y, zoom);
-	}
-
-	// Conversion of a MapTile to a BoudingBox
-
-	private final static LRUCache<OpenStreetMapTile, BoundingBoxE6> TILETOBOUNDINGBOX_CACHE = new LRUCache<OpenStreetMapTile, BoundingBoxE6>(10);
-
-	public static BoundingBoxE6 getBoundingBoxFromMapTile(final OpenStreetMapTile aTileInfo) {
-		//		final long startMs = System.currentTimeMillis();
-		//		try{
-		final BoundingBoxE6 cached = TILETOBOUNDINGBOX_CACHE.get(aTileInfo);
-		if(cached != null){
-			//			Log.d(DEBUGTAG, "######### HIT");
-			return cached;
-		}else{
-			//			Log.d(DEBUGTAG, "######### MISS");
-			final BoundingBoxE6 bb = new BoundingBoxE6(tile2lat(aTileInfo.getY(), aTileInfo.getZoomLevel()), tile2lon(aTileInfo.getX() + 1, aTileInfo.getZoomLevel()), tile2lat(aTileInfo.getY() + 1, aTileInfo.getZoomLevel()), tile2lon(aTileInfo.getX(), aTileInfo.getZoomLevel()));
-			TILETOBOUNDINGBOX_CACHE.put(aTileInfo, bb);
-			return bb;
-		}
-		//		}finally{
-		//			final long endMs = System.currentTimeMillis();
-		//			Log.d(DEBUGTAG, "CACHED: " + (endMs - startMs));
-		//		}
 	}
 
 	private static double tile2lon(final int x, final int aZoom) {

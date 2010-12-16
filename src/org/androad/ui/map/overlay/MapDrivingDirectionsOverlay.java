@@ -8,11 +8,11 @@ import org.andnav.osm.util.GeoPoint;
 import org.andnav.osm.views.OpenStreetMapView;
 import org.andnav.osm.views.OpenStreetMapView.OpenStreetMapViewProjection;
 import org.andnav.osm.views.overlay.OpenStreetMapViewOverlay;
+import org.andnav.osm.views.util.constants.MathConstants;
 
 import org.androad.R;
 import org.androad.loc.AbstractAndNavLocationProvider;
 import org.androad.nav.Navigator;
-import org.androad.osm.util.constants.MathConstants;
 import org.androad.osm.views.overlay.util.DirectionArrowDescriptor;
 import org.androad.preferences.PreferenceConstants;
 import org.androad.sys.ors.adt.rs.Route;

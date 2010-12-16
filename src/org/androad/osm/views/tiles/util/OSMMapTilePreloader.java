@@ -14,18 +14,18 @@ import org.andnav.osm.tileprovider.OpenStreetMapTileFilesystemProvider;
 import org.andnav.osm.util.GeoPoint;
 import org.andnav.osm.views.OpenStreetMapView;
 import org.andnav.osm.views.util.IOpenStreetMapRendererInfo;
+import org.andnav.osm.views.util.constants.OpenStreetMapViewConstants;
 
 import org.androad.osm.util.ValuePair;
 import org.androad.osm.util.Util.PixelSetter;
 import org.androad.osm.util.constants.OSMConstants;
 import org.androad.osm.views.util.Util;
-import org.androad.osm.views.util.constants.OSMMapViewConstants;
 import org.androad.sys.ors.adt.rs.Route;
 
 import android.util.Log;
 
 
-public class OSMMapTilePreloader implements OSMConstants, OSMMapViewConstants {
+public class OSMMapTilePreloader implements OSMConstants, OpenStreetMapViewConstants {
 	// ===========================================================
 	// Constants
 	// ===========================================================

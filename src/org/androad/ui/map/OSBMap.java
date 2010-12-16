@@ -10,12 +10,13 @@ import junit.framework.Assert;
 import org.andnav.osm.util.BoundingBoxE6;
 import org.andnav.osm.util.GeoPoint;
 import org.andnav.osm.views.OpenStreetMapView;
-import org.andnav.osm.views.overlay.ScaleBarOverlay;
 import org.andnav.osm.views.OpenStreetMapView.OpenStreetMapViewProjection;
 import org.andnav.osm.views.OpenStreetMapViewController.AnimationType;
+import org.andnav.osm.views.overlay.ScaleBarOverlay;
 import org.andnav.osm.views.overlay.OpenStreetMapViewItemizedOverlay.OnItemGestureListener;
 import org.andnav.osm.views.overlay.OpenStreetMapViewOverlay;
 import org.andnav.osm.views.overlay.OpenStreetMapViewSimpleLocationOverlay;
+import org.andnav.osm.views.util.constants.OpenStreetMapViewConstants;
 
 import org.androad.R;
 import org.androad.adt.AndNavLocation;
@@ -102,7 +103,7 @@ public class OSBMap extends OpenStreetMapAndNavBaseActivity implements OnItemGes
 
 	private BaseOSMMapViewListItemizedOverlayWithFocus<OSMMapViewOSBOverlayItem> mOSBOverlay;
 	private final ArrayList<OSMMapViewOSBOverlayItem> mBugOverlayItems = new ArrayList<OSMMapViewOSBOverlayItem>();
-	private int mBugOverlayItemsIndex = NOT_SET;
+	private int mBugOverlayItemsIndex = OpenStreetMapViewConstants.NOT_SET;
 	private ImageButton mIbtnCommentWrite;
 	private ImageButton mIbtnRefresh;
 	private ImageButton mIbtnAdd;

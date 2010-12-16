@@ -1,10 +1,10 @@
 // Created by plusminus on 00:14:42 - 02.10.2008
 package org.androad.osm;
 
-import org.andnav.osm.views.util.constants.OpenStreetMapViewConstants;
 import org.andnav.osm.contributor.RouteRecorder;
 import org.andnav.osm.util.GeoPoint;
 import org.andnav.osm.views.OpenStreetMapView;
+import org.andnav.osm.views.util.constants.OpenStreetMapViewConstants;
 
 import org.androad.adt.AndNavLocation;
 import org.androad.loc.AbstractAndNavLocationProvider;
@@ -12,7 +12,6 @@ import org.androad.loc.NetworkFallbackLocationProvider;
 import org.androad.loc.AbstractAndNavLocationProvider.AndNavLocationCallback;
 import org.androad.osm.api.traces.TraceManager;
 import org.androad.osm.util.constants.OSMConstants;
-import org.androad.osm.views.util.constants.OSMMapViewConstants;
 import org.androad.ui.common.DataStateChangedListener;
 import org.androad.ui.common.MyDataStateChangedWatcher;
 
@@ -29,10 +28,12 @@ import android.view.Window;
  * @author Nicolas Gramlich
  *
  */
-public abstract class OpenStreetMapActivity extends Activity implements DataStateChangedListener, OSMConstants, OSMMapViewConstants, AndNavLocationCallback {
+public abstract class OpenStreetMapActivity extends Activity implements DataStateChangedListener, OSMConstants, OpenStreetMapViewConstants, AndNavLocationCallback {
 	// ===========================================================
 	// Constants
 	// ===========================================================
+
+    public static final String PREF_MAPCENTER_ID = "pref_mapcenter_id";
 
 	// ===========================================================
 	// Fields
