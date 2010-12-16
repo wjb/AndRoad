@@ -12,7 +12,6 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 import org.andnav.osm.contributor.util.RecordedGeoPoint;
-import org.andnav.osm.util.GeoPoint;
 import org.andnav.osm.util.BoundingBoxE6;
 
 import org.androad.osm.api.util.constants.OSMTraceAPIConstants;

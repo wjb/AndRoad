@@ -1,9 +1,6 @@
 // Created by plusminus on 18:41:23 - 10.04.2008
 package org.androad.ui.settings;
 
-import java.io.File;
-
-import org.andnav.osm.tileprovider.IRegisterReceiver;
 import org.andnav.osm.tileprovider.OpenStreetMapTileFilesystemProvider;
 import org.andnav.osm.tileprovider.constants.OpenStreetMapTileProviderConstants;
 
@@ -11,23 +8,11 @@ import org.androad.R;
 import org.androad.ui.AndNavBaseActivity;
 import org.androad.ui.common.OnClickOnFocusChangedListenerAdapter;
 
-import android.app.AlertDialog;
-import android.app.ProgressDialog;
-import android.content.BroadcastReceiver;
-import android.content.DialogInterface;
 import android.graphics.Color;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.os.Environment;
-import android.os.StatFs;
-import android.util.Log;
 import android.view.View;
-import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.ToggleButton;
-import android.widget.SeekBar.OnSeekBarChangeListener;
 
 
 public class SettingsCache extends AndNavBaseActivity {

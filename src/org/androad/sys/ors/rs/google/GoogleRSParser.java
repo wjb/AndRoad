@@ -1,7 +1,6 @@
 package org.androad.sys.ors.rs.google;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.StringTokenizer;
 
 import org.andnav.osm.util.BoundingBoxE6;

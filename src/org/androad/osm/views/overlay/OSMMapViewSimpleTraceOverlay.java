@@ -3,7 +3,6 @@ package org.androad.osm.views.overlay;
 import java.util.List;
 
 import org.andnav.osm.contributor.util.RecordedGeoPoint;
-import org.andnav.osm.util.GeoPoint;
 import org.andnav.osm.views.OpenStreetMapView;
 import org.andnav.osm.views.OpenStreetMapView.OpenStreetMapViewProjection;
 import org.andnav.osm.views.overlay.OpenStreetMapViewOverlay;

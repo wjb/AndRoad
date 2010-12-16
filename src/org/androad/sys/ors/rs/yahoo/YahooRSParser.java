@@ -1,7 +1,6 @@
 package org.androad.sys.ors.rs.yahoo;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.andnav.osm.util.BoundingBoxE6;
 import org.andnav.osm.util.GeoPoint;

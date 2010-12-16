@@ -6,7 +6,6 @@ import java.util.GregorianCalendar;
 import org.andnav.osm.contributor.GpxToPHPUploader;
 import org.andnav.osm.contributor.OSMUploader;
 import org.andnav.osm.contributor.util.RecordedGeoPoint;
-import org.andnav.osm.util.GeoPoint;
 
 import org.androad.R;
 import org.androad.Splash;
