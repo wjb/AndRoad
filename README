@@ -1,0 +1,52 @@
+Personal Navigation System for the Google Android Platform.
+
+== Features
+
+Current supported features:
+
+* Turn-By-Turn Navigation
+* Location-Lookup
+* POIs
+* Text-2-Speech Instructions
+* Traffic-Feeds
+* Contact-Search
+* 4-day Weather Forecast
+* Via-Points
+* Avoid-Areas
+* accessibility-study (aka 'Where can I get in 30 minutes')
+* TpegML Traffic-Feeds
+* contribute back GPS traces to the OSM project
+* MapTile
+  * It is nothing more than a simple image. It does not contain routing or other geographical information.
+  * If you are familiar with Java, you can quickly create a MapTilePack on your own using the OSMMapTilePackager from the OSMDroid project.
+
+== Dependencies
+
+AndRoad depends of the following project
+
+* osmdroid (http://code.google.com/p/osmdroid/)
+* apache-mime4j-0.6.jar
+* libgoogleweatherapi.jar
+* libQuadTree.jar
+* libTpegML.jar
+* slf4j-android-1.5.8.jar
+* httpmime-4.0.1.jar
+* libosmapi.jar
+* libSpatialIndex.jar
+
+== Install
+
+There is no apk yet available. You need
+* android sdk from http://developer.android.com/sdk/index.html
+* java sdk from http://www.oracle.com/technetwork/java/javase/downloads/index.html
+* ant from http://ant.apache.org/
+
+After configuring the path of your android sdk in the file
+local.properties, you just execute ant install while your phone is
+connected to the computer.
+
+== Feedback
+
+This is a work in progress. Comments should be made on the
+androad@googlegroups.com mailing list at the moment. Contributions are
+always welcome.
