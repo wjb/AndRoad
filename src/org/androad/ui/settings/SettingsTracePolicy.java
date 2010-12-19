@@ -36,11 +36,9 @@ public class SettingsTracePolicy extends AndNavBaseActivity{
 	protected ImageButton mIbtnToSDCard;
 	protected ImageButton mIbtnToOSMAccountUploader;
 	protected ImageButton mIbtnToTrailmappingAccountUploader;
-	protected ImageButton mIbtnToAndNav;
 	protected ImageView mIvToSDCardSelector;
 	protected ImageView mIvToOSMAccountUploaderSelector;
 	protected ImageView mIvToTrailmappingAccountUploaderSelector;
-	protected ImageView mIvToAndNavSelector;
 	protected CheckBox mChkFilterMinimalTraces;
 
 	// ===========================================================
@@ -56,12 +54,10 @@ public class SettingsTracePolicy extends AndNavBaseActivity{
 		this.mIbtnToSDCard = (ImageButton)this.findViewById(R.id.ibtn_settings_tracepolicy_sdcard);
 		this.mIbtnToOSMAccountUploader = (ImageButton)this.findViewById(R.id.ibtn_settings_tracepolicy_uploadtoosmaccount);
 		this.mIbtnToTrailmappingAccountUploader = (ImageButton)this.findViewById(R.id.ibtn_settings_tracepolicy_uploadtotrailmappingaccount);
-		this.mIbtnToAndNav = (ImageButton)this.findViewById(R.id.ibtn_settings_tracepolicy_uploadtoandnav);
 
 		this.mIvToSDCardSelector = (ImageView)this.findViewById(R.id.iv_settings_tracepolicy_sdcard_selector);
 		this.mIvToOSMAccountUploaderSelector = (ImageView)this.findViewById(R.id.iv_settings_tracepolicy_uploadtoosmaccount_selector);
 		this.mIvToTrailmappingAccountUploaderSelector = (ImageView)this.findViewById(R.id.iv_settings_tracepolicy_uploadtotrailmappingaccount_selector);
-		this.mIvToAndNavSelector = (ImageView)this.findViewById(R.id.iv_settings_tracepolicy_uploadtoandnav_selector);
 
 		this.mChkFilterMinimalTraces = (CheckBox)this.findViewById(R.id.chk_settings_tracepolicy_filter_minimal_requirements);
 
@@ -107,27 +103,6 @@ public class SettingsTracePolicy extends AndNavBaseActivity{
 				}
 
 				Preferences.saveTracePolicyExternal(SettingsTracePolicy.this, newValue);
-			}
-		};
-
-		new OnClickOnFocusChangedListenerAdapter(this, R.id.ibtn_settings_tracepolicy_uploadtoandnav){
-			@Override
-			public void onClicked(final View me) {
-				final boolean oldValue = Preferences.getTracePolicyAndnavOrg(SettingsTracePolicy.this);
-				final boolean newValue = !oldValue;
-
-				if(SettingsTracePolicy.super.mMenuVoiceEnabled) {
-					MediaPlayer.create(SettingsTracePolicy.this, R.raw.save).start();
-				}
-
-
-				if(newValue) {
-					SettingsTracePolicy.this.mIvToAndNavSelector.setImageResource(R.drawable.checked);
-				} else {
-					SettingsTracePolicy.this.mIvToAndNavSelector.setImageResource(R.drawable.crossed);
-				}
-
-				Preferences.saveTracePolicyAndnavOrg(SettingsTracePolicy.this, newValue);
 			}
 		};
 
@@ -241,12 +216,6 @@ public class SettingsTracePolicy extends AndNavBaseActivity{
 			this.mIvToTrailmappingAccountUploaderSelector.setImageResource(R.drawable.checked);
 		} else {
 			this.mIvToTrailmappingAccountUploaderSelector.setImageResource(R.drawable.crossed);
-		}
-
-		if(Preferences.getTracePolicyAndnavOrg(this)) {
-			this.mIvToAndNavSelector.setImageResource(R.drawable.checked);
-		} else {
-			this.mIvToAndNavSelector.setImageResource(R.drawable.crossed);
 		}
 	}
 

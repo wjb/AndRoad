@@ -57,7 +57,6 @@ public interface PreferenceConstants {
 	public static final String PREF_SNAPTOROUTE_ID = "pref_snaptoroute_id";
 	public static final String PREF_TRACEPOLICY_OSM_ID = "tracepolicy_osm_id";
 	public static final String PREF_TRACEPOLICY_TRAILMAPPING_ID = "tracepolicy_trailmapping_id";
-	public static final String PREF_TRACEPOLICY_ANDNAVORG_ID = "tracepolicy_andnavorg_id";
 	public static final String PREF_TRACEPOLICY_EXTERNAL_ID = "tracepolicy_external_id";
 	public static final String PREF_OSMACCOUNT_USERNAME_ID = "osmaccount_username_id";
 	public static final String PREF_OSMACCOUNT_PASSWORD_ID = "osmaccount_password_id";

@@ -11,22 +11,12 @@
     	android:scaleType="fitCenter"
     	android:src="@drawable/logo_hand"
     	android:layout_centerInParent="true"/>
-    <ImageView
-    	android:id="@+id/iv_skyhook_logo"
-    	android:layout_width="wrap_content"
-    	android:layout_height="wrap_content"
-    	android:gravity="center_horizontal"
-    	android:scaleType="fitCenter"
-    	android:src="@drawable/skyhook_logo"
-    	android:layout_below="@id/iv_splash_logo"
-    	android:layout_centerHorizontal="true"
-    	android:paddingTop="10px"
-    	android:paddingBottom="10px"/>
     <TextView 
     	style="@style/splashscreen_copyright_textstyle"
     	android:layout_width="fill_parent"
     	android:layout_height="wrap_content"
     	android:layout_alignParentBottom="true"
     	android:gravity="center"
+    	android:paddingTop="20px"
     	android:text="@string/maps_attribution"/>
 </RelativeLayout>

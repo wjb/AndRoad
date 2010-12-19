@@ -66,24 +66,6 @@
 				android:paddingBottom="5px" android:paddingTop="5px"/>
 			
 		</TableRow>
-		<TableRow android:layout_width="fill_parent"
-			android:layout_height="wrap_content">
-			<ImageView 
-				android:id="@+id/iv_settings_tracepolicy_uploadtoandnav_selector"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center" />
-			<ImageButton
-				android:id="@+id/ibtn_settings_tracepolicy_uploadtoandnav"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:src="@drawable/tracepolicy_andnavupload"
-				android:gravity="center"
-				android:paddingLeft="30px" 
-				android:paddingRight="30px"
-				android:paddingBottom="5px" android:paddingTop="5px"/>
-			
-		</TableRow>
 		<TableRow 
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content">

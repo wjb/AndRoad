@@ -755,14 +755,6 @@ public class Preferences implements Constants, PreferenceConstants {
 	// TracePolicy
 	// ===========================================================
 
-	public static boolean getTracePolicyAndnavOrg(final Context ctx) {
-		return getInstance(ctx).getBoolean(PREF_TRACEPOLICY_ANDNAVORG_ID, PREF_TRACEPOLICY_ANDNAVORG_DEFAULT);
-	}
-
-	public static void saveTracePolicyAndnavOrg(final Context ctx, final boolean pEnabled){
-		getEditorInstance(ctx).putBoolean(PREF_TRACEPOLICY_ANDNAVORG_ID, pEnabled).commit();
-	}
-
 	public static boolean getTracePolicyExternal(final Context ctx) {
 		return getInstance(ctx).getBoolean(PREF_TRACEPOLICY_EXTERNAL_ID, PREF_TRACEPOLICY_EXTERNAL_DEFAULT);
 	}
