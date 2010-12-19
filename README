@@ -22,7 +22,7 @@ Current supported features:
 
 == Dependencies
 
-AndRoad depends of the following project
+AndRoad depends of the following projects
 
 * osmdroid (http://code.google.com/p/osmdroid/)
 * apache-mime4j-0.6.jar
@@ -34,7 +34,7 @@ AndRoad depends of the following project
 * libosmapi.jar
 * libSpatialIndex.jar
 
-== Install
+== Compilation
 
 There is no apk yet available. You need
 * android sdk from http://developer.android.com/sdk/index.html
@@ -44,6 +44,22 @@ There is no apk yet available. You need
 After configuring the path of your android sdk in the file
 local.properties, you just execute ant install while your phone is
 connected to the computer.
+
+== Install
+
+Download the apk from http://fabien.carrion.free.fr/AndRoad.apk
+
+In the Parameter screen on your phone, you have to unlock the
+possibility to install an unsigned application. Parameters -->
+Applications --> Unknown Sources.
+
+Plug your phone with the USB connection, transfer the file to your
+phone, unplug your USB cable. Now, on your phone, browse to the SD
+Card directory where you have stored the APK file using any file
+browser you wish available on the Android Market.
+
+Your phone will once again be very unhappy that you wish to install an
+unsigned software but at least this time it should allow you to.
 
 == Feedback
 
