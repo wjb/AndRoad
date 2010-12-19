@@ -8,11 +8,11 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.Toast;
 
+import org.andnav.osm.util.GeoPoint;
 import org.andnav.osm.views.OpenStreetMapView.OpenStreetMapViewProjection;
 
 import org.androad.R;
 import org.androad.adt.Favorite;
-import org.androad.osm.views.util.Util;
 import org.androad.util.constants.Constants;
 
 public class FavoritePoint extends BitmapItem {
@@ -21,7 +21,7 @@ public class FavoritePoint extends BitmapItem {
 	// Constants
 	// ===========================================================
 
-    public final int MAX_DISTANCE = 80;
+    public final int MAX_DISTANCE = 200;
     protected final Favorite fCenter;
 
 	// ===========================================================
@@ -55,10 +55,8 @@ public class FavoritePoint extends BitmapItem {
 
     @Override
     public boolean onSingleTapUp(final MotionEvent e, final OpenStreetMapViewProjection pj) {
-        final Point screenCoords = new Point();
-        pj.toMapPixels(this.fCenter, screenCoords);
-        float distance = Util.calculateDistance(screenCoords.x, (int)e.getX(),
-                                                screenCoords.y, (int)e.getY());
+        GeoPoint tap = pj.fromPixels((int)e.getX(), (int)e.getY());
+        float distance = fCenter.distanceTo(tap);
 
         if (distance > MAX_DISTANCE) {
             return false;
