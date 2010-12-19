@@ -14,8 +14,9 @@ import org.andnav.osm.views.util.OpenStreetMapRendererFactory;
 
 import org.androad.R;
 import org.androad.adt.AndNavLocation;
-import org.androad.osm.views.overlay.OSMMapViewSingleIconOverlay;
 import org.androad.preferences.Preferences;
+import org.androad.sys.ors.views.overlay.BitmapItem;
+import org.androad.sys.ors.views.overlay.BitmapOverlay;
 import org.androad.ui.common.OnClickOnFocusChangedListenerAdapter;
 import org.androad.util.constants.Constants;
 
@@ -57,7 +58,8 @@ public class SetHomeMap extends OpenStreetMapAndNavBaseActivity {
 	protected ImageButton ibtnToggleSatellite;
 	protected ImageButton ibtnClose;
 	protected ImageButton ibtnSetHome;
-	protected OSMMapViewSingleIconOverlay mSetHomeOverlay;
+	protected BitmapItem mSetHomeItem;
+	protected BitmapOverlay mSetHomeOverlay;
 	protected OpenStreetMapViewSimpleLocationOverlay mMyLocationOverlay;
 
 	protected GeoPoint mHomeLocation;
@@ -80,9 +82,12 @@ public class SetHomeMap extends OpenStreetMapAndNavBaseActivity {
 	public void onCreate(final Bundle icicle) {
 		super.onCreate(icicle);
 
+        this.mSetHomeItem = new BitmapItem(null, this, R.drawable.home_set, new Point(0,0));
+        this.mSetHomeOverlay = new BitmapOverlay(this, this.mSetHomeItem);
+
 		/* Add a new instance of our fancy Overlay-Class to the MapView. */
 		final List<OpenStreetMapViewOverlay> overlays = this.mOSMapView.getOverlays();
-		overlays.add(this.mSetHomeOverlay = new OSMMapViewSingleIconOverlay(this, R.drawable.home_set, new Point(0,0)));
+		overlays.add(this.mSetHomeOverlay);
 		overlays.add(this.mMyLocationOverlay = new OpenStreetMapViewSimpleLocationOverlay(this));
 
 		// Load the animation from XML (XML file is res/anim/move_animation.xml).
@@ -102,16 +107,18 @@ public class SetHomeMap extends OpenStreetMapAndNavBaseActivity {
 
 		this.mOSMapView.getController().setZoom(15);
 
-		final GeoPoint mp = Preferences.getHomeGeoPoint(this);
+		GeoPoint mp = Preferences.getHomeGeoPoint(this);
 		if(mp != null){
 			this.mHomeLocation = mp;
-			this.mSetHomeOverlay.setLocation(mp);
+			this.mSetHomeItem.setCenter(mp);
 			this.mOSMapView.getController().animateTo(mp, AnimationType.MIDDLEPEAKSPEED);
 			this.mOSMapView.invalidate();
 		}else{
-			this.ibtnCenter.startAnimation(anim);
-			this.doAutoCenter = true;
-			this.ibtnCenter.setImageResource(R.drawable.person_focused_small);
+            mp = this.mMyLocationOverlay.getMyLocation();
+			this.mHomeLocation = mp;
+			this.mSetHomeItem.setCenter(mp);
+			this.mOSMapView.getController().animateTo(mp, AnimationType.MIDDLEPEAKSPEED);
+			this.mOSMapView.invalidate();
 		}
 	}
 
@@ -259,7 +266,7 @@ public class SetHomeMap extends OpenStreetMapAndNavBaseActivity {
 				final GeoPoint mp = pj.fromPixels((int)mv.getX(), (int)mv.getY());
 
 				SetHomeMap.this.mHomeLocation = mp;
-				SetHomeMap.this.mSetHomeOverlay.setLocation(mp);
+				SetHomeMap.this.mSetHomeItem.setCenter(mp);
 				SetHomeMap.this.mOSMapView.invalidate();
 			}
 		});

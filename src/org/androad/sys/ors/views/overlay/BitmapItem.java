@@ -23,8 +23,9 @@ public class BitmapItem {
 	// ===========================================================
 
 	protected final Paint mPaint = new Paint();
-	protected final GeoPoint mCenter;
+	protected GeoPoint mCenter;
     protected final Context ctx;
+	private final Point mHotSpot;
 
 	protected Bitmap icon;
 
@@ -33,7 +34,10 @@ public class BitmapItem {
 	// ===========================================================
 
 	public BitmapItem(final GeoPoint aCenter, final Context ctx, final int bitmap) {
-		Assert.assertNotNull(aCenter);
+        this(aCenter, ctx, bitmap, null);
+    }
+
+	public BitmapItem(final GeoPoint aCenter, final Context ctx, final int bitmap, final Point pHotSpot) {
 		Assert.assertNotNull(ctx);
 
 		this.mPaint.setARGB(120,255,0,0); // LookThrough-RED
@@ -42,6 +46,12 @@ public class BitmapItem {
         this.ctx = ctx;
 
         this.icon = BitmapFactory.decodeResource(ctx.getResources(), bitmap);
+
+        if (pHotSpot == null) {
+            this.mHotSpot = new Point(this.icon.getWidth() / 2, this.icon.getHeight() / 2);
+        } else {
+            this.mHotSpot = pHotSpot;
+        }
 	}
 
 	// ===========================================================
@@ -56,15 +66,25 @@ public class BitmapItem {
 		return this.mCenter;
 	}
 
+	public void setCenter(GeoPoint c) {
+		this.mCenter = c;
+	}
+
 	// ===========================================================
 	// Methods from SuperClass/Interfaces
 	// ===========================================================
 
+	public void release() {
+		this.icon.recycle();
+	}
+
 	public void drawToCanvas(final Canvas c, final OpenStreetMapViewProjection pj) {
+        if (this.mCenter == null) return;
+
         final Point screenCoords = new Point();
         pj.toMapPixels(this.mCenter, screenCoords);
-        int xpos = screenCoords.x - this.icon.getWidth() / 2;
-        int ypos = screenCoords.y - this.icon.getHeight() / 2;
+        int xpos = screenCoords.x - this.mHotSpot.x;
+        int ypos = screenCoords.y - this.mHotSpot.y;
         c.drawBitmap(this.icon, xpos, ypos, this.mPaint);
 	}
 

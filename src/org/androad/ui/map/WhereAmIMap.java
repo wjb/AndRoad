@@ -38,7 +38,6 @@ import org.androad.osm.util.CoordinatesExtractor;
 import org.androad.osm.views.overlay.BaseOSMMapViewListItemizedOverlayWithFocus;
 import org.androad.osm.views.overlay.OSMMapViewCrosshairOverlay;
 import org.androad.osm.views.overlay.OSMMapViewSimpleLineOverlay;
-import org.androad.osm.views.overlay.OSMMapViewSingleIconOverlay;
 import org.androad.osm.views.tiles.util.OSMMapTilePreloader;
 import org.androad.osm.views.tiles.util.OSMMapTilePreloader.OnProgressChangeListener;
 import org.androad.osm.views.util.Util;
@@ -211,8 +210,9 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 	private BitmapOverlay mFFOverlay;
 	private BitmapOverlay mFavoriteOverlay;
 	private TrafficOverlay mTrafficOverlay;
-	private OSMMapViewSingleIconOverlay mStartFlagOverlay;
-	private OSMMapViewSingleIconOverlay mDestinationFlagOverlay;
+	private BitmapItem mStartFlagItem;
+	private BitmapItem mDestinationFlagItem;
+	private BitmapOverlay mFlagsOverlay;
 	private OSMMapViewSimpleLineOverlay mNavPointsConnectionLineOverlay;
 
 	/** Keeps the screen alive when it would lock otherwise. */
@@ -279,12 +279,15 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 		this.mFFOverlay = new BitmapOverlay(this);
 		this.mFavoriteOverlay = new BitmapOverlay(this);
 		this.mAreaOfAvoidingsOverlay = new AreaOfInterestOverlay(this, this.mAvoidAreas);
+        this.mFlagsOverlay = new BitmapOverlay(this);
 
 		/* SetNavPoints-Overlay. */
 		this.mCrosshairOverlay = new OSMMapViewCrosshairOverlay(this, Color.BLACK, 2, 17);
 		this.mCrosshairOverlay.setVisible(false);
-		this.mStartFlagOverlay = new OSMMapViewSingleIconOverlay(this, R.drawable.flag_start, new Point(18,47));
-		this.mDestinationFlagOverlay = new OSMMapViewSingleIconOverlay(this, R.drawable.flag_destination, new Point(18,47));
+		this.mStartFlagItem = new BitmapItem(null, this, R.drawable.flag_start, new Point(18,47));
+		this.mDestinationFlagItem = new BitmapItem(null, this, R.drawable.flag_destination, new Point(18,47));
+        this.mFlagsOverlay.getBitmapItems().add(this.mStartFlagItem);
+        this.mFlagsOverlay.getBitmapItems().add(this.mDestinationFlagItem);
 		this.mNavPointsConnectionLineOverlay = new OSMMapViewSimpleLineOverlay(this);
 		this.mNavPointsConnectionLineOverlay.setPaintNormal();
 		this.mNavPointsConnectionLineOverlay.setVisible(false);
@@ -295,8 +298,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 		overlays.add(this.mAreaOfAvoidingsOverlay);
 		overlays.add(this.mTrafficOverlay);
 		overlays.add(this.mNavPointsConnectionLineOverlay);
-		overlays.add(this.mStartFlagOverlay);
-		overlays.add(this.mDestinationFlagOverlay);
+		overlays.add(this.mFlagsOverlay);
 		overlays.add(this.mMyLocationOverlay);
 		overlays.add(this.mCrosshairOverlay);
 
@@ -1521,8 +1523,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 			@Override
 			public void onClick(final View v) {
 				/* Set destination-flag and start crosshair-mode. */
-				WhereAmIMap.this.mStartFlagOverlay.setLocation(WhereAmIMap.this.mOSMapView.getMapCenter());
-				WhereAmIMap.this.mStartFlagOverlay.setVisible(true);
+				WhereAmIMap.this.mStartFlagItem.setCenter(WhereAmIMap.this.mOSMapView.getMapCenter());
 				updateUIForNavPointsCrosshairMode(true);
 			}
 		});
@@ -1533,8 +1534,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 			@Override
 			public void onClick(final View v) {
 				/* Set destination-flag and start crosshair-mode. */
-				WhereAmIMap.this.mDestinationFlagOverlay.setLocation(WhereAmIMap.this.mOSMapView.getMapCenter());
-				WhereAmIMap.this.mDestinationFlagOverlay.setVisible(true);
+				WhereAmIMap.this.mDestinationFlagItem.setCenter(WhereAmIMap.this.mOSMapView.getMapCenter());
 				updateUIForNavPointsCrosshairMode(true);
 			}
 		});
@@ -1553,10 +1553,10 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 			public void onClick(final View arg0) {
 				if(WhereAmIMap.this.mNavPointsCrosshairMode){
 					/* User chose a good start+destination. */
-                    if (WhereAmIMap.this.mStartFlagOverlay.isVisible()) {
-                        doNavBetweenGeoPoints(WhereAmIMap.this.mStartFlagOverlay.getLocation(), WhereAmIMap.this.mDestinationFlagOverlay.getLocation());
+                    if (WhereAmIMap.this.mStartFlagItem.getCenter() != null) {
+                        doNavBetweenGeoPoints(WhereAmIMap.this.mStartFlagItem.getCenter(), WhereAmIMap.this.mDestinationFlagItem.getCenter());
                     } else {
-                        doNavToGeoPoint(WhereAmIMap.this.mDestinationFlagOverlay.getLocation());
+                        doNavToGeoPoint(WhereAmIMap.this.mDestinationFlagItem.getCenter());
                     }
 					/* End crosshair-mode. */
 					updateUIForNavPointsCrosshairMode(false);
@@ -1564,8 +1564,8 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 					/* Disable Auto-Follow. */
 					updateUIForAutoCenterChange(WhereAmIMap.CENTERMODE_NONE);
 
-					WhereAmIMap.this.mDestinationFlagOverlay.setVisible(false);
-					WhereAmIMap.this.mStartFlagOverlay.setVisible(false);
+					WhereAmIMap.this.mDestinationFlagItem.setCenter(null);
+					WhereAmIMap.this.mStartFlagItem.setCenter(null);
 					updateUIForNavPointsCrosshairMode(true);
 				}
 			}
@@ -1727,15 +1727,15 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 			this.mIbtnCenter.clearAnimation();
             this.mIvCompass.clearAnimation();
 
-			final boolean destinationSet = this.mDestinationFlagOverlay.isVisible();
+			final boolean destinationSet = this.mDestinationFlagItem.getCenter() != null;
 			this.mIbtnNavPointsDoStart.setEnabled(destinationSet);
             final GeoPoint start;
-            if (WhereAmIMap.this.mStartFlagOverlay.isVisible())
-                start = WhereAmIMap.this.mStartFlagOverlay.getLocation();
+            if (WhereAmIMap.this.mStartFlagItem.getCenter() != null)
+                start = WhereAmIMap.this.mStartFlagItem.getCenter();
             else
                 start = WhereAmIMap.this.mMyLocationOverlay.getLocation();
 			this.mNavPointsConnectionLineOverlay.setFrom(start);
-			this.mNavPointsConnectionLineOverlay.setTo(this.mDestinationFlagOverlay.getLocation());
+			this.mNavPointsConnectionLineOverlay.setTo(this.mDestinationFlagItem.getCenter());
 			this.mNavPointsConnectionLineOverlay.setVisible(destinationSet);
 		}else{
 			startDelayedHideControlsAnimation();
@@ -1748,8 +1748,8 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
             this.mIvCompass.startAnimation(this.mFadeToRightAnimation);
 
 			this.mIbtnNavPointsDoStart.setEnabled(true);
-			this.mStartFlagOverlay.setVisible(false);
-			this.mDestinationFlagOverlay.setVisible(false);
+			this.mStartFlagItem.setCenter(null);
+			this.mDestinationFlagItem.setCenter(null);
 			this.mNavPointsConnectionLineOverlay.setVisible(false);
 		}
 

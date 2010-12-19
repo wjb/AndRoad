@@ -57,6 +57,9 @@ public class BitmapOverlay extends OpenStreetMapViewOverlay {
 	// ===========================================================
 
 	public void release() {
+        for (BitmapItem bi : this.mBIs) {
+            bi.release();
+        }
 		this.mBIs.clear();
 	}
 
