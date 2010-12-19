@@ -682,23 +682,6 @@ public class CommonDialogFactory {
 		}).create();
 	}
 
-	public static Dialog createReportBugDialog(final Context ctx, final CommonCallback<Boolean> pCallback) {
-		return new AlertDialog.Builder(ctx).setMessage("Please report bugs to support@andnav.org with a brief description of the problem. Thank you!") // TODO i18n
-		.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener(){
-			@Override
-			public void onClick(final DialogInterface d, final int which) {
-				pCallback.onSuccess(true);
-			}
-		})
-		.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener(){
-			@Override
-			public void onClick(final DialogInterface d, final int which) {
-				pCallback.onSuccess(false);
-			}
-		})
-		.create();
-	}
-
 	public static Dialog createVersionInfoDialog(final Context ctx, final CommonCallback<Void> pCallback) {
 		final StringBuilder sb = new StringBuilder();
 		sb.append(ctx.getString(R.string.app_name))

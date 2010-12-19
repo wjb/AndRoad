@@ -28,7 +28,7 @@ public class Splash extends Activity implements Constants {
 	private static final int REQUESTCODE_STARTUPWARNING = 0;
 	private static final int REQUESTCODE_SETORSSERVER = REQUESTCODE_STARTUPWARNING + 1;
 
-	private static final int SPLASH_DISPLAY_LENGHT = 2500;
+	private static final int SPLASH_DISPLAY_LENGHT = 1500;
 	private static final int DIALOG_SHOW_ACCEPT_EULA = 0;
 	private static final int DIALOG_SHOW_GPS_NOT_ENABLED = DIALOG_SHOW_ACCEPT_EULA + 1;
 	private static final int DIALOG_SHOW_ORSSERVER_CHANGEABLE_INFO = DIALOG_SHOW_GPS_NOT_ENABLED + 1;

@@ -15,7 +15,6 @@ import org.androad.ui.sd.SDMainChoose;
 import org.androad.ui.sd.SDPOISearchList;
 import org.androad.ui.settings.SettingsMenu;
 import org.androad.ui.settings.SettingsSelectHome;
-import org.androad.ui.util.Util;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -49,10 +48,8 @@ public class Menu extends AndNavGPSActivity {
 
 	private static final int MENU_ABOUT_ID = android.view.Menu.FIRST;
 	private static final int MENU_VERSIONINFO_ID = MENU_ABOUT_ID + 1;
-	private static final int MENU_BUGREPORT_ID = MENU_VERSIONINFO_ID + 1;
 	
-	private static final int DIALOG_SHOW_REPORT_BUG = 0;
-	private static final int DIALOG_SHOW_VERSIONINFO = DIALOG_SHOW_REPORT_BUG + 1;
+	private static final int DIALOG_SHOW_VERSIONINFO = 0;
 	private static final int DIALOG_SHOW_TTS_INSTALL = DIALOG_SHOW_VERSIONINFO + 1;
 
 	// ===========================================================
@@ -101,20 +98,6 @@ public class Menu extends AndNavGPSActivity {
 	// ===========================================================
 
 	private void applyMenuButtonListeners() {
-		findViewById(R.id.btn_bug).setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(final View v) {
-				Util.sendSupportEmail(Menu.this);
-			}
-		});
-		findViewById(R.id.btn_wiki).setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(final View v) {
-				final Intent faqWebIntent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse("http://wiki.andnav.org"));
-				startActivity(faqWebIntent);
-			}
-		});
-
 		/* Set OnClickListener for Where-am-I-Button. */
 		new OnClickOnFocusChangedListenerAdapter(this.findViewById(R.id.ibtn_whereami)){
 			@Override
@@ -283,9 +266,8 @@ public class Menu extends AndNavGPSActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(final android.view.Menu menu) {
-		menu.add(0, MENU_BUGREPORT_ID, android.view.Menu.NONE, getString(R.string.report_bugs)).setIcon(R.drawable.terminal);
-		menu.add(1, MENU_VERSIONINFO_ID, android.view.Menu.NONE, getString(R.string.versioninfo)).setIcon(R.drawable.hardhat);
-		menu.add(2, MENU_ABOUT_ID, android.view.Menu.NONE, getString(R.string.about)).setIcon(R.drawable.questionmark_small);
+		menu.add(0, MENU_VERSIONINFO_ID, android.view.Menu.NONE, getString(R.string.versioninfo)).setIcon(R.drawable.hardhat);
+		menu.add(1, MENU_ABOUT_ID, android.view.Menu.NONE, getString(R.string.about)).setIcon(R.drawable.questionmark_small);
 		return true;
 	}
 
@@ -321,15 +303,6 @@ public class Menu extends AndNavGPSActivity {
 						Preferences.saveShowTTSNotInstalledInfo(Menu.this, false);
 					}
 				}).create();
-			case DIALOG_SHOW_REPORT_BUG:
-				return CommonDialogFactory.createReportBugDialog(this, new CommonCallbackAdapter<Boolean>(){
-					@Override
-					public void onSuccess(final Boolean result) {
-						if(result) {
-							Util.sendSupportEmail(Menu.this);
-						}
-					}
-				});
 			case DIALOG_SHOW_VERSIONINFO:
 				return CommonDialogFactory.createVersionInfoDialog(this, new CommonCallbackAdapter<Void>(){
 					@Override
@@ -348,9 +321,6 @@ public class Menu extends AndNavGPSActivity {
 			case MENU_ABOUT_ID:
 				final Intent aboutIntent = new Intent(this, About.class);
 				startActivityForResult(aboutIntent, REQUESTCODE_ABOUT);
-				return true;
-			case MENU_BUGREPORT_ID:
-				showDialog(DIALOG_SHOW_REPORT_BUG);
 				return true;
 			case MENU_VERSIONINFO_ID:
 				showDialog(DIALOG_SHOW_VERSIONINFO);

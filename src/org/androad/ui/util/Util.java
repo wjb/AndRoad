@@ -50,17 +50,6 @@ public class Util implements Constants{
 		}
 	}
 
-	public static void sendSupportEmail(final Context ctx) {
-		final Intent mailIntent = new Intent(android.content.Intent.ACTION_SEND);
-		mailIntent.setType("plain/text");
-		mailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{"support@andnav.org"});
-		mailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "AndRoad-Bug (v" + org.androad.util.Util.getVersionName(ctx) + ")");
-		mailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "My Error: ");
-
-		ctx.startActivity(Intent.createChooser(mailIntent, "Send Bug-Mail"));
-		Toast.makeText(ctx, "Please describe your bug!", Toast.LENGTH_LONG).show();
-	}
-
 	public static void sendExceptionEmail(final Context ctx, final String pBody) {
 		openEmail(ctx, pBody, "AndRoad-Exception (v" + org.androad.util.Util.getVersionName(ctx) + ")", new String[]{"support@andnav.org"});
 		Toast.makeText(ctx, "Please describe your bug!", Toast.LENGTH_LONG).show();

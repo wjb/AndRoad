@@ -3,7 +3,6 @@ package org.androad.osm.api.traces;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
-import org.andnav.osm.contributor.GpxToPHPUploader;
 import org.andnav.osm.contributor.OSMUploader;
 import org.andnav.osm.contributor.util.RecordedGeoPoint;
 
@@ -60,10 +59,6 @@ public class TraceManager implements OSMConstants {
 
 			if(Preferences.getTracePolicyOSM(pContext)) {
 				doUploadToOSMAccount(pContext, pRecordedGeoPoints);
-			}
-
-			if(Preferences.getTracePolicyAndnavOrg(pContext)) {
-				GpxToPHPUploader.uploadAsync(pRecordedGeoPoints);
 			}
 
 			if(Preferences.getTracePolicyTrailmapping(pContext)) {
