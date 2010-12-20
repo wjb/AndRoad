@@ -16,7 +16,7 @@ public interface OSMTraceAPIConstants extends OSMBaseAPIConstants {
 	public static final int MINGEOPOINTS_FOR_OSM_CONTRIBUTION = 100;
 	public static final int MINDIAGONALMETERS_FOR_OSM_CONTRIBUTION = 200;
 
-	public static final String OSM_CREATOR_INFO = "AndNav - http://www.andnav.org - Android Navigation System";
+	public static final String OSM_CREATOR_INFO = "AndRoad - https://github.com/gkfabs/AndRoad";
 
 	/* GPX-Constants */
 	public static final String GPX_VERSION = "1.1";

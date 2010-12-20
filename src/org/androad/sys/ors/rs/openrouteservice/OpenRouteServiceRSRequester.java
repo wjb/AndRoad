@@ -177,7 +177,7 @@ public class OpenRouteServiceRSRequester implements Constants, OSMConstants, RSR
 			/* Exception would have been thrown in invalid route. */
 			try {
 				// Ensure folder exists
-				final String traceFolderPath = Util.getAndNavExternalStoragePath() + SDCARD_SAVEDROUTES_PATH;
+				final String traceFolderPath = Util.getAndRoadExternalStoragePath() + SDCARD_SAVEDROUTES_PATH;
 				new File(traceFolderPath).mkdirs();
 
 				// Create file and ensure that needed folders exist.

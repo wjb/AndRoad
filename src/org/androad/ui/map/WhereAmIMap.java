@@ -585,7 +585,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
                 }
                 byte[] d = data.getByteArrayExtra(CameraFavorite.class.getName());
 
-                final String favoriteFolderPath = org.androad.osm.util.Util.getAndNavExternalStoragePath() + OSMConstants.SDCARD_SAVEDFAVORITES_PATH;
+                final String favoriteFolderPath = org.androad.osm.util.Util.getAndRoadExternalStoragePath() + OSMConstants.SDCARD_SAVEDFAVORITES_PATH;
                 new File(favoriteFolderPath).mkdirs();
                 final String filename = f.getPhotoFilename();
                 FileOutputStream outStream = null;

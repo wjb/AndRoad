@@ -400,7 +400,7 @@ public class Route implements Parcelable, Serializable {
 					}
 				}
 
-				if(curIndexInPolyLine == 0 || curIndexInPolyLine >= polyLineLenght - 1){ // TODO anners wie bei AndNav1 --> funzt trotzdem?
+				if(curIndexInPolyLine == 0 || curIndexInPolyLine >= polyLineLenght - 1){
 					ri.setAngle(0);
 				}else{
 

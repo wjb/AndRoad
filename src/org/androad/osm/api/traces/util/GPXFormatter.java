@@ -50,7 +50,7 @@ public class GPXFormatter implements OSMTraceAPIConstants, OSMConstants {
 	/**
 	 * Creates a String in the following XML format:
 	 * <PRE>&lt;?xml version=&quot;1.0&quot;?&gt;
-	 * &lt;gpx version=&quot;1.1&quot; creator=&quot;AndNav - http://www.andnav.org - Android Navigation System&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns=&quot;http://www.topografix.com/GPX/1/1&quot; xsi:schemaLocation=&quot;http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd&quot;&gt;
+	 * &lt;gpx version=&quot;1.1&quot; creator=&quot;AndRoad - https://github.com/gkfabs/AndRoad&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns=&quot;http://www.topografix.com/GPX/1/1&quot; xsi:schemaLocation=&quot;http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd&quot;&gt;
 	 * 	&lt;time&gt;2008-09-22T00:46:20Z&lt;/time&gt;
 	 * 	&lt;trk&gt;
 	 * 	&lt;name&gt;plusminus--yyyyMMdd_HHmmss-yyyyMMdd_HHmmss&lt;/name&gt;

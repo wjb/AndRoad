@@ -374,7 +374,7 @@ public class Menu extends AndNavGPSActivity {
 	}
 
 	private void startNavHomeActivity() {
-		/* Load AndNavRoutehome-Activity. */
+		/* Load AndRoadRoutehome-Activity. */
 		final GeoPoint mpHome = Preferences.getHomeGeoPoint(Menu.this);
 		if(mpHome == null){
 			final Intent setHomeIntent = new Intent(Menu.this, SettingsSelectHome.class);

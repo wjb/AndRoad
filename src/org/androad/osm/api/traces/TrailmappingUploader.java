@@ -46,8 +46,8 @@ public class TrailmappingUploader implements OSMConstants, OSMTraceAPIConstants 
 	private static final String BOUNDARY = "----------------------------d10f7aa230e8";
 	private static final String LINE_END = "\r\n";
 
-	private static final String DEFAULT_TITLE = "AndNav - automatically created route.";
-	private static final String DEFAULT_BODY = "AndNav - automatically created route.";
+	private static final String DEFAULT_TITLE = OSM_CREATOR_INFO;
+	private static final String DEFAULT_BODY = OSM_CREATOR_INFO;
 
 	public static final SimpleDateFormat pseudoFileNameFormat = new SimpleDateFormat("yyyyMMdd'_'HHmmss'_'SSS");
 

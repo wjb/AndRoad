@@ -12,8 +12,8 @@ public interface Constants {
 	public static final String ANDROAD_NAV_ACTION = "org.androad.intent.ACTION_NAV_TO";
 	public static final String ANDROAD_VIEW_ACTION = "org.androad.intent.ACTION_VIEW";
 
-	/** Overall DebugTag for whole AndNav. */
-	public static final String DEBUGTAG = "ANDNAV_DEBUGTAG";
+	/** Overall DebugTag for whole AndRoad. */
+	public static final String DEBUGTAG = "ANDROAD_DEBUGTAG";
 
 	/** Shall be used if only one SubActivity is closed.*/
 	public static final int SUBACTIVITY_RESULTCODE_UP_ONE_LEVEL = 0;
@@ -28,7 +28,7 @@ public interface Constants {
 
 	/** IDentifier for SubActivities to extract the Mode
 	 * out of the Intents Extras the SubActivity was launched with. */
-	public static final String EXTRAS_MODE = "org.andnav.EXTRAS_MODE";
+	public static final String EXTRAS_MODE = "org.androad.EXTRAS_MODE";
 
 	public static final int EXTRAS_MODE_DIRECT_LATLNG = 0;
 	public static final int EXTRAS_MODE_ZIPSEARCH = EXTRAS_MODE_DIRECT_LATLNG + 1;
@@ -41,60 +41,60 @@ public interface Constants {
 
 	/** IDentifier for SubActivities to extract the filename
 	 * of a saved route, to be loaded from the SD-Card. */
-	public static final String EXTRAS_SAVED_ROUTE_FILENAME_ID = "org.andnav.EXTRAS_SAVED_ROUTE_FILENAME_ID";
+	public static final String EXTRAS_SAVED_ROUTE_FILENAME_ID = "org.androad.EXTRAS_SAVED_ROUTE_FILENAME_ID";
 
 
 	/** IDentifier for SubActivities to extract theLatitude
 	 * out of the Intents Extras the SubActivity was launched with. */
-	public static final String EXTRAS_START_LATITUDE_ID = "org.andnav.EXTRAS_START_LATITUDE_ID";
+	public static final String EXTRAS_START_LATITUDE_ID = "org.androad.EXTRAS_START_LATITUDE_ID";
 
 	/** IDentifier for SubActivities to extract the Longitude.
 	 * out of the Intents Extras the SubActivity was launched with. */
-	public static final String EXTRAS_START_LONGITUDE_ID = "org.andnav.EXTRAS_START_LONGITUDE_ID";
+	public static final String EXTRAS_START_LONGITUDE_ID = "org.androad.EXTRAS_START_LONGITUDE_ID";
 
 	/** IDentifier for SubActivities to extract theLatitude
 	 * out of the Intents Extras the SubActivity was launched with. */
-	public static final String EXTRAS_DESTINATION_LATITUDE_ID = "org.andnav.EXTRAS_DESTINATION_LATITUDE_ID";
+	public static final String EXTRAS_DESTINATION_LATITUDE_ID = "org.androad.EXTRAS_DESTINATION_LATITUDE_ID";
 
 	/** IDentifier for SubActivities to extract the Longitude.
 	 * out of the Intents Extras the SubActivity was launched with. */
-	public static final String EXTRAS_DESTINATION_LONGITUDE_ID = "org.andnav.EXTRAS_DESTINATION_LONGITUDE_ID";
+	public static final String EXTRAS_DESTINATION_LONGITUDE_ID = "org.androad.EXTRAS_DESTINATION_LONGITUDE_ID";
 
 	/** IDentifier for SubActivities to extract title name
 	 * out of the Intents Extras the SubActivity was launched with. */
-	public static final String EXTRAS_DESTINATION_TITLE = "org.andnav.EXTRAS_DESTINATION_TITLE";
+	public static final String EXTRAS_DESTINATION_TITLE = "org.androad.EXTRAS_DESTINATION_TITLE";
 
 
 	/** IDentifier for SubActivities to extract the count of VIAS.
 	 * out of the Intents Extras the SubActivity was launched with. */
-	public static final String EXTRAS_VIAS_ID = "org.andnav.EXTRAS_VIAS_ID";
+	public static final String EXTRAS_VIAS_ID = "org.androad.EXTRAS_VIAS_ID";
 	public static final String EXTRAS_VIAS_SPLITTER = ";";
 
 	/** IDentifier for SubActivities to extract the Country-Code
 	 * out of the Intents Extras the SubActivity was launched with. */
-	public static final String EXTRAS_COUNTRY_ID = "org.andnav.EXTRAS_COUNTRYCODE_ID";
+	public static final String EXTRAS_COUNTRY_ID = "org.androad.EXTRAS_COUNTRYCODE_ID";
 
 	/** IDentifier for SubActivities to extract the CountrySubdivision-Code
 	 * out of the Intents Extras the SubActivity was launched with. */
-	public static final String EXTRAS_COUNTRYSUBDIVISIONCODE_ID = "org.andnav.EXTRAS_COUNTRYSUBDIVISIONCODE_ID";
+	public static final String EXTRAS_COUNTRYSUBDIVISIONCODE_ID = "org.androad.EXTRAS_COUNTRYSUBDIVISIONCODE_ID";
 
 	/** IDentifier for SubActivities to extract the City-Name
 	 * out of the Intents Extras the SubActivity was launched with. */
-	public static final String EXTRAS_CITYNAME_ID = "org.andnav.EXTRAS_CITYNAME_ID";
+	public static final String EXTRAS_CITYNAME_ID = "org.androad.EXTRAS_CITYNAME_ID";
 
 	/** IDentifier for SubActivities to extract the StreetName
 	 * out of the Intents Extras the SubActivity was launched with. */
-	public static final String EXTRAS_STREET_ID = "org.andnav.EXTRAS_STREET_ID";
+	public static final String EXTRAS_STREET_ID = "org.androad.EXTRAS_STREET_ID";
 
 	/** IDentifier for SubActivities to extract the StreetNumber
 	 * out of the Intents Extras the SubActivity was launched with. */
-	public static final String EXTRAS_STREETNUMBER_ID = "org.andnav.EXTRAS_STREETNUMBER_ID";
+	public static final String EXTRAS_STREETNUMBER_ID = "org.androad.EXTRAS_STREETNUMBER_ID";
 
 	/** IDentifier for SubActivities to extract the ZipCode
 	 * out of the Intents Extras the SubActivity was launched with. */
-	public static final String EXTRAS_ZIPCODE_ID = "org.andnav.EXTRAS_ZIPCODE_ID";
+	public static final String EXTRAS_ZIPCODE_ID = "org.androad.EXTRAS_ZIPCODE_ID";
 
-	public static final String EXTRAS_FREEFORM_ID = "org.andnav.EXTRAS_FREEFORM_ID";
+	public static final String EXTRAS_FREEFORM_ID = "org.androad.EXTRAS_FREEFORM_ID";
 
-	public static final String EXTRAS_ROUTEHANDLEID_ID = "org.andnav.EXTRAS_ROUTEHANDLEID_ID";
+	public static final String EXTRAS_ROUTEHANDLEID_ID = "org.androad.EXTRAS_ROUTEHANDLEID_ID";
 }

@@ -82,7 +82,7 @@ public class SDSavedTraceChooser extends AndNavBaseActivity implements OSMConsta
 		if(!android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED)){
 			/* Should not happen as the activity is not selectable in SDMainChoose, when no external media is inserted. */
 		}else{
-			EXTERNAL_STORAGE_BASEDIRECTORY = Util.getAndNavExternalStoragePath();
+			EXTERNAL_STORAGE_BASEDIRECTORY = Util.getAndRoadExternalStoragePath();
 
 			// Ensure the traces-directory exists.
 			new File(EXTERNAL_STORAGE_BASEDIRECTORY + SDCARD_SAVEDTRACES_PATH).mkdirs();

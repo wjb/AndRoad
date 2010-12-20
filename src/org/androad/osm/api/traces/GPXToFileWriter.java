@@ -52,7 +52,7 @@ public class GPXToFileWriter implements OSMConstants {
 			public void run() {
 				try {
 					// Ensure folder exists
-					final String traceFolderPath = Util.getAndNavExternalStoragePath() + SDCARD_SAVEDTRACES_PATH;
+					final String traceFolderPath = Util.getAndRoadExternalStoragePath() + SDCARD_SAVEDTRACES_PATH;
 					new File(traceFolderPath).mkdirs();
 
 					// Create file and ensure that needed folders exist.

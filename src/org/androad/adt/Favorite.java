@@ -43,7 +43,7 @@ public class Favorite extends GeoPoint{
 	}
 
     public String getPhotoFilename() {
-        final String favoriteFolderPath = org.androad.osm.util.Util.getAndNavExternalStoragePath() + OSMConstants.SDCARD_SAVEDFAVORITES_PATH;
+        final String favoriteFolderPath = org.androad.osm.util.Util.getAndRoadExternalStoragePath() + OSMConstants.SDCARD_SAVEDFAVORITES_PATH;
         return favoriteFolderPath + this.id + ".jpg";
     }
 

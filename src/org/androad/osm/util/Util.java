@@ -37,7 +37,7 @@ public class Util implements OSMConstants {
 	 * May crash when External-Media is not mounted.
 	 * @return path, like <code>"/sdcard/androad/"</code> always ending with a <code>"/"</code>
 	 */
-	public static final String getAndNavExternalStoragePath(){
+	public static final String getAndRoadExternalStoragePath(){
 		final String absoluteExternalPath = android.os.Environment.getExternalStorageDirectory().getAbsolutePath();
 		if(absoluteExternalPath.endsWith("/")) {
 			return absoluteExternalPath + BASEPATH_ON_EXTERNAL_MEDIA;

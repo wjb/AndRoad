@@ -97,7 +97,7 @@ public class Splash extends Activity implements Constants {
 
 		if(gpsEnabled){
 			proceedWithORSServerSetCheck();
-		}else{ /* GPS is required to run AndNav! */
+		}else{ /* Check GPS */
 			try{
 				showDialog(DIALOG_SHOW_GPS_NOT_ENABLED);
 			}catch(final BadTokenException bte){ /* Nothing. */ }

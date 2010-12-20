@@ -51,7 +51,7 @@ public class RSOfflineLoader implements OSMConstants {
 			if(!android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED)){
 				throw new ExternalStorageNotMountedException();
 			}else{
-				EXTERNAL_STORAGE_BASEDIRECTORY = Util.getAndNavExternalStoragePath();
+				EXTERNAL_STORAGE_BASEDIRECTORY = Util.getAndRoadExternalStoragePath();
 
 				// Ensure the routes-directory exists.
 				new File(EXTERNAL_STORAGE_BASEDIRECTORY + SDCARD_SAVEDROUTES_PATH).mkdirs();
