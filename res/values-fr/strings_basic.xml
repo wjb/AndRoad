@@ -7,6 +7,8 @@
 	<string name="na">Indisp.</string>
 	<string name="cancel">Annuler</string>
 	<string name="close">Fermer</string>
+	<string name="enter">Entrer</string>
+	<string name="exit">Exit</string>
 	<string name="instructions">Instructions</string>
 	<string name="clear">Effacer</string>
 	<string name="success">Succès</string>
@@ -28,6 +30,7 @@
 	<string name="clipboard">Presse-papiers</string>
 	<string name="online">En ligne</string>
 	<string name="offline">Hors ligne</string>
+	<string name="activate">Activer</string>
 	
 	<string name="year">an</string>
 	<string name="years">ans</string>
@@ -51,7 +54,7 @@
 	<string name="list_empty">Cette liste est vide...</string>
 	
 	<string name="startup_gpsrequried_title">Le GPS est désactivé...</string>
-	<string name="startup_gpsrequried_message">Pour utiliser AndNav, vous devez activer le récepteur GPS de votre appareil.\n\nCliquez sur <b>Ok</b> pour accéder aux paramètres système, ou sur <b>Annuler</b> pour quitter.\n\nRedémarrez ensuite AndNav.\n</string>
+	<string name="startup_gpsrequried_message">Pour utiliser AndNav, vous devez activer le récepteur GPS de votre appareil.\n\nCliquez sur <b>Activer</b> pour activer le GPS, <b>Entrer</b> pour utiliser l\'app, ou sur <b>Exit</b> pour quitter.\n\nRedémarrez ensuite AndNav.\n</string>
 	
 	<string name="startupwarning">Regardez la route ou vous finirez dans les arbres !\nVous conduisez à vos propres risques !</string>
 	<string name="nevershowagain">Ne plus afficher</string>

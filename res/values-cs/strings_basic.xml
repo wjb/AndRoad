@@ -7,6 +7,8 @@
 	<string name="na">N/V</string>
 	<string name="cancel">Zrušit</string>
 	<string name="close">Zavřít</string>
+	<string name="enter">Enter</string>
+	<string name="exit">Exit</string>
 	<string name="instructions">Návod</string>
 	<string name="clear">Smazat</string>
 	<string name="success">Úspěch</string>
@@ -26,6 +28,7 @@
 	<string name="home">Domů</string>
 	<string name="proceed">Další</string>
 	<string name="clipboard">Schránka</string>
+	<string name="activate">Activate</string>
 	
 	<string name="year">Rok</string>
 	<string name="years">Roky</string>

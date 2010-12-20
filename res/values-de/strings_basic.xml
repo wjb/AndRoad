@@ -7,6 +7,8 @@
 	<string name="na">N/V</string>
 	<string name="cancel">Abbrechen</string>
 	<string name="close">Schließen</string>
+	<string name="enter">Enter</string>
+	<string name="exit">Exit</string>
 	<string name="instructions">Anleitung</string>
 	<string name="clear">Löschen</string>
 	<string name="success">Erfolg</string>
@@ -26,6 +28,7 @@
 	<string name="home">Nach Hause</string>
 	<string name="proceed">Weiter</string>
 	<string name="clipboard">Zwischenablage</string>
+	<string name="activate">Activate</string>
 	
 	
 	<string name="year">Jahr</string>

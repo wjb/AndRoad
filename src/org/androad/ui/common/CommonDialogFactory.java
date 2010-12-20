@@ -515,16 +515,22 @@ public class CommonDialogFactory {
 		return new AlertDialog.Builder(ctx)
 		.setTitle(R.string.startup_gpsrequried_title)
 		.setMessage(R.string.startup_gpsrequried_message)
-		.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener(){
+		.setPositiveButton(R.string.activate, new DialogInterface.OnClickListener(){
 			@Override
 			public void onClick(final DialogInterface d, final int which) {
 				pCallback.onSuccess(true);
 			}
 		})
-		.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener(){
+        .setNeutralButton(R.string.enter, new DialogInterface.OnClickListener(){
 			@Override
 			public void onClick(final DialogInterface d, final int which) {
 				pCallback.onSuccess(false);
+			}
+		})
+		.setNegativeButton(R.string.exit, new DialogInterface.OnClickListener(){
+			@Override
+			public void onClick(final DialogInterface d, final int which) {
+				pCallback.onFailure(null);
 			}
 		})
 		.create();

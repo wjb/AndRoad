@@ -12,10 +12,12 @@ import org.androad.util.constants.Constants;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.net.Uri;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.WindowManager.BadTokenException;
@@ -180,11 +182,19 @@ public class Splash extends Activity implements Constants {
 					@Override
 					public void onSuccess(final Boolean result) {
 						if(result) {
-							startActivity(new Intent(Settings.ACTION_SECURITY_SETTINGS));
+                            final Intent intent = new Intent();
+                            intent.setClassName("com.android.settings",
+                                                "com.android.settings.widget.SettingsAppWidgetProvider");
+                            intent.addCategory(Intent.CATEGORY_ALTERNATIVE);
+                            intent.setData(Uri.parse("custom:3"));
+                            Splash.this.getApplicationContext().sendBroadcast(intent);
 						}
-
-						Splash.this.finish();
+                        proceedWithORSServerSetCheck();
 					}
+					@Override
+                    public void onFailure(final Throwable t) {
+                        Splash.this.finish();
+                    }
 				});
 			default:
 				return null;

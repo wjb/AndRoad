@@ -7,6 +7,8 @@
 	<string name="na">N/A</string>
 	<string name="cancel">Cancel</string>
 	<string name="close">Close</string>
+	<string name="enter">Enter</string>
+	<string name="exit">Exit</string>
 	<string name="instructions">Instructions</string>
 	<string name="clear">Clear</string>
 	<string name="success">Success</string>
@@ -28,6 +30,7 @@
 	<string name="clipboard">Clipboard</string>
 	<string name="online">Online</string>
 	<string name="offline">Offline</string>
+	<string name="activate">Activate</string>
 	
 	<string name="year">year</string>
 	<string name="years">years</string>
@@ -49,9 +52,9 @@
 	<string name="please_wait_a_moment">Please wait a moment..."</string>
 	
 	<string name="list_empty">This list is empty...</string>
-	
+
 	<string name="startup_gpsrequried_title">GPS is disabled...</string>
-	<string name="startup_gpsrequried_message">In order to use AndNav, you need to turn on the GPS Receiver of your device.\n\nClick <b>Ok</b> to go to the system-settings, or <b>Cancel</b> to leave.\n\nAfter that please restart AndNav.\n</string>
+	<string name="startup_gpsrequried_message">In order to use AndNav, you need to turn on the GPS Receiver of your device.\n\nClick <b>Activate</b> to enable GPS, <b>Enter</b> to enter anyway, or <b>Exit</b> to leave.\n\nAfter that please restart AndNav.\n</string>
 	
 	<string name="startupwarning">Watch the streets or you\'ll meet the trees!\nYou drive at your own risk!</string>
 	<string name="nevershowagain">Never show again</string>
