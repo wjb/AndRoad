@@ -18,7 +18,7 @@ Current supported features:
 * contribute back GPS traces to the OSM project
 * MapTile
   * It is nothing more than a simple image. It does not contain routing or other geographical information.
-  * If you are familiar with Java, you can quickly create a MapTilePack on your own using the OSMMapTilePackager from the OSMDroid project.
+  * If you are familiar with Java, you can quickly create a MapTilePack on your own using the Mobile Atlas Creator from the OSMDroid project. (http://code.google.com/p/osmdroid/wiki/MobileAtlasCreator)
 
 == Dependencies
 
