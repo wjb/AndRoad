@@ -3,10 +3,10 @@
 		<string name="chk_settings_voice_menuvoice_caption">Voix dans les menus</string>
 		<string name="btn_settings_voice_goadvanced_caption">Avancé</string>
 		<string name="chk_settings_voice_directionvoice_caption">Voix pour les instructions</string>
-		<string name="tv_settings_voice_quickinfo_menuvoice_default">Changer les paramètres de voix de AndNav.</string>
-		<string name="tv_settings_voice_quickinfo_menuvoice_description">La voix dans les menus sera jouée lors de la navigation dans presque n\'importe quel menu de AndNav.</string>
+		<string name="tv_settings_voice_quickinfo_menuvoice_default">Changer les paramètres de voix de AndRoad.</string>
+		<string name="tv_settings_voice_quickinfo_menuvoice_description">La voix dans les menus sera jouée lors de la navigation dans presque n\'importe quel menu de AndRoad.</string>
 		
-		<string name="tv_settings_voice_quickinfo_directionvoice_description">La voix pour les instructions sera jouée lorsque AndNav vous guide au prochain changement.\n i.e. \"Dans 200 mètres, tournez à droite\".</string>
+		<string name="tv_settings_voice_quickinfo_directionvoice_description">La voix pour les instructions sera jouée lorsque AndRoad vous guide au prochain changement.\n i.e. \"Dans 200 mètres, tournez à droite\".</string>
 			<string name="tv_settings_directionvoice_quickinfo">Que dire lorsque...</string>
 			<string name="tv_settings_directionvoice_column_in">Dans...</string>
 			<string name="tv_settings_directionvoice_column_saywhat">... que dire ?</string>

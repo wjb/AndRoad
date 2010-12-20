@@ -3,7 +3,7 @@
 		<string name="chk_settings_voice_menuvoice_caption">Menü-Stimme</string>
 		<string name="btn_settings_voice_goadvanced_caption">Erweitert</string>
 		<string name="chk_settings_voice_directionvoice_caption">Ansage-Stimme</string>
-		<string name="tv_settings_voice_quickinfo_menuvoice_default">Sprach-Einstellungen von AndNav ändern.</string>
+		<string name="tv_settings_voice_quickinfo_menuvoice_default">Sprach-Einstellungen von AndRoad ändern.</string>
 		<string name="tv_settings_voice_quickinfo_menuvoice_description">Die Menü-Stimme wird beim navigieren durch die meisten der Menüs abgespielt.</string>
 		
 		<string name="tv_settings_voice_quickinfo_directionvoice_description">Navigations-Stimme wird beim Navigieren abgespielt.\n z.B. \"In 200 Metern, rechts abbiegen.\".</string>

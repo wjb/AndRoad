@@ -55,7 +55,7 @@
 	<string name="list_empty">Die Liste ist leer...</string>
 	
 	<string name="startup_gpsrequried_title">GPS aktiv...</string>
-	<string name="startup_gpsrequried_message">Um AndNav nutzen zu können muss der GPS-Empfänger aktiviert werden.\n\nKlicken sie auf <b>Ok</b> um in die System-Einstellungen zu gelangen, oder <b>Abbrechen</b> zum beenden.\n\nStarten sie danach bitte AndNav neu.\n</string>
+	<string name="startup_gpsrequried_message">Um AndRoad nutzen zu können muss der GPS-Empfänger aktiviert werden.\n\nKlicken sie auf <b>Ok</b> um in die System-Einstellungen zu gelangen, oder <b>Abbrechen</b> zum beenden.\n\nStarten sie danach bitte AndRoad neu.\n</string>
 	
 	<string name="startupwarning">Achten Sie auf die Straßen!\nSie fahren auf eigenes Risiko!</string>
 	<string name="nevershowagain">Nicht wieder zeigen</string>

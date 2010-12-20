@@ -52,7 +52,7 @@
 	<string name="list_empty">Seznam je prázdný...</string>
 	
 	<string name="startup_gpsrequried_title">GPS je aktivní...</string>
-	<string name="startup_gpsrequried_message">Aby bylo možné používat AndNav, musí být zapnutý GPS-přijímač.\n\nKlikněte na <b>OK</b> pro přesun do systémových nastavení, nebo <b>Zrušit</b> pro ukončení.\n\nSpusťte potom AndNav znovu.\n</string>
+	<string name="startup_gpsrequried_message">Aby bylo možné používat AndRoad, musí být zapnutý GPS-přijímač.\n\nKlikněte na <b>OK</b> pro přesun do systémových nastavení, nebo <b>Zrušit</b> pro ukončení.\n\nSpusťte potom AndRoad znovu.\n</string>
 	
 	<string name="startupwarning">Dávejde pozor na provoz!\nJedete na vlastní riziko!</string>
 	<string name="nevershowagain">Příště nezobrazovat</string>

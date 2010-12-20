@@ -54,7 +54,7 @@
 	<string name="list_empty">This list is empty...</string>
 
 	<string name="startup_gpsrequried_title">GPS is disabled...</string>
-	<string name="startup_gpsrequried_message">In order to use AndNav, you need to turn on the GPS Receiver of your device.\n\nClick <b>Activate</b> to enable GPS, <b>Enter</b> to enter anyway, or <b>Exit</b> to leave.\n\nAfter that please restart AndNav.\n</string>
+	<string name="startup_gpsrequried_message">In order to use AndRoad, you need to turn on the GPS Receiver of your device.\n\nClick <b>Activate</b> to enable GPS, <b>Enter</b> to enter anyway, or <b>Exit</b> to leave.\n\nAfter that please restart AndRoad.\n</string>
 	
 	<string name="startupwarning">Watch the streets or you\'ll meet the trees!\nYou drive at your own risk!</string>
 	<string name="nevershowagain">Never show again</string>

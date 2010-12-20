@@ -10,7 +10,7 @@
 -->
 <resources>
 	<!-- Message shown, when another application started andnav with invalid parameters. -->
-	<string name="nav_intent_parse_error_message">Navigations-Intent konnte nicht geparst werden. Bitte kontaktieren sie den Support des Programmes, weöches Sie auf AndNav geleitet hat.</string>
+	<string name="nav_intent_parse_error_message">Navigations-Intent konnte nicht geparst werden. Bitte kontaktieren sie den Support des Programmes, weöches Sie auf AndRoad geleitet hat.</string>
 	
 	<!-- Menu-Strings -->
 	<string name="maps_menu_quit">Beenden</string>

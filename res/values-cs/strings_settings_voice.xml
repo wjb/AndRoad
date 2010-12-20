@@ -12,7 +12,7 @@
 		<string name="chk_settings_voice_menuvoice_caption">Hlas menu</string>
 		<string name="btn_settings_voice_goadvanced_caption">Rozšířené</string>
 		<string name="chk_settings_voice_directionvoice_caption">Hlas průvodce</string>
-		<string name="tv_settings_voice_quickinfo_menuvoice_default">Změnit nastavení jazyka AndNav.</string>
+		<string name="tv_settings_voice_quickinfo_menuvoice_default">Změnit nastavení jazyka AndRoad.</string>
 		<string name="tv_settings_voice_quickinfo_menuvoice_description">Hlas menu bude přehráván při procházení v menu aplikace.</string>
 		
 		<string name="tv_settings_voice_quickinfo_directionvoice_description">Hlas navigace bude přehrán při navigaci.\n n.p. \"Za 200 metrů, odboč vpravo.\".</string>

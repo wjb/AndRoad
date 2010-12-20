@@ -54,7 +54,7 @@
 	<string name="list_empty">Cette liste est vide...</string>
 	
 	<string name="startup_gpsrequried_title">Le GPS est désactivé...</string>
-	<string name="startup_gpsrequried_message">Pour utiliser AndNav, vous devez activer le récepteur GPS de votre appareil.\n\nCliquez sur <b>Activer</b> pour activer le GPS, <b>Entrer</b> pour utiliser l\'app, ou sur <b>Exit</b> pour quitter.\n\nRedémarrez ensuite AndNav.\n</string>
+	<string name="startup_gpsrequried_message">Pour utiliser AndRoad, vous devez activer le récepteur GPS de votre appareil.\n\nCliquez sur <b>Activer</b> pour activer le GPS, <b>Entrer</b> pour utiliser l\'app, ou sur <b>Exit</b> pour quitter.\n\nRedémarrez ensuite AndRoad.\n</string>
 	
 	<string name="startupwarning">Regardez la route ou vous finirez dans les arbres !\nVous conduisez à vos propres risques !</string>
 	<string name="nevershowagain">Ne plus afficher</string>

@@ -3,10 +3,10 @@
 		<string name="chk_settings_voice_menuvoice_caption">Menu Voice</string>
 		<string name="btn_settings_voice_goadvanced_caption">Advanced</string>
 		<string name="chk_settings_voice_directionvoice_caption">Direction Voice</string>
-		<string name="tv_settings_voice_quickinfo_menuvoice_default">Change the voice-settings of AndNav.</string>
-		<string name="tv_settings_voice_quickinfo_menuvoice_description">Menu Voice will be heard when navigating through almost every menu in AndNav.</string>
+		<string name="tv_settings_voice_quickinfo_menuvoice_default">Change the voice-settings of AndRoad.</string>
+		<string name="tv_settings_voice_quickinfo_menuvoice_description">Menu Voice will be heard when navigating through almost every menu in AndRoad.</string>
 		
-		<string name="tv_settings_voice_quickinfo_directionvoice_description">Direction Voice will be heard when AndNav is routing your way to the next TurnPoint.\n i.e. \"In 200 meters, turn right\".</string>
+		<string name="tv_settings_voice_quickinfo_directionvoice_description">Direction Voice will be heard when AndRoad is routing your way to the next TurnPoint.\n i.e. \"In 200 meters, turn right\".</string>
 			<string name="tv_settings_directionvoice_quickinfo">What to say when...</string>
 			<string name="tv_settings_directionvoice_column_in">In...</string>
 			<string name="tv_settings_directionvoice_column_saywhat">... say what?</string>
