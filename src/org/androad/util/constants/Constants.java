@@ -60,6 +60,10 @@ public interface Constants {
 	 * out of the Intents Extras the SubActivity was launched with. */
 	public static final String EXTRAS_DESTINATION_LONGITUDE_ID = "org.andnav.EXTRAS_DESTINATION_LONGITUDE_ID";
 
+	/** IDentifier for SubActivities to extract title name
+	 * out of the Intents Extras the SubActivity was launched with. */
+	public static final String EXTRAS_DESTINATION_TITLE = "org.andnav.EXTRAS_DESTINATION_TITLE";
+
 
 	/** IDentifier for SubActivities to extract the count of VIAS.
 	 * out of the Intents Extras the SubActivity was launched with. */

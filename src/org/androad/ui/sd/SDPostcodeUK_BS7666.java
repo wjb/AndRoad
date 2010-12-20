@@ -269,10 +269,12 @@ public class SDPostcodeUK_BS7666 extends AndNavBaseActivity {
 				SDPostcodeUK_BS7666.this.bundleCreatedWith.putInt(EXTRAS_MODE,
 						EXTRAS_MODE_DIRECT_LATLNG);
 
-				SDPostcodeUK_BS7666.this.bundleCreatedWith.putInt(EXTRAS_DESTINATION_LATITUDE_ID, g
-						.getLatitudeE6());
+				SDPostcodeUK_BS7666.this.bundleCreatedWith.putInt(EXTRAS_DESTINATION_LATITUDE_ID,
+						g.getLatitudeE6());
 				SDPostcodeUK_BS7666.this.bundleCreatedWith.putInt(EXTRAS_DESTINATION_LONGITUDE_ID,
 						g.getLongitudeE6());
+                SDPostcodeUK_BS7666.this.bundleCreatedWith.putString(EXTRAS_DESTINATION_TITLE,
+                        g.getPostalCode());
 
 				/* Create an Intent to open the Map as a SubActivity. */
 				final Intent fetchRouteIntent = new Intent(SDPostcodeUK_BS7666.this,
@@ -292,10 +294,12 @@ public class SDPostcodeUK_BS7666 extends AndNavBaseActivity {
 				SDPostcodeUK_BS7666.this.bundleCreatedWith.putInt(EXTRAS_MODE,
 						EXTRAS_MODE_DIRECT_LATLNG);
 
-				SDPostcodeUK_BS7666.this.bundleCreatedWith.putInt(EXTRAS_DESTINATION_LATITUDE_ID, g
-						.getLatitudeE6());
+				SDPostcodeUK_BS7666.this.bundleCreatedWith.putInt(EXTRAS_DESTINATION_LATITUDE_ID,
+						g.getLatitudeE6());
 				SDPostcodeUK_BS7666.this.bundleCreatedWith.putInt(EXTRAS_DESTINATION_LONGITUDE_ID,
 						g.getLongitudeE6());
+                SDPostcodeUK_BS7666.this.bundleCreatedWith.putString(EXTRAS_DESTINATION_TITLE,
+                        g.getPostalCode());
 
 				resultData.putExtras(SDPostcodeUK_BS7666.this.bundleCreatedWith);
 

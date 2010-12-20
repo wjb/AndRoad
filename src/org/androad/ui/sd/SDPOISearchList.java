@@ -135,10 +135,11 @@ public class SDPOISearchList extends AndNavGPSActivity {
 			public void onItemClick(final AdapterView<?> parent, final View v, final int position, final long id) {
 				final POIItem p = (POIItem)parent.getAdapter().getItem(position);
 
+                final int latE6 = p.getLatitudeE6();
+                final int lonE6 = p.getLongitudeE6();
+                final String query = SDPOISearchList.this.bundleCreatedWith.getString(EXTRAS_POISEARCH_QUERY);
+
 				try {
-					final int latE6 = p.getLatitudeE6();
-					final int lonE6 = p.getLongitudeE6();
-					final String query = SDPOISearchList.this.bundleCreatedWith.getString(EXTRAS_POISEARCH_QUERY);
 					DBManager.addPOIToHistory(SDPOISearchList.this, query, latE6, lonE6);
 					DBManager.addPOIToHistory(SDPOISearchList.this, p.getName(), latE6, lonE6);
 					DBManager.addFavorite(SDPOISearchList.this, query, latE6, lonE6);
@@ -155,6 +156,7 @@ public class SDPOISearchList extends AndNavGPSActivity {
 
 						b.putInt(EXTRAS_DESTINATION_LATITUDE_ID, p.getLatitudeE6());
 						b.putInt(EXTRAS_DESTINATION_LONGITUDE_ID, p.getLongitudeE6());
+                        b.putString(EXTRAS_DESTINATION_TITLE, p.getName());
 
 						directIntent.putExtras(b);
 						SDPOISearchList.this.startActivityForResult(directIntent, REQUESTCODE_DDMAP);
@@ -167,6 +169,7 @@ public class SDPOISearchList extends AndNavGPSActivity {
 						SDPOISearchList.this.bundleCreatedWith.putInt(EXTRAS_MODE, EXTRAS_MODE_DIRECT_LATLNG);
 						SDPOISearchList.this.bundleCreatedWith.putInt(EXTRAS_DESTINATION_LATITUDE_ID, p.getLatitudeE6());
 						SDPOISearchList.this.bundleCreatedWith.putInt(EXTRAS_DESTINATION_LONGITUDE_ID, p.getLongitudeE6());
+                        SDPOISearchList.this.bundleCreatedWith.putString(EXTRAS_DESTINATION_TITLE, p.getName());
 
 						resultData.putExtras(SDPOISearchList.this.bundleCreatedWith);
 						SDPOISearchList.this.setResult(SUBACTIVITY_RESULTCODE_CHAINCLOSE_SUCCESS, resultData);

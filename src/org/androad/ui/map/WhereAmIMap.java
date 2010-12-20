@@ -557,7 +557,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 					final int lonE6 = b.getInt(EXTRAS_DESTINATION_LONGITUDE_ID);
 					final GeoPoint gp = new GeoPoint(latE6, lonE6);
 
-					items.add(new OpenStreetMapViewOverlayItem("", "", gp));
+					items.add(new OpenStreetMapViewOverlayItem(b.getString(EXTRAS_DESTINATION_TITLE), "", gp));
 					refreshPinOverlay(items);
 					WhereAmIMap.this.updateUIForAutoCenterChange(WhereAmIMap.CENTERMODE_NONE);
 					WhereAmIMap.super.mOSMapView.getController().animateTo(gp, AnimationType.MIDDLEPEAKSPEED);

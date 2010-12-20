@@ -283,11 +283,12 @@ public class SDResolver extends AndNavBaseActivity {
 				final GeocodedAddressItem r = (GeocodedAddressItem)parent.getAdapter().getItem(position);
 
 				final int searchMode = SDResolver.this.mBundleCreatedWith.getInt(EXTRAS_MODE);
+                final String name = getFavoriteEntry();
 
 				if(searchMode == EXTRAS_MODE_ZIPSEARCH || searchMode == EXTRAS_MODE_CITYNAMESEARCH){
 					final GeoPoint dest = r.mGeocodedAddress;
 					try {
-						DBManager.addFavorite(SDResolver.this, getFavoriteEntry(), dest.getLatitudeE6(), dest.getLongitudeE6());
+						DBManager.addFavorite(SDResolver.this, name, dest.getLatitudeE6(), dest.getLongitudeE6());
 					} catch (final DataBaseException e) {
 						Log.e(Constants.DEBUGTAG, "Error adding Favorite", e);
 					}
@@ -302,6 +303,7 @@ public class SDResolver extends AndNavBaseActivity {
 				b.putString(EXTRAS_COUNTRY_ID, SDResolver.this.mBundleCreatedWith.getString(EXTRAS_COUNTRY_ID)); // Adds the country if available
 				b.putInt(EXTRAS_DESTINATION_LATITUDE_ID, r.mGeocodedAddress.getLatitudeE6());
 				b.putInt(EXTRAS_DESTINATION_LONGITUDE_ID, r.mGeocodedAddress.getLongitudeE6());
+                b.putString(EXTRAS_DESTINATION_TITLE, name);
 
 				switch(mode){
 					case MODE_SD_DESTINATION:
@@ -325,24 +327,38 @@ public class SDResolver extends AndNavBaseActivity {
 	private String getFavoriteEntry() {
 		final StringBuilder sb = new StringBuilder();
 
-		/* Switch on the Mode. */
-		final int searchMode = this.mBundleCreatedWith.getInt(EXTRAS_MODE);
+		/* Switch on the Mode. */	
+        final Bundle extras = this.mBundleCreatedWith; // Drag to local field
+        final Country nat = extras.getParcelable(EXTRAS_COUNTRY_ID);
+        final String streetName = extras.getString(EXTRAS_STREET_ID);
+        final String streetNumber = extras.getString(EXTRAS_STREETNUMBER_ID);
+
+        final int searchMode = extras.getInt(EXTRAS_MODE);
+
 		switch (searchMode) {
-			case EXTRAS_MODE_ZIPSEARCH:
-			case EXTRAS_MODE_CITYNAMESEARCH:
+        case EXTRAS_MODE_STREETNAMESEARCH:
 
-				final Country nat = this.mBundleCreatedWith.getParcelable(EXTRAS_COUNTRY_ID);
-				sb.append(getString(nat.NAMERESID));
-				sb.append(' ');
+            sb.append(getString(nat.NAMERESID));
+            sb.append(' ');
 
-				final String zipCodeOrCityName = org.androad.ui.sd.Util.getZipCodeOrCityName(this.mBundleCreatedWith);
-				sb.append(zipCodeOrCityName);
-				sb.append(' ');
+            sb.append(StreetInfoExtractor.constructStreetLineInfo(this, streetName, streetNumber, nat));
+            break;
 
-				final String streetName = this.mBundleCreatedWith.getString(EXTRAS_STREET_ID);
-				final String streetNumber = this.mBundleCreatedWith.getString(EXTRAS_STREETNUMBER_ID);
-				sb.append(StreetInfoExtractor.constructStreetLineInfo(this, streetName, streetNumber, nat));
-				break;
+        case EXTRAS_MODE_FREEFORMSEARCH:
+            sb.append(extras.getString(EXTRAS_FREEFORM_ID));
+            break;
+
+        case EXTRAS_MODE_ZIPSEARCH:
+        case EXTRAS_MODE_CITYNAMESEARCH:
+
+            sb.append(getString(nat.NAMERESID));
+            sb.append(' ');
+
+            final String zipCodeOrCityName = org.androad.ui.sd.Util.getZipCodeOrCityName(this.mBundleCreatedWith);
+            sb.append(zipCodeOrCityName);
+            sb.append(' ');
+            sb.append(StreetInfoExtractor.constructStreetLineInfo(this, streetName, streetNumber, nat));
+            break;
 		}
 		return sb.toString();
 	}

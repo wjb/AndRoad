@@ -202,6 +202,7 @@ public class SDFavorites extends AndNavBaseActivity {
 				b.putInt(EXTRAS_MODE, EXTRAS_MODE_DIRECT_LATLNG);
 				b.putInt(EXTRAS_DESTINATION_LATITUDE_ID, f.getLatitudeE6());
 				b.putInt(EXTRAS_DESTINATION_LONGITUDE_ID, f.getLongitudeE6());
+                b.putString(EXTRAS_DESTINATION_TITLE, f.getName());
 				directIntent.putExtras(b);
 				SDFavorites.this.startActivityForResult(directIntent, REQUESTCODE_DDMAP);
 				break;
@@ -213,6 +214,7 @@ public class SDFavorites extends AndNavBaseActivity {
 				SDFavorites.this.bundleCreatedWith.putInt(EXTRAS_MODE, EXTRAS_MODE_DIRECT_LATLNG);
 				SDFavorites.this.bundleCreatedWith.putInt(EXTRAS_DESTINATION_LATITUDE_ID, f.getLatitudeE6());
 				SDFavorites.this.bundleCreatedWith.putInt(EXTRAS_DESTINATION_LONGITUDE_ID, f.getLongitudeE6());
+                SDFavorites.this.bundleCreatedWith.putString(EXTRAS_DESTINATION_TITLE, f.getName());
 
 				resultData.putExtras(SDFavorites.this.bundleCreatedWith);
 				SDFavorites.this.setResult(SUBACTIVITY_RESULTCODE_CHAINCLOSE_SUCCESS, resultData);
