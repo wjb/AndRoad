@@ -12,13 +12,11 @@ import org.androad.util.constants.Constants;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.ContentResolver;
 import android.content.Intent;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.net.Uri;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.WindowManager.BadTokenException;
 

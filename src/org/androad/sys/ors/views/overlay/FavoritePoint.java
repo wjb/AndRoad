@@ -3,7 +3,6 @@ package org.androad.sys.ors.views.overlay;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Point;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.Toast;
