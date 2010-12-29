@@ -17,7 +17,7 @@ import java.net.UnknownHostException;
 import java.util.List;
 
 import org.andnav.osm.util.GeoPoint;
-import org.andnav.osm.tileprovider.StreamUtils;
+import org.andnav.osm.tileprovider.util.StreamUtils;
 
 import org.androad.sys.ors.adt.Error;
 import org.androad.sys.ors.aps.util.constants.APSConstants;

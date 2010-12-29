@@ -9,7 +9,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-import org.andnav.osm.tileprovider.StreamUtils;
+import org.andnav.osm.tileprovider.util.StreamUtils;
 
 import org.androad.sys.serverdowntime.adt.DowntimeList;
 import org.xml.sax.InputSource;

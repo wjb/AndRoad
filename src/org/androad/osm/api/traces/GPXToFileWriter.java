@@ -11,7 +11,7 @@ import java.util.Date;
 
 import org.andnav.osm.contributor.util.RecordedGeoPoint;
 import org.andnav.osm.contributor.util.RecordedRouteGPXFormatter;
-import org.andnav.osm.tileprovider.StreamUtils;
+import org.andnav.osm.tileprovider.util.StreamUtils;
 
 import org.androad.osm.util.Util;
 import org.androad.osm.util.constants.OSMConstants;

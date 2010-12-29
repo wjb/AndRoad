@@ -11,7 +11,7 @@ import junit.framework.Assert;
 
 import org.andnav.osm.util.BoundingBoxE6;
 import org.andnav.osm.util.GeoPoint;
-import org.andnav.osm.tileprovider.StreamUtils;
+import org.andnav.osm.tileprovider.util.StreamUtils;
 
 import org.androad.sys.osb.adt.OpenStreetBug;
 import org.androad.sys.osb.exc.OSBException;
