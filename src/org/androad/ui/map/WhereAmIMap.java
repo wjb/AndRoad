@@ -1269,7 +1269,6 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 							@Override
 							public void run() {
 								new OSMMapTilePreloader().loadAllToCacheAsync(tilesNeeded,
-										pUptoZoomLevel,
 										providerInfo,
 										WhereAmIMap.this.mOSMapView,
 										new OnProgressChangeListener(){

@@ -54,13 +54,13 @@ public class OSMMapTilePreloader implements OSMConstants, OpenStreetMapViewConst
 	 * Loads all MapTiles needed to cover a route at a specific zoomlevel.
 	 */
 	public void loadAllToCacheAsync(final Route aRoute, final int aZoomLevel, final IOpenStreetMapRendererInfo aRendererInfo, final OpenStreetMapView pOsmView, final OnProgressChangeListener pProgressListener, final boolean pSmoothed) throws IllegalArgumentException {
-		loadAllToCacheAsync(OSMMapTilePreloader.getNeededMaptiles(aRoute, aZoomLevel, aRendererInfo, pSmoothed), aZoomLevel, aRendererInfo, pOsmView, pProgressListener);
+		loadAllToCacheAsync(OSMMapTilePreloader.getNeededMaptiles(aRoute, aZoomLevel, aRendererInfo, pSmoothed), aRendererInfo, pOsmView, pProgressListener);
 	}
 
 	/**
 	 * Loads a series of MapTiles to the various caches at a specific zoomlevel.
 	 */
-	public void loadAllToCacheAsync(final OpenStreetMapTile[][] pTiles, final int uptoZoomLevel, final IOpenStreetMapRendererInfo aRendererInfo, final OpenStreetMapView pOsmView, final OnProgressChangeListener pProgressListener){
+	public void loadAllToCacheAsync(final OpenStreetMapTile[][] pTiles, final IOpenStreetMapRendererInfo aRendererInfo, final OpenStreetMapView pOsmView, final OnProgressChangeListener pProgressListener){
 		int tmpCount = 0;
 		for(final OpenStreetMapTile[] tiles : pTiles) {
 			tmpCount += tiles.length;
@@ -125,58 +125,10 @@ public class OSMMapTilePreloader implements OSMConstants, OpenStreetMapViewConst
 	/**
 	 * Loads a series of MapTiles to the various caches at a specific zoomlevel.
 	 */
-	public void loadAllToCacheAsync(final OpenStreetMapTile[] pTiles, final int aZoomLevel, final IOpenStreetMapRendererInfo aRendererInfo, final OpenStreetMapView pOsmView, final OnProgressChangeListener pProgressListener){
-		final int overallCount = pTiles.length;
-
-		final Counter overallCounter = new Counter();
-		final Counter successCounter = new Counter();
-		final IOpenStreetMapTileProviderCallback cbk = new IOpenStreetMapTileProviderCallback(){
-			@Override
-			public String getCloudmadeKey() throws CloudmadeException {
-				return null;
-			}
-
-			@Override
-			public void mapTileRequestCompleted(OpenStreetMapTile aTile, String aTilePath) {
-				successCounter.increment();
-				pProgressListener.onProgressChange(successCounter.getCount(), overallCount);
-				if(overallCounter.getCount() == overallCount
-						&& successCounter.getCount() != overallCount) {
-					pProgressListener.onProgressChange(overallCount, overallCount);
-				}
-				if(DEBUGMODE) {
-					Log.i(DEBUGTAG, "MapTile download success.");
-				}
-			}
-
-			@Override
-			public void mapTileRequestCompleted(OpenStreetMapTile aTile, InputStream aTileInputStream) {
-				mapTileRequestCompleted(aTile, "");
-			}
-
-			@Override
-			public void mapTileRequestCompleted(OpenStreetMapTile aTile) {
-				if(overallCounter.getCount() == overallCount
-						&& successCounter.getCount() != overallCount) {
-					pProgressListener.onProgressChange(overallCount, overallCount);
-				}
-				if(DEBUGMODE) {
-					Log.e(DEBUGTAG, "MapTile download error.");
-				}
-			}
-
-			@Override
-			public boolean useDataConnection(){return true;}
-		};
-
-		new Thread(new Runnable(){
-			@Override
-			public void run() {
-				for (final OpenStreetMapTile tile : pTiles) {
-					new OpenStreetMapTileFilesystemProvider(cbk, null).loadMapTileAsync(tile);
-				}
-			}
-		}, "Maptile-Preloader preparer").start();
+	public void loadAllToCacheAsync(final OpenStreetMapTile[] pTiles, final IOpenStreetMapRendererInfo aRendererInfo, final OpenStreetMapView pOsmView, final OnProgressChangeListener pProgressListener){
+        final OpenStreetMapTile[][] tiles = new OpenStreetMapTile[1][];
+        tiles[0] = pTiles;
+        this.loadAllToCacheAsync(tiles, aRendererInfo, pOsmView, pProgressListener);
 	}
 
 

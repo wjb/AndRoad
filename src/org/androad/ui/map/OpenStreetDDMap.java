@@ -882,7 +882,6 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 							@Override
 							public void run() {
 								new OSMMapTilePreloader().loadAllToCacheAsync(tilesNeeded,
-										zoomLevel,
 										rendererInfo,
 										OpenStreetDDMap.this.mOSMapView,
 										new OnProgressChangeListener(){
