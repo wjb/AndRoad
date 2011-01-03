@@ -42,12 +42,6 @@ public class Util implements OpenStreetMapViewConstants, OSMConstants, MathConst
 	// Methods
 	// ===========================================================
 
-	public static float calculateDistance(int x1, int x2, int y1, int y2) {
-	        int x = x1 - x2;
-	        int y = y1 - y2;
-	        return FloatMath.sqrt(x * x + y * y);
-	    }
-
 	public static OpenStreetMapTile[] calculateNeededTilesForZoomLevelInBoundingBox(final IOpenStreetMapRendererInfo aRenderer, final int zoom, final BoundingBoxE6 bbE6Visible) {
 		final OpenStreetMapTile upperLeftTile = getMapTileFromCoordinates(aRenderer, bbE6Visible.getLatNorthE6(), bbE6Visible.getLonWestE6(), zoom);
 		final OpenStreetMapTile lowerRightTile = getMapTileFromCoordinates(aRenderer, bbE6Visible.getLatSouthE6(), bbE6Visible.getLonEastE6(), zoom);
@@ -80,15 +74,6 @@ public class Util implements OpenStreetMapViewConstants, OSMConstants, MathConst
 		final int x = (int) Math.floor((aLon + 180) / 360 * (1 << zoom));
 
 		return new OpenStreetMapTile(aRenderer, x, y, zoom);
-	}
-
-	private static double tile2lon(final int x, final int aZoom) {
-		return (360.0f * x / (1 << aZoom)) - 180;
-	}
-
-	private static double tile2lat(final int y, final int aZoom) {
-		final float n = PI - ((2.0f * PI * y) / (1 << aZoom));
-		return 180.0f / PI * Math.atan(0.5f * (Math.exp(n) - Math.exp(-n)));
 	}
 
 	// ===========================================================
