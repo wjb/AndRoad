@@ -1268,25 +1268,25 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 						runOnUiThread(new Runnable(){
 							@Override
 							public void run() {
-								new OSMMapTilePreloader().loadAllToCacheAsync(tilesNeeded,
-										providerInfo,
-										WhereAmIMap.this.mOSMapView,
-										new OnProgressChangeListener(){
-									@Override
-									public void onProgressChange(final int progress, final int max) {
-                                        try {
-                                            if(progress != max) {
-                                                pd.setMessage(String.format(progressMessage, progress, max));
-                                            } else {
-                                                pd.dismiss();
-                                            }
-                                        } catch (final Exception e) {
-                                            Log.e(Constants.DEBUGTAG, "View error", e);
-                                        }
-									}
-								});
+                                OSMMapTilePreloader preloader = new OSMMapTilePreloader();
+								preloader.loadAllToCacheAsync(tilesNeeded,
+                                                              providerInfo,
+                                                              preloader.new OnProgressChangeListener(){
+                                                                  @Override
+                                                                  public void onProgressChange(final int progress, final int max) {
+                                                                      try {
+                                                                          if(progress != max) {
+                                                                              pd.setMessage(String.format(progressMessage, progress, max));
+                                                                          } else {
+                                                                              pd.dismiss();
+                                                                          }
+                                                                      } catch (final Exception e) {
+                                                                          Log.e(Constants.DEBUGTAG, "View error", e);
+                                                                      }
+                                                                  }
+                                                              });
 							}
-						});
+                            });
 					}
 				}, "Preloader-Thread").start();
 

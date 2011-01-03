@@ -881,26 +881,26 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 						runOnUiThread(new Runnable(){
 							@Override
 							public void run() {
-								new OSMMapTilePreloader().loadAllToCacheAsync(tilesNeeded,
-										rendererInfo,
-										OpenStreetDDMap.this.mOSMapView,
-										new OnProgressChangeListener(){
-									@Override
-									public void onProgressChange(final int progress, final int max) {
-										if(progress != max) {
-											pd.setMessage(String.format(progressMessage, progress, max));
-										} else {
-											pd.dismiss();
-										}
-									}
-								});
+                                OSMMapTilePreloader preloader = new OSMMapTilePreloader();
+								preloader.loadAllToCacheAsync(tilesNeeded,
+                                                              rendererInfo,
+                                                              preloader.new OnProgressChangeListener(){
+                                                                      @Override
+                                                                      public void onProgressChange(final int progress, final int max) {
+                                                                          if(progress != max) {
+                                                                              pd.setMessage(String.format(progressMessage, progress, max));
+                                                                          } else {
+                                                                              pd.dismiss();
+                                                                          }
+                                                                      }
+                                                                  });
 								if(OpenStreetDDMap.this.mAutoZoomEnabled){
 									OpenStreetDDMap.this.mAutoZoomEnabled = false;
 									Preferences.saveAutoZoomEnabled(OpenStreetDDMap.this, false);
 									Toast.makeText(OpenStreetDDMap.this, R.string.ddmap_info_preloader_autozoom_disabled, Toast.LENGTH_LONG).show();
 								}
 							}
-						});
+                            });
 					}
 				}, "Preloader-Thread").start();
 

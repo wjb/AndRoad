@@ -9,6 +9,7 @@ import java.util.TreeSet;
 
 import org.andnav.osm.tileprovider.CloudmadeException;
 import org.andnav.osm.tileprovider.IOpenStreetMapTileProviderCallback;
+import org.andnav.osm.tileprovider.IRegisterReceiver;
 import org.andnav.osm.tileprovider.OpenStreetMapTile;
 import org.andnav.osm.tileprovider.OpenStreetMapTileFilesystemProvider;
 import org.andnav.osm.util.GeoPoint;
@@ -22,8 +23,12 @@ import org.androad.osm.util.constants.OSMConstants;
 import org.androad.osm.views.util.Util;
 import org.androad.sys.ors.adt.rs.Route;
 
+import android.os.Handler;
+import android.os.Message;
+import android.content.BroadcastReceiver;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.util.Log;
-
 
 public class OSMMapTilePreloader implements OSMConstants, OpenStreetMapViewConstants {
 	// ===========================================================
@@ -53,14 +58,14 @@ public class OSMMapTilePreloader implements OSMConstants, OpenStreetMapViewConst
 	/**
 	 * Loads all MapTiles needed to cover a route at a specific zoomlevel.
 	 */
-	public void loadAllToCacheAsync(final Route aRoute, final int aZoomLevel, final IOpenStreetMapRendererInfo aRendererInfo, final OpenStreetMapView pOsmView, final OnProgressChangeListener pProgressListener, final boolean pSmoothed) throws IllegalArgumentException {
-		loadAllToCacheAsync(OSMMapTilePreloader.getNeededMaptiles(aRoute, aZoomLevel, aRendererInfo, pSmoothed), aRendererInfo, pOsmView, pProgressListener);
+	public void loadAllToCacheAsync(final Route aRoute, final int aZoomLevel, final IOpenStreetMapRendererInfo aRendererInfo, final OnProgressChangeListener pProgressListener, final boolean pSmoothed) throws IllegalArgumentException {
+		loadAllToCacheAsync(OSMMapTilePreloader.getNeededMaptiles(aRoute, aZoomLevel, aRendererInfo, pSmoothed), aRendererInfo, pProgressListener);
 	}
 
 	/**
 	 * Loads a series of MapTiles to the various caches at a specific zoomlevel.
 	 */
-	public void loadAllToCacheAsync(final OpenStreetMapTile[][] pTiles, final IOpenStreetMapRendererInfo aRendererInfo, final OpenStreetMapView pOsmView, final OnProgressChangeListener pProgressListener){
+	public void loadAllToCacheAsync(final OpenStreetMapTile[][] pTiles, final IOpenStreetMapRendererInfo aRendererInfo, final OnProgressChangeListener pProgressListener){
 		int tmpCount = 0;
 		for(final OpenStreetMapTile[] tiles : pTiles) {
 			tmpCount += tiles.length;
@@ -78,15 +83,20 @@ public class OSMMapTilePreloader implements OSMConstants, OpenStreetMapViewConst
 
 			@Override
 			public void mapTileRequestCompleted(OpenStreetMapTile aTile, String aTilePath) {
+ 				overallCounter.increment();
 				successCounter.increment();
-				pProgressListener.onProgressChange(successCounter.getCount(), overallCount);
+
+                Message msg;
+                msg = pProgressListener.obtainMessage(0, successCounter.getCount(), overallCount);
 				if(overallCounter.getCount() == overallCount
-						&& successCounter.getCount() != overallCount) {
-					pProgressListener.onProgressChange(overallCount, overallCount);
+                   && successCounter.getCount() != overallCount) {
+                    msg = pProgressListener.obtainMessage(0, overallCount, overallCount);
 				}
+
+                msg.sendToTarget();
 				if(DEBUGMODE) {
 					Log.i(DEBUGTAG, "MapTile download success.");
-				}
+                }
 			}
 
 			@Override
@@ -96,39 +106,52 @@ public class OSMMapTilePreloader implements OSMConstants, OpenStreetMapViewConst
 
 			@Override
 			public void mapTileRequestCompleted(OpenStreetMapTile aTile) {
+ 				overallCounter.increment();
+
+                Message msg;
+                msg = pProgressListener.obtainMessage(0, successCounter.getCount(), overallCount);
 				if(overallCounter.getCount() == overallCount
 						&& successCounter.getCount() != overallCount) {
-					pProgressListener.onProgressChange(overallCount, overallCount);
+                    msg = pProgressListener.obtainMessage(0, overallCount, overallCount);
 				}
+
+                msg.sendToTarget();
 				if(DEBUGMODE) {
 					Log.e(DEBUGTAG, "MapTile download error.");
-				}
+                }
 			}
 
 			@Override
 			public boolean useDataConnection(){return true;}
 		};
 
-		new Thread(new Runnable(){
+		final IRegisterReceiver reg = new IRegisterReceiver(){
 			@Override
-			public void run() {
-				for(int i = 0; i < pTiles.length; i++){
-					final OpenStreetMapTile[] tileSet = pTiles[i];
-					for (final OpenStreetMapTile tile : tileSet) {
-						new OpenStreetMapTileFilesystemProvider(cbk, null).loadMapTileAsync(tile);
-					}
-				}
-			}
-		}, "Maptile-Preloader preparer").start();
+            public Intent registerReceiver(BroadcastReceiver receiver, IntentFilter filter) {
+                return null;
+            }
+
+			@Override
+            public void unregisterReceiver(BroadcastReceiver receiver) {
+            }
+        };
+        final OpenStreetMapTileFilesystemProvider provider = new OpenStreetMapTileFilesystemProvider(cbk, reg);
+
+        for(int i = 0; i < pTiles.length; i++){
+            final OpenStreetMapTile[] tileSet = pTiles[i];
+            for (final OpenStreetMapTile tile : tileSet) {
+                provider.loadMapTileAsync(tile);
+            }
+        }
 	}
 
 	/**
 	 * Loads a series of MapTiles to the various caches at a specific zoomlevel.
 	 */
-	public void loadAllToCacheAsync(final OpenStreetMapTile[] pTiles, final IOpenStreetMapRendererInfo aRendererInfo, final OpenStreetMapView pOsmView, final OnProgressChangeListener pProgressListener){
+	public void loadAllToCacheAsync(final OpenStreetMapTile[] pTiles, final IOpenStreetMapRendererInfo aRendererInfo, final OnProgressChangeListener pProgressListener){
         final OpenStreetMapTile[][] tiles = new OpenStreetMapTile[1][];
         tiles[0] = pTiles;
-        this.loadAllToCacheAsync(tiles, aRendererInfo, pOsmView, pProgressListener);
+        this.loadAllToCacheAsync(tiles, aRendererInfo, pProgressListener);
 	}
 
 
@@ -230,9 +253,15 @@ public class OSMMapTilePreloader implements OSMConstants, OpenStreetMapViewConst
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-	public interface OnProgressChangeListener{
+	public abstract class OnProgressChangeListener extends Handler{
+
 		/** Between 0 and 100 (including). */
-		void onProgressChange(final int aProgress, final int aMax);
+		public abstract void onProgressChange(final int aProgress, final int aMax);
+
+        @Override
+        public void handleMessage(Message msg) {
+            this.onProgressChange(msg.arg1, msg.arg2);
+        }
 	}
 
 	private static class Counter{
