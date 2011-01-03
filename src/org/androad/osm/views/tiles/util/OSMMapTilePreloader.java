@@ -106,19 +106,7 @@ public class OSMMapTilePreloader implements OSMConstants, OpenStreetMapViewConst
 
 			@Override
 			public void mapTileRequestCompleted(OpenStreetMapTile aTile) {
- 				overallCounter.increment();
-
-                Message msg;
-                msg = pProgressListener.obtainMessage(0, successCounter.getCount(), overallCount);
-				if(overallCounter.getCount() == overallCount
-						&& successCounter.getCount() != overallCount) {
-                    msg = pProgressListener.obtainMessage(0, overallCount, overallCount);
-				}
-
-                msg.sendToTarget();
-				if(DEBUGMODE) {
-					Log.e(DEBUGTAG, "MapTile download error.");
-                }
+				mapTileRequestCompleted(aTile, "");
 			}
 
 			@Override

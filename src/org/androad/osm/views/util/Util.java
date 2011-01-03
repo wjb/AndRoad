@@ -5,6 +5,7 @@ import org.andnav.osm.tileprovider.OpenStreetMapTile;
 import org.andnav.osm.util.BoundingBoxE6;
 import org.andnav.osm.util.GeoPoint;
 import org.andnav.osm.views.util.IOpenStreetMapRendererInfo;
+import org.andnav.osm.views.util.Mercator;
 import org.andnav.osm.views.util.constants.MathConstants;
 import org.andnav.osm.views.util.constants.OpenStreetMapViewConstants;
 
@@ -69,11 +70,12 @@ public class Util implements OpenStreetMapViewConstants, OSMConstants, MathConst
 		return getMapTileFromCoordinates(aRenderer, aLat / 1E6, aLon / 1E6, zoom);
 	}
 
-	public static OpenStreetMapTile getMapTileFromCoordinates(final IOpenStreetMapRendererInfo aRenderer, final double aLat, final double aLon, final int zoom) {
-		final int y = (int) Math.floor((1 - Math.log(Math.tan(aLat * PI / 180) + 1 / Math.cos(aLat * PI / 180)) / PI) / 2 * (1 << zoom));
-		final int x = (int) Math.floor((aLon + 180) / 360 * (1 << zoom));
+	public static OpenStreetMapTile getMapTileFromCoordinates(final IOpenStreetMapRendererInfo aRenderer, final double aLat, final double aLon, final int aZoom) {
+        final int[] coords = Mercator.projectGeoPoint(aLat, aLon, aZoom, null);
+		final int x = coords[Mercator.MAPTILE_LONGITUDE_INDEX];
+		final int y = coords[Mercator.MAPTILE_LATITUDE_INDEX];
 
-		return new OpenStreetMapTile(aRenderer, x, y, zoom);
+		return new OpenStreetMapTile(aRenderer, x, y, aZoom);
 	}
 
 	// ===========================================================
