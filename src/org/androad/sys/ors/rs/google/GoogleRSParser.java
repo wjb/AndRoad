@@ -149,7 +149,18 @@ public class GoogleRSParser extends DefaultHandler implements TimeConstants, Con
                 final StringTokenizer st = new StringTokenizer(coords, ",");
                 final double b = Double.parseDouble(st.nextToken());
                 final double a = Double.parseDouble(st.nextToken());
-
+                if (maxLat == 0 || a > maxLat) {
+                    maxLat = a;
+                }
+                if (maxLon == 0 || b > maxLon) {
+                    maxLon = b;
+                }
+                if (minLat == 0 || a < minLat) {
+                    minLat = a;
+                }
+                if (minLon == 0 || b < minLon) {
+                    minLon = b;
+                }
                 final GeoPoint gp = new GeoPoint((int) (a * 1E6), (int) (b * 1E6));
                 this.mTmpRouteInstruction.getPartialPolyLine().add(gp);
             }
@@ -226,8 +237,7 @@ public class GoogleRSParser extends DefaultHandler implements TimeConstants, Con
                                                                              ri.getPartialPolyLine().get(ri.getPartialPolyLine().size() - 1)));
             }
 
-            this.mRoute.setBoundingBoxE6(new BoundingBoxE6(maxLat * 1E6, maxLon * 1E6,
-                                                           minLat * 1E6, minLon * 1E6));
+            this.mRoute.setBoundingBoxE6(new BoundingBoxE6(maxLat, maxLon, minLat, minLon));
 
             if (this.mPolyline.size() > 0) {
                 this.mRoute.setStart(this.mPolyline.get(0));
