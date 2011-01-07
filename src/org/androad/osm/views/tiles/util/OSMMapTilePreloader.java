@@ -65,81 +65,25 @@ public class OSMMapTilePreloader implements OSMConstants, OpenStreetMapViewConst
 	/**
 	 * Loads a series of MapTiles to the various caches at a specific zoomlevel.
 	 */
-	public void loadAllToCacheAsync(final OpenStreetMapTile[][] pTiles, final IOpenStreetMapRendererInfo aRendererInfo, final OnProgressChangeListener pProgressListener){
-		int tmpCount = 0;
-		for(final OpenStreetMapTile[] tiles : pTiles) {
-			tmpCount += tiles.length;
-		}
+	public void loadAllToCacheAsync(final OpenStreetMapTile[] pTiles, final IOpenStreetMapRendererInfo aRendererInfo, final OnProgressChangeListener pProgressListener){
+        final OpenStreetMapTileFilesystemProvider provider;
+		final int overallCount = pTiles.length;
 
-		final int overallCount = tmpCount;
+        int sendingCount = 0;
+        final int limit = Math.min(overallCount, OpenStreetMapTileFilesystemProvider.TILE_FILESYSTEM_MAXIMUM_QUEUE_SIZE);
+		final OpenStreetMapTileProviderCallback cbk = new OpenStreetMapTileProviderCallback(limit, overallCount, pTiles, pProgressListener);
+		final RegisterReceiver reg = new RegisterReceiver();
 
-		final Counter overallCounter = new Counter();
-		final Counter successCounter = new Counter();
-		final IOpenStreetMapTileProviderCallback cbk = new IOpenStreetMapTileProviderCallback(){
-			@Override
-			public String getCloudmadeKey() throws CloudmadeException {
-				return null;
-			}
+        provider = new OpenStreetMapTileFilesystemProvider(cbk, reg);
+        cbk.setProvider(provider);
 
-			@Override
-			public void mapTileRequestCompleted(OpenStreetMapTile aTile, String aTilePath) {
- 				overallCounter.increment();
-				successCounter.increment();
-
-                Message msg;
-                msg = pProgressListener.obtainMessage(0, successCounter.getCount(), overallCount);
-				if(overallCounter.getCount() == overallCount
-                   && successCounter.getCount() != overallCount) {
-                    msg = pProgressListener.obtainMessage(0, overallCount, overallCount);
-				}
-
-                msg.sendToTarget();
-				if(DEBUGMODE) {
-					Log.i(DEBUGTAG, "MapTile download success.");
-                }
-			}
-
-			@Override
-			public void mapTileRequestCompleted(OpenStreetMapTile aTile, InputStream aTileInputStream) {
-				mapTileRequestCompleted(aTile, "");
-			}
-
-			@Override
-			public void mapTileRequestCompleted(OpenStreetMapTile aTile) {
-				mapTileRequestCompleted(aTile, "");
-			}
-
-			@Override
-			public boolean useDataConnection(){return true;}
-		};
-
-		final IRegisterReceiver reg = new IRegisterReceiver(){
-			@Override
-            public Intent registerReceiver(BroadcastReceiver receiver, IntentFilter filter) {
-                return null;
-            }
-
-			@Override
-            public void unregisterReceiver(BroadcastReceiver receiver) {
-            }
-        };
-        final OpenStreetMapTileFilesystemProvider provider = new OpenStreetMapTileFilesystemProvider(cbk, reg);
-
-        for(int i = 0; i < pTiles.length; i++){
-            final OpenStreetMapTile[] tileSet = pTiles[i];
-            for (final OpenStreetMapTile tile : tileSet) {
-                provider.loadMapTileAsync(tile);
+        for (final OpenStreetMapTile tile : pTiles) {
+            provider.loadMapTileAsync(tile);
+            sendingCount++;
+            if (sendingCount >= OpenStreetMapTileFilesystemProvider.TILE_FILESYSTEM_MAXIMUM_QUEUE_SIZE) {
+                break;
             }
         }
-	}
-
-	/**
-	 * Loads a series of MapTiles to the various caches at a specific zoomlevel.
-	 */
-	public void loadAllToCacheAsync(final OpenStreetMapTile[] pTiles, final IOpenStreetMapRendererInfo aRendererInfo, final OnProgressChangeListener pProgressListener){
-        final OpenStreetMapTile[][] tiles = new OpenStreetMapTile[1][];
-        tiles[0] = pTiles;
-        this.loadAllToCacheAsync(tiles, aRendererInfo, pProgressListener);
 	}
 
 
@@ -252,15 +196,68 @@ public class OSMMapTilePreloader implements OSMConstants, OpenStreetMapViewConst
         }
 	}
 
-	private static class Counter{
-		int mCount;
+    private class RegisterReceiver implements IRegisterReceiver{
+        public Intent registerReceiver(BroadcastReceiver receiver, IntentFilter filter) {
+            return null;
+        }
 
-		public void increment() {
-			this.mCount++;
-		}
+        public void unregisterReceiver(BroadcastReceiver receiver) {
+        }
+    }
 
-		public int getCount() {
-			return this.mCount;
-		}
-	}
+    private class OpenStreetMapTileProviderCallback implements IOpenStreetMapTileProviderCallback{
+        int sendingCount = 0;
+        int successCount = 0;
+        final int overallCount;
+        final OpenStreetMapTile[] pTiles;
+        OpenStreetMapTileFilesystemProvider provider;
+        final OnProgressChangeListener pProgressListener;
+
+        public OpenStreetMapTileProviderCallback(final int sendingCount, final int overallCount,
+                                                 final OpenStreetMapTile[] pTiles,
+                                                 final OnProgressChangeListener pProgressListener) {
+            this.sendingCount = sendingCount;
+            this.overallCount = overallCount;
+            this.pTiles = pTiles;
+            this.pProgressListener = pProgressListener;
+        }
+
+        public void setProvider(final OpenStreetMapTileFilesystemProvider provider) {
+            this.provider = provider;
+        }
+
+        public String getCloudmadeKey() throws CloudmadeException {
+            return null;
+        }
+
+        public void mapTileRequestCompleted(OpenStreetMapTile aTile, String aTilePath) {
+            if (sendingCount < overallCount) {
+                provider.loadMapTileAsync(pTiles[sendingCount]);
+                sendingCount++;
+            }
+
+            successCount++;
+            Message msg;
+            msg = pProgressListener.obtainMessage(0, successCount, overallCount);
+            if(successCount >= overallCount) {
+                msg = pProgressListener.obtainMessage(0, overallCount, overallCount);
+            }
+
+            msg.sendToTarget();
+            if(DEBUGMODE) {
+                Log.i(DEBUGTAG, "MapTile download success.");
+            }
+        }
+
+        public void mapTileRequestCompleted(OpenStreetMapTile aTile, InputStream aTileInputStream) {
+            mapTileRequestCompleted(aTile, "");
+        }
+
+        public void mapTileRequestCompleted(OpenStreetMapTile aTile) {
+            mapTileRequestCompleted(aTile, "");
+        }
+
+        public boolean useDataConnection(){return true;}
+    }
+
 }

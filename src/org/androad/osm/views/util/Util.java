@@ -13,6 +13,8 @@ import org.androad.osm.util.constants.OSMConstants;
 
 import android.util.FloatMath;
 
+import java.util.List;
+
 /**
  * 
  * @author Nicolas Gramlich
@@ -43,23 +45,20 @@ public class Util implements OpenStreetMapViewConstants, OSMConstants, MathConst
 	// Methods
 	// ===========================================================
 
-	public static OpenStreetMapTile[] calculateNeededTilesForZoomLevelInBoundingBox(final IOpenStreetMapRendererInfo aRenderer, final int zoom, final BoundingBoxE6 bbE6Visible) {
-		final OpenStreetMapTile upperLeftTile = getMapTileFromCoordinates(aRenderer, bbE6Visible.getLatNorthE6(), bbE6Visible.getLonWestE6(), zoom);
-		final OpenStreetMapTile lowerRightTile = getMapTileFromCoordinates(aRenderer, bbE6Visible.getLatSouthE6(), bbE6Visible.getLonEastE6(), zoom);
+	public static void calculateNeededTilesForZoomLevelInBoundingBox(final List tilesNeeded, final IOpenStreetMapRendererInfo aRenderer, final int zoom, final BoundingBoxE6 bbE6Visible) {
+        final OpenStreetMapTile upperLeftTile = getMapTileFromCoordinates(aRenderer, bbE6Visible.getLatNorthE6(), bbE6Visible.getLonWestE6(), zoom);
+        final OpenStreetMapTile lowerRightTile = getMapTileFromCoordinates(aRenderer, bbE6Visible.getLatSouthE6(), bbE6Visible.getLonEastE6(), zoom);
 
-		final int countOfTilesLat = Math.abs(upperLeftTile.getY() - lowerRightTile.getY()) + 1;
-		final int countOfTilesLon = Math.abs(upperLeftTile.getX() - lowerRightTile.getX()) + 1;
+        final int countOfTilesLat = Math.abs(upperLeftTile.getY() - lowerRightTile.getY()) + 1;
+        final int countOfTilesLon = Math.abs(upperLeftTile.getX() - lowerRightTile.getX()) + 1;
 
+        for(int i = 0; i < countOfTilesLat; i++) {
+            for(int j = 0; j < countOfTilesLon; j++) {
+                final OpenStreetMapTile tile = new OpenStreetMapTile(aRenderer, zoom, upperLeftTile.getX() + j, upperLeftTile.getY() + i  );
 
-		final OpenStreetMapTile[] out = new OpenStreetMapTile[countOfTilesLat * countOfTilesLon];
-
-		for(int i = 0; i < countOfTilesLat; i++) {
-			for(int j = 0; j < countOfTilesLon; j++) {
-				out[countOfTilesLon * i + j] = new OpenStreetMapTile(aRenderer, upperLeftTile.getX() + j, upperLeftTile.getY() + i, zoom);
+                tilesNeeded.add(tile);
 			}
 		}
-
-		return out;
 	}
 
 	public static OpenStreetMapTile getMapTileFromCoordinates(final IOpenStreetMapRendererInfo aRenderer, final GeoPoint gp, final int zoom) {
@@ -75,7 +74,7 @@ public class Util implements OpenStreetMapViewConstants, OSMConstants, MathConst
 		final int x = coords[Mercator.MAPTILE_LONGITUDE_INDEX];
 		final int y = coords[Mercator.MAPTILE_LATITUDE_INDEX];
 
-		return new OpenStreetMapTile(aRenderer, x, y, aZoom);
+		return new OpenStreetMapTile(aRenderer, aZoom, x, y);
 	}
 
 	// ===========================================================

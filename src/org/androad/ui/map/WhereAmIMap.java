@@ -1225,19 +1225,14 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 
 		/* For each zoomLevel, get the tiles, that hit the visible Rectangle. */
 		final BoundingBoxE6 bbE6Visible = this.mOSMapView.getVisibleBoundingBoxE6();
-		final OpenStreetMapTile[][] tilesNeeded = new OpenStreetMapTile[pUptoZoomLevel+1][];
+		final ArrayList<OpenStreetMapTile> tilesNeeded = new ArrayList<OpenStreetMapTile>();
 		for(int i = 0; i <= pUptoZoomLevel; i++) {
-			tilesNeeded[i] = Util.calculateNeededTilesForZoomLevelInBoundingBox(providerInfo, i, bbE6Visible);
+			Util.calculateNeededTilesForZoomLevelInBoundingBox(tilesNeeded, providerInfo, i, bbE6Visible);
 		}
 
 
 		/* Calculate the number of tiles to download. */
-		long tmpCount = 0;
-		for(final OpenStreetMapTile[] part : tilesNeeded) {
-			tmpCount += part.length;
-		}
-
-		final long tileCount = tmpCount;
+		final long tileCount = tilesNeeded.size();
 
 		/* Calculate the needed size. */
 		final long bytesEpectedNeeded = tileCount * providerInfo.maptileSizePx() * 71;
@@ -1269,7 +1264,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 							@Override
 							public void run() {
                                 OSMMapTilePreloader preloader = new OSMMapTilePreloader();
-								preloader.loadAllToCacheAsync(tilesNeeded,
+								preloader.loadAllToCacheAsync(tilesNeeded.toArray(new OpenStreetMapTile[1]),
                                                               providerInfo,
                                                               preloader.new OnProgressChangeListener(){
                                                                   @Override
