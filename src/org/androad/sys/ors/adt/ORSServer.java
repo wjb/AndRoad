@@ -11,14 +11,17 @@ import org.androad.sys.ors.ds.DSRequester;
 import org.androad.sys.ors.ds.google.GoogleDSRequester;
 import org.androad.sys.ors.ds.openrouteservice.OpenRouteServiceDSRequester;
 import org.androad.sys.ors.ds.yahoo.YahooDSRequester;
+import org.androad.sys.ors.ds.yournavigation.YourNavigationDSRequester;
 import org.androad.sys.ors.lus.LUSRequester;
 import org.androad.sys.ors.lus.google.GoogleLUSRequester;
 import org.androad.sys.ors.lus.openrouteservice.OpenRouteServiceLUSRequester;
 import org.androad.sys.ors.lus.yahoo.YahooLUSRequester;
+import org.androad.sys.ors.lus.yournavigation.YourNavigationLUSRequester;
 import org.androad.sys.ors.rs.RSRequester;
 import org.androad.sys.ors.rs.google.GoogleRSRequester;
 import org.androad.sys.ors.rs.openrouteservice.OpenRouteServiceRSRequester;
 import org.androad.sys.ors.rs.yahoo.YahooRSRequester;
+import org.androad.sys.ors.rs.yournavigation.YourNavigationRSRequester;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -55,7 +58,16 @@ public enum ORSServer implements Parcelable {
           new YahooRSRequester(),
           new YahooDSRequester(),
           new YahooLUSRequester(),
-          new IPingMethod.HostNamePing("maps.yahoo.com"));
+          new IPingMethod.HostNamePing("maps.yahoo.com")),
+	YOURNAVIGATION("Your Navigation",
+          "This server is the your navigation.",
+          "USA",
+          Country.USA,
+          Country.USA,
+          new YourNavigationRSRequester(),
+          new YourNavigationDSRequester(),
+          new YourNavigationLUSRequester(),
+          new IPingMethod.HostNamePing("yournavigation.org"));
 
 	// ===========================================================
 	// Constants
