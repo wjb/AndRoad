@@ -1,18 +1,16 @@
 package org.androad.osm.views.util;
 
-import org.andnav.osm.ResourceProxy;
-import org.andnav.osm.tileprovider.CloudmadeException;
-import org.andnav.osm.tileprovider.IOpenStreetMapTileProviderCallback;
-import org.andnav.osm.tileprovider.IOpenStreetMapTileProviderCloudmadeTokenCallback;
-import org.andnav.osm.tileprovider.OpenStreetMapTile;
-import org.andnav.osm.views.util.OpenStreetMapRendererBase;
+import org.osmdroid.ResourceProxy;
+import org.osmdroid.ResourceProxy.string;
+import org.osmdroid.tileprovider.MapTile;
+import org.osmdroid.tileprovider.tilesource.OnlineTileSourceBase;
 
-public class OSMMapYahooRenderer extends OpenStreetMapRendererBase {
+public class OSMMapYahooRenderer extends OnlineTileSourceBase {
 
-	public OSMMapYahooRenderer(String aName, int aZoomMinLevel,
+	public OSMMapYahooRenderer(String aName, final string aResourceId, int aZoomMinLevel,
 			int aZoomMaxLevel, int aMaptileZoom, String aImageFilenameEnding,
 			String ...aBaseUrl) {
-		super(aName, aZoomMinLevel, aZoomMaxLevel, aMaptileZoom, aImageFilenameEnding, aBaseUrl);
+		super(aName, aResourceId, aZoomMinLevel, aZoomMaxLevel, aMaptileZoom, aImageFilenameEnding, aBaseUrl);
 	}
 
 	@Override
@@ -21,14 +19,10 @@ public class OSMMapYahooRenderer extends OpenStreetMapRendererBase {
 	}
 
 	@Override
-	public String getTileURLString(
-			OpenStreetMapTile aTile,
-			IOpenStreetMapTileProviderCallback aMCallback,
-			IOpenStreetMapTileProviderCloudmadeTokenCallback aCloudmadeTokenCallback)
-			throws CloudmadeException {
-        int zoom = this.zoomMaxLevel() - aTile.getZoomLevel();
+	public String getTileURLString(MapTile aTile) {
+        int zoom = this.getMaximumZoomLevel() - aTile.getZoomLevel();
         int x = aTile.getX();
-        int y = (((1 << (this.zoomMaxLevel() - zoom)) >> 1) - 1 - aTile.getY());
+        int y = (((1 << (this.getMaximumZoomLevel() - zoom)) >> 1) - 1 - aTile.getY());
         int z = zoom + 1;
 		return new StringBuilder().append(getBaseUrl()).append("x=").append(x)
             .append("&y=").append(y).append("&z=").append(z)

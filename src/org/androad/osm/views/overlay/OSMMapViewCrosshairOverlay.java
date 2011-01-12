@@ -1,10 +1,10 @@
 // Created by plusminus on 17:10:58 - 17.12.2008
 package org.androad.osm.views.overlay;
 
-import org.andnav.osm.util.GeoPoint;
-import org.andnav.osm.views.OpenStreetMapView;
-import org.andnav.osm.views.OpenStreetMapView.OpenStreetMapViewProjection;
-import org.andnav.osm.views.overlay.OpenStreetMapViewOverlay;
+import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.MapView;
+import org.osmdroid.views.MapView.Projection;
+import org.osmdroid.views.overlay.Overlay;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -13,7 +13,7 @@ import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.Point;
 
-public class OSMMapViewCrosshairOverlay extends OpenStreetMapViewOverlay {
+public class OSMMapViewCrosshairOverlay extends Overlay {
 	// ===========================================================
 	// Constants
 	// ===========================================================
@@ -65,8 +65,8 @@ public class OSMMapViewCrosshairOverlay extends OpenStreetMapViewOverlay {
 	// ===========================================================
 
 	@Override
-	protected void onDraw(final Canvas canvas, final OpenStreetMapView osmv) {
-        final OpenStreetMapViewProjection pj = osmv.getProjection();
+	protected void onDraw(final Canvas canvas, final MapView osmv) {
+        final Projection pj = osmv.getProjection();
         final GeoPoint mapcenter = osmv.getMapCenter();
         final Point mappointcenter = pj.toMapPixels(mapcenter, null);
 
@@ -92,7 +92,7 @@ public class OSMMapViewCrosshairOverlay extends OpenStreetMapViewOverlay {
 	}
 
 	@Override
-	protected void onDrawFinished(final Canvas c, final OpenStreetMapView osmv) {
+	protected void onDrawFinished(final Canvas c, final MapView osmv) {
 		// Nothing to draw.
 	}
 

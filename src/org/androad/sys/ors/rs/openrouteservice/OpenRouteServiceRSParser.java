@@ -2,8 +2,8 @@ package org.androad.sys.ors.rs.openrouteservice;
 
 import java.util.ArrayList;
 
-import org.andnav.osm.util.BoundingBoxE6;
-import org.andnav.osm.util.GeoPoint;
+import org.osmdroid.util.BoundingBoxE6;
+import org.osmdroid.util.GeoPoint;
 
 import org.androad.sys.ors.adt.Error;
 import org.androad.sys.ors.adt.rs.Route;

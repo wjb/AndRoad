@@ -115,24 +115,12 @@
 						android:paddingTop="22px"
 						android:paddingBottom="22px"
 						android:src="@drawable/settings_colorscheme_nightmode"/>
-					<ImageButton
-						android:id="@+id/ibtn_settings_cache"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:paddingTop="22px"
-						android:paddingBottom="22px"
-						android:src="@drawable/settingsmenu_cache"/>
-				</TableRow>
+					
+				<ImageButton android:id="@+id/ibtn_settings_quality" android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingTop="22px" android:paddingBottom="22px" android:src="@drawable/settingsmenu_displayquality" /></TableRow>
 				<TableRow
 					android:layout_width="fill_parent"
 					android:layout_height="wrap_content">
-					<ImageButton
-						android:id="@+id/ibtn_settings_quality"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:paddingTop="22px"
-						android:paddingBottom="22px"
-						android:src="@drawable/settingsmenu_displayquality"/>
+					
 					<ImageButton
 						android:id="@+id/ibtn_settings_screenorientation"
 						android:layout_width="wrap_content"
@@ -140,17 +128,11 @@
 						android:paddingTop="22px"
 						android:paddingBottom="22px"
 						android:src="@drawable/settingsmenu_screenorientation"/>
-				</TableRow>
+				<ImageButton android:id="@+id/ibtn_settings_osmcontribution" android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingTop="22px" android:paddingBottom="22px" android:src="@drawable/settingsmenu_tracepolicy" /></TableRow>
 				<TableRow
 					android:layout_width="fill_parent"
 					android:layout_height="wrap_content">
-					<ImageButton
-						android:id="@+id/ibtn_settings_osmcontribution"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:paddingTop="22px"
-						android:paddingBottom="22px"
-						android:src="@drawable/settingsmenu_tracepolicy"/>
+					
 					<ImageButton
 						android:id="@+id/ibtn_settings_close_page_device"
 						android:layout_width="wrap_content"

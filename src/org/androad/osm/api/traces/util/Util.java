@@ -11,8 +11,8 @@ import java.util.TimeZone;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-import org.andnav.osm.contributor.util.RecordedGeoPoint;
-import org.andnav.osm.util.BoundingBoxE6;
+import org.osmdroid.contributor.util.RecordedGeoPoint;
+import org.osmdroid.util.BoundingBoxE6;
 
 import org.androad.osm.api.util.constants.OSMTraceAPIConstants;
 

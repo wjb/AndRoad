@@ -1,9 +1,9 @@
 // Created by plusminus on 5:29:23 PM - Mar 4, 2009
 package org.androad.osm.views.overlay;
 
-import org.andnav.osm.util.GeoPoint;
-import org.andnav.osm.views.OpenStreetMapView;
-import org.andnav.osm.views.overlay.OpenStreetMapViewOverlay;
+import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.MapView;
+import org.osmdroid.views.overlay.Overlay;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -12,7 +12,7 @@ import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.graphics.Point;
 
-public class OSMMapViewSimpleLineOverlay extends OpenStreetMapViewOverlay {
+public class OSMMapViewSimpleLineOverlay extends Overlay {
 	// ===========================================================
 	// Constants
 	// ===========================================================
@@ -92,7 +92,7 @@ public class OSMMapViewSimpleLineOverlay extends OpenStreetMapViewOverlay {
 	// ===========================================================
 
 	@Override
-	protected void onDraw(final Canvas c, final OpenStreetMapView osmv) {
+	protected void onDraw(final Canvas c, final MapView osmv) {
 		if(this.mGeoPointFrom != null && this.mGeoPointTo != null){
 			final Point from = osmv.getProjection().toMapPixels(this.mGeoPointFrom, null);
 			final Point to = osmv.getProjection().toMapPixels(this.mGeoPointTo, null);
@@ -102,7 +102,7 @@ public class OSMMapViewSimpleLineOverlay extends OpenStreetMapViewOverlay {
 	}
 
 	@Override
-	protected void onDrawFinished(final Canvas c, final OpenStreetMapView osmv) {
+	protected void onDrawFinished(final Canvas c, final MapView osmv) {
 		/* Nothing. */
 	}
 

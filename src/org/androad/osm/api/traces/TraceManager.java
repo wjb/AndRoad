@@ -3,8 +3,8 @@ package org.androad.osm.api.traces;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
-import org.andnav.osm.contributor.OSMUploader;
-import org.andnav.osm.contributor.util.RecordedGeoPoint;
+import org.osmdroid.contributor.OSMUploader;
+import org.osmdroid.contributor.util.RecordedGeoPoint;
 
 import org.androad.R;
 import org.androad.Splash;

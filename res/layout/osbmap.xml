@@ -7,7 +7,7 @@
 		android:id="@+id/rotator_ddmap"
 		android:layout_width="fill_parent"
 		android:layout_height="fill_parent" >
-	    <view class="org.andnav.osm.views.OpenStreetMapView" 
+	    <view class="org.osmdroid.views.MapView" 
 	    	android:id="@+id/map_osbmap"
 	        android:layout_width="fill_parent" 
 	        android:layout_height="fill_parent"

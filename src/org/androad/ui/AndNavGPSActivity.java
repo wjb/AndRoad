@@ -1,7 +1,7 @@
 // Created by plusminus on 22:59:23 - 09.08.2008
 package org.androad.ui;
 
-import org.andnav.osm.util.GeoPoint;
+import org.osmdroid.util.GeoPoint;
 
 import org.androad.osm.adt.util.TypeConverter;
 

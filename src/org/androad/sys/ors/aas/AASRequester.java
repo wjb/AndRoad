@@ -10,7 +10,7 @@ import javax.xml.parsers.SAXParserFactory;
 
 import junit.framework.Assert;
 
-import org.andnav.osm.util.GeoPoint;
+import org.osmdroid.util.GeoPoint;
 
 import org.androad.sys.ors.exceptions.ORSException;
 import org.androad.util.constants.Constants;

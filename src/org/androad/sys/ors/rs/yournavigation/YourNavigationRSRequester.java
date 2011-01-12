@@ -17,8 +17,8 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-import org.andnav.osm.util.GeoPoint;
-import org.andnav.osm.tileprovider.util.StreamUtils;
+import org.osmdroid.util.GeoPoint;
+import org.osmdroid.tileprovider.util.StreamUtils;
 
 import org.androad.osm.util.Util;
 import org.androad.osm.util.constants.OSMConstants;

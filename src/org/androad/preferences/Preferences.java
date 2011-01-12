@@ -3,9 +3,9 @@ package org.androad.preferences;
 
 import java.util.HashMap;
 
-import org.andnav.osm.util.GeoPoint;
-import org.andnav.osm.views.util.IOpenStreetMapRendererInfo;
-import org.andnav.osm.views.util.OpenStreetMapRendererFactory;
+import org.osmdroid.tileprovider.tilesource.ITileSource;
+import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
+import org.osmdroid.util.GeoPoint;
 
 import org.androad.R;
 import org.androad.adt.UnitSystem;
@@ -723,31 +723,31 @@ public class Preferences implements Constants, PreferenceConstants {
 	// Stored-ProviderInfo
 	// ===========================================================
 
-	public static IOpenStreetMapRendererInfo getMapViewProviderInfoWhereAmI(final Context ctx){
- 		IOpenStreetMapRendererInfo res = null;
+	public static ITileSource getMapViewProviderInfoWhereAmI(final Context ctx){
+		ITileSource res = null;
         try {
-            res = OpenStreetMapRendererFactory.getRenderer(getInstance(ctx).getString(PREF_OSMMAPVIEW_PROVIDERINFO_WHEREAMI_ID, PREF_OSMMAPVIEW_PROVIDERINFO_WHEREAMI_DEFAULT));
+            res = TileSourceFactory.getTileSource(getInstance(ctx).getString(PREF_OSMMAPVIEW_PROVIDERINFO_WHEREAMI_ID, PREF_OSMMAPVIEW_PROVIDERINFO_WHEREAMI_DEFAULT));
         } catch (Exception e) {
-            res = OpenStreetMapRendererFactory.DEFAULT_RENDERER;
+            res = TileSourceFactory.DEFAULT_TILE_SOURCE;
         }
         return res;
 	}
 
-	public static void saveMapViewProviderInfoWhereAmI(final Context ctx, final IOpenStreetMapRendererInfo aInfo){
+	public static void saveMapViewProviderInfoWhereAmI(final Context ctx, final ITileSource aInfo){
 		getEditorInstance(ctx).putString(PREF_OSMMAPVIEW_PROVIDERINFO_WHEREAMI_ID, aInfo.name()).commit();
 	}
 
-	public static IOpenStreetMapRendererInfo getMapViewProviderInfoDDMap(final Context ctx){
- 		IOpenStreetMapRendererInfo res = null;
+	public static ITileSource getMapViewProviderInfoDDMap(final Context ctx){
+ 		ITileSource res = null;
         try {
-            res = OpenStreetMapRendererFactory.getRenderer(getInstance(ctx).getString(PREF_OSMMAPVIEW_PROVIDERINFO_DDMAP_ID, PREF_OSMMAPVIEW_PROVIDERINFO_DDMAP_DEFAULT));
+            res = TileSourceFactory.getTileSource(getInstance(ctx).getString(PREF_OSMMAPVIEW_PROVIDERINFO_DDMAP_ID, PREF_OSMMAPVIEW_PROVIDERINFO_DDMAP_DEFAULT));
         } catch (Exception e) {
-            res = OpenStreetMapRendererFactory.DEFAULT_RENDERER;
+            res = TileSourceFactory.DEFAULT_TILE_SOURCE;
         }
         return res;
 	}
 
-	public static void saveMapViewProviderInfoDDMap(final Context ctx, final IOpenStreetMapRendererInfo aInfo){
+	public static void saveMapViewProviderInfoDDMap(final Context ctx, final ITileSource aInfo){
 		getEditorInstance(ctx).putString(PREF_OSMMAPVIEW_PROVIDERINFO_DDMAP_ID, aInfo.name()).commit();
 	}
 

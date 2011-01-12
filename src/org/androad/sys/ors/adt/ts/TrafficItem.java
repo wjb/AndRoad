@@ -1,7 +1,7 @@
 // Created by plusminus on 00:50:30 - 20.01.2009
 package org.androad.sys.ors.adt.ts;
 
-import org.andnav.osm.util.GeoPoint;
+import org.osmdroid.util.GeoPoint;
 
 import org.andnav2.traffic.tpeg.adt.rtm.table.RTM31_general_magnitude;
 

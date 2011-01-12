@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import org.androad.sys.ors.ds.DSRequester;
 
-import org.andnav.osm.util.GeoPoint;
+import org.osmdroid.util.GeoPoint;
 
 import org.androad.sys.ors.adt.ds.ORSPOI;
 import org.androad.sys.ors.adt.ds.POIType;

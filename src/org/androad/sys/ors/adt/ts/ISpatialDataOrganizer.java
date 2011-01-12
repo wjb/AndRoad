@@ -4,9 +4,9 @@ package org.androad.sys.ors.adt.ts;
 import java.util.Collection;
 import java.util.List;
 
-import org.andnav.osm.util.BoundingBoxE6;
-import org.andnav.osm.util.GeoPoint;
-import org.andnav.osm.views.overlay.OpenStreetMapViewOverlayItem;
+import org.osmdroid.util.BoundingBoxE6;
+import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.overlay.OverlayItem;
 
 /**
  * 
@@ -14,7 +14,7 @@ import org.andnav.osm.views.overlay.OpenStreetMapViewOverlayItem;
  *
  * @param <T>
  */
-public interface ISpatialDataOrganizer<T extends OpenStreetMapViewOverlayItem> {
+public interface ISpatialDataOrganizer<T extends OverlayItem> {
 	public abstract List<T> getItems();
 
 	public abstract void add(final T pItem);

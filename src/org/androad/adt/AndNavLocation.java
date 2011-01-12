@@ -1,8 +1,8 @@
 // Created by plusminus on 22:57:59 - 02.02.2009
 package org.androad.adt;
 
-import org.andnav.osm.util.GeoPoint;
-import org.andnav.osm.views.util.constants.OpenStreetMapViewConstants;
+import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.util.constants.MapViewConstants;
 
 import android.location.LocationManager;
 
@@ -36,7 +36,7 @@ public class AndNavLocation extends GeoPoint {
 		this.mHorizontalPositioningError = pHorizontalPositioningError;
 		this.mVerticalPositioningError = pVerticalPositioningError;
 		this.mNumberOfLandmarks = pNumberOfLandmarks;
-		this.mBearing = (pBearing != 0.0f) ? pBearing : OpenStreetMapViewConstants.NOT_SET; // LocationManager will do the thing
+		this.mBearing = (pBearing != 0.0f) ? pBearing : MapViewConstants.NOT_SET; // LocationManager will do the thing
 		this.mAltitude = pAltitude;
 		this.mTimeStamp = pTimeStamp;
 		this.mSpeed = pSpeed;
@@ -48,27 +48,27 @@ public class AndNavLocation extends GeoPoint {
 	// ===========================================================
 
 	public boolean hasHorizontalPositioningError() {
-		return this.mHorizontalPositioningError != OpenStreetMapViewConstants.NOT_SET;
+		return this.mHorizontalPositioningError != MapViewConstants.NOT_SET;
 	}
 
 	public boolean hasVerticalPositioningError() {
-		return this.mVerticalPositioningError != OpenStreetMapViewConstants.NOT_SET;
+		return this.mVerticalPositioningError != MapViewConstants.NOT_SET;
 	}
 
 	public boolean hasNumberOfLandmarks() {
-		return this.mNumberOfLandmarks != OpenStreetMapViewConstants.NOT_SET;
+		return this.mNumberOfLandmarks != MapViewConstants.NOT_SET;
 	}
 
 	public boolean hasBearing() {
-		return this.mBearing != OpenStreetMapViewConstants.NOT_SET;
+		return this.mBearing != MapViewConstants.NOT_SET;
 	}
 
 	public boolean hasAltitude() {
-		return this.mAltitude != OpenStreetMapViewConstants.NOT_SET;
+		return this.mAltitude != MapViewConstants.NOT_SET;
 	}
 
 	public boolean hasSpeed() {
-		return this.mSpeed != OpenStreetMapViewConstants.NOT_SET;
+		return this.mSpeed != MapViewConstants.NOT_SET;
 	}
 
 

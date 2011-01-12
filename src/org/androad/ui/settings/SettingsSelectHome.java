@@ -1,7 +1,7 @@
 //Created by plusminus on 19:51:45 - 21.05.2008
 package org.androad.ui.settings;
 
-import org.andnav.osm.util.GeoPoint;
+import org.osmdroid.util.GeoPoint;
 
 import org.androad.R;
 import org.androad.preferences.Preferences;

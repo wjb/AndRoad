@@ -7,8 +7,8 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.Toast;
 
-import org.andnav.osm.util.GeoPoint;
-import org.andnav.osm.views.OpenStreetMapView.OpenStreetMapViewProjection;
+import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.MapView.Projection;
 
 import org.androad.R;
 import org.androad.adt.Favorite;
@@ -53,7 +53,7 @@ public class FavoritePoint extends BitmapItem {
 	// ===========================================================
 
     @Override
-    public boolean onSingleTapUp(final MotionEvent e, final OpenStreetMapViewProjection pj) {
+    public boolean onSingleTapUp(final MotionEvent e, final Projection pj) {
         GeoPoint tap = pj.fromPixels((int)e.getX(), (int)e.getY());
         float distance = fCenter.distanceTo(tap);
 

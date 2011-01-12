@@ -1,10 +1,10 @@
 // Created by plusminus on 00:14:42 - 02.10.2008
 package org.androad.osm;
 
-import org.andnav.osm.contributor.RouteRecorder;
-import org.andnav.osm.util.GeoPoint;
-import org.andnav.osm.views.OpenStreetMapView;
-import org.andnav.osm.views.util.constants.OpenStreetMapViewConstants;
+import org.osmdroid.contributor.RouteRecorder;
+import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.MapView;
+import org.osmdroid.views.util.constants.MapViewConstants;
 
 import org.androad.adt.AndNavLocation;
 import org.androad.loc.AbstractAndNavLocationProvider;
@@ -28,7 +28,7 @@ import android.view.Window;
  * @author Nicolas Gramlich
  *
  */
-public abstract class OpenStreetMapActivity extends Activity implements DataStateChangedListener, OSMConstants, OpenStreetMapViewConstants, AndNavLocationCallback {
+public abstract class OpenStreetMapActivity extends Activity implements DataStateChangedListener, OSMConstants, MapViewConstants, AndNavLocationCallback {
 	// ===========================================================
 	// Constants
 	// ===========================================================
@@ -41,7 +41,7 @@ public abstract class OpenStreetMapActivity extends Activity implements DataStat
 
 	protected AbstractAndNavLocationProvider mLocationProvider;
 
-	protected OpenStreetMapView mOSMapView;
+	protected MapView mOSMapView;
 
 	private RouteRecorder mRouteRecorder = new RouteRecorder();
 
@@ -178,7 +178,7 @@ public abstract class OpenStreetMapActivity extends Activity implements DataStat
 	@Override
 	public void fireLocationChanged(final AndNavLocation pLocation) {
 		if(OpenStreetMapActivity.this.mDoGPSRecordingAndContributing) {
-			OpenStreetMapActivity.this.mRouteRecorder.add(pLocation, OpenStreetMapViewConstants.NOT_SET);
+			OpenStreetMapActivity.this.mRouteRecorder.add(pLocation, MapViewConstants.NOT_SET);
 		}
 
 		//		Log.d(DEBUGTAG, "[onLocationChanged] FreeMemory: " + Runtime.getRuntime().freeMemory());

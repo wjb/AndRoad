@@ -3,7 +3,7 @@ package org.androad.sys.ors.aas;
 
 import java.util.ArrayList;
 
-import org.andnav.osm.util.BoundingBoxE6;
+import org.osmdroid.util.BoundingBoxE6;
 
 import org.androad.sys.ors.adt.aoi.Polygon;
 

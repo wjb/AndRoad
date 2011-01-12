@@ -1,8 +1,8 @@
 // Created by plusminus on 00:09:18 - 04.12.2008
 package org.androad.ui.map.overlay;
 
-import org.andnav.osm.views.OpenStreetMapView;
-import org.andnav.osm.views.overlay.OpenStreetMapViewOverlay;
+import org.osmdroid.views.MapView;
+import org.osmdroid.views.overlay.Overlay;
 
 import org.androad.preferences.PreferenceConstants;
 
@@ -13,7 +13,7 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.PorterDuff.Mode;
 
 
-public class ColorSchemeOverlay extends OpenStreetMapViewOverlay implements PreferenceConstants {
+public class ColorSchemeOverlay extends Overlay implements PreferenceConstants {
 	// ===========================================================
 	// Constants
 	// ===========================================================
@@ -73,7 +73,7 @@ public class ColorSchemeOverlay extends OpenStreetMapViewOverlay implements Pref
 	// ===========================================================
 
 	@Override
-	protected void onDraw(final Canvas c, final OpenStreetMapView osmv) {
+	protected void onDraw(final Canvas c, final MapView osmv) {
 		switch(this.mColorScheme){
 			case PREF_THEME_DAY_RESID:
 			case PREF_THEME_NIGHT_RESID:
@@ -86,7 +86,7 @@ public class ColorSchemeOverlay extends OpenStreetMapViewOverlay implements Pref
 	}
 
 	@Override
-	protected void onDrawFinished(final Canvas c, final OpenStreetMapView osmv) {
+	protected void onDrawFinished(final Canvas c, final MapView osmv) {
 		return;
 	}
 

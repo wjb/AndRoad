@@ -176,7 +176,7 @@
 	- Configuration-Manager for the TTS-Library (by Charles L. Chen) .
 	- FreeThePostcode-Option on the OpenStreetBug-Map.
 	- Traces can now be filtered for minimum requirements in the "Trace-Settings"-Settingemenu.
-	- New Renderer 'ÖPNV', nicely showing the public transit in Germany and border near areas of other countries!
+	- New Renderer 'ï¿½PNV', nicely showing the public transit in Germany and border near areas of other countries!
 	- New Colorscheme-Settingsmenu (Screenbrightness can be changed) .
 	- Process of determining being 'Off-Route' now makes use of the accuracy of the users location.
 	- Proper default-values for turn-voice.
@@ -226,7 +226,7 @@
 	- Navigation-Screen now doesn't need to re-download the Route, when switching orientation.
 	- Contacts-Screen now remembers the Contacts-List when switching orientation.
 	- HorizontalSliders (i.e. in Settings-->Cache) now have drag-picker-icon, which makes them look more draggable. 
-	- QWERTZ-Keyboardlayout now has a "ß".
+	- QWERTZ-Keyboardlayout now has a "ï¿½".
 	- Initial ad should now display immediately.
 	- Invalid Routes now no more get saved.
 	
@@ -369,7 +369,7 @@
 	- (AndNav2) Volume of Sounds during Realtime-Navigation
 	- (AndNav2) 'Select Country'-Screen had no BACK-Button
 	- Favorite-Items can now again be deleted using a LongClick
-	- OpenStreetMapView now has getVisibleRect and getDrawnRect.
+	- MapView now has getVisibleRect and getDrawnRect.
 	- 'User'-ScreenRotation is now no more the same as 'Sensor' ;)
 	- Bug when AndNav2 was zooming out to far on when WayPoints had been added 
 

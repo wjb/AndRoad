@@ -29,8 +29,7 @@ public class SettingsMenu extends AndNavBaseActivity {
 	protected static final int REQUESTCODE_FAVORITES = REQUESTCODE_UNITSYSTEM + 1;
 	protected static final int REQUESTCODE_STATISTICS = REQUESTCODE_FAVORITES + 1;
 	protected static final int REQUESTCODE_ROUTINGFLAGS_SETTINGS = REQUESTCODE_STATISTICS + 1;
-	protected static final int REQUESTCODE_CACHE_SETTINGS = REQUESTCODE_ROUTINGFLAGS_SETTINGS + 1;
-	protected static final int REQUESTCODE_SCREENORIENTATION = REQUESTCODE_CACHE_SETTINGS + 1;
+	protected static final int REQUESTCODE_SCREENORIENTATION = REQUESTCODE_ROUTINGFLAGS_SETTINGS + 1;
 	protected static final int REQUESTCODE_TRACEPOLICY = REQUESTCODE_SCREENORIENTATION + 1;
 	protected static final int REQUESTCODE_COLORSCHEME = REQUESTCODE_TRACEPOLICY + 1;
 	protected static final int REQUESTCODE_NAVIGATIONSETTINGS = REQUESTCODE_COLORSCHEME + 1;
@@ -227,21 +226,6 @@ public class SettingsMenu extends AndNavBaseActivity {
 	}
 
 	private void applySettingsButtonListenersPageDevice() {
-
-		new OnClickOnFocusChangedListenerAdapter(this.findViewById(R.id.ibtn_settings_cache)){
-			@Override
-			public void onBoth(final View me, final boolean focused) {
-				if(focused) {
-					SettingsMenu.this.setQuickinfoPageDeviceTextByID(R.string.tv_settings_quickinfo_cache_focused);
-				}
-			}
-
-			@Override
-			public void onClicked(final View me) {
-				final Intent cacheSettingsIntent = new Intent(SettingsMenu.this, SettingsCache.class);
-				SettingsMenu.this.startActivityForResult(cacheSettingsIntent, REQUESTCODE_CACHE_SETTINGS);
-			}
-		};
 
 		new OnClickOnFocusChangedListenerAdapter(this.findViewById(R.id.ibtn_settings_colorscheme)){
 			@Override

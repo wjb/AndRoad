@@ -2,10 +2,10 @@ package org.androad.osm.views.overlay;
 
 import java.util.List;
 
-import org.andnav.osm.contributor.util.RecordedGeoPoint;
-import org.andnav.osm.views.OpenStreetMapView;
-import org.andnav.osm.views.OpenStreetMapView.OpenStreetMapViewProjection;
-import org.andnav.osm.views.overlay.OpenStreetMapViewOverlay;
+import org.osmdroid.contributor.util.RecordedGeoPoint;
+import org.osmdroid.views.MapView;
+import org.osmdroid.views.MapView.Projection;
+import org.osmdroid.views.overlay.Overlay;
 
 import org.androad.R;
 import org.androad.osm.OpenStreetMapActivity;
@@ -28,7 +28,7 @@ import android.graphics.Paint.Cap;
  * @author Nicolas Gramlich
  *
  */
-public class OSMMapViewSimpleTraceOverlay extends OpenStreetMapViewOverlay implements Constants, TimeConstants, MathematicalConstants, PreferenceConstants, GeoConstants {
+public class OSMMapViewSimpleTraceOverlay extends Overlay implements Constants, TimeConstants, MathematicalConstants, PreferenceConstants, GeoConstants {
 	// ===========================================================
 	// Final Fields
 	// ===========================================================
@@ -104,13 +104,13 @@ public class OSMMapViewSimpleTraceOverlay extends OpenStreetMapViewOverlay imple
 	}
 
 	@Override
-	protected void onDrawFinished(final Canvas c, final OpenStreetMapView osmv) {
+	protected void onDrawFinished(final Canvas c, final MapView osmv) {
 		// Nothing
 	}
 
 	/** This function does some fancy drawing, could be shortened a lot.*/
 	@Override
-	public void onDraw(final Canvas canvas, final OpenStreetMapView mapView) {
+	public void onDraw(final Canvas canvas, final MapView mapView) {
 		/* Get the width/height of the underlying MapView.*/
 		//		final int mapViewWidth = this.mMapActivity.getMapViewWidth();
 		//		final int mapViewHeight = this.mMapActivity.getMapViewHeight();
@@ -120,7 +120,7 @@ public class OSMMapViewSimpleTraceOverlay extends OpenStreetMapViewOverlay imple
 		final Point screenCoords = new Point();
 
 
-		final OpenStreetMapViewProjection pj = mapView.getProjection();
+		final Projection pj = mapView.getProjection();
 
 		final ManagedLinePath path = new ManagedLinePath();
 

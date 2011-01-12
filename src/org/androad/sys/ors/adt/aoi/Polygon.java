@@ -7,9 +7,9 @@ import java.util.List;
 
 import junit.framework.Assert;
 
-import org.andnav.osm.util.BoundingBoxE6;
-import org.andnav.osm.util.GeoPoint;
-import org.andnav.osm.views.OpenStreetMapView.OpenStreetMapViewProjection;
+import org.osmdroid.util.BoundingBoxE6;
+import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.MapView.Projection;
 
 import org.androad.ui.map.overlay.util.ManagedLinePath;
 
@@ -135,7 +135,7 @@ public class Polygon extends AreaOfInterest {
 	}
 
 	@Override
-	public void drawToCanvas(final Canvas c, final OpenStreetMapViewProjection pj) {
+	public void drawToCanvas(final Canvas c, final Projection pj) {
 		final Point reuse = new Point();
 		final ManagedLinePath p = new ManagedLinePath();
 

@@ -5,14 +5,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.andnav.osm.util.BoundingBoxE6;
-import org.andnav.osm.util.GeoPoint;
-import org.andnav.osm.views.overlay.OpenStreetMapViewOverlayItem;
+import org.osmdroid.util.BoundingBoxE6;
+import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.overlay.OverlayItem;
 
 import com.openmap.util.quadtree.QuadTree;
 
 
-public class ListBackedQuadTreeOrganizer<T extends OpenStreetMapViewOverlayItem> implements ISpatialDataOrganizer<T> {
+public class ListBackedQuadTreeOrganizer<T extends OverlayItem> implements ISpatialDataOrganizer<T> {
 	// ===========================================================
 	// Constants
 	// ===========================================================

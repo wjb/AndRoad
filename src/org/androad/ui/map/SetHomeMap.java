@@ -3,14 +3,14 @@ package org.androad.ui.map;
 
 import java.util.List;
 
-import org.andnav.osm.util.GeoPoint;
-import org.andnav.osm.views.OpenStreetMapView;
-import org.andnav.osm.views.OpenStreetMapView.OpenStreetMapViewProjection;
-import org.andnav.osm.views.OpenStreetMapViewController.AnimationType;
-import org.andnav.osm.views.overlay.OpenStreetMapViewOverlay;
-import org.andnav.osm.views.overlay.OpenStreetMapViewSimpleLocationOverlay;
-import org.andnav.osm.views.util.IOpenStreetMapRendererInfo;
-import org.andnav.osm.views.util.OpenStreetMapRendererFactory;
+import org.osmdroid.tileprovider.tilesource.ITileSource;
+import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
+import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.MapView;
+import org.osmdroid.views.MapView.Projection;
+import org.osmdroid.views.MapController.AnimationType;
+import org.osmdroid.views.overlay.Overlay;
+import org.osmdroid.views.overlay.SimpleLocationOverlay;
 
 import org.androad.R;
 import org.androad.adt.AndNavLocation;
@@ -60,7 +60,7 @@ public class SetHomeMap extends OpenStreetMapAndNavBaseActivity {
 	protected ImageButton ibtnSetHome;
 	protected BitmapItem mSetHomeItem;
 	protected BitmapOverlay mSetHomeOverlay;
-	protected OpenStreetMapViewSimpleLocationOverlay mMyLocationOverlay;
+	protected SimpleLocationOverlay mMyLocationOverlay;
 
 	protected GeoPoint mHomeLocation;
 
@@ -73,8 +73,8 @@ public class SetHomeMap extends OpenStreetMapAndNavBaseActivity {
 	@Override
 	protected void onSetupContentView() {
 		this.setContentView(R.layout.sethome_map);
-		super.mOSMapView = (OpenStreetMapView)findViewById(R.id.map_sethome);
-		super.mOSMapView.setRenderer(Preferences.getMapViewProviderInfoWhereAmI(this));
+		super.mOSMapView = (MapView)findViewById(R.id.map_sethome);
+		super.mOSMapView.setTileSource(Preferences.getMapViewProviderInfoWhereAmI(this));
 	}
 
 	/** Called when the activity is first created. */
@@ -86,9 +86,9 @@ public class SetHomeMap extends OpenStreetMapAndNavBaseActivity {
         this.mSetHomeOverlay = new BitmapOverlay(this, this.mSetHomeItem);
 
 		/* Add a new instance of our fancy Overlay-Class to the MapView. */
-		final List<OpenStreetMapViewOverlay> overlays = this.mOSMapView.getOverlays();
+		final List<Overlay> overlays = this.mOSMapView.getOverlays();
 		overlays.add(this.mSetHomeOverlay);
-		overlays.add(this.mMyLocationOverlay = new OpenStreetMapViewSimpleLocationOverlay(this));
+		overlays.add(this.mMyLocationOverlay = new SimpleLocationOverlay(this));
 
 		// Load the animation from XML (XML file is res/anim/move_animation.xml).
 		final Animation anim = AnimationUtils.loadAnimation(this, R.anim.button_beat);
@@ -196,7 +196,7 @@ public class SetHomeMap extends OpenStreetMapAndNavBaseActivity {
 		new OnClickOnFocusChangedListenerAdapter(this.ibtnToggleSatellite){
 			@Override
 			public void onClicked(final View arg0) {
-				final IOpenStreetMapRendererInfo[] providers = OpenStreetMapRendererFactory.getRenderers();
+				final ITileSource[] providers = TileSourceFactory.getTileSources().toArray(new ITileSource[0]);
 
 				final SpannableString[] renderersNames = new SpannableString[providers.length];
 
@@ -208,7 +208,7 @@ public class SetHomeMap extends OpenStreetMapAndNavBaseActivity {
 					renderersNames[j] = itemTitle;
 				}
 
-				final int curRendererIndex = SetHomeMap.this.mOSMapView.getRenderer().ordinal();
+				final int curRendererIndex = SetHomeMap.this.mOSMapView.getTileProvider().getTileSource().ordinal();
 
 				new AlertDialog.Builder(SetHomeMap.this)
 				.setTitle(R.string.maps_menu_submenu_renderers)
@@ -261,8 +261,8 @@ public class SetHomeMap extends OpenStreetMapAndNavBaseActivity {
 		final GestureDetector gd = new GestureDetector(new GestureDetector.SimpleOnGestureListener(){
 			@Override
 			public void onLongPress(final MotionEvent mv) {
-				final OpenStreetMapView mapView = SetHomeMap.super.mOSMapView; // Drag to local field
-				final OpenStreetMapViewProjection pj = mapView.getProjection();
+				final MapView mapView = SetHomeMap.super.mOSMapView; // Drag to local field
+				final Projection pj = mapView.getProjection();
 				final GeoPoint mp = pj.fromPixels((int)mv.getX(), (int)mv.getY());
 
 				SetHomeMap.this.mHomeLocation = mp;
@@ -286,12 +286,12 @@ public class SetHomeMap extends OpenStreetMapAndNavBaseActivity {
 	// ===========================================================
 	// Inner and Anonymous Classes
 	// ===========================================================
-	private void changeProviderInfo(final IOpenStreetMapRendererInfo aProviderInfo) {
+	private void changeProviderInfo(final ITileSource aProviderInfo) {
 		/* Remember changes to the provider to start the next time with the same provider. */
 		Preferences.saveMapViewProviderInfoWhereAmI(this, aProviderInfo);
 
 		/* Check if Auto-Follow has to be disabled. */
-        super.mOSMapView.setRenderer(aProviderInfo);
+        super.mOSMapView.setTileSource(aProviderInfo);
 	}
 
 }

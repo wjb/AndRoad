@@ -1,7 +1,7 @@
 // Created by plusminus on 19:27:52 - 15.11.2008
 package org.androad.sys.ors.adt.ds;
 
-import org.andnav.osm.util.GeoPoint;
+import org.osmdroid.util.GeoPoint;
 
 public class ORSPOI {
 	// ===========================================================

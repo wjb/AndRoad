@@ -17,7 +17,7 @@ import javax.xml.parsers.SAXParserFactory;
 
 import org.androad.sys.ors.ds.DSRequester;
 
-import org.andnav.osm.util.GeoPoint;
+import org.osmdroid.util.GeoPoint;
 
 import org.androad.sys.ors.adt.Error;
 import org.androad.sys.ors.adt.ds.ORSPOI;

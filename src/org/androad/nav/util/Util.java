@@ -1,7 +1,7 @@
 // Created by plusminus on 23:51:49 - 24.02.2008
 package org.androad.nav.util;
 
-import org.andnav.osm.util.GeoPoint;
+import org.osmdroid.util.GeoPoint;
 
 import org.androad.adt.other.GraphicsPoint;
 import org.androad.util.constants.GeoConstants;

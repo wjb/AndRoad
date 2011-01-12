@@ -1,6 +1,6 @@
 package org.androad.sys.osb.adt;
 
-import org.andnav.osm.util.GeoPoint;
+import org.osmdroid.util.GeoPoint;
 
 import android.os.Parcel;
 import android.os.Parcelable;

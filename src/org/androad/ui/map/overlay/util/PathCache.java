@@ -4,9 +4,9 @@ package org.androad.ui.map.overlay.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.andnav.osm.util.GeoPoint;
-import org.andnav.osm.views.OpenStreetMapView;
-import org.andnav.osm.views.OpenStreetMapView.OpenStreetMapViewProjection;
+import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.MapView;
+import org.osmdroid.views.MapView.Projection;
 
 import org.androad.sys.ors.adt.rs.Route;
 
@@ -52,9 +52,9 @@ public class PathCache {
 		return this.mSegments;
 	}
 
-	public void init(final OpenStreetMapView aMapview, final Route aRoute) {
+	public void init(final MapView aMapview, final Route aRoute) {
 		this.mOrigCenteredStartGeoPoint = aRoute.getStart();
-		final OpenStreetMapViewProjection pj = aMapview.getProjection();
+		final Projection pj = aMapview.getProjection();
 
 
 		if(aRoute == null) {
@@ -83,7 +83,7 @@ public class PathCache {
 		}
 	}
 
-	public Matrix getTransformationMatrix(final OpenStreetMapViewProjection curProjection, final GeoPoint pCurrentCenter, final int aZoom) {
+	public Matrix getTransformationMatrix(final Projection curProjection, final GeoPoint pCurrentCenter, final int aZoom) {
 		final Matrix out = new Matrix();
 
 		final Point pOrig = curProjection.toMapPixels(this.mOrigCenteredStartGeoPoint, null);

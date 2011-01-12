@@ -6,7 +6,7 @@ import java.util.Locale;
 
 import junit.framework.Assert;
 
-import org.andnav.osm.util.BoundingBoxE6;
+import org.osmdroid.util.BoundingBoxE6;
 
 import org.androad.sys.ors.util.constants.ORSXMLConstants;
 

@@ -6,16 +6,16 @@ import java.util.List;
 
 import junit.framework.Assert;
 
-import org.andnav.osm.views.OpenStreetMapView;
-import org.andnav.osm.views.OpenStreetMapView.OpenStreetMapViewProjection;
-import org.andnav.osm.views.overlay.OpenStreetMapViewOverlay;
+import org.osmdroid.views.MapView;
+import org.osmdroid.views.MapView.Projection;
+import org.osmdroid.views.overlay.Overlay;
 
 import org.androad.sys.ors.adt.aoi.AreaOfInterest;
 
 import android.content.Context;
 import android.graphics.Canvas;
 
-public class AreaOfInterestOverlay extends OpenStreetMapViewOverlay {
+public class AreaOfInterestOverlay extends Overlay {
 	// ===========================================================
 	// Constants
 	// ===========================================================
@@ -72,8 +72,8 @@ public class AreaOfInterestOverlay extends OpenStreetMapViewOverlay {
 	}
 
 	@Override
-	protected void onDraw(final Canvas c, final OpenStreetMapView osmv) {
-		final OpenStreetMapViewProjection pj = osmv.getProjection();
+	protected void onDraw(final Canvas c, final MapView osmv) {
+		final Projection pj = osmv.getProjection();
 
 		final int limit = Math.min(this.mDrawnAreasLimit, this.mAOIs.size());
 		for(int i = 0; i < limit; i++){
@@ -83,7 +83,7 @@ public class AreaOfInterestOverlay extends OpenStreetMapViewOverlay {
 	}
 
 	@Override
-	protected void onDrawFinished(final Canvas c, final OpenStreetMapView osmv) {
+	protected void onDrawFinished(final Canvas c, final MapView osmv) {
 		// Nothing
 	}
 

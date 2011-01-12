@@ -2,7 +2,7 @@ package org.androad.sys.ors.adt.lus;
 
 import java.util.ArrayList;
 
-import org.andnav.osm.util.BoundingBoxE6;
+import org.osmdroid.util.BoundingBoxE6;
 
 import org.androad.R;
 import org.androad.exc.Exceptor;

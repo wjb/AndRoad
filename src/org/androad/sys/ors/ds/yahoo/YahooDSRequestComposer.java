@@ -2,7 +2,7 @@ package org.androad.sys.ors.ds.yahoo;
 
 import junit.framework.Assert;
 
-import org.andnav.osm.util.GeoPoint;
+import org.osmdroid.util.GeoPoint;
 
 import org.androad.sys.ors.adt.ds.POIType;
 import org.androad.sys.ors.util.constants.ORSXMLConstants;

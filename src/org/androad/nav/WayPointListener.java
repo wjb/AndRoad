@@ -3,7 +3,7 @@ package org.androad.nav;
 
 import java.util.List;
 
-import org.andnav.osm.util.GeoPoint;
+import org.osmdroid.util.GeoPoint;
 
 public interface WayPointListener {
 	// ===========================================================

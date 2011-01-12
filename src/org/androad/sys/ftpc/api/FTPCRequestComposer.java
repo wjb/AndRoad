@@ -3,7 +3,7 @@ package org.androad.sys.ftpc.api;
 
 import java.util.Locale;
 
-import org.andnav.osm.util.GeoPoint;
+import org.osmdroid.util.GeoPoint;
 
 public class FTPCRequestComposer {
 	// ===========================================================

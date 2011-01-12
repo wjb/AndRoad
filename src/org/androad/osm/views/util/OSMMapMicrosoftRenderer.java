@@ -1,20 +1,18 @@
 package org.androad.osm.views.util;
 
-import org.andnav.osm.ResourceProxy;
-import org.andnav.osm.tileprovider.CloudmadeException;
-import org.andnav.osm.tileprovider.IOpenStreetMapTileProviderCallback;
-import org.andnav.osm.tileprovider.IOpenStreetMapTileProviderCloudmadeTokenCallback;
-import org.andnav.osm.tileprovider.OpenStreetMapTile;
-import org.andnav.osm.views.util.OpenStreetMapRendererBase;
+import org.osmdroid.ResourceProxy;
+import org.osmdroid.ResourceProxy.string;
+import org.osmdroid.tileprovider.MapTile;
+import org.osmdroid.tileprovider.tilesource.OnlineTileSourceBase;
 
-public class OSMMapMicrosoftRenderer extends OpenStreetMapRendererBase {
+public class OSMMapMicrosoftRenderer extends OnlineTileSourceBase {
 
 	protected static final char[] NUM_CHAR = { '0', '1', '2', '3' };
 
-	public OSMMapMicrosoftRenderer(String aName, int aZoomMinLevel,
+	public OSMMapMicrosoftRenderer(String aName, final string aResourceId, int aZoomMinLevel,
 			int aZoomMaxLevel, int aMaptileZoom, String aImageFilenameEnding,
 			String ...aBaseUrl) {
-		super(aName, aZoomMinLevel, aZoomMaxLevel, aMaptileZoom, aImageFilenameEnding, aBaseUrl);
+		super(aName, aResourceId, aZoomMinLevel, aZoomMaxLevel, aMaptileZoom, aImageFilenameEnding, aBaseUrl);
 	}
 
 	@Override
@@ -23,11 +21,7 @@ public class OSMMapMicrosoftRenderer extends OpenStreetMapRendererBase {
 	}
 
 	@Override
-	public String getTileURLString(
-			OpenStreetMapTile aTile,
-			IOpenStreetMapTileProviderCallback aMCallback,
-			IOpenStreetMapTileProviderCloudmadeTokenCallback aCloudmadeTokenCallback)
-			throws CloudmadeException {
+	public String getTileURLString(MapTile aTile) {
         int zoom = aTile.getZoomLevel();
         int x = aTile.getX();
         int y = aTile.getY();

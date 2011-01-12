@@ -4,7 +4,7 @@ package org.androad.osm.adt.util;
 
 import java.util.GregorianCalendar;
 
-import org.andnav.osm.util.GeoPoint;
+import org.osmdroid.util.GeoPoint;
 
 import org.androad.adt.AndNavLocation;
 import org.androad.osm.adt.GPSGeoLocation;

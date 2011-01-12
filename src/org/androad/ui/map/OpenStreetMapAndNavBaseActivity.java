@@ -3,8 +3,9 @@ package org.androad.ui.map;
 
 import java.util.List;
 
-import org.andnav.osm.views.overlay.OpenStreetMapViewOverlay;
-import org.andnav.osm.views.util.OpenStreetMapRendererFactory;
+import org.osmdroid.ResourceProxy;
+import org.osmdroid.views.overlay.Overlay;
+import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 
 import org.androad.R;
 import org.androad.osm.OpenStreetMapActivity;
@@ -66,33 +67,33 @@ public abstract class OpenStreetMapAndNavBaseActivity extends OpenStreetMapActiv
 		}
 
         // Add google maps
-        OpenStreetMapRendererFactory.addRenderer(
-                   new OSMMapGoogleRenderer("Google Maps", 0, 19, 8, ".png",
+        TileSourceFactory.addTileSource(
+                   new OSMMapGoogleRenderer("Google Maps", ResourceProxy.string.unknown, 0, 19, 256, ".png",
                    "http://mt0.google.com/vt/lyrs=m@127&"));
-        OpenStreetMapRendererFactory.addRenderer(
-                   new OSMMapGoogleRenderer("Google Maps Satellite", 0, 19, 8, ".jpg",
+        TileSourceFactory.addTileSource(
+                   new OSMMapGoogleRenderer("Google Maps Satellite", ResourceProxy.string.unknown, 0, 19, 256, ".jpg",
                    "http://mt0.google.com/vt/lyrs=s@127,h@127&"));
-        OpenStreetMapRendererFactory.addRenderer(
-                   new OSMMapGoogleRenderer("Google Maps Terrain", 0, 15, 8, ".jpg",
+        TileSourceFactory.addTileSource(
+                   new OSMMapGoogleRenderer("Google Maps Terrain", ResourceProxy.string.unknown, 0, 15, 256, ".jpg",
                    "http://mt0.google.com/vt/lyrs=t@127,r@127&"));
 
         // Add yahoo maps
-        OpenStreetMapRendererFactory.addRenderer(
-                   new OSMMapYahooRenderer("Yahoo Maps", 0, 17, 8, ".jpg",
+        TileSourceFactory.addTileSource(
+                   new OSMMapYahooRenderer("Yahoo Maps", ResourceProxy.string.unknown, 0, 17, 256, ".jpg",
                    "http://maps.yimg.com/hw/tile?"));
-        OpenStreetMapRendererFactory.addRenderer(
-                   new OSMMapYahooRenderer("Yahoo Maps Satellite", 0, 17, 8, ".jpg",
+        TileSourceFactory.addTileSource(
+                   new OSMMapYahooRenderer("Yahoo Maps Satellite", ResourceProxy.string.unknown, 0, 17, 256, ".jpg",
                    "http://maps.yimg.com/ae/ximg?"));
 
         // Add microsoft maps
-        OpenStreetMapRendererFactory.addRenderer(
-                   new OSMMapMicrosoftRenderer("Microsoft Maps", 0, 19, 8, ".png",
+        TileSourceFactory.addTileSource(
+                   new OSMMapMicrosoftRenderer("Microsoft Maps", ResourceProxy.string.unknown, 0, 19, 256, ".png",
                    "http://r0.ortho.tiles.virtualearth.net/tiles/r"));
-        OpenStreetMapRendererFactory.addRenderer(
-                   new OSMMapMicrosoftRenderer("Microsoft Earth", 0, 19, 8, ".jpg",
+        TileSourceFactory.addTileSource(
+                   new OSMMapMicrosoftRenderer("Microsoft Earth", ResourceProxy.string.unknown, 0, 19, 256, ".jpg",
                    "http://a0.ortho.tiles.virtualearth.net/tiles/a"));
-        OpenStreetMapRendererFactory.addRenderer(
-                   new OSMMapMicrosoftRenderer("Microsoft Hybrid", 0, 19, 8, ".jpg",
+        TileSourceFactory.addTileSource(
+                   new OSMMapMicrosoftRenderer("Microsoft Hybrid", ResourceProxy.string.unknown, 0, 19, 256, ".jpg",
                    "http://h0.ortho.tiles.virtualearth.net/tiles/h"));
 
 		this.onSetupContentView();
@@ -101,10 +102,10 @@ public abstract class OpenStreetMapAndNavBaseActivity extends OpenStreetMapActiv
         this.mOSMapView.setBuiltInZoomControls(false);
         this.mOSMapView.setMultiTouchControls(true);
 
-		final List<OpenStreetMapViewOverlay> overlays = this.mOSMapView.getOverlays();
+		final List<Overlay> overlays = this.mOSMapView.getOverlays();
 
 		this.mSimpleTraceOverlay = new OSMMapViewSimpleTraceOverlay(this, super.getRouteRecorder().getRecordedGeoPoints(), PreferenceConstants.PREF_DISPLAYQUALITY_HIGH);
-		this.mSimpleTraceOverlay.setVisible(false);
+		this.mSimpleTraceOverlay.setEnabled(false);
 		overlays.add(this.mSimpleTraceOverlay);
 
 		this.mColorSchemeOverlay = new ColorSchemeOverlay(this);
@@ -154,7 +155,7 @@ public abstract class OpenStreetMapAndNavBaseActivity extends OpenStreetMapActiv
 	public boolean onMenuItemSelected(final int featureId, final MenuItem item) {
 		switch(item.getItemId()){
 			case MENU_SHOWTRACE_ID:
-				this.mSimpleTraceOverlay.setVisible(!this.mSimpleTraceOverlay.isVisible());
+				this.mSimpleTraceOverlay.setEnabled(!this.mSimpleTraceOverlay.isEnabled());
 				return true;
 			case MENU_SUBMITTRACE_ID:
 				disableDoGPSRecordingAndContributing(true);
@@ -168,7 +169,7 @@ public abstract class OpenStreetMapAndNavBaseActivity extends OpenStreetMapActiv
 	@Override
 	public boolean onPrepareOptionsMenu(final Menu menu) {
 		/* Refresh Show/Hide Trace item. */
-		menu.findItem(MENU_SHOWTRACE_ID).setTitle((this.mSimpleTraceOverlay.isVisible()) ? R.string.maps_menu_trace_hide : R.string.maps_menu_trace_show);
+		menu.findItem(MENU_SHOWTRACE_ID).setTitle((this.mSimpleTraceOverlay.isEnabled()) ? R.string.maps_menu_trace_hide : R.string.maps_menu_trace_show);
 
 		return super.onPrepareOptionsMenu(menu);
 	}

@@ -3,7 +3,7 @@ package org.androad.sys.ors.adt.aoi;
 
 import java.util.Formatter;
 
-import org.andnav.osm.views.OpenStreetMapView.OpenStreetMapViewProjection;
+import org.osmdroid.views.MapView.Projection;
 
 import org.androad.sys.ors.util.constants.ORSXMLConstants;
 
@@ -52,7 +52,7 @@ public abstract class AreaOfInterest implements ORSXMLConstants, Parcelable{
 	 */
 	public abstract void appendToStringBuilder(final StringBuilder sb, final Formatter f);
 
-	public abstract void drawToCanvas(final Canvas c, final OpenStreetMapViewProjection pj);
+	public abstract void drawToCanvas(final Canvas c, final Projection pj);
 
 	// ===========================================================
 	// Inner and Anonymous Classes

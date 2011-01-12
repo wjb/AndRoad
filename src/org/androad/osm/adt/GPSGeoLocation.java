@@ -4,8 +4,8 @@ package org.androad.osm.adt;
 import java.util.Formatter;
 import java.util.GregorianCalendar;
 
-import org.andnav.osm.contributor.util.RecordedRouteGPXFormatter;
-import org.andnav.osm.views.util.constants.OpenStreetMapViewConstants;
+import org.osmdroid.contributor.util.RecordedRouteGPXFormatter;
+import org.osmdroid.views.util.constants.MapViewConstants;
 
 import org.androad.osm.api.traces.util.Util;
 
@@ -18,14 +18,14 @@ public class GPSGeoLocation extends GeoLocation {
 	// Fields
 	// ===========================================================
 
-	private int mNumSatellites = OpenStreetMapViewConstants.NOT_SET;
+	private int mNumSatellites = MapViewConstants.NOT_SET;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
 	public GPSGeoLocation(final int latitudeE6, final int longitudeE6, final long timeStamp) {
-		this(latitudeE6, longitudeE6, timeStamp, OpenStreetMapViewConstants.NOT_SET);
+		this(latitudeE6, longitudeE6, timeStamp, MapViewConstants.NOT_SET);
 	}
 
 	public GPSGeoLocation(final int latitudeE6, final int longitudeE6, final int aNumSatellites) {
@@ -33,7 +33,7 @@ public class GPSGeoLocation extends GeoLocation {
 	}
 
 	public GPSGeoLocation(final int latitudeE6, final int longitudeE6, final long timestamp, final int aNumSatellites) {
-		this(latitudeE6, longitudeE6, timestamp, OpenStreetMapViewConstants.NOT_SET, OpenStreetMapViewConstants.NOT_SET, OpenStreetMapViewConstants.NOT_SET, aNumSatellites);
+		this(latitudeE6, longitudeE6, timestamp, MapViewConstants.NOT_SET, MapViewConstants.NOT_SET, MapViewConstants.NOT_SET, aNumSatellites);
 	}
 
 	public GPSGeoLocation(final int latitudeE6, final int longitudeE6, final long timeStamp, final int altitude, final int bearing, final int speed, final int aNumSatellites) {
@@ -54,7 +54,7 @@ public class GPSGeoLocation extends GeoLocation {
 	}
 
 	public boolean hasNumSatellites(){
-		return this.mNumSatellites != OpenStreetMapViewConstants.NOT_SET;
+		return this.mNumSatellites != MapViewConstants.NOT_SET;
 	}
 
 	// ===========================================================

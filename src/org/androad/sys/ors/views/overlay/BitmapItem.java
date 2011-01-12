@@ -2,8 +2,8 @@ package org.androad.sys.ors.views.overlay;
 
 import junit.framework.Assert;
 
-import org.andnav.osm.util.GeoPoint;
-import org.andnav.osm.views.OpenStreetMapView.OpenStreetMapViewProjection;
+import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.MapView.Projection;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -78,7 +78,7 @@ public class BitmapItem {
 		this.icon.recycle();
 	}
 
-	public void drawToCanvas(final Canvas c, final OpenStreetMapViewProjection pj) {
+	public void drawToCanvas(final Canvas c, final Projection pj) {
         if (this.mCenter == null) return;
 
         final Point screenCoords = new Point();
@@ -88,7 +88,7 @@ public class BitmapItem {
         c.drawBitmap(this.icon, xpos, ypos, this.mPaint);
 	}
 
-    public boolean onSingleTapUp(final MotionEvent e, final OpenStreetMapViewProjection pj) {
+    public boolean onSingleTapUp(final MotionEvent e, final Projection pj) {
         return false;
     }
 

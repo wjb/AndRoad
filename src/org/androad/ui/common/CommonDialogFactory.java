@@ -3,8 +3,7 @@ package org.androad.ui.common;
 
 import java.util.List;
 
-import org.andnav.osm.util.Direction;
-import org.andnav.osm.util.GeoPoint;
+import org.osmdroid.util.GeoPoint;
 
 import org.androad.R;
 import org.androad.adt.TrafficFeed;
@@ -658,30 +657,6 @@ public class CommonDialogFactory {
 						break;
 					case 2:
 						pCallback.onSuccess(CreateORSServerSelectionOptions.INFORMATION);
-						break;
-				}
-			}
-		}).create();
-	}
-
-	public static Dialog createDiagonalDirectionDialog(final Context ctx, final CommonCallback<Direction> pCallback) {
-		final String[] choices = {Direction.NORTHEAST.NAME, Direction.SOUTHEAST.NAME, Direction.SOUTHWEST.NAME, Direction.NORTHWEST.NAME};
-		return new AlertDialog.Builder(ctx).setSingleChoiceItems(choices , 0, new DialogInterface.OnClickListener(){
-			@Override
-			public void onClick(final DialogInterface d, final int which) {
-				d.dismiss();
-				switch(which){
-					case 0:
-						pCallback.onSuccess(Direction.NORTHEAST);
-						break;
-					case 1:
-						pCallback.onSuccess(Direction.SOUTHEAST);
-						break;
-					case 2:
-						pCallback.onSuccess(Direction.SOUTHWEST);
-						break;
-					case 3:
-						pCallback.onSuccess(Direction.NORTHWEST);
 						break;
 				}
 			}

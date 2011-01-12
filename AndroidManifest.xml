@@ -18,12 +18,12 @@
     <uses-permission android:name="android.permission.READ_SETTINGS" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-feature android:name="android.hardware.camera"/>
     <uses-feature android:name="android.hardware.camera.autofocus"/>
     <uses-feature android:name="android.hardware.camera.flash"/>
-    <application android:debuggable="false" android:icon="@drawable/icon" android:label="@string/app_name" android:description="@string/app_description" 
-    	android:manageSpaceActivity=".ui.settings.SettingsCache">
+    <application android:debuggable="false" android:icon="@drawable/icon" android:label="@string/app_name" android:description="@string/app_description">
         <activity android:name=".Splash" android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -224,12 +224,6 @@
             </intent-filter>
     	</activity>
     	<activity android:name=".ui.settings.SettingsScreenOrientation" android:label="@string/app_name_settings_screenorientation">
-			<intent-filter>
-                <action android:name="android.intent.action.DEFAULT" />
-                <category android:name="android.intent.category.VIEW" />
-            </intent-filter>
-    	</activity>
-    	<activity android:name=".ui.settings.SettingsCache" android:label="@string/app_name_settings_cache">
 			<intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
                 <category android:name="android.intent.category.VIEW" />

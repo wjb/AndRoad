@@ -4,10 +4,10 @@ package org.androad.osm.views.overlay;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.andnav.osm.views.OpenStreetMapView;
-import org.andnav.osm.views.overlay.OpenStreetMapViewOverlayItem;
-import org.andnav.osm.views.overlay.OpenStreetMapViewItemizedOverlayWithFocus;
-import org.andnav.osm.DefaultResourceProxyImpl;
+import org.osmdroid.views.MapView;
+import org.osmdroid.views.overlay.OverlayItem;
+import org.osmdroid.views.overlay.ItemizedOverlayWithFocus;
+import org.osmdroid.DefaultResourceProxyImpl;
 
 import org.androad.sys.ors.adt.ts.ISpatialDataOrganizer;
 
@@ -21,7 +21,7 @@ import android.graphics.drawable.Drawable;
  *
  * @param <T>
  */
-public class OSMMapViewSpacialIndexItemizedOverlayWithFocus<T extends OpenStreetMapViewOverlayItem> extends OpenStreetMapViewItemizedOverlayWithFocus<T> {
+public class OSMMapViewSpacialIndexItemizedOverlayWithFocus<T extends OverlayItem> extends ItemizedOverlayWithFocus<T> {
 	// ===========================================================
 	// Constants
 	// ===========================================================
@@ -69,11 +69,11 @@ public class OSMMapViewSpacialIndexItemizedOverlayWithFocus<T extends OpenStreet
 	// Methods from SuperClass/Interfaces
 	// ===========================================================
 
-	public void onDraw(final Canvas c, final OpenStreetMapView mapView) {
+	public void onDraw(final Canvas c, final MapView mapView) {
 		if(this.mSpatialDataOrganizer.isIndexBuilt()){
 			switch(this.mSpatialDataOrganizer.getGetMode()){
 				case BOUNDINGBOX:
-					this.mClosestItems = this.mSpatialDataOrganizer.getWithinBoundingBox(mapView.getVisibleBoundingBoxE6(), ITEM_LIMIT);
+					this.mClosestItems = this.mSpatialDataOrganizer.getWithinBoundingBox(mapView.getBoundingBox(), ITEM_LIMIT);
 					break;
 				case CLOSEST:
 					this.mClosestItems = this.mSpatialDataOrganizer.getClosest(mapView.getMapCenter(), ITEM_LIMIT);

@@ -1,7 +1,7 @@
 // Created by plusminus on 17:05:18 - 11.08.2008
 package org.androad.preferences;
 
-import org.andnav.osm.views.util.OpenStreetMapRendererFactory;
+import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 
 import org.androad.adt.UnitSystem;
 import org.androad.sys.ors.adt.lus.Country;
@@ -93,8 +93,8 @@ public interface PreferenceConstants {
 	public static final boolean PREF_REALTIMENAV_DEFAULT = true;
 	public static final int PREF_CACHSIZEMAX_INTERNAL_DEFAULT = 5;
 	public static final int PREF_CACHSIZEMAX_EXTERNAL_DEFAULT = 256;
-	public static final String PREF_OSMMAPVIEW_PROVIDERINFO_WHEREAMI_DEFAULT = OpenStreetMapRendererFactory.DEFAULT_RENDERER.name();
-	public static final String PREF_OSMMAPVIEW_PROVIDERINFO_DDMAP_DEFAULT = OpenStreetMapRendererFactory.DEFAULT_RENDERER.name();
+	public static final String PREF_OSMMAPVIEW_PROVIDERINFO_WHEREAMI_DEFAULT = TileSourceFactory.DEFAULT_TILE_SOURCE.name();
+	public static final String PREF_OSMMAPVIEW_PROVIDERINFO_DDMAP_DEFAULT = TileSourceFactory.DEFAULT_TILE_SOURCE.name();
 	public static final boolean PREF_TRACEPOLICY_OSM_DEFAULT = false;
 	public static final boolean PREF_TRACEPOLICY_TRAILMAPPING_DEFAULT = false;
 	public static final boolean PREF_ADFREESTATE_DEFAULT = false;

@@ -5,7 +5,7 @@ import java.util.Formatter;
 import java.util.List;
 import java.util.Locale;
 
-import org.andnav.osm.util.GeoPoint;
+import org.osmdroid.util.GeoPoint;
 
 import org.androad.sys.ors.aps.util.constants.APSConstants;
 import org.androad.sys.ors.util.constants.ORSXMLConstants;

@@ -3,8 +3,8 @@ package org.androad.ui.map.overlay.util;
 
 import java.util.List;
 
-import org.andnav.osm.util.GeoPoint;
-import org.andnav.osm.views.OpenStreetMapView.OpenStreetMapViewProjection;
+import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.MapView.Projection;
 
 import org.androad.preferences.PreferenceConstants;
 import org.androad.util.constants.Constants;
@@ -121,7 +121,7 @@ public class ArrowPathCreator implements MathematicalConstants, PreferenceConsta
 		return b;
 	}
 
-	public static void createArrowOverIndex(final OpenStreetMapViewProjection pj, final int indexOfArrow, final List<GeoPoint> polyLine, final Path pathTurnSegment, final Path pathTurnSegmentPeak, final float aScaleFactor, final int zoomLevel, final float turnAngle) throws IndexOutOfBoundsException{
+	public static void createArrowOverIndex(final Projection pj, final int indexOfArrow, final List<GeoPoint> polyLine, final Path pathTurnSegment, final Path pathTurnSegmentPeak, final float aScaleFactor, final int zoomLevel, final float turnAngle) throws IndexOutOfBoundsException{
 		final Point screenCoords = new Point();
 		final Point screenCoordsBefore = new Point();
 

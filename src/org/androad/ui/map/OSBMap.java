@@ -7,16 +7,16 @@ import java.util.List;
 
 import junit.framework.Assert;
 
-import org.andnav.osm.util.BoundingBoxE6;
-import org.andnav.osm.util.GeoPoint;
-import org.andnav.osm.views.OpenStreetMapView;
-import org.andnav.osm.views.OpenStreetMapView.OpenStreetMapViewProjection;
-import org.andnav.osm.views.OpenStreetMapViewController.AnimationType;
-import org.andnav.osm.views.overlay.ScaleBarOverlay;
-import org.andnav.osm.views.overlay.OpenStreetMapViewItemizedOverlay.OnItemGestureListener;
-import org.andnav.osm.views.overlay.OpenStreetMapViewOverlay;
-import org.andnav.osm.views.overlay.OpenStreetMapViewSimpleLocationOverlay;
-import org.andnav.osm.views.util.constants.OpenStreetMapViewConstants;
+import org.osmdroid.util.BoundingBoxE6;
+import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.MapView;
+import org.osmdroid.views.MapView.Projection;
+import org.osmdroid.views.MapController.AnimationType;
+import org.osmdroid.views.overlay.ScaleBarOverlay;
+import org.osmdroid.views.overlay.ItemizedOverlay.OnItemGestureListener;
+import org.osmdroid.views.overlay.Overlay;
+import org.osmdroid.views.overlay.SimpleLocationOverlay;
+import org.osmdroid.views.util.constants.MapViewConstants;
 
 import org.androad.R;
 import org.androad.adt.AndNavLocation;
@@ -103,14 +103,14 @@ public class OSBMap extends OpenStreetMapAndNavBaseActivity implements OnItemGes
 
 	private BaseOSMMapViewListItemizedOverlayWithFocus<OSMMapViewOSBOverlayItem> mOSBOverlay;
 	private final ArrayList<OSMMapViewOSBOverlayItem> mBugOverlayItems = new ArrayList<OSMMapViewOSBOverlayItem>();
-	private int mBugOverlayItemsIndex = OpenStreetMapViewConstants.NOT_SET;
+	private int mBugOverlayItemsIndex = MapViewConstants.NOT_SET;
 	private ImageButton mIbtnCommentWrite;
 	private ImageButton mIbtnRefresh;
 	private ImageButton mIbtnAdd;
 	private ImageButton mIbtnAddCancel;
 
 	private OSMMapViewCrosshairOverlay mAddBugCrosshairOverlay;
-	private OpenStreetMapViewSimpleLocationOverlay mMyLocationOverlay;
+	private SimpleLocationOverlay mMyLocationOverlay;
 
 	private ScaleBarOverlay mScaleIndicatorView;
 
@@ -119,7 +119,7 @@ public class OSBMap extends OpenStreetMapAndNavBaseActivity implements OnItemGes
 	@Override
 	protected void onSetupContentView() {
 		this.setContentView(R.layout.osbmap);
-		super.mOSMapView = (OpenStreetMapView)findViewById(R.id.map_osbmap);
+		super.mOSMapView = (MapView)findViewById(R.id.map_osbmap);
 
 		this.mIbtnCommentWrite = (ImageButton)this.findViewById(R.id.ibtn_osbmap_comment_write);
 		this.mIbtnRefresh = (ImageButton)this.findViewById(R.id.ibtn_osbmap_refresh);
@@ -136,17 +136,17 @@ public class OSBMap extends OpenStreetMapAndNavBaseActivity implements OnItemGes
 
 		this.mIbtnCommentWrite.setEnabled(false);
 
-		final List<OpenStreetMapViewOverlay> overlays = super.mOSMapView.getOverlays();
+		final List<Overlay> overlays = super.mOSMapView.getOverlays();
 		this.mOSBOverlay = new OSMMapViewOSBOverlay(this, this.mBugOverlayItems, this);
 		this.mOSBOverlay.setFocusItemsOnTap(false);
 
         overlays.add(this.mScaleIndicatorView);
-		overlays.add(this.mMyLocationOverlay = new OpenStreetMapViewSimpleLocationOverlay(this));
+		overlays.add(this.mMyLocationOverlay = new SimpleLocationOverlay(this));
 
 		overlays.add(this.mOSBOverlay);
 		/* Add AddBugOverlay after OSBOverlay to give it a higher zOrder. */
 		overlays.add(this.mAddBugCrosshairOverlay = new OSMMapViewCrosshairOverlay(this, Color.BLACK, 2, 17));
-		this.mAddBugCrosshairOverlay.setVisible(false);
+		this.mAddBugCrosshairOverlay.setEnabled(false);
 
 		super.mOSMapView.invalidate();
 	}
@@ -397,7 +397,7 @@ public class OSBMap extends OpenStreetMapAndNavBaseActivity implements OnItemGes
 		new Thread(new Runnable(){
 			@Override
 			public void run() {
-				final BoundingBoxE6 drawnBoundingBoxE6 = OSBMap.super.mOSMapView.getDrawnBoundingBoxE6();
+				final BoundingBoxE6 drawnBoundingBoxE6 = OSBMap.super.mOSMapView.getBoundingBox();
 				try {
 					final ArrayList<OpenStreetBug> bugs = OSBRequester.getBugsFromBoundingBoxE6(drawnBoundingBoxE6);
 					for(final OpenStreetBug b : bugs){
@@ -610,8 +610,8 @@ public class OSBMap extends OpenStreetMapAndNavBaseActivity implements OnItemGes
 		final GestureDetector gd = new GestureDetector(new GestureDetector.SimpleOnGestureListener(){
 			@Override
 			public void onLongPress(final MotionEvent mv) {
-				final OpenStreetMapView mapView = OSBMap.super.mOSMapView; // Drag to local field
-				final OpenStreetMapViewProjection pj = mapView.getProjection();
+				final MapView mapView = OSBMap.super.mOSMapView; // Drag to local field
+				final Projection pj = mapView.getProjection();
 				final GeoPoint gp = pj.fromPixels((int)mv.getX(), (int)mv.getY());
 
 				OSBMap.this.mOSMapView.getController().setCenter(gp);
@@ -762,11 +762,11 @@ public class OSBMap extends OpenStreetMapAndNavBaseActivity implements OnItemGes
 		if(this.mAddBugCrosshairMode){
 			this.mIbtnAdd.setImageResource(R.drawable.checked);
 			this.mIbtnAddCancel.setVisibility(View.VISIBLE);
-			this.mAddBugCrosshairOverlay.setVisible(true);
+			this.mAddBugCrosshairOverlay.setEnabled(true);
 		}else{
 			this.mIbtnAdd.setImageResource(R.drawable.osb_icon_bug_add);
 			this.mIbtnAddCancel.setVisibility(View.GONE);
-			this.mAddBugCrosshairOverlay.setVisible(false);
+			this.mAddBugCrosshairOverlay.setEnabled(false);
 		}
 	}
 

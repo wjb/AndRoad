@@ -7,11 +7,11 @@ import android.content.Context;
 import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 
-import org.andnav.osm.DefaultResourceProxyImpl;
-import org.andnav.osm.views.overlay.OpenStreetMapViewOverlayItem;
-import org.andnav.osm.views.overlay.OpenStreetMapViewItemizedOverlayWithFocus;
+import org.osmdroid.DefaultResourceProxyImpl;
+import org.osmdroid.views.overlay.OverlayItem;
+import org.osmdroid.views.overlay.ItemizedOverlayWithFocus;
 
-public class BaseOSMMapViewListItemizedOverlayWithFocus<T extends OpenStreetMapViewOverlayItem> extends OpenStreetMapViewItemizedOverlayWithFocus<T> {
+public class BaseOSMMapViewListItemizedOverlayWithFocus<T extends OverlayItem> extends ItemizedOverlayWithFocus<T> {
 	// ===========================================================
 	// Constants
 	// ===========================================================

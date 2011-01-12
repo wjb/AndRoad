@@ -3,7 +3,7 @@ package org.androad.nav.util;
 
 import java.util.List;
 
-import org.andnav.osm.util.GeoPoint;
+import org.osmdroid.util.GeoPoint;
 
 import org.androad.util.constants.Constants;
 

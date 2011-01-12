@@ -1,6 +1,6 @@
 package org.androad.sys.ors.views.overlay;
 
-import org.andnav.osm.util.GeoPoint;
+import org.osmdroid.util.GeoPoint;
 
 import org.androad.R;
 

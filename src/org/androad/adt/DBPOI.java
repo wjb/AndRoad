@@ -1,7 +1,7 @@
 // Created by plusminus on 22:00:47 - 30.10.2008
 package org.androad.adt;
 
-import org.andnav.osm.util.GeoPoint;
+import org.osmdroid.util.GeoPoint;
 
 public class DBPOI extends GeoPoint {
 	// ===========================================================

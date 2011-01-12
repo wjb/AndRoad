@@ -4,11 +4,11 @@ package org.androad.ui.map.overlay;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.andnav.osm.util.GeoPoint;
-import org.andnav.osm.views.OpenStreetMapView;
-import org.andnav.osm.views.OpenStreetMapView.OpenStreetMapViewProjection;
-import org.andnav.osm.views.overlay.OpenStreetMapViewOverlay;
-import org.andnav.osm.views.util.constants.MathConstants;
+import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.MapView;
+import org.osmdroid.views.MapView.Projection;
+import org.osmdroid.views.overlay.Overlay;
+import org.osmdroid.views.util.constants.MathConstants;
 
 import org.androad.R;
 import org.androad.loc.AbstractAndNavLocationProvider;
@@ -39,7 +39,7 @@ import android.graphics.Paint.Style;
 import android.util.FloatMath;
 import android.util.Log;
 
-public class MapDrivingDirectionsOverlay extends OpenStreetMapViewOverlay implements Constants, TimeConstants, MathematicalConstants, PreferenceConstants, GeoConstants {
+public class MapDrivingDirectionsOverlay extends Overlay implements Constants, TimeConstants, MathematicalConstants, PreferenceConstants, GeoConstants {
 	// ===========================================================
 	// Final Fields
 	// ===========================================================
@@ -227,13 +227,13 @@ public class MapDrivingDirectionsOverlay extends OpenStreetMapViewOverlay implem
 	}
 
 	@Override
-	protected void onDrawFinished(final Canvas c, final OpenStreetMapView osmv) {
+	protected void onDrawFinished(final Canvas c, final MapView osmv) {
 		// Nothing
 	}
 
 	/** This function does some fancy drawing, could be shortened a lot.*/
 	@Override
-	public void onDraw(final Canvas canvas, final OpenStreetMapView mapView) {
+	public void onDraw(final Canvas canvas, final MapView mapView) {
 		try{
 			/* DEBUG Output */
 			//		final long startMs = System.currentTimeMillis();
@@ -292,7 +292,7 @@ public class MapDrivingDirectionsOverlay extends OpenStreetMapViewOverlay implem
 				final GeoPoint startPoint = this.mRoute.getStart();
 				final GeoPoint endPoint = this.mRoute.getDestination();
 
-				final OpenStreetMapViewProjection pj = mapView.getProjection();
+				final Projection pj = mapView.getProjection();
 
 				final ManagedLinePath pathDone = new ManagedLinePath();
 				final ManagedLinePath pathCurrentSegment = new ManagedLinePath();
@@ -385,7 +385,7 @@ public class MapDrivingDirectionsOverlay extends OpenStreetMapViewOverlay implem
 								{ // TODO Remove on release
 									//							final int ARROW_RENDER_ZOOMLEVEL = 15;
 									//
-									//							OpenStreetMapViewProjection pj2 = mapView.new OpenStreetMapViewProjection(ARROW_RENDER_ZOOMLEVEL, 0, 0);
+									//							Projection pj2 = mapView.new Projection(ARROW_RENDER_ZOOMLEVEL, 0, 0);
 									//
 									//							final Path arrowPathDummy = new Path();
 									//							final Path arrowPeakPathDummy = new Path();

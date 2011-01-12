@@ -3,8 +3,8 @@ package org.androad.osm.adt;
 
 import java.util.GregorianCalendar;
 
-import org.andnav.osm.util.GeoPoint;
-import org.andnav.osm.views.util.constants.OpenStreetMapViewConstants;
+import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.util.constants.MapViewConstants;
 
 public class GeoLocation extends GeoPoint {
 	// ===========================================================
@@ -16,9 +16,9 @@ public class GeoLocation extends GeoPoint {
 	// ===========================================================
 
 	private long mTimeStamp;
-	private int mAltitude = OpenStreetMapViewConstants.NOT_SET;
-	private int mBearing = OpenStreetMapViewConstants.NOT_SET;
-	private int mSpeed = OpenStreetMapViewConstants.NOT_SET;
+	private int mAltitude = MapViewConstants.NOT_SET;
+	private int mBearing = MapViewConstants.NOT_SET;
+	private int mSpeed = MapViewConstants.NOT_SET;
 
 	// ===========================================================
 	// Constructors
@@ -65,7 +65,7 @@ public class GeoLocation extends GeoPoint {
 	}
 
 	public boolean hasAltitude(){
-		return this.mAltitude != OpenStreetMapViewConstants.NOT_SET;
+		return this.mAltitude != MapViewConstants.NOT_SET;
 	}
 
 	public int getBearing() {
@@ -77,7 +77,7 @@ public class GeoLocation extends GeoPoint {
 	}
 
 	public boolean hasBearing(){
-		return this.mBearing != OpenStreetMapViewConstants.NOT_SET;
+		return this.mBearing != MapViewConstants.NOT_SET;
 	}
 
 	public int getSpeed() {
@@ -89,7 +89,7 @@ public class GeoLocation extends GeoPoint {
 	}
 
 	public boolean hasSpeed(){
-		return this.mSpeed != OpenStreetMapViewConstants.NOT_SET;
+		return this.mSpeed != MapViewConstants.NOT_SET;
 	}
 
 	// ===========================================================

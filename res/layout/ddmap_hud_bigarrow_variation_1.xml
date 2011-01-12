@@ -42,7 +42,7 @@
 					android:id="@+id/rotator_ddmap"
 					android:layout_width="fill_parent"
 					android:layout_height="fill_parent" >
-				    <view class="org.andnav.osm.views.OpenStreetMapView" 
+				    <view class="org.osmdroid.views.MapView" 
 				    	android:id="@+id/map_ddmap"
 				        android:layout_width="fill_parent" 
 				        android:layout_height="fill_parent"
@@ -51,7 +51,7 @@
 				</view>
 		
 			    <!-- Static Navigation Control, Lower Middle over the map. -->
-				<view class="org.andnav.osm.views.overlay.OpenStreetMapViewItemizedOverlayControlView" 
+				<view class="org.osmdroid.views.overlay.ItemizedOverlayControlView" 
 					android:id="@+id/itemizedoverlaycontrol_ddmap"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"

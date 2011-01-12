@@ -9,17 +9,18 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-import org.andnav.osm.tileprovider.OpenStreetMapTile;
-import org.andnav.osm.util.BoundingBoxE6;
-import org.andnav.osm.util.GeoPoint;
-import org.andnav.osm.views.OpenStreetMapView;
-import org.andnav.osm.views.overlay.ScaleBarOverlay;
-import org.andnav.osm.views.OpenStreetMapView.OpenStreetMapViewProjection;
-import org.andnav.osm.views.OpenStreetMapViewController.AnimationType;
-import org.andnav.osm.views.overlay.OpenStreetMapViewItemizedOverlayControlView;
-import org.andnav.osm.views.overlay.OpenStreetMapViewOverlay;
-import org.andnav.osm.views.util.IOpenStreetMapRendererInfo;
-import org.andnav.osm.views.util.OpenStreetMapRendererFactory;
+import org.osmdroid.tileprovider.MapTile;
+import org.osmdroid.tileprovider.MapTileProviderBase;
+import org.osmdroid.util.BoundingBoxE6;
+import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.MapView;
+import org.osmdroid.views.overlay.ScaleBarOverlay;
+import org.osmdroid.views.MapView.Projection;
+import org.osmdroid.views.MapController.AnimationType;
+import org.osmdroid.views.overlay.ItemizedOverlayControlView;
+import org.osmdroid.views.overlay.Overlay;
+import org.osmdroid.tileprovider.tilesource.ITileSource;
+import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 
 import org.androad.R;
 import org.androad.adt.AndNavLocation;
@@ -39,7 +40,6 @@ import org.androad.nav.util.NavAlgorithm;
 import org.androad.osm.exceptions.ExternalStorageNotMountedException;
 import org.androad.osm.views.overlay.util.DirectionArrowDescriptor;
 import org.androad.osm.views.tiles.util.OSMMapTilePreloader;
-import org.androad.osm.views.tiles.util.OSMMapTilePreloader.OnProgressChangeListener;
 import org.androad.preferences.PreferenceConstants;
 import org.androad.preferences.Preferences;
 import org.androad.sound.ISoundManager;
@@ -204,7 +204,7 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 
 	private final ArrayList<AreaOfInterest> mAvoidAreas = new ArrayList<AreaOfInterest>();
 
-	private OpenStreetMapViewItemizedOverlayControlView mMapItemControlView;
+	private ItemizedOverlayControlView mMapItemControlView;
 	private ScaleBarOverlay mScaleIndicatorView;
 
 	/**
@@ -357,7 +357,7 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 		this.mHUDImpl.getUpperNextActionView().setDisplayQuality(displayQuality);
 
 		/* Load the ItemizedControlView. */
-		this.mMapItemControlView = (OpenStreetMapViewItemizedOverlayControlView)findViewById(R.id.itemizedoverlaycontrol_ddmap);
+		this.mMapItemControlView = (ItemizedOverlayControlView)findViewById(R.id.itemizedoverlaycontrol_ddmap);
 
 		/* This code together with the one in onResume() will make the screen be always on during navigation. */
 		final PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
@@ -405,8 +405,8 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 		this.setContentView(this.mHUDImpl.getVariation(variationID).getLayoutID());
 		this.mHUDImpl.init(this.findViewById(R.id.ddmap_root));
 
-		super.mOSMapView = (OpenStreetMapView) findViewById(R.id.map_ddmap);
-		super.mOSMapView.setRenderer(Preferences.getMapViewProviderInfoDDMap(this));
+		super.mOSMapView = (MapView) findViewById(R.id.map_ddmap);
+		super.mOSMapView.setTileSource(Preferences.getMapViewProviderInfoDDMap(this));
 
 		this.mMapRotateView = (RotateView) findViewById(R.id.rotator_ddmap);
 
@@ -417,7 +417,7 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 
 		final int displayQuality = Preferences.getDisplayQuality(this);
 
-		final List<OpenStreetMapViewOverlay> overlays = this.mOSMapView.getOverlays();
+		final List<Overlay> overlays = this.mOSMapView.getOverlays();
 
 		this.mScaleIndicatorView = new ScaleBarOverlay(this);
         if (Preferences.getUnitSystem(this) == UnitSystem.IMPERIAL) {
@@ -475,7 +475,7 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 	// Getter & Setter
 	// ===========================================================
 
-	public OpenStreetMapView getMapView() {
+	public MapView getMapView() {
 		return this.mOSMapView;
 	}
 
@@ -615,7 +615,7 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 			final SubMenu subMenu = menu.addSubMenu(menuPos, MENU_SUBMENU_RENDERERS_ID, menuPos, getString(R.string.maps_menu_submenu_renderers)).setIcon(R.drawable.layers);
 			menuPos++;
 			{
-				final IOpenStreetMapRendererInfo[] providers = OpenStreetMapRendererFactory.getRenderers();
+				final ITileSource[] providers = TileSourceFactory.getTileSources().toArray(new ITileSource[0]);
 				for(int j = 0; j < providers.length; j ++){
 					final SpannableString itemTitle = new SpannableString(providers[j].name());
 					itemTitle.setSpan(new StyleSpan(Typeface.ITALIC), providers[j].name().length(), itemTitle.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -771,11 +771,11 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 				return true;
 			default:
 				if(itemId >= MENU_SUBMENU_LAYERS_OFFSET){
-					final IOpenStreetMapRendererInfo provider = OpenStreetMapRendererFactory.getRenderers()[item.getItemId() - MENU_SUBMENU_LAYERS_OFFSET];
+					final ITileSource provider = TileSourceFactory.getTileSources().toArray(new ITileSource[0])[item.getItemId() - MENU_SUBMENU_LAYERS_OFFSET];
 					/* Check if Auto-Follow has to be disabled. */
                     /* Remember changes to the provider to start the next time with the same provider. */
                     Preferences.saveMapViewProviderInfoDDMap(this, provider);
-                    this.mOSMapView.setRenderer(provider);
+                    this.mOSMapView.setTileSource(provider);
 					return true;
 				}
 		}
@@ -860,11 +860,11 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 			return;
 		}
 
-		final IOpenStreetMapRendererInfo rendererInfo = this.mOSMapView.getRenderer();
+		final MapTileProviderBase rendererInfo = this.mOSMapView.getTileProvider();
 
-		final OpenStreetMapTile[] tilesNeeded = OSMMapTilePreloader.getNeededMaptiles(this.mRoute, zoomLevel, rendererInfo, true);
+		final MapTile[] tilesNeeded = OSMMapTilePreloader.getNeededMaptiles(this.mRoute, zoomLevel, rendererInfo, true);
 
-        final int bytesEpectedNeeded = tilesNeeded.length * rendererInfo.maptileSizePx() * 71;
+        final int bytesEpectedNeeded = tilesNeeded.length * rendererInfo.getTileSource().getTileSizePixels() * 71;
 		final String formattedFileSize = FileSizeFormatter.formatFileSize(bytesEpectedNeeded);
 
 		new AlertDialog.Builder(this)
@@ -886,7 +886,9 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
                                                               rendererInfo,
                                                               preloader.new OnProgressChangeListener(){
                                                                       @Override
-                                                                      public void onProgressChange(final int progress, final int max) {
+                                                                      public void onProgressChange() {
+                                                                    	  int progress = this.count;
+                                                                    	  int max = tilesNeeded.length;
                                                                           if(progress != max) {
                                                                               pd.setMessage(String.format(progressMessage, progress, max));
                                                                           } else {
@@ -961,7 +963,7 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 				final DirectionArrowDescriptor pDirectionArrowDescriptor = Preferences.getHUDImplVariationDirectionArrowDescriptor(this);
 
 				/* When returning from the Settings-subActivity, always reset the MapDrivingDirectionsOverlay. */
-				final List<OpenStreetMapViewOverlay> overlays = this.mOSMapView.getOverlays();
+				final List<Overlay> overlays = this.mOSMapView.getOverlays();
 				this.mMyMapDrivingDirectionsOverlay.release();
 				overlays.remove(this.mMyMapDrivingDirectionsOverlay);
 				this.mMyMapDrivingDirectionsOverlay = new MapDrivingDirectionsOverlay(this, displayQuality, this.mRealtimeNav, pDirectionArrowDescriptor);
@@ -1669,7 +1671,7 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 		final GestureDetector gd = new GestureDetector(new GestureDetector.SimpleOnGestureListener(){
 			@Override
 			public void onLongPress(final MotionEvent e) {
-				final OpenStreetMapViewProjection pj = OpenStreetDDMap.super.mOSMapView.getProjection();
+				final Projection pj = OpenStreetDDMap.super.mOSMapView.getProjection();
 				OpenStreetDDMap.this.mGPLastMapClick = pj.fromPixels((int)e.getX(), (int)e.getY());
 
 				final String[] items = new String[]{getString(R.string.ddmap_contextmenu_add_as_waypoint),
@@ -2240,7 +2242,7 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-	private class StaticNavOverlayControlView implements OpenStreetMapViewItemizedOverlayControlView.ItemizedOverlayControlViewListener{
+	private class StaticNavOverlayControlView implements ItemizedOverlayControlView.ItemizedOverlayControlViewListener{
 		@Override
 		public void onCenter() {
 			if(OpenStreetDDMap.this.mRoute != null){

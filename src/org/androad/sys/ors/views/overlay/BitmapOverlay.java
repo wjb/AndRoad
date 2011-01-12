@@ -5,15 +5,15 @@ import java.util.List;
 
 import junit.framework.Assert;
 
-import org.andnav.osm.views.OpenStreetMapView;
-import org.andnav.osm.views.OpenStreetMapView.OpenStreetMapViewProjection;
-import org.andnav.osm.views.overlay.OpenStreetMapViewOverlay;
+import org.osmdroid.views.MapView;
+import org.osmdroid.views.MapView.Projection;
+import org.osmdroid.views.overlay.Overlay;
 
 import android.content.Context;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
 
-public class BitmapOverlay extends OpenStreetMapViewOverlay {
+public class BitmapOverlay extends Overlay {
 	// ===========================================================
 	// Constants
 	// ===========================================================
@@ -64,8 +64,8 @@ public class BitmapOverlay extends OpenStreetMapViewOverlay {
 	}
 
 	@Override
-	protected void onDraw(final Canvas c, final OpenStreetMapView osmv) {
-		final OpenStreetMapViewProjection pj = osmv.getProjection();
+	protected void onDraw(final Canvas c, final MapView osmv) {
+		final Projection pj = osmv.getProjection();
 
 		final int limit = this.mBIs.size();
 		for(int i = 0; i < limit; i++){
@@ -75,13 +75,13 @@ public class BitmapOverlay extends OpenStreetMapViewOverlay {
 	}
 
 	@Override
-	protected void onDrawFinished(final Canvas c, final OpenStreetMapView osmv) {
+	protected void onDrawFinished(final Canvas c, final MapView osmv) {
 		// Nothing
 	}
 
     @Override
-    public boolean onSingleTapUp(final MotionEvent e, final OpenStreetMapView openStreetMapView) {
-        final OpenStreetMapViewProjection pj = openStreetMapView.getProjection();
+    public boolean onSingleTapUp(final MotionEvent e, final MapView MapView) {
+        final Projection pj = MapView.getProjection();
 
         final int limit = this.mBIs.size();
         for(int i = 0; i < limit; i++){

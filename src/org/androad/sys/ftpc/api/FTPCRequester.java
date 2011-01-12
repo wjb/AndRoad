@@ -8,8 +8,8 @@ import java.net.URL;
 
 import junit.framework.Assert;
 
-import org.andnav.osm.util.GeoPoint;
-import org.andnav.osm.tileprovider.util.StreamUtils;
+import org.osmdroid.util.GeoPoint;
+import org.osmdroid.tileprovider.util.StreamUtils;
 
 import org.androad.sys.ftpc.exc.FTPCException;
 

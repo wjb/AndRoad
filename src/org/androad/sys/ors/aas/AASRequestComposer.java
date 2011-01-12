@@ -3,7 +3,7 @@ package org.androad.sys.ors.aas;
 
 import java.io.UnsupportedEncodingException;
 
-import org.andnav.osm.util.GeoPoint;
+import org.osmdroid.util.GeoPoint;
 
 import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.StringBody;

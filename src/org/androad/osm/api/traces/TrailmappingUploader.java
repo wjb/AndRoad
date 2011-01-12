@@ -19,8 +19,8 @@ import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import org.andnav.osm.contributor.util.RecordedGeoPoint;
-import org.andnav.osm.contributor.util.RecordedRouteGPXFormatter;
+import org.osmdroid.contributor.util.RecordedGeoPoint;
+import org.osmdroid.contributor.util.RecordedRouteGPXFormatter;
 
 import org.androad.osm.api.util.constants.OSMTraceAPIConstants;
 import org.androad.osm.util.constants.OSMConstants;

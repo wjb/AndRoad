@@ -3,7 +3,7 @@ package org.androad.sys.ors.ds.openrouteservice;
 
 import java.util.ArrayList;
 
-import org.andnav.osm.util.GeoPoint;
+import org.osmdroid.util.GeoPoint;
 
 import org.androad.sys.ors.adt.Error;
 import org.androad.sys.ors.adt.ds.ORSPOI;

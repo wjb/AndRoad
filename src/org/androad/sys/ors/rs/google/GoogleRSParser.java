@@ -3,8 +3,8 @@ package org.androad.sys.ors.rs.google;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
-import org.andnav.osm.util.BoundingBoxE6;
-import org.andnav.osm.util.GeoPoint;
+import org.osmdroid.util.BoundingBoxE6;
+import org.osmdroid.util.GeoPoint;
 
 import org.androad.sys.ors.adt.Error;
 import org.androad.sys.ors.adt.rs.Route;

@@ -9,9 +9,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import org.andnav.osm.contributor.util.RecordedGeoPoint;
-import org.andnav.osm.contributor.util.RecordedRouteGPXFormatter;
-import org.andnav.osm.tileprovider.util.StreamUtils;
+import org.osmdroid.contributor.util.RecordedGeoPoint;
+import org.osmdroid.contributor.util.RecordedRouteGPXFormatter;
+import org.osmdroid.tileprovider.util.StreamUtils;
 
 import org.androad.osm.util.Util;
 import org.androad.osm.util.constants.OSMConstants;

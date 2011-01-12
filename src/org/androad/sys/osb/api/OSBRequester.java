@@ -9,9 +9,9 @@ import java.util.ArrayList;
 
 import junit.framework.Assert;
 
-import org.andnav.osm.util.BoundingBoxE6;
-import org.andnav.osm.util.GeoPoint;
-import org.andnav.osm.tileprovider.util.StreamUtils;
+import org.osmdroid.util.BoundingBoxE6;
+import org.osmdroid.util.GeoPoint;
+import org.osmdroid.tileprovider.util.StreamUtils;
 
 import org.androad.sys.osb.adt.OpenStreetBug;
 import org.androad.sys.osb.exc.OSBException;

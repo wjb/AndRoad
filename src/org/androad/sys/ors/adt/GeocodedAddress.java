@@ -1,8 +1,8 @@
 // Created by plusminus on 01:20:48 - 02.11.2008
 package org.androad.sys.ors.adt;
 
-import org.andnav.osm.util.GeoPoint;
-import org.andnav.osm.views.util.constants.OpenStreetMapViewConstants;
+import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.util.constants.MapViewConstants;
 
 import org.androad.R;
 import org.androad.adt.UnitSystem;
@@ -200,7 +200,7 @@ public class GeocodedAddress extends GeoPoint implements Parcelable {
 		out.writeInt(this.getLongitudeE6());
 
 		if(this.mNationality == null) {
-			out.writeInt(OpenStreetMapViewConstants.NOT_SET);
+			out.writeInt(MapViewConstants.NOT_SET);
 		} else {
 			out.writeInt(this.mNationality.ordinal());
 		}
@@ -220,7 +220,7 @@ public class GeocodedAddress extends GeoPoint implements Parcelable {
 		final GeocodedAddress out = new GeocodedAddress(latE6, lonE6);
 
 		final int natOrdinal = in.readInt();
-		final Country nat = (natOrdinal == OpenStreetMapViewConstants.NOT_SET) ? null : Country.values()[natOrdinal];
+		final Country nat = (natOrdinal == MapViewConstants.NOT_SET) ? null : Country.values()[natOrdinal];
 		out.setNationality(nat);
 
 		out.setStreetNameOfficial(in.readString());

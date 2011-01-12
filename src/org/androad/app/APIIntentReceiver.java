@@ -3,7 +3,7 @@ package org.androad.app;
 
 import java.util.ArrayList;
 
-import org.andnav.osm.util.GeoPoint;
+import org.osmdroid.util.GeoPoint;
 
 import org.androad.R;
 import org.androad.ui.map.OpenStreetDDMap;

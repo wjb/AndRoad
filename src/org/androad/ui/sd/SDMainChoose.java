@@ -1,7 +1,7 @@
 // Created by plusminus on 11:26:05 - 25.10.2008
 package org.androad.ui.sd;
 
-import org.andnav.osm.util.GeoPoint;
+import org.osmdroid.util.GeoPoint;
 
 import org.androad.R;
 import org.androad.db.DBManager;

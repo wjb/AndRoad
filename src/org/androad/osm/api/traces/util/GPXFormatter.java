@@ -9,7 +9,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 
-import org.andnav.osm.util.GeoPoint;
+import org.osmdroid.util.GeoPoint;
 
 import org.androad.osm.adt.GPSGeoLocation;
 import org.androad.osm.api.util.constants.OSMTraceAPIConstants;
