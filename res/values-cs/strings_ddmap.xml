@@ -50,7 +50,7 @@
 	<string name="dlg_preloader_message">Přednačíst %1$d mapových podkladů pro aktuální trasu?\n\nPřibližná velikost: %2$s</string>
 	
 	<string name="pdg_preloader_title">Načítám mapové podklady...</string>
-	<string name="pdg_preloader_message">Načítám: %1$d z %2$d (%3$d failed)\n\n<i>Zpět pro schování okna.</i></string>
+	<string name="pdg_preloader_message">Načítám: %1$d z %2$d\n\n<i>Zpět pro schování okna.</i></string>
 	
 	<string name="toast_preloader_cache_increased_message">Velikost Cache byle zvětšena na: %1$s</string>
 		

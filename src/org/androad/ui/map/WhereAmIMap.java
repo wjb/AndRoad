@@ -1245,16 +1245,18 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 			public void onClick(final DialogInterface d, final int which) {
 				d.dismiss();
 				final String progressMessage = getString(R.string.pdg_preloader_message);
-				final ProgressDialog pd = ProgressDialog.show(WhereAmIMap.this, getString(R.string.pdg_preloader_title), String.format(progressMessage, 0, tileCount, 0), true, true);
+				final ProgressDialog pd = ProgressDialog.show(WhereAmIMap.this, getString(R.string.pdg_preloader_title), String.format(progressMessage, 0, tileCount), true, true);
 				final OSMMapTilePreloader preloader = new OSMMapTilePreloader(WhereAmIMap.this, providerInfo.getTileSource(), tilesNeeded.toArray(new MapTile[1]));
 				preloader.setHandler(new Handler(){
 					@Override
 					public void handleMessage(Message msg) {
 						try {
-							int progress = preloader.getCount();
-							int failures = preloader.getFailures();
-							int max = tilesNeeded.size();
-							pd.setMessage(String.format(progressMessage, progress, max, failures));
+							int progress = preloader.getProgress();
+							int total = preloader.getTotal();
+							if(progress < total)
+								pd.setMessage(String.format(progressMessage, progress, total));
+							else
+								pd.dismiss();
 						} catch (final Exception e) {
 							Log.e(Constants.DEBUGTAG, "View error", e);
 						}

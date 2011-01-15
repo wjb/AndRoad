@@ -40,7 +40,7 @@
 	<string name="dlg_preloader_message">Preload %1$d Maptiles for current Route?\n\nExpected size: %2$s</string>
 	
 	<string name="pdg_preloader_title">Preloading MapTiles...</string>
-	<string name="pdg_preloader_message">Progress: %1$d of %2$d (%3$d failed)\n\n<i>Press BACK to hide.</i></string>
+	<string name="pdg_preloader_message">Progress: %1$d of %2$d\n\n<i>Press BACK to hide.</i></string>
 	
 	<string name="toast_preloader_cache_increased_message">Cachesize was increased to: %1$s</string>
 		

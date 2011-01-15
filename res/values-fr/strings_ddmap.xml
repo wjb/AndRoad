@@ -40,7 +40,7 @@
 	<string name="dlg_preloader_message">Précharger %1$d tuiles pour la route actuelle ?\n\nTaille approximative : %2$s</string>
 	
 	<string name="pdg_preloader_title">Préchargement des tuiles...</string>
-	<string name="pdg_preloader_message">Avancement : %1$d de %2$d (%3$d échecs)\n\n<i>Appuyer sur RETOUR pour cacher.</i></string>
+	<string name="pdg_preloader_message">Avancement : %1$d de %2$d\n\n<i>Appuyer sur RETOUR pour cacher.</i></string>
 	
 	<string name="toast_preloader_cache_increased_message">La taille du cache a été augmentée à : %1$s</string>
 		

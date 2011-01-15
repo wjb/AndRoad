@@ -876,15 +876,17 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 			public void onClick(final DialogInterface d, final int which) {
 				d.dismiss();
 				final String progressMessage = getString(R.string.pdg_preloader_message);
-				final ProgressDialog pd = ProgressDialog.show(OpenStreetDDMap.this, getString(R.string.pdg_preloader_title), String.format(progressMessage,0,tilesNeeded.length, 0), true, true);
+				final ProgressDialog pd = ProgressDialog.show(OpenStreetDDMap.this, getString(R.string.pdg_preloader_title), String.format(progressMessage,0,tilesNeeded.length), true, true);
 				final OSMMapTilePreloader preloader = new OSMMapTilePreloader(OpenStreetDDMap.this, rendererInfo.getTileSource(), tilesNeeded);
 				preloader.setHandler(new Handler(){
 					@Override
 					public void handleMessage(Message msg) {
-						int progress = preloader.getCount();
-						int failures = preloader.getFailures();
-						int max = tilesNeeded.length;
-						pd.setMessage(String.format(progressMessage, progress, max, failures));
+						int progress = preloader.getProgress();
+						int total = preloader.getTotal();
+						if(progress < total)
+							pd.setMessage(String.format(progressMessage, progress, total));
+						else
+							pd.dismiss();
 					}
 				});
 				new Thread(preloader).start();

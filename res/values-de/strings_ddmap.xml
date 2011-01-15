@@ -40,7 +40,7 @@
 	<string name="dlg_preloader_message">%1$d Kartenkacheln für aktuelle Route laden?\n\nUngefähre Größe: %2$s</string>
 	
 	<string name="pdg_preloader_title">Lade Kartenkacheln...</string>
-	<string name="pdg_preloader_message">Fortschritt: %1$d von %2$d (%3$d failed)\n\n<i>BACK drücken zum ausblenden.</i></string>
+	<string name="pdg_preloader_message">Fortschritt: %1$d von %2$d\n\n<i>BACK drücken zum ausblenden.</i></string>
 	
 	<string name="toast_preloader_cache_increased_message">Cachegröße wurde erhöht auf: %1$s</string>
 		

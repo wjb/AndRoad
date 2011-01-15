@@ -2,9 +2,9 @@
 package org.androad.osm.views.tiles.util;
 
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.HashMap;
 import java.util.TreeSet;
 
 import org.osmdroid.tileprovider.MapTile;
@@ -14,6 +14,7 @@ import org.osmdroid.tileprovider.MapTileRequestState;
 import org.osmdroid.tileprovider.tilesource.ITileSource;
 import org.osmdroid.util.GeoPoint;
 
+import org.andnav.osm.tileprovider.constants.OpenStreetMapTileProviderConstants;
 import org.androad.osm.util.ValuePair;
 import org.androad.osm.util.Util.PixelSetter;
 import org.androad.osm.views.util.Util;
@@ -28,14 +29,11 @@ public class OSMMapTilePreloader extends MapTileProviderBasic implements Runnabl
 	// Constants
 	// ===========================================================
 	
-	private static final Integer TILE_LOADED_SUCCESS = 0;
-	private static final Integer TILE_LOADED_FAIL = TILE_LOADED_SUCCESS + 1;
-
 	// ===========================================================
 	// Fields
 	// ===========================================================
 
-	HashMap<MapTile, Integer> mLoaded = new HashMap<MapTile, Integer>();
+	HashSet<MapTile> mLoaded = new HashSet<MapTile>();
 	MapTile[] mTiles;
 
 	// ===========================================================
@@ -56,24 +54,12 @@ public class OSMMapTilePreloader extends MapTileProviderBasic implements Runnabl
 		this.setTileRequestCompleteHandler(pHandler);
 	}
 
-	public int getCount() {
+	public int getProgress() {
 		return mLoaded.size();
 	}
 
-	public int getFailures() {
-		int ret = 0;
-		for(MapTile tile : mLoaded.keySet())
-			if(mLoaded.get(tile) == TILE_LOADED_FAIL)
-				ret++;
-		return ret;
-	}
-
-	public int getSuccess() {
-		int ret = 0;
-		for(MapTile tile : mLoaded.keySet())
-			if(mLoaded.get(tile) == TILE_LOADED_SUCCESS)
-				ret++;
-		return ret;
+	public int getTotal() {
+		return mTiles.length;
 	}
 
 	// ===========================================================
@@ -83,14 +69,7 @@ public class OSMMapTilePreloader extends MapTileProviderBasic implements Runnabl
 	@Override
 	public void mapTileRequestCompleted(MapTileRequestState aState, Drawable aDrawable) {
 		super.mapTileRequestCompleted(aState, aDrawable);
-		mLoaded.put(aState.getMapTile(), TILE_LOADED_SUCCESS);
-	}
-
-	@Override
-	public void mapTileRequestFailed(MapTileRequestState aState) {
-		super.mapTileRequestFailed(aState);
-		if(mLoaded.get(aState.getMapTile()) == null)
-			mLoaded.put(aState.getMapTile(), TILE_LOADED_FAIL);
+		mLoaded.add(aState.getMapTile());
 	}
 
 	// ===========================================================
@@ -100,9 +79,11 @@ public class OSMMapTilePreloader extends MapTileProviderBasic implements Runnabl
 	/**
 	 * Loads a series of MapTiles to the various caches at a specific zoomlevel.
 	 */
-	public void run(){
-        for (final MapTile tile : mTiles)
-        	this.getMapTile(tile);
+	public void run() {
+		for(int i = 0; i < mTiles.length; i++) {
+			while(i - getProgress() >= OpenStreetMapTileProviderConstants.TILE_DOWNLOAD_MAXIMUM_QUEUE_SIZE);
+			this.getMapTile(mTiles[i]);
+		}
 	}
 
 
