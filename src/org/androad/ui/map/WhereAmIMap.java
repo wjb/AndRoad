@@ -95,6 +95,7 @@ import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.os.PowerManager;
 import android.text.ClipboardManager;
 import android.text.SpannableString;
@@ -1242,39 +1243,24 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 		ab.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener(){
 			@Override
 			public void onClick(final DialogInterface d, final int which) {
-				final String progressMessage = getString(R.string.pdg_preloader_message);
-				final ProgressDialog pd = ProgressDialog.show(WhereAmIMap.this, getString(R.string.pdg_preloader_title), String.format(progressMessage, 0, tileCount), true, true);
-				new Thread(new Runnable(){
-					@Override
-					public void run() {
-						runOnUiThread(new Runnable(){
-							@Override
-							public void run() {
-                                OSMMapTilePreloader preloader = new OSMMapTilePreloader();
-								preloader.loadAllToCacheAsync(tilesNeeded.toArray(new MapTile[1]),
-                                                              providerInfo,
-                                                              preloader.new OnProgressChangeListener(){
-                                                                  @Override
-                                                                  public void onProgressChange() {
-                                                                      try {
-                                                                    	  int progress = this.count;
-                                                                    	  int max = tilesNeeded.size();
-                                                                          if(progress != max) {
-                                                                              pd.setMessage(String.format(progressMessage, progress, max));
-                                                                          } else {
-                                                                              pd.dismiss();
-                                                                          }
-                                                                      } catch (final Exception e) {
-                                                                          Log.e(Constants.DEBUGTAG, "View error", e);
-                                                                      }
-                                                                  }
-                                                              });
-							}
-                            });
-					}
-				}, "Preloader-Thread").start();
-
 				d.dismiss();
+				final String progressMessage = getString(R.string.pdg_preloader_message);
+				final ProgressDialog pd = ProgressDialog.show(WhereAmIMap.this, getString(R.string.pdg_preloader_title), String.format(progressMessage, 0, tileCount, 0), true, true);
+				final OSMMapTilePreloader preloader = new OSMMapTilePreloader(WhereAmIMap.this, providerInfo.getTileSource(), tilesNeeded.toArray(new MapTile[1]));
+				preloader.setHandler(new Handler(){
+					@Override
+					public void handleMessage(Message msg) {
+						try {
+							int progress = preloader.getCount();
+							int failures = preloader.getFailures();
+							int max = tilesNeeded.size();
+							pd.setMessage(String.format(progressMessage, progress, max, failures));
+						} catch (final Exception e) {
+							Log.e(Constants.DEBUGTAG, "View error", e);
+						}
+					}
+				});
+				new Thread(preloader).start();
 			}
 		});
 		ab.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener(){

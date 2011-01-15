@@ -4,42 +4,94 @@ package org.androad.osm.views.tiles.util;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
+import java.util.HashMap;
 import java.util.TreeSet;
 
 import org.osmdroid.tileprovider.MapTile;
 import org.osmdroid.tileprovider.MapTileProviderBase;
+import org.osmdroid.tileprovider.MapTileProviderBasic;
+import org.osmdroid.tileprovider.MapTileRequestState;
+import org.osmdroid.tileprovider.tilesource.ITileSource;
 import org.osmdroid.util.GeoPoint;
-import org.osmdroid.views.util.constants.MapViewConstants;
 
 import org.androad.osm.util.ValuePair;
 import org.androad.osm.util.Util.PixelSetter;
-import org.androad.osm.util.constants.OSMConstants;
 import org.androad.osm.views.util.Util;
 import org.androad.sys.ors.adt.rs.Route;
 
+import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Handler;
-import android.os.Message;
 
-public class OSMMapTilePreloader implements OSMConstants, MapViewConstants {
+public class OSMMapTilePreloader extends MapTileProviderBasic implements Runnable {
 	// ===========================================================
 	// Constants
 	// ===========================================================
 	
+	private static final Integer TILE_LOADED_SUCCESS = 0;
+	private static final Integer TILE_LOADED_FAIL = TILE_LOADED_SUCCESS + 1;
+
 	// ===========================================================
 	// Fields
 	// ===========================================================
+
+	HashMap<MapTile, Integer> mLoaded = new HashMap<MapTile, Integer>();
+	MapTile[] mTiles;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
+	public OSMMapTilePreloader(Context pContext, ITileSource pTileSource, final MapTile[] pTiles) {
+		super(pContext, pTileSource);
+		this.setTileSource(pTileSource);
+		mTiles = pTiles;
+	}
+
 	// ===========================================================
 	// Getter & Setter
 	// ===========================================================
 
+	public void setHandler(Handler pHandler) {
+		this.setTileRequestCompleteHandler(pHandler);
+	}
+
+	public int getCount() {
+		return mLoaded.size();
+	}
+
+	public int getFailures() {
+		int ret = 0;
+		for(MapTile tile : mLoaded.keySet())
+			if(mLoaded.get(tile) == TILE_LOADED_FAIL)
+				ret++;
+		return ret;
+	}
+
+	public int getSuccess() {
+		int ret = 0;
+		for(MapTile tile : mLoaded.keySet())
+			if(mLoaded.get(tile) == TILE_LOADED_SUCCESS)
+				ret++;
+		return ret;
+	}
+
 	// ===========================================================
 	// Methods from SuperClass/Interfaces
 	// ===========================================================
+
+	@Override
+	public void mapTileRequestCompleted(MapTileRequestState aState, Drawable aDrawable) {
+		super.mapTileRequestCompleted(aState, aDrawable);
+		mLoaded.put(aState.getMapTile(), TILE_LOADED_SUCCESS);
+	}
+
+	@Override
+	public void mapTileRequestFailed(MapTileRequestState aState) {
+		super.mapTileRequestFailed(aState);
+		if(mLoaded.get(aState.getMapTile()) == null)
+			mLoaded.put(aState.getMapTile(), TILE_LOADED_FAIL);
+	}
 
 	// ===========================================================
 	// Methods
@@ -48,15 +100,9 @@ public class OSMMapTilePreloader implements OSMConstants, MapViewConstants {
 	/**
 	 * Loads a series of MapTiles to the various caches at a specific zoomlevel.
 	 */
-	public void loadAllToCacheAsync(final MapTile[] pTiles, final MapTileProviderBase aRendererInfo, final OnProgressChangeListener pProgressListener){
-		final int overallCount = pTiles.length;
-
-        int sendingCount = 0;
-
-        aRendererInfo.setTileRequestCompleteHandler(pProgressListener);
-
-        for (final MapTile tile : pTiles)
-        	aRendererInfo.getMapTile(tile);
+	public void run(){
+        for (final MapTile tile : mTiles)
+        	this.getMapTile(tile);
 	}
 
 
@@ -151,25 +197,6 @@ public class OSMMapTilePreloader implements OSMConstants, MapViewConstants {
 		}
 
 		return out;
-	}
-
-
-	// ===========================================================
-	// Inner and Anonymous Classes
-	// ===========================================================
-
-	public abstract class OnProgressChangeListener extends Handler{
-
-		protected int count = 0;
-
-		/** Between 0 and 100 (including). */
-		public abstract void onProgressChange();
-
-        @Override
-        public void handleMessage(Message msg) {
-        	count++;
-            this.onProgressChange();
-        }
 	}
 
 }

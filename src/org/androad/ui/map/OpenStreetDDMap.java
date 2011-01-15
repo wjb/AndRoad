@@ -86,6 +86,7 @@ import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.os.PowerManager;
 import android.speech.tts.TextToSpeech;
 import android.text.SpannableString;
@@ -873,40 +874,25 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 		.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener(){
 			@Override
 			public void onClick(final DialogInterface d, final int which) {
-				final String progressMessage = getString(R.string.pdg_preloader_message);
-				final ProgressDialog pd = ProgressDialog.show(OpenStreetDDMap.this, getString(R.string.pdg_preloader_title), String.format(progressMessage,0,tilesNeeded.length), true, true);
-				new Thread(new Runnable(){
-					@Override
-					public void run() {
-						runOnUiThread(new Runnable(){
-							@Override
-							public void run() {
-                                OSMMapTilePreloader preloader = new OSMMapTilePreloader();
-								preloader.loadAllToCacheAsync(tilesNeeded,
-                                                              rendererInfo,
-                                                              preloader.new OnProgressChangeListener(){
-                                                                      @Override
-                                                                      public void onProgressChange() {
-                                                                    	  int progress = this.count;
-                                                                    	  int max = tilesNeeded.length;
-                                                                          if(progress != max) {
-                                                                              pd.setMessage(String.format(progressMessage, progress, max));
-                                                                          } else {
-                                                                              pd.dismiss();
-                                                                          }
-                                                                      }
-                                                                  });
-								if(OpenStreetDDMap.this.mAutoZoomEnabled){
-									OpenStreetDDMap.this.mAutoZoomEnabled = false;
-									Preferences.saveAutoZoomEnabled(OpenStreetDDMap.this, false);
-									Toast.makeText(OpenStreetDDMap.this, R.string.ddmap_info_preloader_autozoom_disabled, Toast.LENGTH_LONG).show();
-								}
-							}
-                            });
-					}
-				}, "Preloader-Thread").start();
-
 				d.dismiss();
+				final String progressMessage = getString(R.string.pdg_preloader_message);
+				final ProgressDialog pd = ProgressDialog.show(OpenStreetDDMap.this, getString(R.string.pdg_preloader_title), String.format(progressMessage,0,tilesNeeded.length, 0), true, true);
+				final OSMMapTilePreloader preloader = new OSMMapTilePreloader(OpenStreetDDMap.this, rendererInfo.getTileSource(), tilesNeeded);
+				preloader.setHandler(new Handler(){
+					@Override
+					public void handleMessage(Message msg) {
+						int progress = preloader.getCount();
+						int failures = preloader.getFailures();
+						int max = tilesNeeded.length;
+						pd.setMessage(String.format(progressMessage, progress, max, failures));
+					}
+				});
+				new Thread(preloader).start();
+				if(OpenStreetDDMap.this.mAutoZoomEnabled){
+					OpenStreetDDMap.this.mAutoZoomEnabled = false;
+					Preferences.saveAutoZoomEnabled(OpenStreetDDMap.this, false);
+					Toast.makeText(OpenStreetDDMap.this, R.string.ddmap_info_preloader_autozoom_disabled, Toast.LENGTH_LONG).show();
+				}
 			}
 		})
 		.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener(){
