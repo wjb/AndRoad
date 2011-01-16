@@ -105,6 +105,7 @@ public class GoogleRSRequester implements Constants, OSMConstants, RSRequester {
 
         /* The Handler now provides the parsed data to us. */
         final Route r = openLSParser.getRoute();
+        r.finalizeRoute(vias);
 
 		if(pSaveRoute){
 			/* Exception would have been thrown in invalid route. */
@@ -127,7 +128,6 @@ public class GoogleRSRequester implements Constants, OSMConstants, RSRequester {
 			}
 		}
 
-        r.finalizeRoute(vias);
         return r;
 	}
 }

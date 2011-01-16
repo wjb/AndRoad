@@ -172,6 +172,7 @@ public class OpenRouteServiceRSRequester implements Constants, OSMConstants, RSR
 
         /* The Handler now provides the parsed data to us. */
         final Route r = openLSParser.getRoute();
+        r.finalizeRoute(vias);
 
 		if(pSaveRoute){
 			/* Exception would have been thrown in invalid route. */
@@ -194,8 +195,6 @@ public class OpenRouteServiceRSRequester implements Constants, OSMConstants, RSR
 			}
 		}
 
-        
-        r.finalizeRoute(vias);
         return r;
 	}
 }

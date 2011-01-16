@@ -110,27 +110,6 @@ public class YahooRSRequester implements Constants, OSMConstants, RSRequester {
         /* The Handler now provides the parsed data to us. */
         final Route r = openLSParser.getRoute();
 
-		if(pSaveRoute){
-			/* Exception would have been thrown in invalid route. */
-			try {
-				// Ensure folder exists
-				final String traceFolderPath = Util.getAndRoadExternalStoragePath() + SDCARD_SAVEDROUTES_PATH;
-				new File(traceFolderPath).mkdirs();
-
-				// Create file and ensure that needed folders exist.
-				final String filename = traceFolderPath + SDF.format(new Date(System.currentTimeMillis()));
-				final File dest = new File(filename + ".route");
-
-				// Write Data
-				final ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(dest));
-
-                out.writeObject(r);
-                StreamUtils.closeStream(out);
-			} catch (final Exception e) {
-				Log.e(OSMConstants.DEBUGTAG, "File-Writing-Error", e);
-			}
-        }
-
         if (pGetPartialsRoutes) {
             boolean mLoop = true;
 
@@ -154,8 +133,29 @@ public class YahooRSRequester implements Constants, OSMConstants, RSRequester {
                 }
             }
         }
-
         r.finalizeRoute(vias);
+
+		if(pSaveRoute){
+			/* Exception would have been thrown in invalid route. */
+			try {
+				// Ensure folder exists
+				final String traceFolderPath = Util.getAndRoadExternalStoragePath() + SDCARD_SAVEDROUTES_PATH;
+				new File(traceFolderPath).mkdirs();
+
+				// Create file and ensure that needed folders exist.
+				final String filename = traceFolderPath + SDF.format(new Date(System.currentTimeMillis()));
+				final File dest = new File(filename + ".route");
+
+				// Write Data
+				final ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(dest));
+
+                out.writeObject(r);
+                StreamUtils.closeStream(out);
+			} catch (final Exception e) {
+				Log.e(OSMConstants.DEBUGTAG, "File-Writing-Error", e);
+			}
+        }
+
         return r;
     }
 }
