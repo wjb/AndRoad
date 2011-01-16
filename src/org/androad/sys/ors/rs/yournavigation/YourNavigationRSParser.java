@@ -166,6 +166,8 @@ public class YourNavigationRSParser extends DefaultHandler implements TimeConsta
             final String coords = this.sb.toString();
             final StringTokenizer st1 = new StringTokenizer(coords, "\n");
             boolean first = true;
+            double bearing = 0;
+            double lastbearing = 0;
             while (st1.hasMoreTokens()){
                 final String point = st1.nextToken();
                 final StringTokenizer st2 = new StringTokenizer(point, ",");
@@ -195,11 +197,33 @@ public class YourNavigationRSParser extends DefaultHandler implements TimeConsta
                 }
                 final GeoPoint gp = new GeoPoint((int) (a * 1E6), (int) (b * 1E6));
                 this.mPolyline.add(gp);
+
                 if (first) {
                     first = false;
                     this.mTmpRouteInstruction.getPartialPolyLine().add(gp);
+                    this.mLastFirstMotherPolylineIndex = this.mRoute.findInPolyLine(gp, this.mLastFirstMotherPolylineIndex);
+                    this.mTmpRouteInstruction.setFirstMotherPolylineIndex(this.mLastFirstMotherPolylineIndex);
+                } else {
+                    final GeoPoint lastgp = this.mPolyline.get(this.mPolyline.size() - 1);
+                    bearing = lastgp.bearingTo(gp);
+                    if ((lastbearing - bearing) > 20) {
+                        final int distance = gp.distanceTo(this.mTmpRouteInstruction.getPartialPolyLine().get(0));
+                        this.mTmpRouteInstruction.setLengthMeters(distance);
+
+                        this.mTmpRouteInstruction = new RouteInstruction();
+                        this.mRoute.getRouteInstructions().add(this.mTmpRouteInstruction);
+                    }
+
+                    this.mTmpRouteInstruction.getPartialPolyLine().add(gp);
+                    // If this was the first element, we will determine its position in the OverallPolyline
+                    if(this.mTmpRouteInstruction.getPartialPolyLine().size() == 1) {
+                        this.mLastFirstMotherPolylineIndex = this.mRoute.findInPolyLine(gp, this.mLastFirstMotherPolylineIndex);
+                        this.mTmpRouteInstruction.setFirstMotherPolylineIndex(this.mLastFirstMotherPolylineIndex);
+                    }
                 }
+                lastbearing = bearing;
             }
+
 		} else {
 			Log.w(DEBUGTAG, "Unexpected end-tag: '" + name + "'");
 		}
@@ -213,6 +237,13 @@ public class YourNavigationRSParser extends DefaultHandler implements TimeConsta
 	@Override
 	public void endDocument() throws SAXException {
 		if(this.mErrors == null || this.mErrors.size() == 0){
+            final GeoPoint gp = this.mTmpRouteInstruction.getPartialPolyLine().get(this.mTmpRouteInstruction.getPartialPolyLine().size() - 1);
+            int distance = gp.distanceTo(this.mTmpRouteInstruction.getPartialPolyLine().get(0));
+            this.mTmpRouteInstruction.setLengthMeters(distance);
+
+            distance = gp.distanceTo(this.mPolyline.get(0));
+			this.mRoute.setDistanceMeters(distance);
+
 			this.mRoute.setStart(this.mPolyline.get(0));
 			this.mRoute.setDestination(this.mPolyline.get(this.mPolyline.size() - 1));
 
