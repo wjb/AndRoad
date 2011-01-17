@@ -789,8 +789,7 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 		this.mAutoCenterBlockedUntil = System.currentTimeMillis() + AUTOCENTER_BLOCKTIME;
 
 		this.mOSMapView.getController().stopAnimation(false);
-		this.mOSMapView.getController().setCenter(this.mRoute.getDestination());
-		this.mOSMapView.getController().setZoom(17);
+		this.mOSMapView.getController().zoomInFixing(this.mRoute.getDestination());
 	}
 
 	private void handleShareRoute(final long pRouteHandleID) {
