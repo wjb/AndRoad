@@ -583,10 +583,10 @@ public class Route implements Parcelable, Serializable {
 		out.mLongitudeMinSpans = in.createIntArray();
 		out.mLongitudeMaxSpans = in.createIntArray();
 
-		out.mStartInstruction = in.readParcelable(null);
+		out.mStartInstruction = in.readParcelable(Thread.currentThread().getContextClassLoader());
 		out.mRouteInstructions = new ArrayList<RouteInstruction>(); in.readTypedList(out.mRouteInstructions, RouteInstruction.CREATOR);
-		out.mDestinationInstruction = in.readParcelable(null);
-		out.mBoundingBoxE6 = in.readParcelable(null);
+		out.mDestinationInstruction = in.readParcelable(Thread.currentThread().getContextClassLoader());
+		out.mBoundingBoxE6 = in.readParcelable(Thread.currentThread().getContextClassLoader());
 
 		out.mHashCode = in.readInt();
 
