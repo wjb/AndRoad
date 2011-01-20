@@ -313,6 +313,12 @@
                 <category android:name="android.intent.category.VIEW" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.map.RouteInstructions" android:label="@string/app_name_route_instructions">
+            <intent-filter>
+                <action android:name="android.intent.action.DEFAULT" />
+                <category android:name="android.intent.category.VIEW" />
+            </intent-filter>
+        </activity>
         <receiver android:name=".app.APIIntentReceiver">
             <intent-filter>
                 <action android:name="org.andnav.intent.ACTION_NAV_TO" />

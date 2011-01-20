@@ -158,7 +158,8 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 	private static final int MENU_WAYPOINTS_OPTIMIZE_ID = MENU_WAYPOINTS_CLEAR_ID + 1;
 	private static final int MENU_PRELOADTILES_ID = MENU_WAYPOINTS_OPTIMIZE_ID + 1;
 	private static final int MENU_REVERSEROUTE_ID = MENU_PRELOADTILES_ID + 1;
-	private static final int MENU_ALTITUDEPROFILE_ID = MENU_REVERSEROUTE_ID + 1;
+	private static final int MENU_ROUTEINSTRUCTIONS_ID = MENU_REVERSEROUTE_ID + 1;
+	private static final int MENU_ALTITUDEPROFILE_ID = MENU_ROUTEINSTRUCTIONS_ID + 1;
 	private static final int MENU_SHAREROUTE_ID = MENU_ALTITUDEPROFILE_ID + 1;
 	private static final int MENU_GPSSTATUS_ID = MENU_SHAREROUTE_ID + 1;
 	private static final int MENU_ZOOMTODESTINATION_ID = MENU_GPSSTATUS_ID + 1;
@@ -670,6 +671,13 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 			menuPos++;
 		}
 
+        { // Route Instructions
+            menu.add(menuPos, MENU_ROUTEINSTRUCTIONS_ID, menuPos, getString(R.string.maps_menu_routeinstructions))
+			.setIcon(R.drawable.turn_right_90)
+			.setAlphabeticShortcut('i');
+			menuPos++;
+        }
+
 		{ // Altitude Profile-Item
 			menu.add(menuPos, MENU_ALTITUDEPROFILE_ID, menuPos, getString(R.string.maps_menu_altitude_profile))
 			.setIcon(R.drawable.altitude_profile)
@@ -740,6 +748,9 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 			case MENU_SHAREROUTE_ID:
 				handleShareRoute(OpenStreetDDMap.this.mRoute.getRouteHandleID());
 				return true;
+            case MENU_ROUTEINSTRUCTIONS_ID:
+                routeInstructions();
+                return true;
 			case MENU_ZOOMTODESTINATION_ID:
 				zoomToDestination();
 				return true;
@@ -783,6 +794,15 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 
 		return super.onMenuItemSelected(featureId, item);
 	}
+
+    private void routeInstructions() {
+		final Intent intent = new Intent(this, RouteInstructions.class);
+		final Bundle b = new Bundle();
+		b.putParcelable(RouteInstructions.class.getName(), this.mRoute);
+		intent.putExtra(RouteInstructions.class.getName(), b);
+
+		startActivity(intent);
+    }
 
 	private void zoomToDestination() {
 		this.mAutoZoomBlockedUntil = System.currentTimeMillis() + AUTOZOOM_BLOCKTIME;

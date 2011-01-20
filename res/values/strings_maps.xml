@@ -35,6 +35,7 @@
 	<string name="maps_menu_traffic">Toggle Traffic</string>
 	<string name="maps_menu_preload">Preload</string>
 	<string name="maps_menu_shareroute">Mail Route</string>
+	<string name="maps_menu_routeinstructions">Route Instructions</string>
 	<string name="maps_menu_getcentetcoordinates">Get center Coordinates</string>
 	<string name="maps_menu_getcentetcoordinates_message"><b>MapCenter:</b>\n\n<b>Latitude:\t</b>%1$.6f\n<b>Longitude:\t</b>%2$.6f\n</string>
 	<string name="maps_menu_altitude_profile">Altitude Profile</string>

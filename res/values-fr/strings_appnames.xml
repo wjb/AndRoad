@@ -65,4 +65,5 @@
 	<string name="app_name_settings_routingflags">AndRoad! - Param. de routage...</string>
 	<string name="app_name_settings_routingflags_dialog">Paramètres de routage...</string>
 	<string name="app_name_camera_favorite">Camera Favorite</string>
+	<string name="app_name_route_instructions">Route Instructions</string>
 </resources>

@@ -35,6 +35,7 @@
 	<string name="maps_menu_traffic">Stau-Infos</string>
 	<string name="maps_menu_preload">Vorladen</string>
 	<string name="maps_menu_shareroute">Route mailen</string>
+	<string name="maps_menu_routeinstructions">Route Instructions</string>
 	<string name="maps_menu_getcentetcoordinates">Koordinaten des Karten-Zentrums...</string>
 	<string name="maps_menu_getcentetcoordinates_message"><b>Kartenzentrum:</b>\n\n<b>Breitengrad:\t</b>%.6f\n<b>Längengrad:\t</b>%.6f\n</string>
 	<string name="maps_menu_altitude_profile">Höhenprofil</string>

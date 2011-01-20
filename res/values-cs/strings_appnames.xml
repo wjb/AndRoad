@@ -62,4 +62,5 @@
 	<string name="app_name_settings_routingflags">AndRoad! - Nastavení trasy...</string>
 	<string name="app_name_settings_routingflags_dialog">Nastavení trasy...</string>
 	<string name="app_name_camera_favorite">Camera Favorite</string>
+	<string name="app_name_route_instructions">Route Instructions</string>
 </resources>
