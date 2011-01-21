@@ -23,6 +23,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -112,26 +113,26 @@ public class RouteInstructions extends AndNavBaseActivity {
             if (ri.getDurationSeconds() > 0) {
                 this.mTime = ri.getDurationSeconds() + "sec";
             } else {
-                this.mTime = "";
+                this.mTime = null;
             }
 
             this.mDescription = ri.getDescription();
 
             final int turnAngle = (int)ri.getAngle();
             if(turnAngle > 60) {
-                this.mTurnAngle = BitmapFactory.decodeResource(context.getResources(), R.drawable.turn_left_90);
+                this.mTurnAngle = BitmapFactory.decodeResource(context.getResources(), R.drawable.turn_left_90_white);
             } else if(turnAngle > 35) {
-                this.mTurnAngle = BitmapFactory.decodeResource(context.getResources(), R.drawable.turn_left_45);
+                this.mTurnAngle = BitmapFactory.decodeResource(context.getResources(), R.drawable.turn_left_45_white);
             } else if(turnAngle > 15) {
-                this.mTurnAngle = BitmapFactory.decodeResource(context.getResources(), R.drawable.turn_left_25);
+                this.mTurnAngle = BitmapFactory.decodeResource(context.getResources(), R.drawable.turn_left_25_white);
             } else if(turnAngle <= 15 && turnAngle >= -15) {
-                this.mTurnAngle = BitmapFactory.decodeResource(context.getResources(), R.drawable.turn_straight);
+                this.mTurnAngle = BitmapFactory.decodeResource(context.getResources(), R.drawable.turn_straight_white);
             } else if(turnAngle > -35) {
-                this.mTurnAngle = BitmapFactory.decodeResource(context.getResources(), R.drawable.turn_right_25);
+                this.mTurnAngle = BitmapFactory.decodeResource(context.getResources(), R.drawable.turn_right_25_white);
             } else if(turnAngle > -60) {
-                this.mTurnAngle = BitmapFactory.decodeResource(context.getResources(), R.drawable.turn_right_45);
+                this.mTurnAngle = BitmapFactory.decodeResource(context.getResources(), R.drawable.turn_right_45_white);
             } else {
-                this.mTurnAngle = BitmapFactory.decodeResource(context.getResources(), R.drawable.turn_right_90);
+                this.mTurnAngle = BitmapFactory.decodeResource(context.getResources(), R.drawable.turn_right_90_white);
             }
 		}
 
@@ -180,6 +181,7 @@ public class RouteInstructions extends AndNavBaseActivity {
 
         private final UnitSystem mUnitSystem;
 
+        private final ImageView mTVTurn;
 		private final TextView mTVDescription;
 		private final TextView mTVDistance;
 		private final TextView mTVTime;
@@ -190,12 +192,10 @@ public class RouteInstructions extends AndNavBaseActivity {
 
 			this.setOrientation(HORIZONTAL);
 
+            this.mTVTurn = new ImageView(context);
+            this.mTVTurn.setImageBitmap(aRI.mTurnAngle);
 
-			this.mTVDescription = new TextView(context);
-			this.mTVDescription.setText(aRI.mDescription);
-			this.mTVDescription.setTextSize(TypedValue.COMPLEX_UNIT_PX, 24);
-
-			addView(this.mTVDescription, new LinearLayout.LayoutParams(android.view.ViewGroup.LayoutParams.WRAP_CONTENT, android.view.ViewGroup.LayoutParams.WRAP_CONTENT));
+			addView(this.mTVTurn, new LinearLayout.LayoutParams(android.view.ViewGroup.LayoutParams.WRAP_CONTENT, android.view.ViewGroup.LayoutParams.WRAP_CONTENT));
 
 			this.mTVDistance = new TextView(context);
 			this.mTVDistance.setText(aRI.mDistance);
@@ -204,12 +204,20 @@ public class RouteInstructions extends AndNavBaseActivity {
 
 			addView(this.mTVDistance, new LinearLayout.LayoutParams(90, android.view.ViewGroup.LayoutParams.WRAP_CONTENT));
 
-			this.mTVTime = new TextView(context);
-			this.mTVTime.setText(aRI.mTime);
-			this.mTVTime.setTextSize(TypedValue.COMPLEX_UNIT_PX, 16);
-			this.mTVTime.setPadding(10,0,20,0);
+            this.mTVTime = new TextView(context);
+            this.mTVTime.setText(aRI.mTime);
+            this.mTVTime.setTextSize(TypedValue.COMPLEX_UNIT_PX, 16);
+            this.mTVTime.setPadding(10,0,20,0);
 
-			addView(this.mTVTime, new LinearLayout.LayoutParams(90, android.view.ViewGroup.LayoutParams.WRAP_CONTENT));
+            if (aRI.mTime != null) {
+                addView(this.mTVTime, new LinearLayout.LayoutParams(90, android.view.ViewGroup.LayoutParams.WRAP_CONTENT));
+            }
+
+			this.mTVDescription = new TextView(context);
+			this.mTVDescription.setText(aRI.mDescription);
+			this.mTVDescription.setTextSize(TypedValue.COMPLEX_UNIT_PX, 24);
+
+			addView(this.mTVDescription, new LinearLayout.LayoutParams(android.view.ViewGroup.LayoutParams.WRAP_CONTENT, android.view.ViewGroup.LayoutParams.WRAP_CONTENT));
 		}
 
 	}
@@ -256,6 +264,7 @@ public class RouteInstructions extends AndNavBaseActivity {
 			} else { // Reuse/Overwrite the View passed
 				// We are assuming(!) that it is castable!
 				btv = (RouteInstructionListItemView) convertView;
+                btv.mTVTurn.setImageBitmap(this.mItems.get(position).mTurnAngle);
 				btv.mTVDescription.setText(this.mItems.get(position).mDescription);
 				btv.mTVDistance.setText(this.mItems.get(position).mDistance);
 				btv.mTVTime.setText(this.mItems.get(position).mTime);
