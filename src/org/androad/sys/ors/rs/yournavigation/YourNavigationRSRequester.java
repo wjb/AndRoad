@@ -98,7 +98,7 @@ public class YourNavigationRSRequester implements Constants, OSMConstants, RSReq
 		/* Get the XMLReader of the SAXParser we created. */
 		final XMLReader xr = sp.getXMLReader();
 		/* Create a new ContentHandler and apply it to the XML-Reader*/
-		final YourNavigationRSParser openLSParser = new YourNavigationRSParser();
+		final YourNavigationRSParser openLSParser = new YourNavigationRSParser(ctx);
 		xr.setContentHandler(openLSParser);
 
 		/* Parse the xml-data from our URL. */

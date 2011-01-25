@@ -6,16 +6,22 @@ import java.util.StringTokenizer;
 import org.osmdroid.util.BoundingBoxE6;
 import org.osmdroid.util.GeoPoint;
 
+import org.androad.R;
+import org.androad.adt.other.GraphicsPoint;
 import org.androad.sys.ors.adt.Error;
 import org.androad.sys.ors.adt.rs.Route;
 import org.androad.sys.ors.adt.rs.RouteInstruction;
 import org.androad.sys.ors.exceptions.ORSException;
 import org.androad.util.constants.Constants;
 import org.androad.util.constants.TimeConstants;
+
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import android.content.Context;
+import android.graphics.Point;
+import android.util.FloatMath;
 import android.util.Log;
 
 public class YourNavigationRSParser extends DefaultHandler implements TimeConstants, Constants {
@@ -29,6 +35,8 @@ public class YourNavigationRSParser extends DefaultHandler implements TimeConsta
 
 	private final ArrayList<Error> mErrors = new ArrayList<Error>();
     private int mErrorNumber = 0;
+
+    private Context context;
 
 	private Route mRoute;
 	private ArrayList<GeoPoint> mPolyline;
@@ -58,7 +66,8 @@ public class YourNavigationRSParser extends DefaultHandler implements TimeConsta
 	// ===========================================================
 
 
-	public YourNavigationRSParser() {
+	public YourNavigationRSParser(Context ctx) {
+        this.context = ctx;
 	}
 
 	// ===========================================================
@@ -112,8 +121,6 @@ public class YourNavigationRSParser extends DefaultHandler implements TimeConsta
 			this.inVisibility = true;
 		} else if(localName.equals("Placemark")){
 			this.inPlacemark = true;
-			this.mTmpRouteInstruction = new RouteInstruction();
-			this.mRoute.getRouteInstructions().add(this.mTmpRouteInstruction);
 		} else if(localName.equals("LineString")){
 			this.inLineString = true;
 		} else if(localName.equals("tessellate")){
@@ -165,9 +172,7 @@ public class YourNavigationRSParser extends DefaultHandler implements TimeConsta
 			this.inCoordinates = false;
             final String coords = this.sb.toString();
             final StringTokenizer st1 = new StringTokenizer(coords, "\n");
-            boolean first = true;
-            double bearing = 0;
-            double lastbearing = 0;
+
             while (st1.hasMoreTokens()){
                 final String point = st1.nextToken();
                 final StringTokenizer st2 = new StringTokenizer(point, ",");
@@ -197,31 +202,73 @@ public class YourNavigationRSParser extends DefaultHandler implements TimeConsta
                 }
                 final GeoPoint gp = new GeoPoint((int) (a * 1E6), (int) (b * 1E6));
                 this.mPolyline.add(gp);
+            }
 
-                if (first) {
-                    first = false;
-                    this.mTmpRouteInstruction.getPartialPolyLine().add(gp);
-                    this.mLastFirstMotherPolylineIndex = this.mRoute.findInPolyLine(gp, this.mLastFirstMotherPolylineIndex);
-                    this.mTmpRouteInstruction.setFirstMotherPolylineIndex(this.mLastFirstMotherPolylineIndex);
+			final Point vIn = new Point(), vOut = new Point(); /* Needed to calculate the angles. */
+			final int polyLineLenght = this.mPolyline.size();
+            String mRouteInstructionDescr = null;
+			int curIndexInPolyLine = 0;
+            int turnAngle = 0;
+            for (final GeoPoint gp : this.mPolyline) {
+
+                if (curIndexInPolyLine == 0) {
+                    this.mTmpRouteInstruction = new RouteInstruction();
+                    this.mRoute.getRouteInstructions().add(this.mTmpRouteInstruction);
+                    this.mTmpRouteInstruction.setDescriptionHtml(context.getString(R.string.begin_at));
+                } else if (curIndexInPolyLine >= polyLineLenght - 1) {
+                    this.mTmpRouteInstruction.setDescriptionHtml(context.getString(R.string.arrived_at));
                 } else {
-                    final GeoPoint lastgp = this.mPolyline.get(this.mPolyline.size() - 1);
-                    bearing = lastgp.bearingTo(gp);
-                    if ((lastbearing - bearing) > 20) {
+                    final GeoPoint lastgp = this.mPolyline.get(curIndexInPolyLine - 1);
+                    final GeoPoint nextgp = this.mPolyline.get(curIndexInPolyLine + 1);
+
+					/* To calculate the angle, we need the line "into" that turnpoint. */
+					vIn.x = lastgp.getLongitudeE6() - gp.getLongitudeE6();
+					vIn.y = lastgp.getLatitudeE6() - gp.getLatitudeE6();
+
+					/* And the line 'out of' that turnpoint. */
+					vOut.x = nextgp.getLongitudeE6() - gp.getLongitudeE6();
+					vOut.y = nextgp.getLatitudeE6() - gp.getLatitudeE6();
+
+					/* Formula: angle = acos[(x * y) / (|x| * |y|)] */
+					if(GraphicsPoint.crossProduct(vIn, vOut) > 0) {
+						turnAngle = - 180 + (int)Math.toDegrees(Math.acos(GraphicsPoint.dotProduct(vIn, vOut) / (FloatMath.sqrt(vIn.x * vIn.x + vIn.y * vIn.y) * FloatMath.sqrt(vOut.x * vOut.x + vOut.y * vOut.y))));
+					} else {
+						turnAngle = 180 - (int)Math.toDegrees(Math.acos(GraphicsPoint.dotProduct(vIn, vOut) / (FloatMath.sqrt(vIn.x * vIn.x + vIn.y * vIn.y) * FloatMath.sqrt(vOut.x * vOut.x + vOut.y * vOut.y))));
+					}
+
+                    if(turnAngle > 60) {
+                        mRouteInstructionDescr = context.getString(R.string.turn_left_90);
+                    } else if(turnAngle > 35) {
+                        mRouteInstructionDescr = context.getString(R.string.turn_left_45);
+                    } else if(turnAngle > 15) {
+                        mRouteInstructionDescr = context.getString(R.string.turn_left_25);
+                    } else if(turnAngle < -60) {
+                        mRouteInstructionDescr = context.getString(R.string.turn_right_90);
+                    } else if(turnAngle < -35) {
+                        mRouteInstructionDescr = context.getString(R.string.turn_right_45);
+                    } else if(turnAngle < -15) {
+                        mRouteInstructionDescr = context.getString(R.string.turn_right_25);
+                    } else {
+                        mRouteInstructionDescr = null;
+                    }
+                    if (mRouteInstructionDescr != null) {
                         final int distance = gp.distanceTo(this.mTmpRouteInstruction.getPartialPolyLine().get(0));
                         this.mTmpRouteInstruction.setLengthMeters(distance);
+                        this.mTmpRouteInstruction.setDescriptionHtml(mRouteInstructionDescr);
 
                         this.mTmpRouteInstruction = new RouteInstruction();
                         this.mRoute.getRouteInstructions().add(this.mTmpRouteInstruction);
                     }
-
-                    this.mTmpRouteInstruction.getPartialPolyLine().add(gp);
-                    // If this was the first element, we will determine its position in the OverallPolyline
-                    if(this.mTmpRouteInstruction.getPartialPolyLine().size() == 1) {
-                        this.mLastFirstMotherPolylineIndex = this.mRoute.findInPolyLine(gp, this.mLastFirstMotherPolylineIndex);
-                        this.mTmpRouteInstruction.setFirstMotherPolylineIndex(this.mLastFirstMotherPolylineIndex);
-                    }
                 }
-                lastbearing = bearing;
+
+                this.mTmpRouteInstruction.getPartialPolyLine().add(gp);
+                // If this was the first element, we will determine its position in the OverallPolyline
+                if(this.mTmpRouteInstruction.getPartialPolyLine().size() == 1) {
+                    this.mLastFirstMotherPolylineIndex = this.mRoute.findInPolyLine(gp, this.mLastFirstMotherPolylineIndex);
+                    this.mTmpRouteInstruction.setFirstMotherPolylineIndex(this.mLastFirstMotherPolylineIndex);
+                }
+
+                curIndexInPolyLine++;
             }
 
 		} else {

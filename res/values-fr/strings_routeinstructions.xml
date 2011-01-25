@@ -1,3 +1,11 @@
 <resources>
 	<string name="tv_map_routeinstructions_list_quickinfo_caption">Route Instructions</string>
+	<string name="begin_at">Commencer</string>
+	<string name="arrived_at">Arriver</string>
+	<string name="turn_left_90">Tourner a gauche 90</string>
+	<string name="turn_left_45">Tourner a gauche 45</string>
+	<string name="turn_left_25">Tourner a gauche 25</string>
+	<string name="turn_right_90">Tourner a droite 90</string>
+	<string name="turn_right_45">Tourner a droite 45</string>
+	<string name="turn_right_25">Tourner a droite 25</string>
 </resources>
