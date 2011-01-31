@@ -6,6 +6,7 @@ import java.util.List;
 import org.osmdroid.ResourceProxy;
 import org.osmdroid.views.overlay.Overlay;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
+import org.osmdroid.tileprovider.util.CloudmadeUtil;
 
 import org.androad.R;
 import org.androad.osm.OpenStreetMapActivity;
@@ -65,6 +66,9 @@ public abstract class OpenStreetMapAndNavBaseActivity extends OpenStreetMapActiv
 		if(!showTitleBarInMap) {
 			this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		}
+
+        // Cloudmap
+        CloudmadeUtil.retrieveCloudmadeKey(this);
 
         // Add google maps
         TileSourceFactory.addTileSource(
