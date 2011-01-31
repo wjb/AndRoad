@@ -11,10 +11,10 @@ import org.osmdroid.tileprovider.MapTile;
 import org.osmdroid.tileprovider.MapTileProviderBase;
 import org.osmdroid.tileprovider.MapTileProviderBasic;
 import org.osmdroid.tileprovider.MapTileRequestState;
+import org.osmdroid.tileprovider.constants.OpenStreetMapTileProviderConstants;
 import org.osmdroid.tileprovider.tilesource.ITileSource;
 import org.osmdroid.util.GeoPoint;
 
-import org.andnav.osm.tileprovider.constants.OpenStreetMapTileProviderConstants;
 import org.androad.osm.util.ValuePair;
 import org.androad.osm.util.Util.PixelSetter;
 import org.androad.osm.views.util.Util;
