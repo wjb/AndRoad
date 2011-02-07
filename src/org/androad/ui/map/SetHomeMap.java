@@ -10,6 +10,7 @@ import org.osmdroid.views.MapView;
 import org.osmdroid.views.MapView.Projection;
 import org.osmdroid.views.MapController.AnimationType;
 import org.osmdroid.views.overlay.Overlay;
+import org.osmdroid.views.overlay.OverlayManager;
 import org.osmdroid.views.overlay.SimpleLocationOverlay;
 
 import org.androad.R;
@@ -86,9 +87,9 @@ public class SetHomeMap extends OpenStreetMapAndNavBaseActivity {
         this.mSetHomeOverlay = new BitmapOverlay(this, this.mSetHomeItem);
 
 		/* Add a new instance of our fancy Overlay-Class to the MapView. */
-		final List<Overlay> overlays = this.mOSMapView.getOverlays();
-		overlays.add(this.mSetHomeOverlay);
-		overlays.add(this.mMyLocationOverlay = new SimpleLocationOverlay(this));
+		final OverlayManager overlaymanager = this.mOSMapView.getOverlayManager();
+		overlaymanager.addOverlay(this.mSetHomeOverlay);
+		overlaymanager.addOverlay(this.mMyLocationOverlay = new SimpleLocationOverlay(this));
 
 		// Load the animation from XML (XML file is res/anim/move_animation.xml).
 		final Animation anim = AnimationUtils.loadAnimation(this, R.anim.button_beat);

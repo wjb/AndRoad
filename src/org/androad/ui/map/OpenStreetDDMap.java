@@ -19,6 +19,7 @@ import org.osmdroid.views.MapView.Projection;
 import org.osmdroid.views.MapController.AnimationType;
 import org.osmdroid.views.overlay.ItemizedOverlayControlView;
 import org.osmdroid.views.overlay.Overlay;
+import org.osmdroid.views.overlay.OverlayManager;
 import org.osmdroid.tileprovider.tilesource.ITileSource;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 
@@ -419,7 +420,7 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 
 		final int displayQuality = Preferences.getDisplayQuality(this);
 
-		final List<Overlay> overlays = this.mOSMapView.getOverlays();
+		final OverlayManager overlaymanager = this.mOSMapView.getOverlayManager();
 
 		this.mScaleIndicatorView = new ScaleBarOverlay(this);
         if (Preferences.getUnitSystem(this) == UnitSystem.IMPERIAL) {
@@ -428,7 +429,7 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
             this.mScaleIndicatorView.setMetric();
         }
         this.mScaleIndicatorView.setScaleBarOffset(getResources().getDisplayMetrics().widthPixels/2 - getResources().getDisplayMetrics().xdpi/2, 10);
-        overlays.add(this.mScaleIndicatorView);
+        overlaymanager.addOverlay(this.mScaleIndicatorView);
 
 		/* Add a new instance of our fancy Overlay-Class to the MapView. */
 		final DirectionArrowDescriptor pDirectionArrowDescriptor = Preferences.getHUDImplVariationDirectionArrowDescriptor(this);
@@ -437,8 +438,8 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 
 		/* The AvoidArea-Overlay. */
 		this.mAreaOfAvoidingsOverlay = new AreaOfInterestOverlay(this, this.mAvoidAreas);
-		overlays.add(this.mMyMapDrivingDirectionsOverlay);
-		overlays.add(this.mAreaOfAvoidingsOverlay);
+		overlaymanager.addOverlay(this.mMyMapDrivingDirectionsOverlay);
+		overlaymanager.addOverlay(this.mAreaOfAvoidingsOverlay);
 	}
 
 	/**
@@ -970,11 +971,11 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 				final DirectionArrowDescriptor pDirectionArrowDescriptor = Preferences.getHUDImplVariationDirectionArrowDescriptor(this);
 
 				/* When returning from the Settings-subActivity, always reset the MapDrivingDirectionsOverlay. */
-				final List<Overlay> overlays = this.mOSMapView.getOverlays();
+                final OverlayManager overlaymanager = this.mOSMapView.getOverlayManager();
 				this.mMyMapDrivingDirectionsOverlay.release();
-				overlays.remove(this.mMyMapDrivingDirectionsOverlay);
+				overlaymanager.removeOverlay(this.mMyMapDrivingDirectionsOverlay);
 				this.mMyMapDrivingDirectionsOverlay = new MapDrivingDirectionsOverlay(this, displayQuality, this.mRealtimeNav, pDirectionArrowDescriptor);
-				overlays.add(this.mMyMapDrivingDirectionsOverlay);
+				overlaymanager.addOverlay(this.mMyMapDrivingDirectionsOverlay);
 
 				/* Refresh possibly changed UnitSystems. */
 				this.mHUDImpl.getRemainingSummaryView().setDisplayQuality(displayQuality);

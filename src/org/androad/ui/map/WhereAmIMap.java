@@ -22,6 +22,7 @@ import org.osmdroid.views.overlay.ItemizedOverlayWithFocus;
 import org.osmdroid.views.overlay.ItemizedOverlayControlView;
 import org.osmdroid.views.overlay.Overlay;
 import org.osmdroid.views.overlay.OverlayItem;
+import org.osmdroid.views.overlay.OverlayManager;
 import org.osmdroid.views.overlay.ItemizedOverlay.OnItemGestureListener;
 
 import org.androad.R;
@@ -239,7 +240,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 		super.mOSMapView = (MapView)findViewById(R.id.map_whereami);
 		super.mOSMapView.setTileSource(Preferences.getMapViewProviderInfoWhereAmI(this));
 
-		final List<Overlay> overlays = this.mOSMapView.getOverlays();
+        final OverlayManager overlaymanager = this.mOSMapView.getOverlayManager();
 
 		/* Add a new instance of our fancy Overlay-Class to the MapView. */
 
@@ -291,20 +292,20 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 		this.mNavPointsConnectionLineOverlay.setPaintNormal();
 		this.mNavPointsConnectionLineOverlay.setEnabled(false);
 
-		overlays.add(this.mAASOverlay);
-		overlays.add(this.mFFOverlay);
-		overlays.add(this.mFavoriteOverlay);
-		overlays.add(this.mAreaOfAvoidingsOverlay);
-		overlays.add(this.mTrafficOverlay);
-		overlays.add(this.mNavPointsConnectionLineOverlay);
-		overlays.add(this.mFlagsOverlay);
-		overlays.add(this.mMyLocationOverlay);
-		overlays.add(this.mCrosshairOverlay);
+		overlaymanager.addOverlay(this.mAASOverlay);
+		overlaymanager.addOverlay(this.mFFOverlay);
+		overlaymanager.addOverlay(this.mFavoriteOverlay);
+		overlaymanager.addOverlay(this.mAreaOfAvoidingsOverlay);
+		overlaymanager.addOverlay(this.mTrafficOverlay);
+		overlaymanager.addOverlay(this.mNavPointsConnectionLineOverlay);
+		overlaymanager.addOverlay(this.mFlagsOverlay);
+		overlaymanager.addOverlay(this.mMyLocationOverlay);
+		overlaymanager.addOverlay(this.mCrosshairOverlay);
 
 		//		final BoundingBoxE6 bbox = BoundingBoxE6.fromParams("-n 43.77677 -s 36.05546 -e 4.34829 -w -9.31870".split(" "));
 		//		final OSMMapViewSimpleRectangleOverlay overlay = new OSMMapViewSimpleRectangleOverlay(bbox);
 		//		overlay.initDefaultPaint();
-		//		overlays.add(overlay);
+		//		overlaymanager.addOverlay(overlay);
 	}
 
 	private void refreshPinOverlay(final GeoPoint pGeoPoint) {
@@ -328,7 +329,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 
 		this.mSearchPinList = items;
 
-		this.mOSMapView.getOverlays().add(this.mItemOverlay = new BaseOSMMapViewListItemizedOverlayWithFocus<OverlayItem>(this, this.mSearchPinList, this));
+		this.mOSMapView.getOverlayManager().addOverlay(this.mItemOverlay = new BaseOSMMapViewListItemizedOverlayWithFocus<OverlayItem>(this, this.mSearchPinList, this));
 		this.mItemOverlay.setFocusItemsOnTap(false);
 	}
 
@@ -340,9 +341,9 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 			this.mSearchPinList.clear();
 		}
 
-		final List<Overlay> overlays = this.mOSMapView.getOverlays();
+		final OverlayManager overlaymanager = this.mOSMapView.getOverlayManager();
 		if(this.mItemOverlay != null) {
-			overlays.remove(this.mItemOverlay);
+			overlaymanager.removeOverlay(this.mItemOverlay);
 		}
 	}
 
@@ -372,8 +373,8 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
             this.mScaleIndicatorView.setMetric();
         }
         this.mScaleIndicatorView.setScaleBarOffset(getResources().getDisplayMetrics().widthPixels/2 - getResources().getDisplayMetrics().xdpi/2, 10);
-        List<Overlay> mOverlays = this.mOSMapView.getOverlays();
-        mOverlays.add(this.mScaleIndicatorView);
+        final OverlayManager overlaymanager = this.mOSMapView.getOverlayManager();
+        overlaymanager.addOverlay(this.mScaleIndicatorView);
 
 		/* Load the animation from XML (XML file is res/anim/***.xml). */
 		this.mFadeOutDelayedAnimation = AnimationUtils.loadAnimation(this, R.anim.fade_out_delayed);

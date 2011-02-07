@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.osmdroid.ResourceProxy;
 import org.osmdroid.views.overlay.Overlay;
+import org.osmdroid.views.overlay.OverlayManager;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.tileprovider.util.CloudmadeUtil;
 
@@ -106,14 +107,14 @@ public abstract class OpenStreetMapAndNavBaseActivity extends OpenStreetMapActiv
         this.mOSMapView.setBuiltInZoomControls(false);
         this.mOSMapView.setMultiTouchControls(true);
 
-		final List<Overlay> overlays = this.mOSMapView.getOverlays();
+		final OverlayManager overlaymanager = this.mOSMapView.getOverlayManager();
 
 		this.mSimpleTraceOverlay = new OSMMapViewSimpleTraceOverlay(this, super.getRouteRecorder().getRecordedGeoPoints(), PreferenceConstants.PREF_DISPLAYQUALITY_HIGH);
 		this.mSimpleTraceOverlay.setEnabled(false);
-		overlays.add(this.mSimpleTraceOverlay);
+		overlaymanager.addOverlay(this.mSimpleTraceOverlay);
 
 		this.mColorSchemeOverlay = new ColorSchemeOverlay(this);
-		overlays.add(this.mColorSchemeOverlay);
+		overlaymanager.addOverlay(this.mColorSchemeOverlay);
 
 		this.mMenuVoiceEnabled = Preferences.getMenuVoiceEnabled(this);
 	}
