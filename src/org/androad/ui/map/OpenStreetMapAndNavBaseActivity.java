@@ -69,7 +69,7 @@ public abstract class OpenStreetMapAndNavBaseActivity extends OpenStreetMapActiv
 		}
 
         // Cloudmap
-        CloudmadeUtil.retrieveCloudmadeKey(this);
+        CloudmadeUtil.retrieveCloudmadeKey(this.getApplicationContext());
 
         // Add google maps
         TileSourceFactory.addTileSource(
