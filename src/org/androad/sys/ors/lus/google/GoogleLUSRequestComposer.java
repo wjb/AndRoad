@@ -48,9 +48,7 @@ public class GoogleLUSRequestComposer implements ORSXMLConstants {
 		}
 
 		sb.append("%2C").append(Uri.encode(pCity));
-		if(nat == null) {
-            sb.append("%2C").append(Country.UNKNOWN);
-		} else {
+		if(nat != null) {
             sb.append("%2C").append(nat.COUNTRYCODE);
 		}
 
@@ -81,9 +79,7 @@ public class GoogleLUSRequestComposer implements ORSXMLConstants {
 
         sb.append("%2C").append(Uri.encode(pPostalCode));
 
-		if(nat == null) {
-            sb.append("%2C").append(Country.UNKNOWN);
-		} else {
+		if(nat != null) {
             sb.append("%2C").append(nat.COUNTRYCODE);
 		}
 
@@ -99,9 +95,7 @@ public class GoogleLUSRequestComposer implements ORSXMLConstants {
         sb.append("output=xml");
         sb.append("&q=").append(Uri.encode(freeFormAddress));
 
-		if(nat == null) {
-            sb.append("%2C").append(Country.UNKNOWN);
-		} else {
+		if(nat != null) {
             sb.append("%2C").append(nat.COUNTRYCODE);
 		}
 

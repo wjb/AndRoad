@@ -34,9 +34,7 @@ public class YahooLUSRequestComposer implements ORSXMLConstants {
 		}
 
 		sb.append("%2C").append(Uri.encode(pCity));
-		if(nat == null) {
-            sb.append("%2C").append(Country.UNKNOWN);
-		} else {
+		if(nat != null) {
             sb.append("%2C").append(nat.COUNTRYCODE);
 		}
 
@@ -68,9 +66,7 @@ public class YahooLUSRequestComposer implements ORSXMLConstants {
 
         sb.append("%2C").append(Uri.encode(pPostalCode));
 
-		if(nat == null) {
-            sb.append("%2C").append(Country.UNKNOWN);
-		} else {
+		if(nat != null) {
             sb.append("%2C").append(nat.COUNTRYCODE);
 		}
 
@@ -87,9 +83,7 @@ public class YahooLUSRequestComposer implements ORSXMLConstants {
         sb.append("&locale=en-US");
         sb.append("&q=").append(Uri.encode(freeFormAddress));
 
-		if(nat == null) {
-            sb.append("%2C").append(Country.UNKNOWN);
-		} else {
+		if(nat != null) {
             sb.append("%2C").append(nat.COUNTRYCODE);
 		}
 

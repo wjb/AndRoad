@@ -47,9 +47,7 @@ public class YourNavigationLUSRequestComposer implements ORSXMLConstants {
 		}
 
 		sb.append("%2C").append(Uri.encode(pCity));
-		if(nat == null) {
-            sb.append("%2C").append(Country.UNKNOWN);
-		} else {
+		if(nat != null) {
             sb.append("%2C").append(nat.COUNTRYCODE);
 		}
 
@@ -80,9 +78,7 @@ public class YourNavigationLUSRequestComposer implements ORSXMLConstants {
 
         sb.append("%2C").append(Uri.encode(pPostalCode));
 
-		if(nat == null) {
-            sb.append("%2C").append(Country.UNKNOWN);
-		} else {
+		if(nat != null) {
             sb.append("%2C").append(nat.COUNTRYCODE);
 		}
 
@@ -98,9 +94,7 @@ public class YourNavigationLUSRequestComposer implements ORSXMLConstants {
         sb.append("/search/&format=xml");
         sb.append("&q=").append(Uri.encode(freeFormAddress));
 
-		if(nat == null) {
-            sb.append("%2C").append(Country.UNKNOWN);
-		} else {
+		if(nat != null) {
             sb.append("%2C").append(nat.COUNTRYCODE);
 		}
 
