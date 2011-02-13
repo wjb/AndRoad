@@ -8,16 +8,19 @@ import org.androad.util.ping.IPingMethod;
 import org.androad.util.ping.PingResult;
 
 import org.androad.sys.ors.ds.DSRequester;
+import org.androad.sys.ors.ds.cloudmade.CloudmadeDSRequester;
 import org.androad.sys.ors.ds.google.GoogleDSRequester;
 import org.androad.sys.ors.ds.openrouteservice.OpenRouteServiceDSRequester;
 import org.androad.sys.ors.ds.yahoo.YahooDSRequester;
 import org.androad.sys.ors.ds.yournavigation.YourNavigationDSRequester;
 import org.androad.sys.ors.lus.LUSRequester;
+import org.androad.sys.ors.lus.cloudmade.CloudmadeLUSRequester;
 import org.androad.sys.ors.lus.google.GoogleLUSRequester;
 import org.androad.sys.ors.lus.openrouteservice.OpenRouteServiceLUSRequester;
 import org.androad.sys.ors.lus.yahoo.YahooLUSRequester;
 import org.androad.sys.ors.lus.yournavigation.YourNavigationLUSRequester;
 import org.androad.sys.ors.rs.RSRequester;
+import org.androad.sys.ors.rs.cloudmade.CloudmadeRSRequester;
 import org.androad.sys.ors.rs.google.GoogleRSRequester;
 import org.androad.sys.ors.rs.openrouteservice.OpenRouteServiceRSRequester;
 import org.androad.sys.ors.rs.yahoo.YahooRSRequester;
@@ -67,7 +70,16 @@ public enum ORSServer implements Parcelable {
           new YourNavigationRSRequester(),
           new YourNavigationDSRequester(),
           new YourNavigationLUSRequester(),
-          new IPingMethod.HostNamePing("yournavigation.org"));
+          new IPingMethod.HostNamePing("yournavigation.org")),
+    CLOUDMADE("Cloud Made",
+          "This server is the cloudmade navigation.",
+          "USA",
+          Country.USA,
+          Country.USA,
+          new CloudmadeRSRequester(),
+          new CloudmadeDSRequester(),
+          new CloudmadeLUSRequester(),
+          new IPingMethod.HostNamePing("cloudmade.com"));
 
 	// ===========================================================
 	// Constants
