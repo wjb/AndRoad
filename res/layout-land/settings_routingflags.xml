@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="fill_parent"
+    android:fillViewport="true">
 	<LinearLayout
 	    android:orientation="vertical"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_gravity="center" >
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:gravity="center_horizontal">
 	    <LinearLayout     
 		    android:layout_width="fill_parent"
 		    android:layout_height="wrap_content"
-		    android:orientation="horizontal" >
+		    android:orientation="horizontal">
 		   	<CheckBox android:id="@+id/chk_settings_routingflags_alwaysremember"
 		   		style="@style/default_textstyle"
 		        android:layout_width="wrap_content"
@@ -28,58 +28,80 @@
 		    	<requestFocus/>
 		    </Button>
 	    </LinearLayout>
-       	<TextView
-  	    	android:layout_width="0dip"
-	   		android:layout_height="10px" />
 	    <RadioGroup
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:gravity="center_horizontal"
-	        android:orientation="horizontal">
-	    	<ImageView
-			    android:layout_width="wrap_content"
-		        android:layout_height="wrap_content" 
-		        android:src="@drawable/car" />
-	        <RadioButton android:id="@+id/rad_settings_routingflags_car"
-	        	style="@style/default_textstyle"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:text="@string/rad_settings_routingflags_car_caption" />
-        	<TextView
-	  	    	android:layout_width="10px"
-		   		android:layout_height="0dip" />
-	    	<ImageView
-			    android:layout_width="wrap_content"
-		        android:layout_height="wrap_content" 
-		        android:src="@drawable/walk" />
-	        <RadioButton android:id="@+id/rad_settings_routingflags_pedestrian"
-	        	style="@style/default_textstyle"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:text="@string/rad_settings_routingflags_pedestrian_caption" />
-        	<TextView
-	  	    	android:layout_width="10px"
-		   		android:layout_height="0dip" />
-	    	<ImageView
-			    android:layout_width="wrap_content"
-		        android:layout_height="wrap_content" 
-		        android:src="@drawable/bike" />
-	        <RadioButton android:id="@+id/rad_settings_routingflags_bicycle"
-	        	style="@style/default_textstyle"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:text="@string/rad_settings_routingflags_bicycle_caption" />
+	        android:orientation="vertical"
+	        android:paddingTop="10px">
+			<TableLayout
+				android:orientation="horizontal"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content">
+				<TableRow
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content">
+					<LinearLayout
+						android:orientation="horizontal"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content">
+				    	<ImageView
+						    android:layout_width="wrap_content"
+					        android:layout_height="wrap_content" 
+					        android:src="@drawable/car" />
+				        <RadioButton android:id="@+id/rad_settings_routingflags_car"
+				        	style="@style/default_textstyle"
+				            android:layout_width="wrap_content"
+				            android:layout_height="wrap_content"
+				            android:text="@string/rad_settings_routingflags_car_caption" />
+					</LinearLayout>
+					<LinearLayout
+						android:orientation="horizontal"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content">
+				    	<ImageView
+						    android:layout_width="wrap_content"
+					        android:layout_height="wrap_content" 
+					        android:src="@drawable/walk" />
+				        <RadioButton android:id="@+id/rad_settings_routingflags_pedestrian"
+				        	style="@style/default_textstyle"
+				            android:layout_width="wrap_content"
+				            android:layout_height="wrap_content"
+				            android:text="@string/rad_settings_routingflags_pedestrian_caption" />
+					</LinearLayout>
+				</TableRow>
+				<TableRow
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content">
+					<LinearLayout
+						android:orientation="horizontal"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content">
+				    	<ImageView
+						    android:layout_width="wrap_content"
+					        android:layout_height="wrap_content" 
+					        android:src="@drawable/bike" />
+				        <RadioButton android:id="@+id/rad_settings_routingflags_bicycle"
+				        	style="@style/default_textstyle"
+				            android:layout_width="wrap_content"
+				            android:layout_height="wrap_content"
+				            android:text="@string/rad_settings_routingflags_bicycle_caption" />
+					</LinearLayout>
+			       	<TextView
+			  	    	android:layout_width="wrap_content"
+				   		android:layout_height="wrap_content" />
+				</TableRow>
+			</TableLayout>
 	    </RadioGroup>
 	    <LinearLayout     
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
-		    android:orientation="horizontal" >
+		    android:orientation="horizontal">
 		    <CheckBox android:id="@+id/chk_settings_routingflags_realtime"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:text="@string/chk_settings_routingflags_realtime_caption" />
-	       	<TextView
-	  	    	android:layout_width="15px"
+        	<TextView
+	  	    	android:layout_width="20px"
 		   		android:layout_height="0dip" />
 		    <CheckBox android:id="@+id/chk_settings_routingflags_saveinitial"
 		        android:layout_width="wrap_content"
@@ -99,7 +121,7 @@
 	            android:layout_height="wrap_content"
 	            android:text="@string/rad_settings_routingflags_fastest_caption" />
         	<TextView
-	  	    	android:layout_width="10px"
+	  	    	android:layout_width="20px"
 		   		android:layout_height="0dip" />
 	    	<ImageView
 			    android:layout_width="wrap_content"
@@ -113,27 +135,28 @@
        	<TextView
   	    	android:layout_width="0dip"
 	   		android:layout_height="10px" />
+	    <TextView
+	    	style="@style/default_textstyle"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/chk_settings_routingflags_avoid_caption" />	   		
 		<LinearLayout     
 	    	android:orientation="horizontal"
-		    android:layout_width="fill_parent"
-		    android:layout_height="wrap_content" >
-		    <TextView
-		    	style="@style/default_textstyle"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:text="@string/chk_settings_routingflags_avoid_caption" />	   		
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content">
 		    <CheckBox android:id="@+id/chk_settings_routingflags_avoidhighways"
 		    	style="@style/default_textstyle"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
-		        android:gravity="center"
 		        android:text="@string/chk_settings_routingflags_avoidhighways_caption" />
+        	<TextView
+	  	    	android:layout_width="20px"
+		   		android:layout_height="0dip" />
 		    <CheckBox android:id="@+id/chk_settings_routingflags_avoidtolls"
 		    	style="@style/default_textstyle"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
-		        android:gravity="center"
 		        android:text="@string/chk_settings_routingflags_avoidtolls_caption" />
 		</LinearLayout>
 	</LinearLayout>
-</LinearLayout>
+</ScrollView>
