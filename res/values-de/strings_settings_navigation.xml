@@ -12,6 +12,6 @@
 	<string name="tv_settings_quickinfo_navigation_focused">Navigations Einstellungen...</string>
 	<string name="tv_settings_navigation_quickinfo_caption">Navigations Einstellungen...</string>
 	<string name="tv_settings_navigation_centermode">Zentrierungsmodus ändern</string>
-	<string name="tv_settings_navigation_rotatemode">Rotationsmodus änern</string>
+	<string name="tv_settings_navigation_rotatemode">Rotationsmodus ändern</string>
 	<string name="tv_settings_navigation_more">Mehr</string>
 </resources>
