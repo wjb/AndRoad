@@ -107,6 +107,8 @@ public class HUDRemainingSummaryView extends HUDBaseView implements IHUDRemainin
 	protected void onDraw(final Canvas canvas) {
 		super.onDraw(canvas);
 
+		final float densityFactor = getContext().getResources().getDisplayMetrics().density;
+		
 		final int estimatedRestSeconds = this.mEstimatedRestSeconds; // Drag to local field
 		/* And draw i.e.the distance and time left to the info-menu.*/
 		if(this.mDistance != NOT_SET && this.mEstimatedRestSeconds != NOT_SET){
@@ -121,48 +123,48 @@ public class HUDRemainingSummaryView extends HUDBaseView implements IHUDRemainin
 
 
 			/* And the unit above. */
-			this.mHudTextPaint.setTextSize(12);
+			this.mHudTextPaint.setTextSize(12 * densityFactor);
 			this.mHudTextPaint.setTextScaleX(1.0f); // No X-stretching
-			canvas.drawText(this.mDistanceStrings[UnitSystem.DISTSTRINGS_UNIT_ID], HUD_TOTALDISTANCELEFT_UNIT_LEFT_OFFSET, HUD_TOTALDISTANCELEFT_UNIT_TOP_OFFSET, this.mHudTextPaint);
+			canvas.drawText(this.mDistanceStrings[UnitSystem.DISTSTRINGS_UNIT_ID], HUD_TOTALDISTANCELEFT_UNIT_LEFT_OFFSET * densityFactor, HUD_TOTALDISTANCELEFT_UNIT_TOP_OFFSET * densityFactor, this.mHudTextPaint);
 
 			/* Draw total distance left. */
-			this.mHudTextPaint.setTextSize(30);
+			this.mHudTextPaint.setTextSize(30 * densityFactor);
 			this.mHudTextPaint.setTextScaleX(1.1f); // Little X-stretching
-			canvas.drawText(this.mDistanceStrings[UnitSystem.DISTSTRINGS_DIST_ID], HUD_TOTALDISTANCELEFT_LEFT_OFFSET, HUD_TOTALDISTANCELEFT_TOP_OFFSET, this.mHudTextPaint);
+			canvas.drawText(this.mDistanceStrings[UnitSystem.DISTSTRINGS_DIST_ID], HUD_TOTALDISTANCELEFT_LEFT_OFFSET * densityFactor, HUD_TOTALDISTANCELEFT_TOP_OFFSET * densityFactor, this.mHudTextPaint);
 
 			/* Draw total time left. */
 			this.mHudTextPaint.setTextScaleX(1.25f); // Draw the time a X-stretched
 
 			if(estimatedTimeLeftMinutes == NOT_SET){
 				final float textWidth = this.mHudTextPaint.measureText("?:??");
-				canvas.drawText("?:??", HUD_TOTALTIMELEFT_CENTER_OFFSET - textWidth/2, HUD_TOTALTIMELEFT_TOP_OFFSET, this.mHudTextPaint);
+				canvas.drawText("?:??", HUD_TOTALTIMELEFT_CENTER_OFFSET * densityFactor - textWidth/2, HUD_TOTALTIMELEFT_TOP_OFFSET * densityFactor, this.mHudTextPaint);
 			}else{
 				if(this.mArrivalTimeInsteadOfRestTime){
-					this.mHudTextPaint.setTextSize(28);
+					this.mHudTextPaint.setTextSize(28 * densityFactor);
 
 					final String timeString = TimeUtils.getTimeString(estimatedTimeLeftMinutes);
 
 					this.mHudTextPaint.setTextScaleX(1.0f); // Draw the time a X-stretched
 					final float textWidth = this.mHudTextPaint.measureText(timeString);
 
-					canvas.drawText(timeString, HUD_TOTALTIMELEFT_CENTER_OFFSET - textWidth/2 - 1, HUD_TOTALTIMELEFT_TOP_OFFSET - 1, this.mHudTextPaint);
+					canvas.drawText(timeString, (HUD_TOTALTIMELEFT_CENTER_OFFSET - 1) * densityFactor - textWidth/2, (HUD_TOTALTIMELEFT_TOP_OFFSET - 1) * densityFactor, this.mHudTextPaint);
 
 
 					/* Draw AM or PM */
-					this.mHudTextPaint.setTextSize(9);
+					this.mHudTextPaint.setTextSize(9 * densityFactor);
 					this.mHudTextPaint.setFakeBoldText(false);
 
 					if(TimeUtils.isAMFromNow(estimatedTimeLeftMinutes)){ /* AM */
-						canvas.drawText("am", HUD_TOTALTIMELEFT_AMPM_LEFT_OFFSET, HUD_TOTALTIMELEFT_AMPM_TOP_OFFSET, this.mHudTextPaint);
+						canvas.drawText("am", HUD_TOTALTIMELEFT_AMPM_LEFT_OFFSET * densityFactor, HUD_TOTALTIMELEFT_AMPM_TOP_OFFSET * densityFactor, this.mHudTextPaint);
 					}else{ /* PM */
-						canvas.drawText("pm", HUD_TOTALTIMELEFT_AMPM_LEFT_OFFSET, HUD_TOTALTIMELEFT_AMPM_TOP_OFFSET, this.mHudTextPaint);
+						canvas.drawText("pm", HUD_TOTALTIMELEFT_AMPM_LEFT_OFFSET * densityFactor, HUD_TOTALTIMELEFT_AMPM_TOP_OFFSET * densityFactor, this.mHudTextPaint);
 					}
 					this.mHudTextPaint.setFakeBoldText(true);
 
 				}else{
 					final String timeString = TimeUtils.getTimeDurationString(estimatedTimeLeftMinutes);
 					final float textWidth = this.mHudTextPaint.measureText(timeString);
-					canvas.drawText(timeString, HUD_TOTALTIMELEFT_CENTER_OFFSET - textWidth/2, HUD_TOTALTIMELEFT_TOP_OFFSET, this.mHudTextPaint);
+					canvas.drawText(timeString, HUD_TOTALTIMELEFT_CENTER_OFFSET * densityFactor - textWidth/2, HUD_TOTALTIMELEFT_TOP_OFFSET * densityFactor, this.mHudTextPaint);
 				}
 			}
 
@@ -171,13 +173,13 @@ public class HUDRemainingSummaryView extends HUDBaseView implements IHUDRemainin
 			refreshDistanceStrings(this.mDrivenInSession);
 
 			/* Draw total distance left. */
-			this.mHudTextPaint.setTextSize(30);
+			this.mHudTextPaint.setTextSize(30 * densityFactor);
 			this.mHudTextPaint.setTextScaleX(1.1f); // Little X-stretching
-			canvas.drawText(this.mDistanceStrings[UnitSystem.DISTSTRINGS_DIST_ID], HUD_TOTALDISTANCELEFT_LEFT_OFFSET, HUD_TOTALDISTANCELEFT_TOP_OFFSET, this.mHudTextPaint);
+			canvas.drawText(this.mDistanceStrings[UnitSystem.DISTSTRINGS_DIST_ID], HUD_TOTALDISTANCELEFT_LEFT_OFFSET * densityFactor, HUD_TOTALDISTANCELEFT_TOP_OFFSET * densityFactor, this.mHudTextPaint);
 			/* And the unit above. */
-			this.mHudTextPaint.setTextSize(12);
+			this.mHudTextPaint.setTextSize(12 * densityFactor);
 			this.mHudTextPaint.setTextScaleX(1.0f); // No X-stretching
-			canvas.drawText(this.mDistanceStrings[UnitSystem.DISTSTRINGS_UNIT_ID], HUD_TOTALDISTANCELEFT_UNIT_LEFT_OFFSET, HUD_TOTALDISTANCELEFT_UNIT_TOP_OFFSET, this.mHudTextPaint);
+			canvas.drawText(this.mDistanceStrings[UnitSystem.DISTSTRINGS_UNIT_ID], HUD_TOTALDISTANCELEFT_UNIT_LEFT_OFFSET * densityFactor, HUD_TOTALDISTANCELEFT_UNIT_TOP_OFFSET * densityFactor, this.mHudTextPaint);
 		}
 
 		/* Draw the Data Connection/GPS -Strength bars. */
@@ -197,31 +199,31 @@ public class HUDRemainingSummaryView extends HUDBaseView implements IHUDRemainin
 					right = left + BAR_WIDTH;
 					top = GPSBAR_BASE_VERTICAL;
 					bottom = top + 8;
-					canvas.drawRect(left, top, right, bottom, this.gpsStrengthPaint);
+					canvas.drawRect(left * densityFactor, top * densityFactor, right * densityFactor, bottom * densityFactor, this.gpsStrengthPaint);
 				case 4:
 					left = BAR_OFFSET_HORIZONTAL + 3 * BAR_LEFT_DIFF;
 					right = left + BAR_WIDTH;
 					top = GPSBAR_BASE_VERTICAL + 1*BAR_HEIGHT_INCREASE;
 					bottom = top + 4;
-					canvas.drawRect(left, top, right, bottom, this.gpsStrengthPaint);
+					canvas.drawRect(left * densityFactor, top * densityFactor, right * densityFactor, bottom * densityFactor, this.gpsStrengthPaint);
 				case 3:
 					left = BAR_OFFSET_HORIZONTAL + 2 * BAR_LEFT_DIFF;
 					right = left + BAR_WIDTH;
 					top = GPSBAR_BASE_VERTICAL + 2*BAR_HEIGHT_INCREASE;
 					bottom = top + 10;
-					canvas.drawRect(left, top, right, bottom, this.gpsStrengthPaint);
+					canvas.drawRect(left * densityFactor, top * densityFactor, right * densityFactor, bottom * densityFactor, this.gpsStrengthPaint);
 				case 2:
 					left = BAR_OFFSET_HORIZONTAL + 1 * BAR_LEFT_DIFF;
 					right = left + BAR_WIDTH;
 					top = GPSBAR_BASE_VERTICAL + 3*BAR_HEIGHT_INCREASE;
 					bottom = top + 6;
-					canvas.drawRect(left, top, right, bottom, this.gpsStrengthPaint);
+					canvas.drawRect(left * densityFactor, top * densityFactor, right * densityFactor, bottom * densityFactor, this.gpsStrengthPaint);
 				case 1:
 					left = BAR_OFFSET_HORIZONTAL;
 					right = left + BAR_WIDTH;
 					top = GPSBAR_BASE_VERTICAL + 4*BAR_HEIGHT_INCREASE;
 					bottom = top + 2;
-					canvas.drawRect(left, top, right, bottom, this.gpsStrengthPaint);
+					canvas.drawRect(left * densityFactor, top * densityFactor, right * densityFactor, bottom * densityFactor, this.gpsStrengthPaint);
 			}
 
 			/* Draw the GPSStrength bars. */
@@ -233,31 +235,31 @@ public class HUDRemainingSummaryView extends HUDBaseView implements IHUDRemainin
 					right = left + BAR_WIDTH;
 					top = DATABAR_BASE_VERTICAL;
 					bottom = top + 8;
-					canvas.drawRect(left, top, right, bottom, this.dataStrengthPaint);
+					canvas.drawRect(left * densityFactor, top * densityFactor, right * densityFactor, bottom * densityFactor, this.dataStrengthPaint);
 				case 4:
 					left = BAR_OFFSET_HORIZONTAL + 3 * BAR_LEFT_DIFF;
 					right = left + BAR_WIDTH;
 					top = DATABAR_BASE_VERTICAL + 1*BAR_HEIGHT_INCREASE;
 					bottom = top + 4;
-					canvas.drawRect(left, top, right, bottom, this.dataStrengthPaint);
+					canvas.drawRect(left * densityFactor, top * densityFactor, right * densityFactor, bottom * densityFactor, this.dataStrengthPaint);
 				case 3:
 					left = BAR_OFFSET_HORIZONTAL + 2 * BAR_LEFT_DIFF;
 					right = left + BAR_WIDTH;
 					top = DATABAR_BASE_VERTICAL + 2*BAR_HEIGHT_INCREASE;
 					bottom = top + 10;
-					canvas.drawRect(left, top, right, bottom, this.dataStrengthPaint);
+					canvas.drawRect(left * densityFactor, top * densityFactor, right * densityFactor, bottom * densityFactor, this.dataStrengthPaint);
 				case 2:
 					left = BAR_OFFSET_HORIZONTAL + 1 * BAR_LEFT_DIFF;
 					right = left + BAR_WIDTH;
 					top = DATABAR_BASE_VERTICAL + 3*BAR_HEIGHT_INCREASE;
 					bottom = top + 6;
-					canvas.drawRect(left, top, right, bottom, this.dataStrengthPaint);
+					canvas.drawRect(left * densityFactor, top * densityFactor, right * densityFactor, bottom * densityFactor, this.dataStrengthPaint);
 				case 1:
 					left = BAR_OFFSET_HORIZONTAL;
 					right = left + BAR_WIDTH;
 					top = DATABAR_BASE_VERTICAL + 4*BAR_HEIGHT_INCREASE;
 					bottom = top + 2;
-					canvas.drawRect(left, top, right, bottom, this.dataStrengthPaint);
+					canvas.drawRect(left * densityFactor, top * densityFactor, right * densityFactor, bottom * densityFactor, this.dataStrengthPaint);
 			}
 		}
 	}

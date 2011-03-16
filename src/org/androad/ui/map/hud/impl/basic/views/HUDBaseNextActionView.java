@@ -145,12 +145,14 @@ public abstract class HUDBaseNextActionView extends HUDBaseView implements IHUDN
 	@Override
 	protected void onDraw(final Canvas canvas) {
 		super.onDraw(canvas);
+		
+		final float densityFactor = getContext().getResources().getDisplayMetrics().density;
 
 		if(this.showTargetReachedInsteadOfAngle){
-			canvas.drawBitmap(this.TURN_TARGET_REACHED, this.HUD_TURNARROW_LEFT_OFFSET, this.HUD_TURNARROW_TOP_OFFSET, this.mFullOpaquePaint);
+			canvas.drawBitmap(this.TURN_TARGET_REACHED, this.HUD_TURNARROW_LEFT_OFFSET * densityFactor, this.HUD_TURNARROW_TOP_OFFSET * densityFactor, this.mFullOpaquePaint);
 		}else{
 			if(this.mNextTurnAngle != NOT_SET) {
-				canvas.drawBitmap(getArrowFromAngle(), this.HUD_TURNARROW_LEFT_OFFSET, this.HUD_TURNARROW_TOP_OFFSET, this.mFullOpaquePaint);
+				canvas.drawBitmap(getArrowFromAngle(), this.HUD_TURNARROW_LEFT_OFFSET * densityFactor, this.HUD_TURNARROW_TOP_OFFSET * densityFactor, this.mFullOpaquePaint);
 			}
 
 		}
@@ -159,18 +161,18 @@ public abstract class HUDBaseNextActionView extends HUDBaseView implements IHUDN
 			refreshDistanceStrings();
 
 			onConfigureValuePaint(this.mHudTextPaint);
-			canvas.drawText(this.mDistanceStrings[UnitSystem.DISTSTRINGS_DIST_ID], this.HUD_TURNLDISTANCELEFT_LEFT_OFFSET, this.HUD_TURNLDISTANCELEFT_TOP_OFFSET, this.mHudTextPaint);
+			canvas.drawText(this.mDistanceStrings[UnitSystem.DISTSTRINGS_DIST_ID], this.HUD_TURNLDISTANCELEFT_LEFT_OFFSET * densityFactor, this.HUD_TURNLDISTANCELEFT_TOP_OFFSET * densityFactor, this.mHudTextPaint);
 
 			/* And the unit above. */
 			onConfigureUnitPaint(this.mHudTextPaint);
-			canvas.drawText(this.mDistanceStrings[UnitSystem.DISTSTRINGS_UNIT_ID], this.HUD_TURNDISTANCELEFT_UNIT_LEFT_OFFSET, this.HUD_TURNLDISTANCELEFT_UNIT_TOP_OFFSET, this.mHudTextPaint);
+			canvas.drawText(this.mDistanceStrings[UnitSystem.DISTSTRINGS_UNIT_ID], this.HUD_TURNDISTANCELEFT_UNIT_LEFT_OFFSET * densityFactor, this.HUD_TURNLDISTANCELEFT_UNIT_TOP_OFFSET * densityFactor, this.mHudTextPaint);
 		}else if(this.mCurrentSpeed != NOT_SET){
 			onConfigureValuePaint(this.mHudTextPaint);
-			canvas.drawText("" + (int)this.mCurrentSpeed, this.HUD_SPEED_LEFT_OFFSET, this.HUD_SPEED_TOP_OFFSET, this.mHudTextPaint);
+			canvas.drawText("" + (int)this.mCurrentSpeed, this.HUD_SPEED_LEFT_OFFSET * densityFactor, this.HUD_SPEED_TOP_OFFSET * densityFactor, this.mHudTextPaint);
 
 			/* And the unit above. */
 			onConfigureUnitPaint(this.mHudTextPaint);
-			canvas.drawText("" + this.mUnitSystem.mAbbrKilometersPerHourScale, this.HUD_SPEED_UNIT_LEFT_OFFSET, this.HUD_SPEED_UNIT_TOP_OFFSET, this.mHudTextPaint);
+			canvas.drawText("" + this.mUnitSystem.mAbbrKilometersPerHourScale, this.HUD_SPEED_UNIT_LEFT_OFFSET * densityFactor, this.HUD_SPEED_UNIT_TOP_OFFSET * densityFactor, this.mHudTextPaint);
 		}
 	}
 
