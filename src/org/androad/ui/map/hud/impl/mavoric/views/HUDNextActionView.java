@@ -75,13 +75,13 @@ public class HUDNextActionView extends HUDBaseNextActionView {
 
 	@Override
 	protected void onConfigureUnitPaint(final Paint pPaint) {
-		pPaint.setTextSize(25);
+		pPaint.setTextSize(25 * getContext().getResources().getDisplayMetrics().density);
 		pPaint.setTextScaleX(1.0f);
 	}
 
 	@Override
 	protected void onConfigureValuePaint(final Paint pPaint) {
-		pPaint.setTextSize(40);
+		pPaint.setTextSize(40 * getContext().getResources().getDisplayMetrics().density);
 		pPaint.setTextScaleX(1.1f);
 	}
 
