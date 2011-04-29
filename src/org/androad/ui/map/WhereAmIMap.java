@@ -141,9 +141,10 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 	private static final int MENU_SATELLITE_ID = MENU_QUIT_ID + 1;
 	private static final int MENU_SUBMENU_TRAFFIC_ID = MENU_SATELLITE_ID + 1;
 	private static final int MENU_WEATHER_ID = MENU_SUBMENU_TRAFFIC_ID + 1;
-	private static final int MENU_FOXYTAG_ID = MENU_WEATHER_ID + 1;
-    private static final int MENU_SHOWFAVORITE_ID = MENU_FOXYTAG_ID + 1;
-	private static final int MENU_OSB_ID = MENU_SHOWFAVORITE_ID + 1;
+	private static final int MENU_LAYER_ID = MENU_WEATHER_ID + 1;
+    private static final int MENU_SUBMENU_FOXYTAG = MENU_LAYER_ID + 1;
+    private static final int MENU_SUBMENU_FAVORITE = MENU_SUBMENU_FOXYTAG + 1;
+	private static final int MENU_OSB_ID = MENU_SUBMENU_FAVORITE + 1;
 	private static final int MENU_PRELOAD_ID = MENU_OSB_ID + 1;
 	private static final int MENU_ACCESSIBILITYANALYSIS_ID = MENU_PRELOAD_ID + 1;
 	private static final int MENU_LOAD_TRACE_ID = MENU_ACCESSIBILITYANALYSIS_ID + 1;
@@ -301,11 +302,6 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 		overlaymanager.addOverlay(this.mFlagsOverlay);
 		overlaymanager.addOverlay(this.mMyLocationOverlay);
 		overlaymanager.addOverlay(this.mCrosshairOverlay);
-
-		//		final BoundingBoxE6 bbox = BoundingBoxE6.fromParams("-n 43.77677 -s 36.05546 -e 4.34829 -w -9.31870".split(" "));
-		//		final OSMMapViewSimpleRectangleOverlay overlay = new OSMMapViewSimpleRectangleOverlay(bbox);
-		//		overlay.initDefaultPaint();
-		//		overlaymanager.addOverlay(overlay);
 	}
 
 	private void refreshPinOverlay(final GeoPoint pGeoPoint) {
@@ -737,15 +733,21 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 			menuPos++;
 		}
 
-		{ // FoxyTag-Item
-			menu.add(menuPos, MENU_FOXYTAG_ID, menuPos, getString(R.string.maps_menu_foxytag))
-			.setIcon(R.drawable.foxytag)
-			.setAlphabeticShortcut('f');
+		{ // Layer-Item
+            final SubMenu subMenu = menu.addSubMenu(menuPos, MENU_LAYER_ID, menuPos, getString(R.string.maps_menu_layer))
+            .setIcon(android.R.drawable.ic_menu_mapmode);
 			menuPos++;
+            {
+                subMenu.add(0, MENU_SUBMENU_FOXYTAG, Menu.NONE, R.string.maps_menu_submenu_layer_foxytag)
+                    .setIcon(R.drawable.foxytag);
+                subMenu.add(0, MENU_SUBMENU_FAVORITE, Menu.NONE, R.string.maps_menu_submenu_layer_favorite)
+                    .setIcon(R.drawable.settingsmenu_favorites);
+            }
 		}
 
 		{ // Traffic-SubMenuItem
-			final SubMenu subMenu = menu.addSubMenu(menuPos, MENU_SUBMENU_TRAFFIC_ID, menuPos, getString(R.string.maps_menu_submenu_traffic)).setIcon(R.drawable.warning_severe);
+			final SubMenu subMenu = menu.addSubMenu(menuPos, MENU_SUBMENU_TRAFFIC_ID, menuPos, getString(R.string.maps_menu_submenu_traffic))
+            .setIcon(R.drawable.warning_severe);
 			menuPos++;
 			{
 				subMenu.add(0, MENU_SUBMENU_TRAFFIC_CLEAR, Menu.NONE, R.string.maps_menu_submenu_traffic_clear);
@@ -778,13 +780,6 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 			menu.add(menuPos, MENU_PRELOAD_ID, menuPos, getString(R.string.maps_menu_preload))
 			.setIcon(R.drawable.preload)
 			.setAlphabeticShortcut('p');
-			menuPos++;
-		}
-
-		{ // Show Favorite
-			menu.add(menuPos, MENU_SHOWFAVORITE_ID, menuPos, getString(R.string.maps_menu_favorites))
-			.setIcon(R.drawable.settingsmenu_favorites)
-			.setAlphabeticShortcut('s');
 			menuPos++;
 		}
 
@@ -849,15 +844,15 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 			case MENU_WEATHER_ID:
 				openWeatherDialog(super.mOSMapView.getMapCenter());
 				return true;
-            case MENU_FOXYTAG_ID:
+            case MENU_SUBMENU_FOXYTAG:
                 showFoxyTag(super.mOSMapView.getMapCenter());
+                return true;
+        case MENU_SUBMENU_FAVORITE:
+                toggleFavorite();
                 return true;
 			case MENU_GPSSTATUS_ID:
 				org.androad.ui.util.Util.startUnknownActivity(this, "com.eclipsim.gpsstatus.VIEW", "com.eclipsim.gpsstatus");
 				return true;
-            case MENU_SHOWFAVORITE_ID:
-                toggleFavorite();
-                return true;
 			case MENU_OSB_ID:
 				openOSBMap();
 				return true;
@@ -1139,6 +1134,10 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
                 public void run() {
                     try {
                         final List<BitmapItem> ff = WhereAmIMap.this.mFFOverlay.getBitmapItems();
+                        if (ff.size() > 0) {
+                            ff.clear();
+                            return;
+                        }
                         for (final FoxyTagPoint fpp : FoxyTagRequester.request(WhereAmIMap.this, WhereAmIMap.this.mOSMapView.getMapCenter())) {
                             ff.add(fpp);
                         }
@@ -1377,7 +1376,6 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 						getString(R.string.tv_whereami_contextmenu_add_as_favorite),
 						getString(R.string.tv_whereami_contextmenu_show_radar),
 						getString(R.string.tv_whereami_contextmenu_weather_get),
-						getString(R.string.tv_whereami_contextmenu_foxytag),
 						getString(R.string.tv_whereami_contextmenu_close)};
 				new AlertDialog.Builder(WhereAmIMap.this)
 				.setSingleChoiceItems(items, 0, new DialogInterface.OnClickListener(){
@@ -1401,9 +1399,6 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 							case 3:
 								openWeatherDialog(WhereAmIMap.this.mGPLastMapClick);
 								break;
-                            case 4:
-                                showFoxyTag(WhereAmIMap.this.mGPLastMapClick);
-                                break;
 							case 5:
 								return;
 						}

@@ -19,10 +19,12 @@
 	<string name="maps_menu_auto_refetch">Auto Refetch</string>
 	<string name="maps_menu_settings">Settings</string>
 	<string name="maps_menu_weather">Weather</string>
+    <string name="maps_menu_layer">Layers</string>
+    <string name="maps_menu_submenu_layer_foxytag">Foxy Tag</string>
+	<string name="maps_menu_submenu_layer_favorite">Favorites</string>
 	<string name="maps_menu_submenu_traffic">Traffic</string>
 	<string name="maps_menu_submenu_traffic_clear"><b>Clear</b> Traffic</string>
 	<string name="maps_menu_submenu_traffic_custom_feeds">Custom Feeds...</string>
-	<string name="maps_menu_favorites">Favorites</string>
 	<string name="maps_menu_osb">Improve Map</string>
 	<string name="maps_menu_reverseroute">Reverse Route</string>
 	<string name="maps_menu_submenu_waypoints">WayPoints</string>
@@ -46,7 +48,6 @@
 	<string name="maps_menu_trace_show">Show Current Trace</string>
 	<string name="maps_menu_trace_hide">Hide Current Trace</string>
 	<string name="maps_menu_trace_submit">Submit Current Trace</string>
-      <string name="maps_menu_foxytag">Foxy Tag</string>
 	<string name="maps_menu_vehicleregistrationplate_lookup">Plate Lookup</string>
 	
 	<!-- Context Menu-String -->

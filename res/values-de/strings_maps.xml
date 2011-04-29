@@ -19,10 +19,12 @@
 	<string name="maps_menu_auto_refetch">Auto-Berechnung</string>
 	<string name="maps_menu_settings">Einstellungen</string>
 	<string name="maps_menu_weather">Wetter</string>
+    <string name="maps_menu_layer">Layers</string>
+    <string name="maps_menu_submenu_layer_foxytag">Foxy Tag</string>
+	<string name="maps_menu_submenu_layer_favorite">Favorites</string>
 	<string name="maps_menu_submenu_traffic">Stau-Info</string>
 	<string name="maps_menu_submenu_traffic_clear">Staus <b>löschen</b></string>
 	<string name="maps_menu_submenu_traffic_custom_feeds">Eigene Quellen..</string>
-	<string name="maps_menu_favorites">Favorites</string>
 	<string name="maps_menu_osb">Karte verbessern</string>
 	<string name="maps_menu_reverseroute">Route umdrehen</string>
 	<string name="maps_menu_submenu_waypoints">Wegpunkte</string>
@@ -46,7 +48,6 @@
 	<string name="maps_menu_trace_show">Aktuellen Trace anzeigen</string>
 	<string name="maps_menu_trace_hide">Aktuellen Trace verstecken</string>
 	<string name="maps_menu_trace_submit">Aktuellen Trace absenden</string>
-       <string name="maps_menu_foxytag">Foxy Tag</string>
 	<string name="maps_menu_vehicleregistrationplate_lookup">Kennzeichen suchen</string>
 	
 	<!-- Context Menu-String -->

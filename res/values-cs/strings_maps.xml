@@ -19,10 +19,12 @@
 	<string name="maps_menu_auto_refetch">Auto-přepočítávání</string>
 	<string name="maps_menu_settings">Nastavení</string>
 	<string name="maps_menu_weather">Počasí</string>
+    <string name="maps_menu_layer">Layers</string>
+    <string name="maps_menu_submenu_layer_foxytag">Foxy Tag</string>
+	<string name="maps_menu_submenu_layer_favorite">Favorites</string>
 	<string name="maps_menu_submenu_traffic">Informace o dopravě</string>
 	<string name="maps_menu_submenu_traffic_clear">Informace o dopravě <b>smazat</b></string>
 	<string name="maps_menu_submenu_traffic_custom_feeds">Vlastní zdroje..</string>
-	<string name="maps_menu_favorites">Favorites</string>
 	<string name="maps_menu_osb">Zlepšit mapu</string>
 	<string name="maps_menu_reverseroute">Otočit trasu</string>
 	<string name="maps_menu_submenu_waypoints">Otočné body</string>
@@ -46,7 +48,6 @@
 	<string name="maps_menu_trace_show">Zobrazit současnou trasu</string>
 	<string name="maps_menu_trace_hide">Skrýt současnou trasu</string>
 	<string name="maps_menu_trace_submit">Odeslat současnou trasu</string>
-       <string name="maps_menu_foxytag">Foxy Tag</string>
 	<string name="maps_menu_vehicleregistrationplate_lookup">Info o SPZ</string>
 	
 	<!-- Context Menu-String -->
