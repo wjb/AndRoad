@@ -738,10 +738,12 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
             .setIcon(android.R.drawable.ic_menu_mapmode);
 			menuPos++;
             {
-                subMenu.add(0, MENU_SUBMENU_FOXYTAG, Menu.NONE, R.string.maps_menu_submenu_layer_foxytag)
+                subMenu.add(menuPos, MENU_SUBMENU_FOXYTAG, menuPos, getString(R.string.maps_menu_submenu_layer_foxytag))
                     .setIcon(R.drawable.foxytag);
-                subMenu.add(0, MENU_SUBMENU_FAVORITE, Menu.NONE, R.string.maps_menu_submenu_layer_favorite)
+                subMenu.add(menuPos, MENU_SUBMENU_FAVORITE, menuPos, getString(R.string.maps_menu_submenu_layer_favorite))
                     .setIcon(R.drawable.settingsmenu_favorites);
+                subMenu.setGroupCheckable(menuPos, true, false);
+                menuPos++;
             }
 		}
 
@@ -845,10 +847,10 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 				openWeatherDialog(super.mOSMapView.getMapCenter());
 				return true;
             case MENU_SUBMENU_FOXYTAG:
-                showFoxyTag(super.mOSMapView.getMapCenter());
+                showFoxyTag(super.mOSMapView.getMapCenter(), item);
                 return true;
-        case MENU_SUBMENU_FAVORITE:
-                toggleFavorite();
+            case MENU_SUBMENU_FAVORITE:
+                showFavorite(item);
                 return true;
 			case MENU_GPSSTATUS_ID:
 				org.androad.ui.util.Util.startUnknownActivity(this, "com.eclipsim.gpsstatus.VIEW", "com.eclipsim.gpsstatus");
@@ -1127,7 +1129,14 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 	// Methods
 	// ===========================================================
 
-	private void showFoxyTag(final GeoPoint pGeoPoint) {
+	private void showFoxyTag(final GeoPoint pGeoPoint, final MenuItem item) {
+        if (item.isChecked()) {
+            final List<BitmapItem> ff = WhereAmIMap.this.mFFOverlay.getBitmapItems();
+            ff.clear();
+            item.setChecked(false);
+            return;
+        }
+
         Toast.makeText(WhereAmIMap.this, R.string.please_wait_a_moment, Toast.LENGTH_LONG).show();
         new Thread(new Runnable(){
                 @Override
@@ -1136,7 +1145,6 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
                         final List<BitmapItem> ff = WhereAmIMap.this.mFFOverlay.getBitmapItems();
                         if (ff.size() > 0) {
                             ff.clear();
-                            return;
                         }
                         for (final FoxyTagPoint fpp : FoxyTagRequester.request(WhereAmIMap.this, WhereAmIMap.this.mOSMapView.getMapCenter())) {
                             ff.add(fpp);
@@ -1146,21 +1154,29 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
                     }
                 }
             }, "FoxyTag-Runner").start();
+        item.setChecked(true);
     }
 
-    private void toggleFavorite() {
-        final List<BitmapItem> fs = WhereAmIMap.this.mFavoriteOverlay.getBitmapItems();
-        if (fs.size() > 0) {
+    private void showFavorite(final MenuItem item) {
+        if (item.isChecked()) {
+            final List<BitmapItem> fs = WhereAmIMap.this.mFavoriteOverlay.getBitmapItems();
             fs.clear();
+            item.setChecked(false);
             return;
         }
+
         try {
+            final List<BitmapItem> fs = WhereAmIMap.this.mFavoriteOverlay.getBitmapItems();
+            if (fs.size() > 0) {
+                fs.clear();
+            }
             for (final Favorite fp : DBManager.getFavorites(this)) {
                 fs.add(new FavoritePoint(fp, this));
             }
         } catch (final DataBaseException e) {
-			//			Log.e(DEBUGTAG, "Error on loading Favorites", e);
+            Log.e(Constants.DEBUGTAG, "Error on loading Favorites", e);
 		}
+        item.setChecked(true);
     }
 
 	private void showCenterLatLonDialog() {
