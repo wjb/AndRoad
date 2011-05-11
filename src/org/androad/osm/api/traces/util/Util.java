@@ -14,8 +14,6 @@ import java.util.zip.ZipOutputStream;
 import org.osmdroid.contributor.util.RecordedGeoPoint;
 import org.osmdroid.util.BoundingBoxE6;
 
-import org.androad.osm.api.util.constants.OSMTraceAPIConstants;
-
 
 /**
  * 

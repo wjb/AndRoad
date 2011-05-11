@@ -1,5 +1,5 @@
 // Created by plusminus on 14:11:09 - 21.09.2008
-package org.androad.osm.api.util.constants;
+package org.androad.osm.api.traces.util;
 
 import org.openstreetmap.api.constants.OSMBaseAPIConstants;
 
@@ -15,6 +15,7 @@ public interface OSMTraceAPIConstants extends OSMBaseAPIConstants {
 
 	public static final int MINGEOPOINTS_FOR_OSM_CONTRIBUTION = 100;
 	public static final int MINDIAGONALMETERS_FOR_OSM_CONTRIBUTION = 200;
+	public static final int MAXGEOPOINTS_FOR_OSM_CONTRIBUTION = 1000;
 
 	public static final String OSM_CREATOR_INFO = "AndRoad - https://github.com/gkfabs/AndRoad";
 

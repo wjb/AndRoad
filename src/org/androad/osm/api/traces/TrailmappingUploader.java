@@ -6,7 +6,6 @@ package org.androad.osm.api.traces;
  * 
  */
 
-
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
@@ -22,7 +21,7 @@ import java.util.List;
 import org.osmdroid.contributor.util.RecordedGeoPoint;
 import org.osmdroid.contributor.util.RecordedRouteGPXFormatter;
 
-import org.androad.osm.api.util.constants.OSMTraceAPIConstants;
+import org.androad.osm.api.traces.util.OSMTraceAPIConstants;
 import org.androad.osm.util.constants.OSMConstants;
 import org.androad.ui.common.CommonCallback;
 import org.openstreetmap.api.exceptions.OSMAPIException;

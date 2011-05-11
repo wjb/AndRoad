@@ -64,6 +64,7 @@ public class TraceManager implements OSMConstants {
 			if(Preferences.getTracePolicyTrailmapping(pContext)) {
 				doUploadToTrailmappingAccount(pContext, pRecordedGeoPoints);
 			}
+            pRecordedGeoPoints.clear();
 		}catch(final Throwable t){
 			/* Ensure nothing fails in here! */
 			Log.e(DEBUGTAG, "Trace-Error", t);

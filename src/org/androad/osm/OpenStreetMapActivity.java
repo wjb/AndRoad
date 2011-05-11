@@ -11,6 +11,7 @@ import org.androad.loc.AbstractAndNavLocationProvider;
 import org.androad.loc.NetworkFallbackLocationProvider;
 import org.androad.loc.AbstractAndNavLocationProvider.AndNavLocationCallback;
 import org.androad.osm.api.traces.TraceManager;
+import org.androad.osm.api.traces.util.OSMTraceAPIConstants;
 import org.androad.osm.util.constants.OSMConstants;
 import org.androad.ui.common.DataStateChangedListener;
 import org.androad.ui.common.MyDataStateChangedWatcher;
@@ -179,6 +180,10 @@ public abstract class OpenStreetMapActivity extends Activity implements DataStat
 	public void fireLocationChanged(final AndNavLocation pLocation) {
 		if(OpenStreetMapActivity.this.mDoGPSRecordingAndContributing) {
 			OpenStreetMapActivity.this.mRouteRecorder.add(pLocation, MapViewConstants.NOT_SET);
+
+            if (OpenStreetMapActivity.this.mRouteRecorder.getRecordedGeoPoints().size() > OSMTraceAPIConstants.MAXGEOPOINTS_FOR_OSM_CONTRIBUTION) {
+                TraceManager.contributeAsync(this, this.mRouteRecorder.getRecordedGeoPoints());
+            }
 		}
 
 		//		Log.d(DEBUGTAG, "[onLocationChanged] FreeMemory: " + Runtime.getRuntime().freeMemory());

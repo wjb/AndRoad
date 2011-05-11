@@ -3,12 +3,14 @@ package org.androad.ui.util;
 
 import org.androad.util.constants.Constants;
 
+import org.osmdroid.util.GeoPoint;
+
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
 import android.net.Uri;
 import android.widget.Toast;
-
 
 public class Util implements Constants{
 	// ===========================================================
@@ -72,6 +74,10 @@ public class Util implements Constants{
 		}
 
 		ctx.startActivity(Intent.createChooser(mailIntent, "Select Mail Client"));
+	}
+
+	public static GeoPoint locationToGeoPoint(final Location aLoc){
+		return new GeoPoint((int)(aLoc.getLatitude() * 1E6), (int)(aLoc.getLongitude() * 1E6));
 	}
 
 	// ===========================================================

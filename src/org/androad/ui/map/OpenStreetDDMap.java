@@ -38,7 +38,6 @@ import org.androad.nav.WayPointListener;
 import org.androad.nav.WaypointOptimizer;
 import org.androad.nav.stats.StatisticsManager;
 import org.androad.nav.util.NavAlgorithm;
-import org.androad.osm.exceptions.ExternalStorageNotMountedException;
 import org.androad.osm.views.overlay.util.DirectionArrowDescriptor;
 import org.androad.osm.views.tiles.util.OSMMapTilePreloader;
 import org.androad.preferences.PreferenceConstants;
@@ -2122,13 +2121,12 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 	 * Also saves the route to SD-Card, if its the initial call and when the user saved the specific setting to the preferences.
 	 * @return the Route
 	 * @throws ORSException
-	 * @throws ExternalStorageNotMountedException
 	 * @throws IOException
 	 * @throws IllegalArgumentException
 	 * @throws SAXException
 	 * @throws Exception
 	 */
-	private Route createRouteFromBundleCreatedWith() throws ORSException, ExternalStorageNotMountedException, IOException, IllegalArgumentException, SAXException, Exception{
+	private Route createRouteFromBundleCreatedWith() throws ORSException, IOException, IllegalArgumentException, SAXException, Exception{
 		final int searchMode = OpenStreetDDMap.this.mBundleCreatedWith.getInt(EXTRAS_MODE);
 
 		final boolean saveRouteToSDCard = OpenStreetDDMap.this.mInitialRouteFetch  && Preferences.getSaveInitialRoute(this);

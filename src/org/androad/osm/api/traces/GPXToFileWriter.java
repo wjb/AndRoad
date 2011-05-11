@@ -56,8 +56,8 @@ public class GPXToFileWriter implements OSMConstants {
 					new File(traceFolderPath).mkdirs();
 
 					// Create file and ensure that needed folders exist.
-					final String filename = traceFolderPath + SDF.format(new Date(System.currentTimeMillis())) + ".gpx";
-					final File dest = new File(filename + ".zip");
+					final String filename = SDF.format(new Date(System.currentTimeMillis())) + ".gpx";
+					final File dest = new File(traceFolderPath + filename + ".zip");
 
 					// Write Data
 					final OutputStream out = new BufferedOutputStream(new FileOutputStream(dest),StreamUtils.IO_BUFFER_SIZE);

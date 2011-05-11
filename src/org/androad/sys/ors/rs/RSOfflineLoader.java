@@ -5,7 +5,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
-import org.androad.osm.exceptions.ExternalStorageNotMountedException;
 import org.androad.osm.util.Util;
 import org.androad.osm.util.constants.OSMConstants;
 import org.androad.sys.ors.adt.Error;
@@ -46,10 +45,10 @@ public class RSOfflineLoader implements OSMConstants {
 	// Methods
 	// ===========================================================
 
-	public static Route load(final Context ctx, final String aFileName) throws ExternalStorageNotMountedException, ORSException, IOException{
+	public static Route load(final Context ctx, final String aFileName) throws ORSException, IOException{
 		try {
 			if(!android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED)){
-				throw new ExternalStorageNotMountedException();
+				return null;
 			}else{
 				EXTERNAL_STORAGE_BASEDIRECTORY = Util.getAndRoadExternalStoragePath();
 

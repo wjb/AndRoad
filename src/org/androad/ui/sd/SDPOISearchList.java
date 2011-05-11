@@ -12,7 +12,6 @@ import org.androad.adt.DBPOI;
 import org.androad.adt.UnitSystem;
 import org.androad.db.DBManager;
 import org.androad.db.DataBaseException;
-import org.androad.osm.adt.util.TypeConverter;
 import org.androad.preferences.Preferences;
 import org.androad.sys.ors.adt.GeocodedAddress;
 import org.androad.sys.ors.adt.ds.ORSPOI;
@@ -251,7 +250,7 @@ public class SDPOISearchList extends AndNavGPSActivity {
 						});
 						return null;
 					}
-					final GeoPoint center = TypeConverter.locationToGeoPoint(SDPOISearchList.super.mMyLocation);
+					final GeoPoint center = SDPOISearchList.super.getCurrentLocationAsGeoPoint();
 
                     final DSRequester ds = Preferences.getORSServer(SDPOISearchList.this).DIRECTORYSERVICE;
 					final ArrayList<ORSPOI> orspois = ds.request(SDPOISearchList.this, center, type, aSearchRadius);
@@ -350,7 +349,7 @@ public class SDPOISearchList extends AndNavGPSActivity {
 						return null;
 					}
 
-					final GeoPoint center = TypeConverter.locationToGeoPoint(SDPOISearchList.super.mMyLocation);
+					final GeoPoint center = SDPOISearchList.super.getCurrentLocationAsGeoPoint();
 					final List<GeocodedAddress> ret;
 
 					final int searchdist = aSearchRadius;

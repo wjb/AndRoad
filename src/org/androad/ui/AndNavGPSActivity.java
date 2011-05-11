@@ -3,7 +3,7 @@ package org.androad.ui;
 
 import org.osmdroid.util.GeoPoint;
 
-import org.androad.osm.adt.util.TypeConverter;
+import org.androad.ui.util.Util;
 
 import android.content.Context;
 import android.location.Location;
@@ -77,7 +77,7 @@ public abstract class AndNavGPSActivity extends AndNavBaseActivity {
 
 	/** Offers the current GPS-position to the Overlay as a mapPoint. */
 	public GeoPoint getCurrentLocationAsGeoPoint() {
-		return TypeConverter.locationToGeoPoint(this.mMyLocation);
+		return Util.locationToGeoPoint(this.mMyLocation);
 	}
 
 	private LocationManager getLocationManager() {
