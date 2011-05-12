@@ -296,8 +296,8 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 		/* SetNavPoints-Overlay. */
 		this.mCrosshairOverlay = new OSMMapViewCrosshairOverlay(this, Color.BLACK, 2, 17);
 		this.mCrosshairOverlay.setEnabled(false);
-		this.mStartFlagItem = new BitmapItem(null, this, R.drawable.flag_start, new Point(18,47));
-		this.mDestinationFlagItem = new BitmapItem(null, this, R.drawable.flag_destination, new Point(18,47));
+		this.mStartFlagItem = new BitmapItem(null, this, R.drawable.flag_start, null, new Point(18,47));
+		this.mDestinationFlagItem = new BitmapItem(null, this, R.drawable.flag_destination, null, new Point(18,47));
         this.mFlagsOverlay.getBitmapItems().add(this.mStartFlagItem);
         this.mFlagsOverlay.getBitmapItems().add(this.mDestinationFlagItem);
 		this.mNavPointsConnectionLineOverlay = new OSMMapViewSimpleLineOverlay(this);

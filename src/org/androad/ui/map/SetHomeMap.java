@@ -83,7 +83,7 @@ public class SetHomeMap extends OpenStreetMapAndNavBaseActivity {
 	public void onCreate(final Bundle icicle) {
 		super.onCreate(icicle);
 
-        this.mSetHomeItem = new BitmapItem(null, this, R.drawable.home_set, new Point(0,0));
+        this.mSetHomeItem = new BitmapItem(null, this, R.drawable.home_set, null, new Point(0,0));
         this.mSetHomeOverlay = new BitmapOverlay(this, this.mSetHomeItem);
 
 		/* Add a new instance of our fancy Overlay-Class to the MapView. */

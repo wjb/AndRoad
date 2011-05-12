@@ -29,7 +29,7 @@ public class BitmapItem {
 	protected GeoPoint mCenter;
     protected final Context ctx;
 	private final Point mHotSpot;
-    protected String descr = "Description";
+    protected String descr = null;
 
 	protected Bitmap icon;
 
@@ -94,6 +94,8 @@ public class BitmapItem {
 	}
 
     public boolean onSingleTapUp(final MotionEvent e, final Projection pj) {
+        if (descr == null) return false;
+
         GeoPoint tap = pj.fromPixels((int)e.getX(), (int)e.getY());
         float distance = mCenter.distanceTo(tap);
 
