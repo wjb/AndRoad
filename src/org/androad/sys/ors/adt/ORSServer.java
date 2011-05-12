@@ -43,7 +43,7 @@ public enum ORSServer implements Parcelable {
               new OpenRouteServiceRSRequester("http://openls.geog.uni-heidelberg.de/route/andnav"),
               new OpenRouteServiceDSRequester("http://openls.geog.uni-heidelberg.de/directory/andnav"),
               new OpenRouteServiceLUSRequester("http://openls.geog.uni-heidelberg.de/geocode/andnav"),
-              new IPingMethod.HostNamePing("openls.geog.uni-heidelberg.de")),
+              new IPingMethod.URLResponsePing("http://openls.geog.uni-heidelberg.de")),
 	GOOGLE("Google Navigation",
           "This server is the google navigation. You are not authorised to use it through AndRoad. This is just a test.",
           "USA",
@@ -52,7 +52,7 @@ public enum ORSServer implements Parcelable {
           new GoogleRSRequester(),
           new GoogleDSRequester(),
           new GoogleLUSRequester(),
-          new IPingMethod.HostNamePing("google.com")),
+          new IPingMethod.URLResponsePing("http://www.google.com/maps")),
 	YAHOO("Yahoo Navigation",
           "This server is the yahoo navigation. You are not authorised to use it through AndRoad. This is just a test.",
           "USA",
@@ -61,7 +61,7 @@ public enum ORSServer implements Parcelable {
           new YahooRSRequester(),
           new YahooDSRequester(),
           new YahooLUSRequester(),
-          new IPingMethod.HostNamePing("maps.yahoo.com")),
+          new IPingMethod.URLResponsePing("http://maps.yahoo.com")),
 	YOURNAVIGATION("Your Navigation",
           "This server is the your navigation.",
           "USA",
@@ -70,7 +70,7 @@ public enum ORSServer implements Parcelable {
           new YourNavigationRSRequester(),
           new YourNavigationDSRequester(),
           new YourNavigationLUSRequester(),
-          new IPingMethod.HostNamePing("yournavigation.org")),
+          new IPingMethod.URLResponsePing("http://yournavigation.org")),
     CLOUDMADE("Cloud Made",
           "This server is the cloudmade navigation.",
           "USA",
@@ -79,7 +79,7 @@ public enum ORSServer implements Parcelable {
           new CloudmadeRSRequester(),
           new CloudmadeDSRequester(),
           new CloudmadeLUSRequester(),
-          new IPingMethod.HostNamePing("cloudmade.com"));
+          new IPingMethod.URLResponsePing("http://cloudmade.com"));
 
 	// ===========================================================
 	// Constants
