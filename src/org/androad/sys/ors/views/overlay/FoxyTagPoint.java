@@ -5,9 +5,9 @@ import org.osmdroid.util.GeoPoint;
 import org.androad.R;
 
 import android.content.Context;
+import android.graphics.Color;
 
-
-public class FoxyTagPoint extends BitmapItem {
+public class FoxyTagPoint extends CircleItem {
 
 	// ===========================================================
 	// Constants
@@ -22,7 +22,7 @@ public class FoxyTagPoint extends BitmapItem {
 	// ===========================================================
 
 	public FoxyTagPoint(final GeoPoint aCenter, final Context ctx) {
-        super(aCenter, ctx, R.drawable.foxytag);
+        super(aCenter, ctx, Color.MAGENTA, "FoxyTag Speed Camera");
 	}
 
 	// ===========================================================

@@ -1,8 +1,6 @@
 package org.androad.sys.ors.views.overlay;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Point;
@@ -14,7 +12,7 @@ import junit.framework.Assert;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView.Projection;
 
-public class BitmapItem {
+public class CircleItem {
 	// ===========================================================
 	// Constants
 	// ===========================================================
@@ -28,35 +26,21 @@ public class BitmapItem {
 	protected final Paint mPaint = new Paint();
 	protected GeoPoint mCenter;
     protected final Context ctx;
-	private final Point mHotSpot;
     protected String descr = "Description";
-
-	protected Bitmap icon;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
-	public BitmapItem(final GeoPoint aCenter, final Context ctx, final int bitmap, final String descr) {
-        this(aCenter, ctx, bitmap, descr, null);
-    }
-
-	public BitmapItem(final GeoPoint aCenter, final Context ctx, final int bitmap, final String descr, final Point pHotSpot) {
+	public CircleItem(final GeoPoint aCenter, final Context ctx, final int color, final String descr) {
 		Assert.assertNotNull(ctx);
 
-		this.mPaint.setARGB(120,255,0,0); // LookThrough-RED
+		this.mPaint.setColor(color);
+        this.mPaint.setStyle(Paint.Style.FILL);
 
 		this.mCenter = aCenter;
         this.ctx = ctx;
         this.descr = descr;
-
-        this.icon = BitmapFactory.decodeResource(ctx.getResources(), bitmap);
-
-        if (pHotSpot == null) {
-            this.mHotSpot = new Point(this.icon.getWidth() / 2, this.icon.getHeight() / 2);
-        } else {
-            this.mHotSpot = pHotSpot;
-        }
 	}
 
 	// ===========================================================
@@ -79,18 +63,15 @@ public class BitmapItem {
 	// Methods from SuperClass/Interfaces
 	// ===========================================================
 
-	public void release() {
-		this.icon.recycle();
-	}
-
 	public void drawToCanvas(final Canvas c, final Projection pj) {
         if (this.mCenter == null) return;
 
         final Point screenCoords = new Point();
         pj.toMapPixels(this.mCenter, screenCoords);
-        int xpos = screenCoords.x - this.mHotSpot.x;
-        int ypos = screenCoords.y - this.mHotSpot.y;
-        c.drawBitmap(this.icon, xpos, ypos, this.mPaint);
+        int radius = 10;
+        int xpos = screenCoords.x - radius;
+        int ypos = screenCoords.y - radius;
+        c.drawCircle(xpos, ypos, radius, this.mPaint);
 	}
 
     public boolean onSingleTapUp(final MotionEvent e, final Projection pj) {

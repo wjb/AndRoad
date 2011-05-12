@@ -65,6 +65,8 @@ import org.androad.sys.ors.views.overlay.FavoritePoint;
 import org.androad.sys.ors.views.overlay.FoxyTagPoint;
 import org.androad.sys.ors.views.overlay.BitmapItem;
 import org.androad.sys.ors.views.overlay.BitmapOverlay;
+import org.androad.sys.ors.views.overlay.CircleItem;
+import org.androad.sys.ors.views.overlay.CircleOverlay;
 import org.androad.sys.ors.views.overlay.TrafficOverlay;
 import org.androad.sys.ors.views.overlay.TrafficOverlayItem;
 import org.androad.sys.vehicleregistrationplates.VRPRegistry;
@@ -211,7 +213,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 
 	private ItemizedOverlayWithFocus<OverlayItem> mItemOverlay;
 	private AreaOfInterestOverlay mAASOverlay;
-	private BitmapOverlay mFFOverlay;
+	private CircleOverlay mFFOverlay;
 	private BitmapOverlay mFavoriteOverlay;
 	private TrafficOverlay mTrafficOverlay;
 	private BitmapItem mStartFlagItem;
@@ -286,7 +288,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 
 		this.mAASOverlay = new AreaOfInterestOverlay(this);
 		this.mAASOverlay.setDrawnAreasLimit(10);
-		this.mFFOverlay = new BitmapOverlay(this);
+		this.mFFOverlay = new CircleOverlay(this);
 		this.mFavoriteOverlay = new BitmapOverlay(this);
 		this.mAreaOfAvoidingsOverlay = new AreaOfInterestOverlay(this, this.mAvoidAreas);
         this.mFlagsOverlay = new BitmapOverlay(this);
@@ -1163,7 +1165,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 
 	private void showFoxyTag(final GeoPoint pGeoPoint, final MenuItem item) {
         if (item.isChecked()) {
-            final List<BitmapItem> ff = WhereAmIMap.this.mFFOverlay.getBitmapItems();
+            final List<CircleItem> ff = WhereAmIMap.this.mFFOverlay.getCircleItems();
             ff.clear();
             item.setChecked(false);
             return;
@@ -1174,7 +1176,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
                 @Override
                 public void run() {
                     try {
-                        final List<BitmapItem> ff = WhereAmIMap.this.mFFOverlay.getBitmapItems();
+                        final List<CircleItem> ff = WhereAmIMap.this.mFFOverlay.getCircleItems();
                         if (ff.size() > 0) {
                             ff.clear();
                         }
