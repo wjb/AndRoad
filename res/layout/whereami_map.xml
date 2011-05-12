@@ -31,6 +31,20 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:src="@drawable/btn_zoom_in"/>
+	<Button
+		android:id="@+id/ibtn_whereami_speed"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_toLeftOf="@+id/iv_whereami_compass"
+		android:layout_alignParentTop="true" />
+	<view class="org.androad.ui.common.views.CompassImageView" 
+		android:id="@+id/iv_whereami_compass"
+		android:layout_alignParentTop="true"
+		android:layout_toLeftOf="@+id/iv_whereami_zoomin"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:src="@drawable/overlay_compass"
+		android:padding="3px" />
 	<ImageView
 		android:id="@+id/iv_whereami_zoomout"
 		android:layout_alignParentTop="true"
@@ -60,14 +74,6 @@
 		android:layout_above="@+id/ibtn_whereami_whereami"
 		android:layout_alignParentRight="true"
 		android:src="@drawable/world_small"/>	
-	<view class="org.androad.ui.common.views.CompassImageView" 
-		android:id="@+id/iv_whereami_compass"
-		android:layout_alignParentRight="true"
-		android:layout_above="@id/ibtn_whereami_choose_renderer" 
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:src="@drawable/overlay_compass"
-		android:padding="3px" />
 	<!-- Left side -->	
 	<ImageButton
 		android:id="@+id/ibtn_whereami_search"

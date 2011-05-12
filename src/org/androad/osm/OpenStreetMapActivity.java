@@ -186,7 +186,6 @@ public abstract class OpenStreetMapActivity extends Activity implements DataStat
             }
 		}
 
-		//		Log.d(DEBUGTAG, "[onLocationChanged] FreeMemory: " + Runtime.getRuntime().freeMemory());
 		onLocationChanged(pLocation);
 	}
 

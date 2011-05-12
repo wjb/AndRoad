@@ -42,6 +42,7 @@ import org.androad.osm.views.overlay.OSMMapViewSimpleLineOverlay;
 import org.androad.osm.views.tiles.util.OSMMapTilePreloader;
 import org.androad.osm.views.util.Util;
 import org.androad.osm.util.constants.OSMConstants;
+import org.androad.nav.stats.StatisticsManager;
 import org.androad.preferences.PreferenceConstants;
 import org.androad.preferences.Preferences;
 import org.androad.sys.ors.aas.AASRequester;
@@ -118,6 +119,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements PreferenceConstants, Constants, ItemizedOverlay.OnItemGestureListener<OverlayItem>{
@@ -185,6 +187,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 	private ImageButton mIbtnChooseRenderer;
 	private CompassRotateView mCompassRotateView;
 	private CompassImageView mIvCompass;
+    private TextView mIbtnSpeed;
 	private EditText mEtSearch;
 	private ImageButton mIbtnNavPointsDoStart;
 	private ImageButton mIbtnNavPointsDoCancel;
@@ -230,6 +233,12 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 
 	private boolean mNavPointsCrosshairMode;
 
+	/**
+	 * Indicates whether driving-statistics are generated.
+	 * Loaded from Preferences in onResume().
+	 */
+	private boolean mStatisticsEnabled = false;
+	private StatisticsManager mStatisticsManager;
 
 	// ===========================================================
 	// Constructors
@@ -354,7 +363,10 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 		this.mIbtnSearch = (ImageButton)this.findViewById(R.id.ibtn_whereami_search);
 		this.mIbtnChooseRenderer = (ImageButton)this.findViewById(R.id.ibtn_whereami_choose_renderer);
 		this.mCompassRotateView = (CompassRotateView)this.findViewById(R.id.rotator_wheramimap);
+        this.mCompassRotateView.toggleActive();
 		this.mIvCompass = (CompassImageView)this.findViewById(R.id.iv_whereami_compass);
+		this.mIbtnSpeed = (TextView)this.findViewById(R.id.ibtn_whereami_speed);
+        this.mIbtnSpeed.setText("NaN");
 		this.mEtSearch = (EditText)this.findViewById(R.id.et_whereami_search);
 		this.mIbtnNavPointsSetStart = (ImageButton)this.findViewById(R.id.ibtn_whereami_setstartpoint);
 		this.mIbtnNavPointsSetDestination = (ImageButton)this.findViewById(R.id.ibtn_whereami_setendpoint);
@@ -362,12 +374,21 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 		this.mIbtnNavPointsDoCancel = (ImageButton)this.findViewById(R.id.ibtn_whereami_setnavpoints_cancel);
 		this.mMapItemControlView = (ItemizedOverlayControlView)this.findViewById(R.id.itemizedoverlaycontrol_whereami);
 
+        final UnitSystem us = Preferences.getUnitSystem(this);
 		this.mScaleIndicatorView = new ScaleBarOverlay(this);
-        if (Preferences.getUnitSystem(this) == UnitSystem.IMPERIAL) {
+        if (us == UnitSystem.IMPERIAL) {
             this.mScaleIndicatorView.setImperial();
         } else {
             this.mScaleIndicatorView.setMetric();
         }
+
+		this.mStatisticsEnabled = Preferences.getStatisticsEnabled(this);
+		if(this.mStatisticsEnabled) {
+			this.mStatisticsManager = new StatisticsManager(this, us, Preferences.getStatisticsSessionStart(this));
+		} else{
+			this.mStatisticsManager = null;
+		}
+
         this.mScaleIndicatorView.setScaleBarOffset(getResources().getDisplayMetrics().widthPixels/2 - getResources().getDisplayMetrics().xdpi/2, 10);
         final OverlayManager overlaymanager = this.mOSMapView.getOverlayManager();
         overlaymanager.addOverlay(this.mScaleIndicatorView);
@@ -533,9 +554,6 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 			this.mIbtnCenter.startAnimation(this.mFadeToRightAnimation);
 		}
 
-        this.mCompassRotateView.toggleActive();
-        this.mIvCompass.startAnimation(this.mFadeToRightAnimation);
-
 		/* Right icons */
 		this.mIbtnWhereAmI.startAnimation(this.mFadeToRightAnimation);
 		this.mIbtnChooseRenderer.startAnimation(this.mFadeToRightAnimation);
@@ -609,6 +627,10 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 
 		this.mWakeLock.release();
 
+		if(this.mStatisticsManager != null) {
+			this.mStatisticsManager.finish();
+		}
+
 		super.onDestroy();
 	}
 
@@ -647,8 +669,6 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 
 	@Override
 	protected void onSaveInstanceState(final Bundle outState) {
-		super.onSaveInstanceState(outState);
-
 		outState.putInt(this.STATE_AUTOCENTER_ID, this.mDoCenter);
 
 		outState.putBoolean(this.STATE_ETSEARCHVISIBLE_ID, this.mEtSearch.getVisibility() == View.VISIBLE);
@@ -660,6 +680,12 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 		if(this.mVehicleRegistrationPlateLOokupNationality != null) {
 			outState.putString(this.STATE_VEHICLEREGISTRATIONPLATE_NATIONALITY_ID, this.mVehicleRegistrationPlateLOokupNationality.COUNTRYCODE);
 		}
+
+		if(this.mStatisticsEnabled && this.mStatisticsManager != null) {
+			this.mStatisticsManager.writeThrough();
+		}
+
+		super.onSaveInstanceState(outState);
 	}
 
 	/**
@@ -692,6 +718,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 	@Override
 	protected void onResume() {
 		super.onResume();
+
 		if((this.mSensorManager.getSensors() & SensorManager.SENSOR_ORIENTATION) != 0){
 			this.mSensorManager.registerListener(this.mCompassRotateView, mSensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION), SensorManager.SENSOR_DELAY_UI);
 			this.mSensorManager.registerListener(this.mIvCompass, mSensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION), SensorManager.SENSOR_DELAY_UI);
@@ -1120,6 +1147,11 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 			}
 			if(this.mDoCenter == WhereAmIMap.CENTERMODE_AUTO && System.currentTimeMillis() > this.mAutoCenterBlockedUntil){
 				this.mOSMapView.getController().setCenter(pLocation);
+			}
+
+			if(this.mStatisticsEnabled && this.mStatisticsManager != null) {
+				this.mStatisticsManager.tick(pLocation);
+                this.mIbtnSpeed.setText(((int) this.mStatisticsManager.getCurrentSpeed()) + "km/h");
 			}
 		}
 		this.mOSMapView.invalidate();
@@ -1696,7 +1728,6 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 	private void updateUIForNavPointsCrosshairMode(final boolean pNewState) {
 		this.mCrosshairOverlay.setEnabled(pNewState);
 		this.mNavPointsCrosshairMode = pNewState;
-        this.mCompassRotateView.toggleActive();
 
 		if(pNewState){
 			this.mIbtnNavPointsDoCancel.setVisibility(View.VISIBLE);
@@ -1708,7 +1739,6 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 			this.mIbtnNavPointsSetStart.clearAnimation();
 			this.mIbtnNavPointsSetDestination.clearAnimation();
 			this.mIbtnCenter.clearAnimation();
-            this.mIvCompass.clearAnimation();
 
 			final boolean destinationSet = this.mDestinationFlagItem.getCenter() != null;
 			this.mIbtnNavPointsDoStart.setEnabled(destinationSet);
@@ -1728,7 +1758,6 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 			this.mIbtnNavPointsSetStart.setVisibility(View.GONE);
 			this.mIbtnNavPointsDoStart.startAnimation(this.mFadeToLeftAnimation);
 			this.mIbtnCenter.startAnimation(this.mFadeToRightAnimation);
-            this.mIvCompass.startAnimation(this.mFadeToRightAnimation);
 
 			this.mIbtnNavPointsDoStart.setEnabled(true);
 			this.mStartFlagItem.setCenter(null);
