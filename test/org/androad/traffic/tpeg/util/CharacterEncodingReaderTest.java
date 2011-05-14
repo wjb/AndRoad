@@ -1,5 +1,5 @@
 // Created by plusminus on 01:01:07 - 26.01.2009
-package org.andnav2.traffic.tpeg.util;
+package org.androad.traffic.tpeg.util;
 
 import java.io.IOException;
 import java.io.Reader;
