@@ -111,10 +111,10 @@ public abstract class OpenStreetMapAndNavBaseActivity extends OpenStreetMapActiv
 
 		this.mSimpleTraceOverlay = new OSMMapViewSimpleTraceOverlay(this, super.getRouteRecorder().getRecordedGeoPoints(), PreferenceConstants.PREF_DISPLAYQUALITY_HIGH);
 		this.mSimpleTraceOverlay.setEnabled(false);
-		overlaymanager.addOverlay(this.mSimpleTraceOverlay);
+		overlaymanager.add(this.mSimpleTraceOverlay);
 
 		this.mColorSchemeOverlay = new ColorSchemeOverlay(this);
-		overlaymanager.addOverlay(this.mColorSchemeOverlay);
+		overlaymanager.add(this.mColorSchemeOverlay);
 
 		this.mMenuVoiceEnabled = Preferences.getMenuVoiceEnabled(this);
 	}

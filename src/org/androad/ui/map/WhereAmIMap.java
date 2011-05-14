@@ -36,7 +36,6 @@ import org.androad.db.DBManager;
 import org.androad.db.DataBaseException;
 import org.androad.exc.Exceptor;
 import org.androad.osm.util.CoordinatesExtractor;
-import org.androad.osm.views.overlay.BaseOSMMapViewListItemizedOverlayWithFocus;
 import org.androad.osm.views.overlay.OSMMapViewCrosshairOverlay;
 import org.androad.osm.views.overlay.OSMMapViewSimpleLineOverlay;
 import org.androad.osm.views.tiles.util.OSMMapTilePreloader;
@@ -304,15 +303,15 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 		this.mNavPointsConnectionLineOverlay.setPaintNormal();
 		this.mNavPointsConnectionLineOverlay.setEnabled(false);
 
-		overlaymanager.addOverlay(this.mAASOverlay);
-		overlaymanager.addOverlay(this.mFFOverlay);
-		overlaymanager.addOverlay(this.mFavoriteOverlay);
-		overlaymanager.addOverlay(this.mAreaOfAvoidingsOverlay);
-		overlaymanager.addOverlay(this.mTrafficOverlay);
-		overlaymanager.addOverlay(this.mNavPointsConnectionLineOverlay);
-		overlaymanager.addOverlay(this.mFlagsOverlay);
-		overlaymanager.addOverlay(this.mMyLocationOverlay);
-		overlaymanager.addOverlay(this.mCrosshairOverlay);
+		overlaymanager.add(this.mAASOverlay);
+		overlaymanager.add(this.mFFOverlay);
+		overlaymanager.add(this.mFavoriteOverlay);
+		overlaymanager.add(this.mAreaOfAvoidingsOverlay);
+		overlaymanager.add(this.mTrafficOverlay);
+		overlaymanager.add(this.mNavPointsConnectionLineOverlay);
+		overlaymanager.add(this.mFlagsOverlay);
+		overlaymanager.add(this.mMyLocationOverlay);
+		overlaymanager.add(this.mCrosshairOverlay);
 	}
 
 	private void refreshPinOverlay(final GeoPoint pGeoPoint) {
@@ -336,7 +335,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 
 		this.mSearchPinList = items;
 
-		this.mOSMapView.getOverlayManager().addOverlay(this.mItemOverlay = new BaseOSMMapViewListItemizedOverlayWithFocus<OverlayItem>(this, this.mSearchPinList, this));
+		this.mOSMapView.getOverlayManager().add(this.mItemOverlay = new ItemizedOverlayWithFocus<OverlayItem>(this, this.mSearchPinList, this));
 		this.mItemOverlay.setFocusItemsOnTap(false);
 	}
 
@@ -350,7 +349,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 
 		final OverlayManager overlaymanager = this.mOSMapView.getOverlayManager();
 		if(this.mItemOverlay != null) {
-			overlaymanager.removeOverlay(this.mItemOverlay);
+			overlaymanager.remove(this.mItemOverlay);
 		}
 	}
 
@@ -393,7 +392,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 
         this.mScaleIndicatorView.setScaleBarOffset(getResources().getDisplayMetrics().widthPixels/2 - getResources().getDisplayMetrics().xdpi/2, 10);
         final OverlayManager overlaymanager = this.mOSMapView.getOverlayManager();
-        overlaymanager.addOverlay(this.mScaleIndicatorView);
+        overlaymanager.add(this.mScaleIndicatorView);
 
 		/* Load the animation from XML (XML file is res/anim/***.xml). */
 		this.mFadeOutDelayedAnimation = AnimationUtils.loadAnimation(this, R.anim.fade_out_delayed);

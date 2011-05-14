@@ -14,6 +14,7 @@ import org.osmdroid.views.MapView.Projection;
 import org.osmdroid.views.MapController.AnimationType;
 import org.osmdroid.views.overlay.ScaleBarOverlay;
 import org.osmdroid.views.overlay.ItemizedOverlay.OnItemGestureListener;
+import org.osmdroid.views.overlay.ItemizedOverlayWithFocus;
 import org.osmdroid.views.overlay.Overlay;
 import org.osmdroid.views.overlay.OverlayManager;
 import org.osmdroid.views.overlay.SimpleLocationOverlay;
@@ -23,7 +24,6 @@ import org.androad.R;
 import org.androad.adt.AndNavLocation;
 import org.androad.adt.UnitSystem;
 import org.androad.exc.Exceptor;
-import org.androad.osm.views.overlay.BaseOSMMapViewListItemizedOverlayWithFocus;
 import org.androad.osm.views.overlay.OSMMapViewCrosshairOverlay;
 import org.androad.preferences.Preferences;
 import org.androad.sys.ftpc.api.FTPCRequester;
@@ -102,7 +102,7 @@ public class OSBMap extends OpenStreetMapAndNavBaseActivity implements OnItemGes
 	// Constructors
 	// ===========================================================
 
-	private BaseOSMMapViewListItemizedOverlayWithFocus<OSMMapViewOSBOverlayItem> mOSBOverlay;
+	private ItemizedOverlayWithFocus<OSMMapViewOSBOverlayItem> mOSBOverlay;
 	private final ArrayList<OSMMapViewOSBOverlayItem> mBugOverlayItems = new ArrayList<OSMMapViewOSBOverlayItem>();
 	private int mBugOverlayItemsIndex = MapViewConstants.NOT_SET;
 	private ImageButton mIbtnCommentWrite;
@@ -141,12 +141,12 @@ public class OSBMap extends OpenStreetMapAndNavBaseActivity implements OnItemGes
 		this.mOSBOverlay = new OSMMapViewOSBOverlay(this, this.mBugOverlayItems, this);
 		this.mOSBOverlay.setFocusItemsOnTap(false);
 
-        overlaymanager.addOverlay(this.mScaleIndicatorView);
-		overlaymanager.addOverlay(this.mMyLocationOverlay = new SimpleLocationOverlay(this));
+        overlaymanager.add(this.mScaleIndicatorView);
+		overlaymanager.add(this.mMyLocationOverlay = new SimpleLocationOverlay(this));
 
-		overlaymanager.addOverlay(this.mOSBOverlay);
+		overlaymanager.add(this.mOSBOverlay);
 		/* Add AddBugOverlay after OSBOverlay to give it a higher zOrder. */
-		overlaymanager.addOverlay(this.mAddBugCrosshairOverlay = new OSMMapViewCrosshairOverlay(this, Color.BLACK, 2, 17));
+		overlaymanager.add(this.mAddBugCrosshairOverlay = new OSMMapViewCrosshairOverlay(this, Color.BLACK, 2, 17));
 		this.mAddBugCrosshairOverlay.setEnabled(false);
 
 		super.mOSMapView.invalidate();

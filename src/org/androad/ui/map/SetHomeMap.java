@@ -88,8 +88,8 @@ public class SetHomeMap extends OpenStreetMapAndNavBaseActivity {
 
 		/* Add a new instance of our fancy Overlay-Class to the MapView. */
 		final OverlayManager overlaymanager = this.mOSMapView.getOverlayManager();
-		overlaymanager.addOverlay(this.mSetHomeOverlay);
-		overlaymanager.addOverlay(this.mMyLocationOverlay = new SimpleLocationOverlay(this));
+		overlaymanager.add(this.mSetHomeOverlay);
+		overlaymanager.add(this.mMyLocationOverlay = new SimpleLocationOverlay(this));
 
 		// Load the animation from XML (XML file is res/anim/move_animation.xml).
 		final Animation anim = AnimationUtils.loadAnimation(this, R.anim.button_beat);

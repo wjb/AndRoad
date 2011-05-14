@@ -428,7 +428,7 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
             this.mScaleIndicatorView.setMetric();
         }
         this.mScaleIndicatorView.setScaleBarOffset(getResources().getDisplayMetrics().widthPixels/2 - getResources().getDisplayMetrics().xdpi/2, 10);
-        overlaymanager.addOverlay(this.mScaleIndicatorView);
+        overlaymanager.add(this.mScaleIndicatorView);
 
 		/* Add a new instance of our fancy Overlay-Class to the MapView. */
 		final DirectionArrowDescriptor pDirectionArrowDescriptor = Preferences.getHUDImplVariationDirectionArrowDescriptor(this);
@@ -437,8 +437,8 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 
 		/* The AvoidArea-Overlay. */
 		this.mAreaOfAvoidingsOverlay = new AreaOfInterestOverlay(this, this.mAvoidAreas);
-		overlaymanager.addOverlay(this.mMyMapDrivingDirectionsOverlay);
-		overlaymanager.addOverlay(this.mAreaOfAvoidingsOverlay);
+		overlaymanager.add(this.mMyMapDrivingDirectionsOverlay);
+		overlaymanager.add(this.mAreaOfAvoidingsOverlay);
 	}
 
 	/**
@@ -972,9 +972,9 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 				/* When returning from the Settings-subActivity, always reset the MapDrivingDirectionsOverlay. */
                 final OverlayManager overlaymanager = this.mOSMapView.getOverlayManager();
 				this.mMyMapDrivingDirectionsOverlay.release();
-				overlaymanager.removeOverlay(this.mMyMapDrivingDirectionsOverlay);
+				overlaymanager.remove(this.mMyMapDrivingDirectionsOverlay);
 				this.mMyMapDrivingDirectionsOverlay = new MapDrivingDirectionsOverlay(this, displayQuality, this.mRealtimeNav, pDirectionArrowDescriptor);
-				overlaymanager.addOverlay(this.mMyMapDrivingDirectionsOverlay);
+				overlaymanager.add(this.mMyMapDrivingDirectionsOverlay);
 
 				/* Refresh possibly changed UnitSystems. */
 				this.mHUDImpl.getRemainingSummaryView().setDisplayQuality(displayQuality);
