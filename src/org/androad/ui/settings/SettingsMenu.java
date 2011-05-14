@@ -24,8 +24,7 @@ public class SettingsMenu extends AndNavBaseActivity {
 	/* REQUEST-CODES for SubActivities. */
 	protected static final int REQUESTCODE_QUALITY = 0x1937;
 	protected static final int REQUESTCODE_DIRECTIONSLANGUAGE = REQUESTCODE_QUALITY + 1;
-	protected static final int REQUESTCODE_SETHOME = REQUESTCODE_DIRECTIONSLANGUAGE + 1;
-	protected static final int REQUESTCODE_UNITSYSTEM = REQUESTCODE_SETHOME + 1;
+	protected static final int REQUESTCODE_UNITSYSTEM = REQUESTCODE_DIRECTIONSLANGUAGE + 1;
 	protected static final int REQUESTCODE_FAVORITES = REQUESTCODE_UNITSYSTEM + 1;
 	protected static final int REQUESTCODE_STATISTICS = REQUESTCODE_FAVORITES + 1;
 	protected static final int REQUESTCODE_ROUTINGFLAGS_SETTINGS = REQUESTCODE_STATISTICS + 1;
@@ -309,21 +308,6 @@ public class SettingsMenu extends AndNavBaseActivity {
 			public void onClicked(final View me) {
 				final Intent tracePolicyIntent = new Intent(SettingsMenu.this, SettingsTracePolicy.class);
 				SettingsMenu.this.startActivityForResult(tracePolicyIntent, REQUESTCODE_TRACEPOLICY);
-			}
-		};
-
-		new OnClickOnFocusChangedListenerAdapter(this.findViewById(R.id.ibtn_settings_sethome)){
-			@Override
-			public void onBoth(final View me, final boolean focused) {
-				if(focused) {
-					SettingsMenu.this.setQuickinfoPageUserTextByID(R.string.tv_settings_quickinfo_sethome_focused);
-				}
-			}
-
-			@Override
-			public void onClicked(final View me) {
-				final Intent selectHomeLocationIntent = new Intent(SettingsMenu.this, SettingsSelectHome.class);
-				SettingsMenu.this.startActivityForResult(selectHomeLocationIntent, REQUESTCODE_SETHOME);
 			}
 		};
 

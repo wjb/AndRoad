@@ -12,7 +12,5 @@
 	<string name="menu_whereami">Wo bin ich?</string>
 	<string name="menu_searchdestination">Ziel suchen...</string>
 	<string name="menu_settings">Einstellungen...</string>
-	<string name="menu_routehome">Nach Hause!</string>
-	<string name="menu_firstaid">Krankenhaus finden!</string>
 	<string name="menu_quit">Schließen!</string>
 </resources>

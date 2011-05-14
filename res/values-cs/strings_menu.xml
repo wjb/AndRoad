@@ -12,7 +12,5 @@
 	<string name="menu_whereami">Kde jsem?</string>
 	<string name="menu_searchdestination">Hledat cíl...</string>
 	<string name="menu_settings">Nastavení...</string>
-	<string name="menu_routehome">Domů!</string>
-	<string name="menu_firstaid">Najít nemocnici!</string>
 	<string name="menu_quit">Zavřít!</string>
 </resources>

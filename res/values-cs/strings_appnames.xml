@@ -36,9 +36,7 @@
 	<string name="app_name_sd_contacts">AndRoad! - vybrat kontakt...</string>
 	<string name="app_name_sd_savedroutechooser">Načíst uloženou trasu...</string>
 	<string name="app_name_whereami">AndRoad! - Kde jsem...</string>
-	<string name="app_name_firstaid">První pomoc!</string>
 	<string name="app_name_fetch_route">AndRoad! - Trasa se počítá...</string>
-	<string name="app_name_sethomemap">AndRoad! - nastavit pozici domů...</string>
 	<string name="app_name_osbmap">AndRoad! - vylepšit mapy...</string>
 	<string name="app_name_map">AndRoad! - Mapa</string>	
 	<string name="app_name_map_turnlist">AndRoad! - TurnList</string>
@@ -51,7 +49,6 @@
 	<string name="app_name_settings_tracepolicy">AndRoad! - Nastavení Trace...</string>
 	<string name="app_name_settings_screenorientation">AndRoad! - Orientace displeje...</string>
 	<string name="app_name_settings_cache">AndRoad! - Nastavení Cache...</string>
-	<string name="app_name_settings_selecthome">AndRoad! - Nastavit domov...</string>
 	<string name="app_name_settings_voice">AndRoad! - Nastavení jazyka...</string>
 	<string name="app_name_settings_centermode">AndRoad! - Nastavit mód centrování...</string>
 	<string name="app_name_settings_rotatemode">AndRoad! - Nastavit mód rotace...</string>

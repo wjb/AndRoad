@@ -163,7 +163,6 @@ public class SDSavedTraceChooser extends AndNavBaseActivity implements OSMConsta
 										SDSavedTraceChooser.this.startActivityForResult(directIntent, REQUESTCODE_DDMAP);
 										break;
 									case MODE_SD_RESOLVE:
-									case MODE_SD_SETHOME:
 									case MODE_SD_WAYPOINT:
 										throw new IllegalArgumentException("Only MODE_SD_DESTINATION is possible.");
 								}

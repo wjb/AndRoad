@@ -6,10 +6,6 @@
 	<LinearLayout 
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content">
-		<TextView android:id="@+id/tv_settings_sethome_quickinfo"
-			style="@style/settings_quickinfo_textstyle"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content" />
 		<ImageButton
 			android:id="@+id/ibtn_settings_statistics_close"
 			android:layout_width="wrap_content"

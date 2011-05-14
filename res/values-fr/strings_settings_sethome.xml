@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-	<string name="tv_settings_quickinfo_sethome_focused">Changer le domicile...</string>
-	<string name="btn_settings_sethome_via_map_caption">Selectionner sur la carte</string>
-	<string name="btn_settings_sethome_via_sd_caption">Chercher l\'adresse</string>
-	<string name="pdg_settings_sethome_via_sd_donefetch_message">Veuillez patienter...</string>
-	<string name="toast_settings_sethome_via_map_failed">Désolé, L\'adresse n\'a pas pu être trouvée.\nTip : Essayez de ne pas mettre de numéro de rue.</string>
-	<string name="toast_settings_sethome_via_map_howto">Appuyez longtemps sur la carte pour régler le domicile.</string>
-</resources>

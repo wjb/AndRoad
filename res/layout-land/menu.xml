@@ -32,14 +32,6 @@
 				android:layout_height="wrap_content"
 				android:layout_weight="1"
 				android:src="@drawable/menu_whereami"/>
-			<ImageButton
-				android:id="@+id/ibtn_routehome"
-				android:paddingTop="15px"
-				android:paddingBottom="15px"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_weight="1"
-				android:src="@drawable/menu_home"/>
 		</TableRow>
 		<TableRow
 			android:layout_width="fill_parent"
@@ -52,14 +44,6 @@
 				android:layout_height="wrap_content"
 				android:layout_weight="1"
 				android:src="@drawable/menu_settings" />
-			<ImageButton
-				android:id="@+id/ibtn_hospital"
-				android:paddingTop="15px"
-				android:paddingBottom="15px"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_weight="1"
-				android:src="@drawable/menu_hospital" />
 			<ImageButton
 				android:id="@+id/ibtn_quit"
 				android:paddingTop="15px"

@@ -286,7 +286,6 @@ public class SDPostcodeUK_BS7666 extends AndNavBaseActivity {
 				startActivityForResult(fetchRouteIntent, REQUESTCODE_FETCHROUTE);
 				break;
 			case MODE_SD_WAYPOINT:
-			case MODE_SD_SETHOME:
 			case MODE_SD_RESOLVE:
 
 				final Intent resultData = new Intent();

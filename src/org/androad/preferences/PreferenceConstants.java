@@ -21,8 +21,7 @@ public interface PreferenceConstants {
 	public static final String MODE_SD = "mode_sd";
 	public static final int MODE_SD_DESTINATION = 0;
 	public static final int MODE_SD_WAYPOINT = MODE_SD_DESTINATION + 1;
-	public static final int MODE_SD_SETHOME = MODE_SD_WAYPOINT + 1;
-	public static final int MODE_SD_RESOLVE = MODE_SD_SETHOME + 1;
+	public static final int MODE_SD_RESOLVE = MODE_SD_WAYPOINT + 1;
 
 	/** Name of the Shared Preferences-File. */
 	public static final String SHARED_PREFERENCES_NAME = "andnav_preferences";
@@ -37,7 +36,6 @@ public interface PreferenceConstants {
 	public static final String PREF_MENUVOICE_ID = "menuvoice_id";
 	public static final String PREF_STATISTICS_ID = "statistics_id";
 	public static final String PREF_DIRECTIONVOICE_ID = "directionvoice_id";
-	public static final String PREF_HOMEGEOPOINT_ID = "homemappoint_id";
 	public static final String PREF_UNITSYSTEM_ID = "unitsystem_id";
 	public static final String PREF_DISTANCEVOICESAYLIST_ID = "distancevoicesaylist_id";
 	public static final String PREF_TURNVOICESAYLIST_ID = "turnvoicesaylist_id";
@@ -124,8 +122,6 @@ public interface PreferenceConstants {
 	public static final boolean PREF_EULA_ACCEPTED_DEFAULT = false;
 
 	public static final int PREF_SCREENORIENTATION_DEFAULT = ActivityInfo.SCREEN_ORIENTATION_USER;
-
-	public static final String PREF_HOMEGEOPOINT_DEFAULT = null;
 
 
 	public static final String PREF_DRIVINGDIRECTIONSLANGUAGE_DEFAULT = Country.UNITEDKINGDOM.COUNTRYCODE;

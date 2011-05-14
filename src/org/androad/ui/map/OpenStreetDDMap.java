@@ -2139,12 +2139,6 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 			case EXTRAS_MODE_LOAD_SAVED_ROUTE:
 				final String aFileName = this.mBundleCreatedWith.getString(EXTRAS_SAVED_ROUTE_FILENAME_ID);
 				return RSOfflineLoader.load(this, aFileName);
-			case EXTRAS_MODE_HOME:
-				if(this.mGPDestination == null) {
-					this.mGPDestination = Preferences.getHomeGeoPoint(this);
-				}
-
-				return RouteFactory.create(this, this.mGPStart, this.mGPDestination, this.mWayPoints, this.mAvoidAreas, saveRouteToSDCard);
 			case EXTRAS_MODE_DIRECT_LATLNG:
 				if(this.mGPDestination == null){
 					final int latE6 = this.mBundleCreatedWith.getInt(EXTRAS_DESTINATION_LATITUDE_ID);
@@ -2211,7 +2205,7 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 	/**
 	 * Returns a string describing the mode the route was requested. <br/>
 	 * Examples
-	 * <ul><li>"Home"</li><li>"Latitude: 123.45456\nLongitude: 123.4567"</li><li>"Loadign saved route..."</li></ul>
+	 * <ul><li>"Loading from route: "</li><li>"Latitude: 123.45456\nLongitude: 123.4567"</li><li>"Loadign saved route..."</li></ul>
 	 * @return
 	 */
 	private String getDialogMessage() {
@@ -2225,9 +2219,6 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 				break;
 			case EXTRAS_MODE_LOAD_SAVED_ROUTE:
 				sb.append(getString(R.string.pdg_fetchroute_loading_saved_route));
-				break;
-			case EXTRAS_MODE_HOME:
-				sb.append(getString(R.string.home));
 				break;
 			case EXTRAS_MODE_DIRECT_LATLNG:
 				final DecimalFormat df = new DecimalFormat("##0.000000");

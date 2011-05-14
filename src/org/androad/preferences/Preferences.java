@@ -235,33 +235,6 @@ public class Preferences implements Constants, PreferenceConstants {
 	}
 
 	// ===========================================================
-	// HomeLocation
-	// ===========================================================
-
-	/** Returns the HomeLocation as MapPoint saved in Preferences to the Activity parameter.
-	 * @param ctx Activity-Context needed to retrieve the SharedPreferences.
-	 * @return the Home-Location as a GeoPoint or <code>null</code> if non was set.*/
-	public static GeoPoint getHomeGeoPoint(final Context ctx){
-		final String s = getInstance(ctx).getString(PREF_HOMEGEOPOINT_ID, PREF_HOMEGEOPOINT_DEFAULT);
-		if(s == null) {
-			return null;
-		}
-
-		final String[] coordinates = s.split(",");
-		final int lat = Integer.parseInt(coordinates[LAT_INDEX]);
-		final int lon = Integer.parseInt(coordinates[LON_INDEX]);
-
-		return new GeoPoint(lat, lon);
-	}
-
-	/** Save a MapPoint to be used as the home-location.
-	 * @param ctx Activity-Context needed to retrieve the SharedPreferences.
-	 * @param gp MapPoint to be saved and to be used as the home-location. */
-	public static void saveHomeGeoPoint(final Context ctx, final GeoPoint gp){
-		getEditorInstance(ctx).putString(PREF_HOMEGEOPOINT_ID, gp.toString()).commit();
-	}
-
-	// ===========================================================
 	// MenuVoice
 	// ===========================================================
 

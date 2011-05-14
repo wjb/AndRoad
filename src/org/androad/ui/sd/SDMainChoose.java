@@ -180,7 +180,6 @@ public class SDMainChoose extends AndNavBaseActivity {
 				directIntent.putExtras(b);
 				SDMainChoose.this.startActivityForResult(directIntent, REQUESTCODE_DDMAP);
 				break;
-			case MODE_SD_SETHOME:
 			case MODE_SD_WAYPOINT:
 			case MODE_SD_RESOLVE:
 				final Intent resultData = new Intent();

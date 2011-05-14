@@ -38,9 +38,7 @@
 	<string name="app_name_sd_savedroutechooser">Gespeicherte Route laden...</string>
 	<string name="app_name_sd_savedtracechooser">Gespeicherten Trace laden...</string>
 	<string name="app_name_whereami">AndRoad! - Wo bin ich...</string>
-	<string name="app_name_firstaid">Erste Hilfe!</string>
 	<string name="app_name_fetch_route">AndRoad! - Route wird berechnet...</string>
-	<string name="app_name_sethomemap">AndRoad! - Heimatpunkt setzen...</string>
 	<string name="app_name_osbmap">AndRoad! - Karten verbessern...</string>
 	<string name="app_name_map">AndRoad! - Karte</string>	
 	<string name="app_name_map_turnlist">AndRoad! - TurnList</string>
@@ -54,7 +52,6 @@
 	<string name="app_name_settings_tracepolicy">AndRoad! - Trace Einstellungen...</string>
 	<string name="app_name_settings_screenorientation">AndRoad! - Bildschirmorientierung...</string>
 	<string name="app_name_settings_cache">AndRoad! - Cache Einstellungen...</string>
-	<string name="app_name_settings_selecthome">AndRoad! - Heimatort setzen...</string>
 	<string name="app_name_settings_voice">AndRoad! - Sprach Einstellungen...</string>
 	<string name="app_name_settings_centermode">AndRoad! - Zentrierungsmodus wählen...</string>
 	<string name="app_name_settings_rotatemode">AndRoad! - Rotationsmodus wählen...</string>

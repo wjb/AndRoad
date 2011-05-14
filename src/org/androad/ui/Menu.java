@@ -14,7 +14,6 @@ import org.androad.ui.map.WhereAmIMap;
 import org.androad.ui.sd.SDMainChoose;
 import org.androad.ui.sd.SDPOISearchList;
 import org.androad.ui.settings.SettingsMenu;
-import org.androad.ui.settings.SettingsSelectHome;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -34,13 +33,10 @@ public class Menu extends AndNavGPSActivity {
 	// ===========================================================
 
 	/* REQUEST-CODES for SubActivities. */
-	private static final int REQUESTCODE_ROUTEHOME = 0x1337;
-	private static final int REQUESTCODE_SETTINGS = REQUESTCODE_ROUTEHOME + 1;
+	private static final int REQUESTCODE_SETTINGS = 0x1337;
 	private static final int REQUESTCODE_SD_MAINCHOOSE = REQUESTCODE_SETTINGS + 1;
 	private static final int REQUESTCODE_WHEREAMI = REQUESTCODE_SD_MAINCHOOSE + 1;
-	private static final int REQUESTCODE_FIRSTAID = REQUESTCODE_WHEREAMI + 1;
-	private static final int REQUESTCODE_SETHOME = REQUESTCODE_FIRSTAID + 1;
-	private static final int REQUESTCODE_ABOUT = REQUESTCODE_SETHOME + 1;
+	private static final int REQUESTCODE_ABOUT = REQUESTCODE_WHEREAMI + 1;
 	private static final int REQUESTCODE_TTS_DATA_CHECK_CODE = REQUESTCODE_ABOUT + 1;
 
 	private static final int MENU_ABOUT_ID = android.view.Menu.FIRST;
@@ -129,23 +125,6 @@ public class Menu extends AndNavGPSActivity {
 			}
 		};
 
-		/* Set OnClickListener for Route-Home-Button. */
-		new OnClickOnFocusChangedListenerAdapter(this.findViewById(R.id.ibtn_routehome)){
-			@Override
-			public void onBoth(final View v, final boolean justGotFocus) {
-				if(justGotFocus){
-					if(Menu.super.mMenuVoiceEnabled) {
-						MediaPlayer.create(Menu.this, R.raw.home_sweet_home).start();
-					}
-				}
-			}
-
-			@Override
-			public void onClicked(final View v) {
-				startNavHomeActivity(); // Or opens SetHome
-			}
-		};
-
 		/* Set OnClickListener for Settings-Button. */
 		new OnClickOnFocusChangedListenerAdapter(this.findViewById(R.id.ibtn_settings)){
 			@Override
@@ -160,23 +139,6 @@ public class Menu extends AndNavGPSActivity {
 			@Override
 			public void onClicked(final View v) {
 				startSettingsActivity();
-			}
-		};
-
-		/* Set OnClickListener for FirstAid-Button. */
-		new OnClickOnFocusChangedListenerAdapter(this.findViewById(R.id.ibtn_hospital)){
-			@Override
-			public void onBoth(final View v, final boolean justGotFocus) {
-				if(justGotFocus){
-					if(Menu.super.mMenuVoiceEnabled) {
-						MediaPlayer.create(Menu.this, R.raw.first_aid).start();
-					}
-				}
-			}
-
-			@Override
-			public void onClicked(final View v) {
-				startFirstAidActivity();
 			}
 		};
 
@@ -211,14 +173,8 @@ public class Menu extends AndNavGPSActivity {
 			case KeyEvent.KEYCODE_S: // Search destination
 				startSearchDestinationActivity();
 				break;
-			case KeyEvent.KEYCODE_H: // Home sweet home
-				startNavHomeActivity();
-				break;
 			case KeyEvent.KEYCODE_C: // Config (aka Settings)
 				startSettingsActivity();
-				break;
-			case KeyEvent.KEYCODE_F: // First Aid
-				startFirstAidActivity();
 				break;
 			case KeyEvent.KEYCODE_Q: // Quit
 				this.finish();
@@ -230,26 +186,6 @@ public class Menu extends AndNavGPSActivity {
 	@Override
 	protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
 		switch(requestCode){
-			case REQUESTCODE_SETTINGS:
-				if(resultCode == SUBACTIVITY_RESULTCODE_SUCCESS || resultCode == SUBACTIVITY_RESULTCODE_CHAINCLOSE_SUCCESS){
-					final GeoPoint mpHome = Preferences.getHomeGeoPoint(Menu.this);
-					if(mpHome != null){
-						final Intent navHomeIntent = new Intent(Menu.this, OpenStreetDDMap.class);
-
-						final Bundle b = new Bundle();
-						b.putInt(EXTRAS_MODE, EXTRAS_MODE_HOME);
-
-						navHomeIntent.putExtras(b);
-
-						Menu.this.startActivityForResult(navHomeIntent, REQUESTCODE_ROUTEHOME);
-					}
-				}
-				break;
-			case REQUESTCODE_SETHOME:
-				if(resultCode == SUBACTIVITY_RESULTCODE_CHAINCLOSE_SUCCESS || resultCode == SUBACTIVITY_RESULTCODE_SUCCESS) {
-					doNavHome();
-				}
-				break;
 			case REQUESTCODE_TTS_DATA_CHECK_CODE:
 				if (resultCode == TextToSpeech.Engine.CHECK_VOICE_DATA_PASS) {
 					// success, TTS is available
@@ -326,33 +262,6 @@ public class Menu extends AndNavGPSActivity {
 		return super.onMenuItemSelected(featureId, item);
 	}
 
-	private void doNavHome() {
-		final Intent navHomeIntent = new Intent(Menu.this, OpenStreetDDMap.class);
-
-		final Bundle b = new Bundle();
-		b.putInt(EXTRAS_MODE, EXTRAS_MODE_HOME);
-
-		navHomeIntent.putExtras(b);
-
-		Menu.this.startActivityForResult(navHomeIntent, REQUESTCODE_ROUTEHOME);
-	}
-
-	private void startFirstAidActivity() {
-		/* Load FirstAid-Activity. */
-		//		final Intent whereAmIIntent = new Intent(Menu.this, FirstAid.class);
-		//		Menu.this.startActivityForResult(whereAmIIntent, FIRSTAID_REQUESTCODE);
-
-		final Intent favIntent = new Intent(this, SDPOISearchList.class);
-
-		final Bundle b = new Bundle();
-		b.putInt(SDPOISearchList.EXTRAS_POISEARCH_MODE, SDPOISearchList.EXTRAS_POISEARCH_MODE_ORS_CATEGORY_SEARCH);
-		b.putInt(SDPOISearchList.EXTRAS_POISEARCH_MODE, SDPOISearchList.EXTRAS_POISEARCH_MODE_ORS_CATEGORY_SEARCH);
-		b.putInt(SDPOISearchList.EXTRAS_POISEARCH_RADIUS, 50000);
-		b.putString(SDPOISearchList.EXTRAS_POISEARCH_CATEGORY, POIType.HOSPITAL.RAWNAME);
-		favIntent.putExtras(b);
-		this.startActivityForResult(favIntent, REQUESTCODE_FIRSTAID);
-	}
-
 	private void startSearchDestinationActivity() {
 		/* Load SDMainChoose-Activity. */
 		final Intent sdCountryIntent = new Intent(Menu.this, SDMainChoose.class);
@@ -368,17 +277,6 @@ public class Menu extends AndNavGPSActivity {
 		/* Load Settings-Activity. */
 		final Intent settingsIntent = new Intent(Menu.this, SettingsMenu.class);
 		Menu.this.startActivityForResult(settingsIntent, REQUESTCODE_SETTINGS);
-	}
-
-	private void startNavHomeActivity() {
-		/* Load AndRoadRoutehome-Activity. */
-		final GeoPoint mpHome = Preferences.getHomeGeoPoint(Menu.this);
-		if(mpHome == null){
-			final Intent setHomeIntent = new Intent(Menu.this, SettingsSelectHome.class);
-			Menu.this.startActivityForResult(setHomeIntent, REQUESTCODE_SETHOME);
-		}else{
-			doNavHome();
-		}
 	}
 
 	private void startWhereAmIActivity() {

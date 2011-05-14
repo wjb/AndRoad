@@ -160,7 +160,6 @@ public class SDSavedRouteChooser extends AndNavBaseActivity implements OSMConsta
 										SDSavedRouteChooser.this.startActivityForResult(directIntent, REQUESTCODE_DDMAP);
 										break;
 									case MODE_SD_RESOLVE:
-									case MODE_SD_SETHOME:
 									case MODE_SD_WAYPOINT:
 										throw new IllegalArgumentException("Only MODE_SD_DESTINATION is possible.");
 								}

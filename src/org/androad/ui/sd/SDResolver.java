@@ -312,7 +312,6 @@ public class SDResolver extends AndNavBaseActivity {
 						SDResolver.this.startActivityForResult(directIntent, REQUESTCODE_DDMAP);
 						break;
 					case MODE_SD_RESOLVE:
-					case MODE_SD_SETHOME:
 					case MODE_SD_WAYPOINT:
 						final Intent resultData = new Intent();
 						resultData.putExtras(b);

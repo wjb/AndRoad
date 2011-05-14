@@ -193,12 +193,6 @@
                 <category android:name="android.intent.category.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.map.SetHomeMap" android:label="@string/app_name_sethomemap">
-            <intent-filter>
-                <action android:name="android.intent.action.DEFAULT" />
-                <category android:name="android.intent.category.VIEW" />
-            </intent-filter>
-        </activity>
     	<activity android:name=".ui.settings.SettingsMenu" android:label="@string/app_name_settings_menu">
 			<intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
@@ -248,12 +242,6 @@
             </intent-filter>
     	</activity>
     	<activity android:name=".ui.settings.SettingsStatistics" android:label="@string/app_name_settings_statistics">
-			<intent-filter>
-                <action android:name="android.intent.action.DEFAULT" />
-                <category android:name="android.intent.category.VIEW" />
-            </intent-filter>
-    	</activity>
-    	<activity android:name=".ui.settings.SettingsSelectHome" android:label="@string/app_name_settings_selecthome">
 			<intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
                 <category android:name="android.intent.category.VIEW" />
