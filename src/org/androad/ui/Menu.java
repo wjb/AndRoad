@@ -1,19 +1,17 @@
 //Created by plusminus on 19:47:09 - 01.02.2008
 package org.androad.ui;
 
-import org.osmdroid.util.GeoPoint;
-
 import org.androad.R;
 import org.androad.preferences.Preferences;
-import org.androad.sys.ors.adt.ds.POIType;
 import org.androad.ui.common.CommonCallbackAdapter;
 import org.androad.ui.common.CommonDialogFactory;
 import org.androad.ui.common.OnClickOnFocusChangedListenerAdapter;
 import org.androad.ui.map.OpenStreetDDMap;
 import org.androad.ui.map.WhereAmIMap;
 import org.androad.ui.sd.SDMainChoose;
-import org.androad.ui.sd.SDPOISearchList;
+import org.androad.ui.sd.SDFavorites;
 import org.androad.ui.settings.SettingsMenu;
+import org.androad.ui.settings.SettingsORSServer;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -36,7 +34,9 @@ public class Menu extends AndNavGPSActivity {
 	private static final int REQUESTCODE_SETTINGS = 0x1337;
 	private static final int REQUESTCODE_SD_MAINCHOOSE = REQUESTCODE_SETTINGS + 1;
 	private static final int REQUESTCODE_WHEREAMI = REQUESTCODE_SD_MAINCHOOSE + 1;
-	private static final int REQUESTCODE_ABOUT = REQUESTCODE_WHEREAMI + 1;
+    private static final int REQUESTCODE_FAVORITES = REQUESTCODE_WHEREAMI + 1;
+    private static final int REQUESTCODE_SERVER_CHOOSE = REQUESTCODE_FAVORITES + 1;
+	private static final int REQUESTCODE_ABOUT = REQUESTCODE_SERVER_CHOOSE + 1;
 	private static final int REQUESTCODE_TTS_DATA_CHECK_CODE = REQUESTCODE_ABOUT + 1;
 
 	private static final int MENU_ABOUT_ID = android.view.Menu.FIRST;
@@ -125,6 +125,23 @@ public class Menu extends AndNavGPSActivity {
 			}
 		};
 
+		/* Set OnClickListener for Favorites-Button. */
+		new OnClickOnFocusChangedListenerAdapter(this.findViewById(R.id.ibtn_favorites)){
+			@Override
+			public void onBoth(final View v, final boolean justGotFocus) {
+				if(justGotFocus){
+					if(Menu.super.mMenuVoiceEnabled) {
+						//MediaPlayer.create(Menu.this, R.raw.favorites).start();
+					}
+				}
+			}
+
+			@Override
+			public void onClicked(final View v) {
+				startFavoritesActivity();
+			}
+		};
+
 		/* Set OnClickListener for Settings-Button. */
 		new OnClickOnFocusChangedListenerAdapter(this.findViewById(R.id.ibtn_settings)){
 			@Override
@@ -142,6 +159,23 @@ public class Menu extends AndNavGPSActivity {
 			}
 		};
 
+
+		/* Set OnClickListener for Server-Button. */
+		new OnClickOnFocusChangedListenerAdapter(this.findViewById(R.id.ibtn_server)){
+			@Override
+			public void onBoth(final View v, final boolean justGotFocus) {
+				if(justGotFocus){
+					if(Menu.super.mMenuVoiceEnabled) {
+						//MediaPlayer.create(Menu.this, R.raw.server).start();
+					}
+				}
+			}
+
+			@Override
+			public void onClicked(final View v) {
+				startServerActivity();
+			}
+		};
 		/* Set OnClickListener for Exit-Button. */
 		new OnClickOnFocusChangedListenerAdapter(this.findViewById(R.id.ibtn_quit)){
 			@Override
@@ -167,11 +201,17 @@ public class Menu extends AndNavGPSActivity {
 	@Override
 	public boolean onKeyDown(final int keyCode, final KeyEvent event) {
 		switch(keyCode){
+			case KeyEvent.KEYCODE_F: // Favorites
+				startFavoritesActivity();
+				break;
 			case KeyEvent.KEYCODE_W: // Where am I
 				startWhereAmIActivity();
 				break;
-			case KeyEvent.KEYCODE_S: // Search destination
+			case KeyEvent.KEYCODE_D: // Search destination
 				startSearchDestinationActivity();
+				break;
+			case KeyEvent.KEYCODE_S: // Server
+				startServerActivity();
 				break;
 			case KeyEvent.KEYCODE_C: // Config (aka Settings)
 				startSettingsActivity();
@@ -283,6 +323,20 @@ public class Menu extends AndNavGPSActivity {
 		/* Load WhereAmI-MapActivity. */
 		final Intent whereAmIIntent = new Intent(Menu.this, WhereAmIMap.class);
 		Menu.this.startActivityForResult(whereAmIIntent, REQUESTCODE_WHEREAMI);
+	}
+
+	private void startFavoritesActivity() {
+		/* Load Favorites-Activity. */
+        final Intent favIntent = new Intent(Menu.this, SDFavorites.class);
+        final Bundle bundleCreatedWith = favIntent.getExtras();
+        favIntent.putExtra(SDFavorites.EXTRAS_FAVORITES_REFER, true);
+        Menu.this.startActivityForResult(favIntent, REQUESTCODE_FAVORITES);
+	}
+
+	private void startServerActivity() {
+		/* Load ServerActivity. */
+		final Intent serverIntent = new Intent(Menu.this, SettingsORSServer.class);
+		Menu.this.startActivityForResult(serverIntent, REQUESTCODE_SERVER_CHOOSE);
 	}
 
 	@Override

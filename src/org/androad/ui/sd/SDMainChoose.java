@@ -214,7 +214,7 @@ public class SDMainChoose extends AndNavBaseActivity {
 				@Override
 				public void onBoth(final View me, final boolean focused) {
 					if (focused && SDMainChoose.super.mMenuVoiceEnabled) {
-						MediaPlayer.create(SDMainChoose.this, R.raw.select_a_favourite).start();
+						MediaPlayer.create(SDMainChoose.this, R.raw.select_a_favorite).start();
 					}
 				}
 
