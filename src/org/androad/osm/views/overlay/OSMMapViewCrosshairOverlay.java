@@ -65,7 +65,7 @@ public class OSMMapViewCrosshairOverlay extends Overlay {
 	// ===========================================================
 
 	@Override
-	protected void onDraw(final Canvas canvas, final MapView osmv) {
+	protected void draw(final Canvas canvas, final MapView osmv, final boolean shadow) {
         final Projection pj = osmv.getProjection();
         final GeoPoint mapcenter = osmv.getMapCenter();
         final Point mappointcenter = pj.toMapPixels(mapcenter, null);
@@ -89,11 +89,6 @@ public class OSMMapViewCrosshairOverlay extends Overlay {
 
 		/* Draw line from bottom to the centercircle. */
 		canvas.drawLine(width_2, height_2 + this.mCenterCircleRadius, width_2, height, this.mPaint);
-	}
-
-	@Override
-	protected void onDrawFinished(final Canvas c, final MapView osmv) {
-		// Nothing to draw.
 	}
 
 	// ===========================================================

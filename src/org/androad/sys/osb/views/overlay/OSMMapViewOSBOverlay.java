@@ -30,8 +30,8 @@ public class OSMMapViewOSBOverlay extends ItemizedOverlayWithFocus<OSMMapViewOSB
 	// ===========================================================
 
 	public OSMMapViewOSBOverlay(final Context ctx, final List<OSMMapViewOSBOverlayItem> pList, final OnItemGestureListener<OSMMapViewOSBOverlayItem> pOnItemTapListener) {
-		super(ctx, pList, ctx.getResources().getDrawable(R.drawable.osb_icon_bug_open), new Point(16, 16),
-              ctx.getResources().getDrawable(R.drawable.osb_marker_focused_base), new Point(16, 20),
+		super(pList, ctx.getResources().getDrawable(R.drawable.osb_icon_bug_open),
+              ctx.getResources().getDrawable(R.drawable.osb_marker_focused_base),
               Color.WHITE, pOnItemTapListener, new DefaultResourceProxyImpl(ctx));
 
 		this.mMarkerClosed = ctx.getResources().getDrawable(R.drawable.osb_icon_bug_closed);
@@ -45,17 +45,16 @@ public class OSMMapViewOSBOverlay extends ItemizedOverlayWithFocus<OSMMapViewOSB
 	 * Need to override the default-functionality, because we need two different map-markers.
 	 */
 	@Override
-	protected void onDrawItem(final Canvas c, final int index, final Point curScreenCoords) {
-		final List<OSMMapViewOSBOverlayItem> overlayItems = this.mItemList;
-		if(overlayItems == null || overlayItems.get(index).isOpenBug()){
-			super.onDrawItem(c, index, curScreenCoords);
+	protected void onDrawItem(final Canvas c, final OSMMapViewOSBOverlayItem item, final Point curScreenCoords) {
+		if(this.mItemList == null || item.isOpenBug()){
+			super.onDrawItem(c, item, curScreenCoords);
 		}else{
 			/* Save a reference to the original marker. */
 			final Drawable tmp = super.mMarkerFocusedBase;
 			/* Swithc the marker that will be drawn with the 'closed'-marker. */
 			super.mMarkerFocusedBase = this.mMarkerClosed;
 			/* Make superclass draw with that marker. */
-			super.onDrawItem(c, index, curScreenCoords);
+			super.onDrawItem(c, item, curScreenCoords);
 			/* Revert changes. */
 			super.mMarkerFocusedBase = tmp;
 		}

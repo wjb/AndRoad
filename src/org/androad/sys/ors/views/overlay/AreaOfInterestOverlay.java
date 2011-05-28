@@ -72,7 +72,7 @@ public class AreaOfInterestOverlay extends Overlay {
 	}
 
 	@Override
-	protected void onDraw(final Canvas c, final MapView osmv) {
+	protected void draw(final Canvas c, final MapView osmv, final boolean shadow) {
 		final Projection pj = osmv.getProjection();
 
 		final int limit = Math.min(this.mDrawnAreasLimit, this.mAOIs.size());
@@ -80,11 +80,6 @@ public class AreaOfInterestOverlay extends Overlay {
 			final AreaOfInterest a = this.mAOIs.get(i);
 			a.drawToCanvas(c, pj);
 		}
-	}
-
-	@Override
-	protected void onDrawFinished(final Canvas c, final MapView osmv) {
-		// Nothing
 	}
 
 	// ===========================================================

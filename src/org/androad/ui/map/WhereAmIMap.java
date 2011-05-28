@@ -23,7 +23,7 @@ import org.osmdroid.views.overlay.ItemizedOverlayControlView;
 import org.osmdroid.views.overlay.Overlay;
 import org.osmdroid.views.overlay.OverlayItem;
 import org.osmdroid.views.overlay.OverlayManager;
-import org.osmdroid.views.overlay.ItemizedOverlay.OnItemGestureListener;
+import org.osmdroid.views.overlay.ItemizedIconOverlay.OnItemGestureListener;
 
 import org.androad.R;
 import org.androad.adt.AndNavLocation;
@@ -123,7 +123,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements PreferenceConstants, Constants, ItemizedOverlay.OnItemGestureListener<OverlayItem>{
+public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements PreferenceConstants, Constants, OnItemGestureListener<OverlayItem>{
 	// ===========================================================
 	// Final Fields
 	// ===========================================================

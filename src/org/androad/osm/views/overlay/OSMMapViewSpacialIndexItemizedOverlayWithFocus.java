@@ -40,7 +40,7 @@ public class OSMMapViewSpacialIndexItemizedOverlayWithFocus<T extends OverlayIte
 	// ===========================================================
 
 	public OSMMapViewSpacialIndexItemizedOverlayWithFocus(final Context ctx, final ISpatialDataOrganizer<T> aManager, final Drawable pMarker, final Point pMarkerHotspot, final Drawable pMarkerFocusedBase, final Point pMarkerFocusedHotSpot, final int pFocusedBackgroundColor, final OnItemGestureListener<T> pOnItemTapListener) {
-		super(ctx, new ArrayList<T>(), pMarker, pMarkerHotspot, pMarkerFocusedBase, pMarkerFocusedHotSpot, pFocusedBackgroundColor, pOnItemTapListener, new DefaultResourceProxyImpl(ctx));
+		super(new ArrayList<T>(), pMarker, pMarkerFocusedBase, pFocusedBackgroundColor, pOnItemTapListener, new DefaultResourceProxyImpl(ctx));
 		this.mSpatialDataOrganizer = aManager;
 	}
 
@@ -69,7 +69,8 @@ public class OSMMapViewSpacialIndexItemizedOverlayWithFocus<T extends OverlayIte
 	// Methods from SuperClass/Interfaces
 	// ===========================================================
 
-	public void onDraw(final Canvas c, final MapView mapView) {
+    @Override
+	public void draw(final Canvas c, final MapView mapView, final boolean shadow) {
 		if(this.mSpatialDataOrganizer.isIndexBuilt()){
 			switch(this.mSpatialDataOrganizer.getGetMode()){
 				case BOUNDINGBOX:
@@ -80,7 +81,7 @@ public class OSMMapViewSpacialIndexItemizedOverlayWithFocus<T extends OverlayIte
 					break;
 			}
 
-			super.onDraw(c, mapView);
+			super.draw(c, mapView, shadow);
 		}
 	}
 

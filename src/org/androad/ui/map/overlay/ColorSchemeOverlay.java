@@ -73,7 +73,7 @@ public class ColorSchemeOverlay extends Overlay implements PreferenceConstants {
 	// ===========================================================
 
 	@Override
-	protected void onDraw(final Canvas c, final MapView osmv) {
+	protected void draw(final Canvas c, final MapView osmv, final boolean shadow) {
 		switch(this.mColorScheme){
 			case PREF_THEME_DAY_RESID:
 			case PREF_THEME_NIGHT_RESID:
@@ -83,11 +83,6 @@ public class ColorSchemeOverlay extends Overlay implements PreferenceConstants {
 			default:
 				return;
 		}
-	}
-
-	@Override
-	protected void onDrawFinished(final Canvas c, final MapView osmv) {
-		return;
 	}
 
 	// ===========================================================

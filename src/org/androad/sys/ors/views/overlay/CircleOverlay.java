@@ -57,7 +57,7 @@ public class CircleOverlay extends Overlay {
 	// ===========================================================
 
 	@Override
-	protected void onDraw(final Canvas c, final MapView osmv) {
+	protected void draw(final Canvas c, final MapView osmv, final boolean shadow) {
 		final Projection pj = osmv.getProjection();
 
 		final int limit = this.mCIs.size();
@@ -65,11 +65,6 @@ public class CircleOverlay extends Overlay {
 			final CircleItem a = this.mCIs.get(i);
 			a.drawToCanvas(c, pj);
 		}
-	}
-
-	@Override
-	protected void onDrawFinished(final Canvas c, final MapView osmv) {
-		// Nothing
 	}
 
     @Override

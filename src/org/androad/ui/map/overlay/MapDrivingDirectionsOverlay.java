@@ -226,14 +226,9 @@ public class MapDrivingDirectionsOverlay extends Overlay implements Constants, T
 		this.myDDMapActivity = null;
 	}
 
-	@Override
-	protected void onDrawFinished(final Canvas c, final MapView osmv) {
-		// Nothing
-	}
-
 	/** This function does some fancy drawing, could be shortened a lot.*/
 	@Override
-	public void onDraw(final Canvas canvas, final MapView mapView) {
+    public void draw(final Canvas canvas, final MapView mapView, final boolean shadow) {
 		try{
 			/* DEBUG Output */
 			//		final long startMs = System.currentTimeMillis();

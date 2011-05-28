@@ -92,18 +92,13 @@ public class OSMMapViewSimpleLineOverlay extends Overlay {
 	// ===========================================================
 
 	@Override
-	protected void onDraw(final Canvas c, final MapView osmv) {
+	protected void draw(final Canvas c, final MapView osmv, final boolean shadow) {
 		if(this.mGeoPointFrom != null && this.mGeoPointTo != null){
 			final Point from = osmv.getProjection().toMapPixels(this.mGeoPointFrom, null);
 			final Point to = osmv.getProjection().toMapPixels(this.mGeoPointTo, null);
 
 			c.drawLine(from.x, from.y, to.x, to.y, this.mPaint);
 		}
-	}
-
-	@Override
-	protected void onDrawFinished(final Canvas c, final MapView osmv) {
-		/* Nothing. */
 	}
 
 	// ===========================================================

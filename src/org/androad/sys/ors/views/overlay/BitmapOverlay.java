@@ -64,7 +64,7 @@ public class BitmapOverlay extends Overlay {
 	}
 
 	@Override
-	protected void onDraw(final Canvas c, final MapView osmv) {
+	protected void draw(final Canvas c, final MapView osmv, final boolean shadow) {
 		final Projection pj = osmv.getProjection();
 
 		final int limit = this.mBIs.size();
@@ -72,11 +72,6 @@ public class BitmapOverlay extends Overlay {
 			final BitmapItem a = this.mBIs.get(i);
 			a.drawToCanvas(c, pj);
 		}
-	}
-
-	@Override
-	protected void onDrawFinished(final Canvas c, final MapView osmv) {
-		// Nothing
 	}
 
     @Override
