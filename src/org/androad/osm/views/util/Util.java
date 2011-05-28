@@ -1,16 +1,17 @@
 // Created by plusminus on 17:53:07 - 25.09.2008
 package org.androad.osm.views.util;
 
+import android.graphics.Point;
+
 import org.osmdroid.tileprovider.MapTile;
 import org.osmdroid.util.BoundingBoxE6;
 import org.osmdroid.util.GeoPoint;
-import org.osmdroid.views.util.Mercator;
 import org.osmdroid.views.util.constants.MathConstants;
 import org.osmdroid.views.util.constants.MapViewConstants;
 
 import org.androad.osm.util.constants.OSMConstants;
 
-import android.graphics.Point;
+import microsoft.mappoint.TileSystem;
 
 import java.util.List;
 
@@ -44,7 +45,7 @@ public class Util implements MapViewConstants, OSMConstants, MathConstants{
 	// Methods
 	// ===========================================================
 
-	public static void calculateNeededTilesForZoomLevelInBoundingBox(final List tilesNeeded, final int zoom, final BoundingBoxE6 bbE6Visible) {
+	public static void calculateNeededTilesForZoomLevelInBoundingBox(final List<MapTile> tilesNeeded, final int zoom, final BoundingBoxE6 bbE6Visible) {
         final MapTile upperLeftTile = getMapTileFromCoordinates(bbE6Visible.getLatNorthE6(), bbE6Visible.getLonWestE6(), zoom);
         final MapTile lowerRightTile = getMapTileFromCoordinates(bbE6Visible.getLatSouthE6(), bbE6Visible.getLonEastE6(), zoom);
 
@@ -69,7 +70,7 @@ public class Util implements MapViewConstants, OSMConstants, MathConstants{
 	}
 
 	public static MapTile getMapTileFromCoordinates(final double aLat, final double aLon, final int aZoom) {
-        final Point coords = Mercator.projectGeoPoint(aLat, aLon, aZoom, null);
+        final Point coords = TileSystem.LatLongToPixelXY(aLat, aLon, aZoom, null);
 
 		return new MapTile(aZoom, coords.x, coords.y);
 	}
