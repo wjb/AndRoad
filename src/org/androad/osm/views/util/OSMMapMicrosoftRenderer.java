@@ -8,16 +8,23 @@ import org.osmdroid.tileprovider.tilesource.OnlineTileSourceBase;
 public class OSMMapMicrosoftRenderer extends OnlineTileSourceBase {
 
 	protected static final char[] NUM_CHAR = { '0', '1', '2', '3' };
+	private final int mOrdinal;
 
 	public OSMMapMicrosoftRenderer(String aName, final string aResourceId, int aZoomMinLevel,
-			int aZoomMaxLevel, int aMaptileZoom, String aImageFilenameEnding,
+                      int aZoomMaxLevel, int aMaptileZoom, String aImageFilenameEnding, int ordinal,
 			String ...aBaseUrl) {
 		super(aName, aResourceId, aZoomMinLevel, aZoomMaxLevel, aMaptileZoom, aImageFilenameEnding, aBaseUrl);
+        mOrdinal = ordinal;
 	}
 
 	@Override
 	public String localizedName(ResourceProxy proxy) {
 		return name();
+	}
+
+	@Override
+	public int ordinal() {
+		return mOrdinal;
 	}
 
 	@Override

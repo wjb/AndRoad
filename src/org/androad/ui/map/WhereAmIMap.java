@@ -1632,7 +1632,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 					renderersNames[j] = itemTitle;
 				}
 
-				final int curRendererIndex = WhereAmIMap.this.mOSMapView.getTileProvider().getTileSource().ordinal() - 1;
+				final int curRendererIndex = WhereAmIMap.this.mOSMapView.getTileProvider().getTileSource().ordinal();
 
 				new AlertDialog.Builder(WhereAmIMap.this)
 				.setTitle(R.string.maps_menu_submenu_renderers)

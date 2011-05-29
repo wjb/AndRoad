@@ -72,34 +72,35 @@ public abstract class OpenStreetMapAndNavBaseActivity extends OpenStreetMapActiv
         CloudmadeUtil.retrieveCloudmadeKey(this.getApplicationContext());
 
         // Add google maps
+        final int size = TileSourceFactory.getTileSources().size();
         TileSourceFactory.addTileSource(
                    new OSMMapGoogleRenderer("Google Maps", ResourceProxy.string.unknown, 0, 19, 256, ".png",
-                   "http://mt0.google.com/vt/lyrs=m@127&"));
+                                            size, "http://mt0.google.com/vt/lyrs=m@127&"));
         TileSourceFactory.addTileSource(
                    new OSMMapGoogleRenderer("Google Maps Satellite", ResourceProxy.string.unknown, 0, 19, 256, ".jpg",
-                   "http://mt0.google.com/vt/lyrs=s@127,h@127&"));
+                                            size+1, "http://mt0.google.com/vt/lyrs=s@127,h@127&"));
         TileSourceFactory.addTileSource(
                    new OSMMapGoogleRenderer("Google Maps Terrain", ResourceProxy.string.unknown, 0, 15, 256, ".jpg",
-                   "http://mt0.google.com/vt/lyrs=t@127,r@127&"));
+                                            size+2, "http://mt0.google.com/vt/lyrs=t@127,r@127&"));
 
         // Add yahoo maps
         TileSourceFactory.addTileSource(
                    new OSMMapYahooRenderer("Yahoo Maps", ResourceProxy.string.unknown, 0, 17, 256, ".jpg",
-                   "http://maps.yimg.com/hw/tile?"));
+                                           size+3, "http://maps.yimg.com/hw/tile?"));
         TileSourceFactory.addTileSource(
                    new OSMMapYahooRenderer("Yahoo Maps Satellite", ResourceProxy.string.unknown, 0, 17, 256, ".jpg",
-                   "http://maps.yimg.com/ae/ximg?"));
+                                           size+4, "http://maps.yimg.com/ae/ximg?"));
 
         // Add microsoft maps
         TileSourceFactory.addTileSource(
                    new OSMMapMicrosoftRenderer("Microsoft Maps", ResourceProxy.string.unknown, 0, 19, 256, ".png",
-                   "http://r0.ortho.tiles.virtualearth.net/tiles/r"));
+                                               size+5, "http://r0.ortho.tiles.virtualearth.net/tiles/r"));
         TileSourceFactory.addTileSource(
                    new OSMMapMicrosoftRenderer("Microsoft Earth", ResourceProxy.string.unknown, 0, 19, 256, ".jpg",
-                   "http://a0.ortho.tiles.virtualearth.net/tiles/a"));
+                                               size+6, "http://a0.ortho.tiles.virtualearth.net/tiles/a"));
         TileSourceFactory.addTileSource(
                    new OSMMapMicrosoftRenderer("Microsoft Hybrid", ResourceProxy.string.unknown, 0, 19, 256, ".jpg",
-                   "http://h0.ortho.tiles.virtualearth.net/tiles/h"));
+                                               size+7, "http://h0.ortho.tiles.virtualearth.net/tiles/h"));
 
 		this.onSetupContentView();
 
