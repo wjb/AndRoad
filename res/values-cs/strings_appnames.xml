@@ -33,6 +33,7 @@
 	<string name="app_name_sd_street">AndRoad! - zadat ulici...</string>
 	<string name="app_name_sd_streetnumber">AndRoad! - zadat číslo popisné...</string>
 	<string name="app_name_sd_favorites">AndRoad! - vybrat favority...</string>
+	<string name="app_name_sd_poi">AndRoad! - vybrat POI...</string>
 	<string name="app_name_sd_contacts">AndRoad! - vybrat kontakt...</string>
 	<string name="app_name_sd_savedroutechooser">Načíst uloženou trasu...</string>
 	<string name="app_name_whereami">AndRoad! - Kde jsem...</string>

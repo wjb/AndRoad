@@ -179,6 +179,13 @@
 							android:paddingTop="10px"
 							android:paddingBottom="10px"
 							android:src="@drawable/settingsmenu_unitsystem"/>
+                        <ImageButton
+                           android:id="@+id/ibtn_settings_poi"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:paddingTop="10px"
+                           android:paddingBottom="10px"
+                           android:src="@drawable/settingsmenu_poi"/>
 					</TableRow>
 					<TableRow
 						android:layout_width="fill_parent"

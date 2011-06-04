@@ -7,6 +7,8 @@
 
 	<string name="tv_sd_favorites_quickinfo_caption">Selectionner un favori</string>
 	<string name="menu_sd_favorites_wipe">Nettoyer les favoris...</string>
+
+	<string name="tv_settings_quickinfo_poi_focused">Gérer les POI...</string>
 	
 	<string name="dlg_input_favorite_name_name">Nom :</string>
 	<string name="et_dlg_input_favorite_name_name_hint">i.e. \'Endroit sympa\'</string>

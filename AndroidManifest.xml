@@ -139,6 +139,12 @@
                 <category android:name="android.intent.category.VIEW" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.sd.SDPoi" android:label="@string/app_name_sd_poi">
+            <intent-filter>
+                <action android:name="android.intent.action.DEFAULT" />
+                <category android:name="android.intent.category.VIEW" />
+            </intent-filter>
+        </activity>
         <activity android:name=".ui.sd.SDContacts" android:label="@string/app_name_sd_contacts">
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />

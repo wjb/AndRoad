@@ -34,6 +34,7 @@
 	<string name="app_name_sd_street">AndRoad! - Entrer le nom de la rue...</string>
 	<string name="app_name_sd_streetnumber">AndRoad! - Entrer le numéro de la rue...</string>
 	<string name="app_name_sd_favorites">AndRoad! - Selectionner un Favori...</string>
+	<string name="app_name_sd_poi">AndRoad! - Selectionner un POI...</string>
 	<string name="app_name_sd_contacts">AndRoad! - Choisir un contact...</string>
 	<string name="app_name_sd_savedroutechooser">Charger une route enregistrée...</string>
 	<string name="app_name_sd_savedtracechooser">Charger une trace enregistrée...</string>

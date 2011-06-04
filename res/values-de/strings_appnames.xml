@@ -34,6 +34,7 @@
 	<string name="app_name_sd_street">AndRoad! - Straße eingeben...</string>
 	<string name="app_name_sd_streetnumber">AndRoad! - Hausnummer eingeben...</string>
 	<string name="app_name_sd_favorites">AndRoad! - Favoriten auswählen...</string>
+	<string name="app_name_sd_poi">AndRoad! - POI auswählen...</string>
 	<string name="app_name_sd_contacts">AndRoad! - Kontakt auswählen...</string>
 	<string name="app_name_sd_savedroutechooser">Gespeicherte Route laden...</string>
 	<string name="app_name_sd_savedtracechooser">Gespeicherten Trace laden...</string>

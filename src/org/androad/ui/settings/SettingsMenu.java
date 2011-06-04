@@ -6,6 +6,7 @@ import org.androad.preferences.Preferences;
 import org.androad.ui.AndNavBaseActivity;
 import org.androad.ui.common.OnClickOnFocusChangedListenerAdapter;
 import org.androad.ui.sd.SDFavorites;
+import org.androad.ui.sd.SDPoi;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -26,7 +27,8 @@ public class SettingsMenu extends AndNavBaseActivity {
 	protected static final int REQUESTCODE_DIRECTIONSLANGUAGE = REQUESTCODE_QUALITY + 1;
 	protected static final int REQUESTCODE_UNITSYSTEM = REQUESTCODE_DIRECTIONSLANGUAGE + 1;
 	protected static final int REQUESTCODE_FAVORITES = REQUESTCODE_UNITSYSTEM + 1;
-	protected static final int REQUESTCODE_STATISTICS = REQUESTCODE_FAVORITES + 1;
+    protected static final int REQUESTCODE_POI = REQUESTCODE_FAVORITES + 1;
+	protected static final int REQUESTCODE_STATISTICS = REQUESTCODE_POI + 1;
 	protected static final int REQUESTCODE_ROUTINGFLAGS_SETTINGS = REQUESTCODE_STATISTICS + 1;
 	protected static final int REQUESTCODE_SCREENORIENTATION = REQUESTCODE_ROUTINGFLAGS_SETTINGS + 1;
 	protected static final int REQUESTCODE_TRACEPOLICY = REQUESTCODE_SCREENORIENTATION + 1;
@@ -326,6 +328,21 @@ public class SettingsMenu extends AndNavBaseActivity {
 				b.putBoolean(SDFavorites.EXTRAS_FAVORITES_REFER, false);
 				favIntent.putExtras(b);
 				SettingsMenu.this.startActivityForResult(favIntent, REQUESTCODE_FAVORITES);
+			}
+		};
+
+		new OnClickOnFocusChangedListenerAdapter(this.findViewById(R.id.ibtn_settings_poi)){
+			@Override
+			public void onBoth(final View me, final boolean focused) {
+				if(focused) {
+					SettingsMenu.this.setQuickinfoPageUserTextByID(R.string.tv_settings_quickinfo_poi_focused);
+				}
+			}
+
+			@Override
+			public void onClicked(final View me) {
+				final Intent favIntent = new Intent(SettingsMenu.this, SDPoi.class);
+				SettingsMenu.this.startActivityForResult(favIntent, REQUESTCODE_POI);
 			}
 		};
 
