@@ -71,6 +71,7 @@ public class Util implements MapViewConstants, OSMConstants, MathConstants{
 
 	public static MapTile getMapTileFromCoordinates(final double aLat, final double aLon, final int aZoom) {
         final Point coords = TileSystem.LatLongToPixelXY(aLat, aLon, aZoom, null);
+        TileSystem.PixelXYToTileXY(coords.x, coords.y, coords);
 
 		return new MapTile(aZoom, coords.x, coords.y);
 	}
