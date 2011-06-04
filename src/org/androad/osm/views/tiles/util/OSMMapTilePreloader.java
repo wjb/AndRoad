@@ -1,6 +1,7 @@
 // Created by plusminus on 19:24:16 - 12.11.2008
 package org.androad.osm.views.tiles.util;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
@@ -34,13 +35,13 @@ public class OSMMapTilePreloader extends MapTileProviderBasic implements Runnabl
 	// ===========================================================
 
 	HashSet<MapTile> mLoaded = new HashSet<MapTile>();
-	MapTile[] mTiles;
+	ArrayList<MapTile> mTiles;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
-	public OSMMapTilePreloader(Context pContext, ITileSource pTileSource, final MapTile[] pTiles) {
+	public OSMMapTilePreloader(Context pContext, ITileSource pTileSource, final ArrayList<MapTile> pTiles) {
 		super(pContext, pTileSource);
 		this.setTileSource(pTileSource);
 		mTiles = pTiles;
@@ -59,7 +60,7 @@ public class OSMMapTilePreloader extends MapTileProviderBasic implements Runnabl
 	}
 
 	public int getTotal() {
-		return mTiles.length;
+		return mTiles.size();
 	}
 
 	// ===========================================================
@@ -80,9 +81,14 @@ public class OSMMapTilePreloader extends MapTileProviderBasic implements Runnabl
 	 * Loads a series of MapTiles to the various caches at a specific zoomlevel.
 	 */
 	public void run() {
-		for(int i = 0; i < mTiles.length; i++) {
-			while(i - getProgress() >= OpenStreetMapTileProviderConstants.TILE_DOWNLOAD_MAXIMUM_QUEUE_SIZE);
-			this.getMapTile(mTiles[i]);
+		for(int i = 0; i < mTiles.size(); i++) {
+			while(i - getProgress() >= OpenStreetMapTileProviderConstants.TILE_DOWNLOAD_MAXIMUM_QUEUE_SIZE) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                }
+            }
+			this.getMapTile(mTiles.get(i));
 		}
 	}
 
@@ -96,7 +102,7 @@ public class OSMMapTilePreloader extends MapTileProviderBasic implements Runnabl
 	 * @return
 	 * @throws IllegalArgumentException
 	 */
-	public static MapTile[] getNeededMaptiles(final Route aRoute, final int aZoomLevel, final MapTileProviderBase aProviderInfo, final boolean pSmoothed) throws IllegalArgumentException {
+	public static ArrayList<MapTile> getNeededMaptiles(final Route aRoute, final int aZoomLevel, final MapTileProviderBase aProviderInfo, final boolean pSmoothed) throws IllegalArgumentException {
 		return getNeededMaptiles(aRoute.getPolyLine(), aZoomLevel, aProviderInfo, pSmoothed);
 	}
 
@@ -109,7 +115,7 @@ public class OSMMapTilePreloader extends MapTileProviderBasic implements Runnabl
 	 * @return
 	 * @throws IllegalArgumentException
 	 */
-	public static MapTile[] getNeededMaptiles(final List<GeoPoint> aPath, final int aZoomLevel, final MapTileProviderBase aProviderInfo, final boolean pSmoothed) throws IllegalArgumentException {
+	public static ArrayList<MapTile> getNeededMaptiles(final List<GeoPoint> aPath, final int aZoomLevel, final MapTileProviderBase aProviderInfo, final boolean pSmoothed) throws IllegalArgumentException {
 		if(aZoomLevel > aProviderInfo.getMaximumZoomLevel()) {
 			throw new IllegalArgumentException("Zoomlevel higher than Renderer supplies!");
 		}
@@ -170,11 +176,11 @@ public class OSMMapTilePreloader extends MapTileProviderBasic implements Runnabl
 
 		/* Put the unique MapTile-indices into an array. */
 		final int countNeeded = needed.size();
-		final MapTile[] out = new MapTile[countNeeded];
+		final ArrayList<MapTile> out = new ArrayList<MapTile>(countNeeded);
 
 		int i = 0;
 		for (final ValuePair valuePair : needed) {
-			out[i++] = new MapTile(aZoomLevel, valuePair.getValueA(), valuePair.getValueB());
+			out.add(new MapTile(aZoomLevel, valuePair.getValueA(), valuePair.getValueB()));
 		}
 
 		return out;

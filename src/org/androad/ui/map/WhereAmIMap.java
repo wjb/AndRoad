@@ -1295,7 +1295,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 				d.dismiss();
 				final String progressMessage = getString(R.string.pdg_preloader_message);
 				final ProgressDialog pd = ProgressDialog.show(WhereAmIMap.this, getString(R.string.pdg_preloader_title), String.format(progressMessage, 0, tileCount), true, true);
-				final OSMMapTilePreloader preloader = new OSMMapTilePreloader(WhereAmIMap.this, providerInfo.getTileSource(), tilesNeeded.toArray(new MapTile[1]));
+				final OSMMapTilePreloader preloader = new OSMMapTilePreloader(WhereAmIMap.this, providerInfo.getTileSource(), tilesNeeded);
 				preloader.setHandler(new Handler(){
 					@Override
 					public void handleMessage(Message msg) {

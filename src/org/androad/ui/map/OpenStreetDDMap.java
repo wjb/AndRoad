@@ -882,20 +882,20 @@ public class OpenStreetDDMap extends OpenStreetMapAndNavBaseActivity implements 
 
 		final MapTileProviderBase rendererInfo = this.mOSMapView.getTileProvider();
 
-		final MapTile[] tilesNeeded = OSMMapTilePreloader.getNeededMaptiles(this.mRoute, zoomLevel, rendererInfo, true);
+		final ArrayList<MapTile> tilesNeeded = OSMMapTilePreloader.getNeededMaptiles(this.mRoute, zoomLevel, rendererInfo, true);
 
-        final int bytesEpectedNeeded = tilesNeeded.length * rendererInfo.getTileSource().getTileSizePixels() * 71;
+        final int bytesEpectedNeeded = tilesNeeded.size() * rendererInfo.getTileSource().getTileSizePixels() * 71;
 		final String formattedFileSize = FileSizeFormatter.formatFileSize(bytesEpectedNeeded);
 
 		new AlertDialog.Builder(this)
 		.setTitle(R.string.dlg_preloader_title)
-		.setMessage(String.format(getString(R.string.dlg_preloader_message), tilesNeeded.length , formattedFileSize))
+        .setMessage(String.format(getString(R.string.dlg_preloader_message), tilesNeeded.size(), formattedFileSize))
 		.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener(){
 			@Override
 			public void onClick(final DialogInterface d, final int which) {
 				d.dismiss();
 				final String progressMessage = getString(R.string.pdg_preloader_message);
-				final ProgressDialog pd = ProgressDialog.show(OpenStreetDDMap.this, getString(R.string.pdg_preloader_title), String.format(progressMessage,0,tilesNeeded.length), true, true);
+				final ProgressDialog pd = ProgressDialog.show(OpenStreetDDMap.this, getString(R.string.pdg_preloader_title), String.format(progressMessage,0,tilesNeeded.size()), true, true);
 				final OSMMapTilePreloader preloader = new OSMMapTilePreloader(OpenStreetDDMap.this, rendererInfo.getTileSource(), tilesNeeded);
 				preloader.setHandler(new Handler(){
 					@Override
