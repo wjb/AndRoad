@@ -3,6 +3,7 @@ package org.androad.ui.map;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -231,6 +232,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 	private AreaOfInterestOverlay mAreaOfAvoidingsOverlay;
 
 	private final ArrayList<AreaOfInterest> mAvoidAreas = new ArrayList<AreaOfInterest>();
+    private final UnitSystem us = Preferences.getUnitSystem(this);
 
 	private boolean mNavPointsCrosshairMode;
 
@@ -375,7 +377,6 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 		this.mIbtnNavPointsDoCancel = (ImageButton)this.findViewById(R.id.ibtn_whereami_setnavpoints_cancel);
 		this.mMapItemControlView = (ItemizedOverlayControlView)this.findViewById(R.id.itemizedoverlaycontrol_whereami);
 
-        final UnitSystem us = Preferences.getUnitSystem(this);
 		this.mScaleIndicatorView = new ScaleBarOverlay(this);
         if (us == UnitSystem.IMPERIAL) {
             this.mScaleIndicatorView.setImperial();
@@ -1151,8 +1152,13 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 			}
 
 			if(this.mStatisticsEnabled && this.mStatisticsManager != null) {
+                final DecimalFormat df = new DecimalFormat("#,###,##0.0");
 				this.mStatisticsManager.tick(pLocation);
-                this.mIbtnSpeed.setText(((int) this.mStatisticsManager.getCurrentSpeed()) + "km/h");
+                int speed = (int) this.mStatisticsManager.getCurrentSpeed();
+                this.mIbtnSpeed.setText(""
+                                        + df.format(us.mScaleToMetersPerSecond
+                                        * speed)
+                                        + us.mAbbrKilometersPerHourScale);
 			}
 		}
 		this.mOSMapView.invalidate();
