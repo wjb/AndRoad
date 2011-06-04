@@ -13,19 +13,28 @@ import org.androad.ui.common.OnClickOnFocusChangedListenerAdapter;
 import org.androad.ui.map.OpenStreetDDMap;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SDFavorites extends AndNavBaseActivity {
 
@@ -80,7 +89,7 @@ public class SDFavorites extends AndNavBaseActivity {
 	}
 
 	private void updateFavListItems() throws DataBaseException {
-		this.mFavList.setAdapter(new ArrayAdapter<Favorite>(this, android.R.layout.simple_list_item_1, DBManager.getFavorites(this)));
+		this.mFavList.setAdapter(new FavoriteArrayAdapter(this.getApplicationContext(), R.layout.favorite_listitem, DBManager.getFavorites(this)));
 	}
 
 	protected void initListView(final boolean doStartNavOnClick) {
@@ -267,4 +276,61 @@ public class SDFavorites extends AndNavBaseActivity {
 	// ===========================================================
 	// Inner and Anonymous Classes
 	// ===========================================================
+    class FavoriteArrayAdapter extends ArrayAdapter<Favorite> {
+
+        private Context context;
+	    private ImageView favoriteIcon;
+	    private TextView favoriteName;
+        private final Bitmap defaultPhoto;
+
+        private List<Favorite> favorites = new ArrayList<Favorite>();
+
+        public FavoriteArrayAdapter(Context context, int textViewResourceId,  List<Favorite> objects) {
+	        super(context, textViewResourceId, objects);
+	        this.context = context;
+	        this.favorites = objects;
+            this.defaultPhoto = BitmapFactory.decodeResource(context.getResources(), R.drawable.favorites);
+	    }
+
+	    public int getCount() {
+	        return this.favorites.size();
+	    }
+
+	    public Favorite getItem(int index) {
+	        return this.favorites.get(index);
+	    }
+
+	    public View getView(int position, View convertView, ViewGroup parent) {
+	        View row = convertView;
+	        if (row == null) {
+	            LayoutInflater inflater = (LayoutInflater) this.getContext()
+	                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+	            row = inflater.inflate(R.layout.favorite_listitem, parent, false);
+	        }
+
+	        // Get item
+	        Favorite favorite = getItem(position);
+
+	        // Get reference to ImageView
+	        favoriteIcon = (ImageView) row.findViewById(R.id.favorite_icon);
+
+	        // Get reference to TextView
+	        favoriteName = (TextView) row.findViewById(R.id.favorite_name);
+
+	        //Set favorite name
+	        favoriteName.setText(favorite.getName());
+
+	        // Set favorite icon usign File path
+	        final String filename = favorite.getPhotoFilename();
+            final Bitmap photo = BitmapFactory.decodeFile(filename);
+            if (photo != null)
+                favoriteIcon.setImageBitmap(Bitmap.createScaledBitmap(photo, 45, 45, true));
+            else
+                favoriteIcon.setImageBitmap(defaultPhoto);
+
+	        return row;
+	    }
+
+    }
+
 }
