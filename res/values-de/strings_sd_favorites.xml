@@ -8,8 +8,6 @@
 	<string name="tv_sd_favorites_quickinfo_caption">Favoriten auswählen...</string>
 	<string name="menu_sd_favorites_wipe">Favoriten löschen...</string>
 	
-	<string name="tv_settings_quickinfo_poi_focused">POI verwalten...</string>
-
 	<string name="dlg_input_favorite_name_name">Name:</string>
 	<string name="et_dlg_input_favorite_name_name_hint">z.B.: \'Toller Ort\'</string>
 	<string name="dlg_input_favorite_name_title">Name eingeben...</string>

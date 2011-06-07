@@ -1,4 +1,12 @@
 <resources>
+	<string name="tv_settings_quickinfo_poi_focused">POI verwalten...</string>
+	<string name="tv_sd_poi_quickinfo_caption">POI wählen...</string>
+    <string name="sd_poi_loading_title">Lade POI...</string>
+    <string name="sd_poi_loading_progress">Fortschritt: %1$d %%  (%2$d von %3$d Poi)</string>
+
+    <string name="sd_poi_item_loading_title">Downloading POI File</string>
+    <string name="sd_poi_item_loading_progress">Progress: %1$d %%  (%2$d of %3$d POI)</string>
+
 	<string name="choose_search_radius">Suchradius wählen...</string>
 	<string name="poi_search_radius_global">Global</string>
 	

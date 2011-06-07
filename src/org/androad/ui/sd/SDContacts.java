@@ -62,6 +62,8 @@ public class SDContacts extends AndNavBaseActivity{
 
 	private boolean mContactsWithAddressInitFinished = false;
 
+    private ProgressDialog pd;
+
 	// ===========================================================
 	// Constructors
 	// ===========================================================
@@ -89,10 +91,17 @@ public class SDContacts extends AndNavBaseActivity{
 		}
 	}
 
+	@Override
+	protected void onPause() {
+		super.onPause();
+        if (pd != null && pd.isShowing()) pd.dismiss();
+	}
+
 	private void updateContactListItems() {
+        android.util.Log.d("Fabien", "SDContacts.updateContactListItems 1");
 		final ContactListAdapter cla = new ContactListAdapter(this);
 
-		final ProgressDialog pd = ProgressDialog.show(this, getString(R.string.sd_contacts_loading_title), getString(R.string.please_wait_a_moment), false); // TODO Make determinate, when SDK supports this.
+		pd = ProgressDialog.show(this, getString(R.string.sd_contacts_loading_title), getString(R.string.please_wait_a_moment), false); // TODO Make determinate, when SDK supports this.
 
 		final String progressBaseString = getString(R.string.sd_contacts_loading_progress);
 
@@ -100,6 +109,7 @@ public class SDContacts extends AndNavBaseActivity{
 			@Override
 			public Void doInBackground(final Void... params) {
 				try{
+                    android.util.Log.d("Fabien", "UserTask.doInBackground 2");
 					final Map<Integer, List<ContactItemToResolve>> unresolvedPersonsAddresses = new HashMap<Integer, List<ContactItemToResolve>>();
 
 					/* Get a cursor on all Contacts.KIND_POSTAL entries. */
@@ -223,6 +233,7 @@ public class SDContacts extends AndNavBaseActivity{
 				SDContacts.this.mContactsList.setAdapter(cla);
 				try{
 					pd.dismiss();
+                    pd = null;
 				}catch(final IllegalArgumentException ia){
 					// Nothing
 				}
@@ -484,6 +495,7 @@ public class SDContacts extends AndNavBaseActivity{
 		}
 
 		public void setListItems(final List<ContactItem> lit) {
+            if (lit == null) return;
 			this.mItems = lit;
 			Collections.sort(this.mItems);
 		}
