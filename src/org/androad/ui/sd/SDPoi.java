@@ -3,6 +3,7 @@ package org.androad.ui.sd;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Parcel;
@@ -27,10 +28,20 @@ import org.androad.ui.common.OnClickOnFocusChangedListenerAdapter;
 import org.androad.ui.common.views.FastScrollView;
 import org.androad.util.UserTask;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.URL;
+import java.net.HttpURLConnection;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -43,6 +54,10 @@ public class SDPoi extends AndNavBaseActivity {
 	// ===========================================================
 
 	private static final String STATE_POI_ITEMS_ID = "state_poi_items_id";
+
+    private static final String poiFolderPath = org.androad.osm.util.Util.getAndRoadExternalStoragePath() + OSMConstants.SDCARD_SAVEDPOI_PATH;
+
+    private static final int BUFFER_SIZE = 5120;
 
 	// ===========================================================
 	// Fields
@@ -82,6 +97,8 @@ public class SDPoi extends AndNavBaseActivity {
 		if(savedInstanceState == null) {
 			updatePoiListItems();
 		}
+
+        new File(poiFolderPath).mkdirs();
 	}
 
 	@Override
@@ -90,23 +107,94 @@ public class SDPoi extends AndNavBaseActivity {
         if (pd != null && pd.isShowing()) pd.dismiss();
 	}
 
+    private void downloadFile(final URL url, final OutputStream out) {
+        int tries = 3;
+        int read = 0;
+        int length = 0;
+        byte[] buffer = new byte[BUFFER_SIZE];
+
+        while (tries > 0) {
+            if (read > 0) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                }
+            }
+
+            try {
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setReadTimeout(30000);
+                conn.setConnectTimeout(30000);
+                if (read > 0) {
+                    conn.setRequestProperty("Range", "bytes=" + read + "-" + (length -1));
+                }
+                switch (conn.getResponseCode()) {
+                case HttpURLConnection.HTTP_PARTIAL:
+                    break;
+                case HttpURLConnection.HTTP_OK:
+                    length = conn.getContentLength();
+                    break;
+                default:
+                    conn.disconnect();
+                    tries--;
+                    continue;
+                }
+                final InputStream is = conn.getInputStream();
+                int r = 0;
+
+                while ((r = is.read(buffer)) != -1) {
+                    out.write(buffer, 0, r);
+                    read += r;
+                }
+                is.close();
+                out.flush();
+            } catch (IOException e) {
+                tries--;
+            }
+
+            if (length <= read) {
+                return;
+            }
+        }
+    }
+
     private void downloadPoiItem(final PoiItem p) {
 		pd = ProgressDialog.show(this, getString(R.string.sd_poi_item_loading_title), getString(R.string.please_wait_a_moment), false); // TODO Make determinate, when SDK supports this.
 
 		final String progressBaseString = getString(R.string.sd_poi_item_loading_progress);
 
-		new UserTask<Void, Integer, Void>(){
+        final String fileToDownload = poiFolderPath + p.mName;
+
+		new UserTask<Void, Integer, Void>() {
 			@Override
 			public Void doInBackground(final Void... params) {
 				try {
-                    if (p.mParts == 1) {
+                    OutputStream out = new BufferedOutputStream(new FileOutputStream(fileToDownload));
+                    if (p.mParts < 2) {
                         URL url = new URL("http://download.osmand.net/download?file=" + p.mName);
+                        downloadFile(url, out);
                     } else {
                         for(int i = 1; i <= p.mParts; i++) {
                             URL url = new URL("http://download.osmand.net/download?file=" + p.mName + "-" + i);
+                            downloadFile(url, out);
                         }
                     }
+                    out.close();
                     if (p.mName.endsWith(".zip")) {
+                        final ZipInputStream zipIn = new ZipInputStream(new FileInputStream(fileToDownload));
+                        ZipEntry entry = null;
+                        while ((entry = zipIn.getNextEntry()) != null) {
+                            final File fs = new File(poiFolderPath, entry.getName());
+                            out = new BufferedOutputStream(new FileOutputStream(fs));
+                            int read;
+                            byte[] buffer = new byte[BUFFER_SIZE];
+                            while ((read = zipIn.read(buffer)) != -1) {
+                                out.write(buffer, 0, read);
+                            }
+                            out.close();
+                        }
+                        zipIn.close();
+                        (new File(fileToDownload)).delete();
                     }
 				} catch (Exception e) {
                     Log.e(OSMConstants.DEBUGTAG, "Downloading poi index error", e);
@@ -358,6 +446,17 @@ public class SDPoi extends AndNavBaseActivity {
 			this.mParts = pParts;
 		}
 
+        public boolean exists() {
+            final String filename;
+            if (this.mName.endsWith(".zip")) {
+                filename = this.mName.substring(0, this.mName.length() - 3);
+            } else {
+                filename = this.mName;
+            }
+            final File f = new File(poiFolderPath, filename);
+            return f.exists();
+        }
+
 		@Override
 		public int compareTo(final PoiItem another) {
 			return this.mName.compareToIgnoreCase(another.mName);
@@ -418,6 +517,9 @@ public class SDPoi extends AndNavBaseActivity {
 			this.mTVName.setText(aPOIItem.mName);
 			this.mTVName.setTextSize(TypedValue.COMPLEX_UNIT_PX, 24);
 			this.mTVName.setPadding(10,0,20,0);
+            if (aPOIItem.exists()) {
+                this.mTVName.setTextColor(Color.GREEN);
+            }
 
 			addView(this.mTVName, new LinearLayout.LayoutParams(android.view.ViewGroup.LayoutParams.FILL_PARENT, android.view.ViewGroup.LayoutParams.WRAP_CONTENT));
 
