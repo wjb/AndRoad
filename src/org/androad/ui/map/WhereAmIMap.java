@@ -146,7 +146,8 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 	private static final int MENU_SUBMENU_TRAFFIC_ID = MENU_SATELLITE_ID + 1;
 	private static final int MENU_WEATHER_ID = MENU_SUBMENU_TRAFFIC_ID + 1;
 	private static final int MENU_LAYER_ID = MENU_WEATHER_ID + 1;
-    private static final int MENU_SUBMENU_FOXYTAG = MENU_LAYER_ID + 1;
+    private static final int MENU_SUBMENU_POI = MENU_LAYER_ID + 1;
+    private static final int MENU_SUBMENU_FOXYTAG = MENU_SUBMENU_POI + 1;
     private static final int MENU_SUBMENU_FAVORITE = MENU_SUBMENU_FOXYTAG + 1;
 	private static final int MENU_OSB_ID = MENU_SUBMENU_FAVORITE + 1;
 	private static final int MENU_PRELOAD_ID = MENU_OSB_ID + 1;
@@ -213,6 +214,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 
 	private ItemizedOverlayWithFocus<OverlayItem> mItemOverlay;
 	private AreaOfInterestOverlay mAASOverlay;
+    private CircleOverlay mPOIOverlay;
 	private CircleOverlay mFFOverlay;
 	private BitmapOverlay mFavoriteOverlay;
 	private TrafficOverlay mTrafficOverlay;
@@ -289,6 +291,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 
 		this.mAASOverlay = new AreaOfInterestOverlay(this);
 		this.mAASOverlay.setDrawnAreasLimit(10);
+        this.mPOIOverlay = new CircleOverlay(this);
 		this.mFFOverlay = new CircleOverlay(this);
 		this.mFavoriteOverlay = new BitmapOverlay(this);
 		this.mAreaOfAvoidingsOverlay = new AreaOfInterestOverlay(this, this.mAvoidAreas);
@@ -306,6 +309,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 		this.mNavPointsConnectionLineOverlay.setEnabled(false);
 
 		overlaymanager.add(this.mAASOverlay);
+        overlaymanager.add(this.mPOIOverlay);
 		overlaymanager.add(this.mFFOverlay);
 		overlaymanager.add(this.mFavoriteOverlay);
 		overlaymanager.add(this.mAreaOfAvoidingsOverlay);
@@ -767,6 +771,8 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
             .setIcon(android.R.drawable.ic_menu_mapmode);
 			menuPos++;
             {
+                subMenu.add(menuPos, MENU_SUBMENU_POI, menuPos, getString(R.string.maps_menu_submenu_layer_poi))
+                    .setIcon(R.drawable.settingsmenu_poi);
                 subMenu.add(menuPos, MENU_SUBMENU_FOXYTAG, menuPos, getString(R.string.maps_menu_submenu_layer_foxytag))
                     .setIcon(R.drawable.foxytag);
                 subMenu.add(menuPos, MENU_SUBMENU_FAVORITE, menuPos, getString(R.string.maps_menu_submenu_layer_favorite))
@@ -875,6 +881,9 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 			case MENU_WEATHER_ID:
 				openWeatherDialog(super.mOSMapView.getMapCenter());
 				return true;
+            case MENU_SUBMENU_POI:
+                showPoi(super.mOSMapView.getMapCenter(), item);
+                return true;
             case MENU_SUBMENU_FOXYTAG:
                 showFoxyTag(super.mOSMapView.getMapCenter(), item);
                 return true;
@@ -1167,6 +1176,30 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 	// ===========================================================
 	// Methods
 	// ===========================================================
+
+    private void showPoi(final GeoPoint pGeoPoint, final MenuItem item) {
+        if (item.isChecked()) {
+            final List<CircleItem> pois = WhereAmIMap.this.mPOIOverlay.getCircleItems();
+            pois.clear();
+            item.setChecked(false);
+            return;
+        }
+
+        Toast.makeText(WhereAmIMap.this, R.string.please_wait_a_moment, Toast.LENGTH_LONG).show();
+        new Thread(new Runnable(){
+                @Override
+                public void run() {
+                    final List<CircleItem> pois = WhereAmIMap.this.mPOIOverlay.getCircleItems();
+                    if (pois.size() > 0) {
+                        pois.clear();
+                    }
+                    for (final DBPOI poi : DBManager.getPOIs(WhereAmIMap.this, WhereAmIMap.this.mOSMapView.getBoundingBox())) {
+                        pois.add(new CircleItem(poi, WhereAmIMap.this, Color.YELLOW, poi.getName()));
+                    }
+                }
+            }, "POI-Runner").start();
+        item.setChecked(true);
+    }
 
 	private void showFoxyTag(final GeoPoint pGeoPoint, final MenuItem item) {
         if (item.isChecked()) {

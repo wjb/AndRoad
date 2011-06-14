@@ -20,6 +20,7 @@
 	<string name="maps_menu_settings">Paramètres</string>
 	<string name="maps_menu_weather">Météo</string>
     <string name="maps_menu_layer">Les Couches</string>
+    <string name="maps_menu_submenu_layer_poi">POI</string>
     <string name="maps_menu_submenu_layer_foxytag">Foxy Tag</string>
 	<string name="maps_menu_submenu_layer_favorite">Les Favoris</string>
 	<string name="maps_menu_submenu_traffic">Trafic</string>

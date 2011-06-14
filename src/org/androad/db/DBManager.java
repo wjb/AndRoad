@@ -5,12 +5,14 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.osmdroid.util.BoundingBoxE6;
 import org.osmdroid.util.GeoPoint;
 
 import org.androad.adt.DBPOI;
 import org.androad.adt.Favorite;
 import org.androad.adt.TrafficFeed;
 import org.androad.db.util.constants.DatabaseConstants;
+import org.androad.osm.util.constants.OSMConstants;
 import org.androad.sys.ors.adt.lus.Country;
 import org.androad.util.constants.Constants;
 
@@ -26,13 +28,14 @@ public class DBManager implements DatabaseConstants{
 	// Final Fields
 	// ===========================================================
 
+	private static final String DATABASE_NAME = "data";
+	private static final int DATABASE_VERSION = 2;
+
 	// ===========================================================
 	// Fields
 	// ===========================================================
 
-	private static final String DATABASE_NAME = "data";
-	private static final int DATABASE_VERSION = 2;
-
+    private static ArrayList<POIDBManager> poiDBList;
 	private static SQLiteDatabase mInstance;
 
 	// ===========================================================
@@ -351,6 +354,29 @@ public class DBManager implements DatabaseConstants{
 			return false;
 		}
 	}
+
+    public static List<DBPOI> getPOIs(final Context ctx, final BoundingBoxE6 limits) {
+        if (poiDBList == null) {
+            final String poiFolderPath = org.androad.osm.util.Util.getAndRoadExternalStoragePath() + OSMConstants.SDCARD_SAVEDPOI_PATH;
+            File path = new File(poiFolderPath);
+            path.mkdir();
+
+            poiDBList = new ArrayList<POIDBManager>();
+            for(final File db : path.listFiles()) {
+                if (!db.isFile()) continue;
+                poiDBList.add(new POIDBManager(ctx, db.getAbsolutePath()));
+            }
+        }
+
+        final ArrayList<DBPOI> poiList = new ArrayList<DBPOI>();
+
+        for (POIDBManager poiDB : poiDBList) {
+            if (poiDB.contains(limits)) continue;
+            poiList.addAll(poiDB.getPOIs(limits));
+        }
+
+        return poiList;
+    }
 
 	public static List<DBPOI> getPOIHistory(final Context ctx) throws DataBaseException {
 		/* Prepare Database */

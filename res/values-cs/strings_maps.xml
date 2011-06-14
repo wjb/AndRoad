@@ -20,6 +20,7 @@
 	<string name="maps_menu_settings">Nastavení</string>
 	<string name="maps_menu_weather">Počasí</string>
     <string name="maps_menu_layer">Layers</string>
+    <string name="maps_menu_submenu_layer_poi">POI</string>
     <string name="maps_menu_submenu_layer_foxytag">Foxy Tag</string>
 	<string name="maps_menu_submenu_layer_favorite">Favorites</string>
 	<string name="maps_menu_submenu_traffic">Informace o dopravě</string>

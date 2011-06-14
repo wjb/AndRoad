@@ -20,6 +20,7 @@
 	<string name="maps_menu_settings">Einstellungen</string>
 	<string name="maps_menu_weather">Wetter</string>
     <string name="maps_menu_layer">Layers</string>
+    <string name="maps_menu_submenu_layer_poi">POI</string>
     <string name="maps_menu_submenu_layer_foxytag">Foxy Tag</string>
 	<string name="maps_menu_submenu_layer_favorite">Favorites</string>
 	<string name="maps_menu_submenu_traffic">Stau-Info</string>
