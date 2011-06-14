@@ -1219,7 +1219,8 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
                             ff.clear();
                         }
                         for (final FoxyTagPoint fpp : FoxyTagRequester.request(WhereAmIMap.this, WhereAmIMap.this.mOSMapView.getMapCenter())) {
-                            ff.add(fpp);
+                            if (WhereAmIMap.this.mOSMapView.getBoundingBox().contains(fpp.getCenter()))
+                                ff.add(fpp);
                         }
                     } catch (final Exception e) {
                         Log.e(Constants.DEBUGTAG, "AASRequester-Error", e);
@@ -1242,7 +1243,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
             if (fs.size() > 0) {
                 fs.clear();
             }
-            for (final Favorite fp : DBManager.getFavorites(this)) {
+            for (final Favorite fp : DBManager.getFavorites(this, WhereAmIMap.this.mOSMapView.getBoundingBox())) {
                 fs.add(new FavoritePoint(fp, this));
             }
         } catch (final DataBaseException e) {

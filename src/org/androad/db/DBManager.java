@@ -46,6 +46,11 @@ public class DBManager implements DatabaseConstants{
 	// Getter & Setter
 	// ===========================================================
 
+    public static String getDbPath(Context ctx) {
+        final SQLiteDatabase myDB = ensureDBInstanceExists(ctx);
+        return myDB.getPath();
+    }
+
 	// ===========================================================
 	// Methods from SuperClass/Interfaces
 	// ===========================================================
@@ -508,6 +513,62 @@ public class DBManager implements DatabaseConstants{
 					T_FAVS_COL_ID, T_FAVS_COL_FAVNAME, T_FAVS_COL_LAT,
 					T_FAVS_COL_LNG, T_FAVS_COL_USES
                 }, null, null, null, null, T_FAVS_COL_LAST_USE + " DESC");
+
+			/* Check if our query was valid. */
+			if (c != null) {
+				favList = new ArrayList<Favorite>(c.getCount());
+
+				/* Get the indices of the Columns we will need */
+                final int idColumn = c.getColumnIndexOrThrow(T_FAVS_COL_ID);
+				final int favNameColumn = c.getColumnIndexOrThrow(T_FAVS_COL_FAVNAME);
+				final int latColumn = c.getColumnIndexOrThrow(T_FAVS_COL_LAT);
+				final int lngColumn = c.getColumnIndexOrThrow(T_FAVS_COL_LNG);
+				final int usesColumn = c.getColumnIndexOrThrow(T_FAVS_COL_USES);
+
+				/* Check if at least one Result was returned. */
+				if (c.moveToFirst()) {
+					/* Loop through all Results */
+					do {
+						/* Retrieve the values of the Entry the Cursor is providing. */
+						favList.add(new Favorite(c.getLong(idColumn),
+                                                 c.getString(favNameColumn),
+                                                 c.getInt(latColumn),
+                                                 c.getInt(lngColumn),
+                                                 c.getInt(usesColumn)));
+
+					} while (c.moveToNext());
+				}
+				c.close();
+			}else{
+				throw new DataBaseException("Failed on reading favourties");
+			}
+
+		}finally{
+			/* Close Database */
+			closeDB();
+		}
+		return favList;
+	}
+
+	public static List<Favorite> getFavorites(final Context ctx, final BoundingBoxE6 limits) throws DataBaseException {
+		/* Prepare Database */
+		final SQLiteDatabase myDB = ensureDBInstanceExists(ctx);
+		ArrayList<Favorite> favList = null;
+        final String squery = T_FAVS_COL_LAT + " < ? AND ? < " + T_FAVS_COL_LAT + " AND " + T_FAVS_COL_LNG + " < ? AND ? < " + T_FAVS_COL_LNG;
+
+		try{
+			ensureFavoritesTableExists(myDB);
+
+			/* Query for all favourites. */
+			final Cursor c = myDB.query(T_FAVS, new String[] {
+					T_FAVS_COL_ID, T_FAVS_COL_FAVNAME, T_FAVS_COL_LAT,
+					T_FAVS_COL_LNG, T_FAVS_COL_USES
+                }, squery,
+                new String[] { limits.getLatNorthE6() + "",
+                               limits.getLatSouthE6() + "",
+                               limits.getLonEastE6() + "",
+                               limits.getLonWestE6() + "",
+                }, null, null, T_FAVS_COL_LAST_USE + " DESC");
 
 			/* Check if our query was valid. */
 			if (c != null) {
