@@ -7,6 +7,9 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.osmdroid.events.MapListener;
+import org.osmdroid.events.ScrollEvent;
+import org.osmdroid.events.ZoomEvent;
 import org.osmdroid.tileprovider.MapTile;
 import org.osmdroid.tileprovider.MapTileProviderBase;
 import org.osmdroid.tileprovider.tilesource.ITileSource;
@@ -245,6 +248,11 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 	private boolean mStatisticsEnabled = false;
 	private StatisticsManager mStatisticsManager;
 
+    /* Show or not layers */
+    private boolean showOverlayPoi = false;
+    private boolean showOverlayFoxyTag = false;
+    private boolean showOverlayFavorite = false;
+
 	// ===========================================================
 	// Constructors
 	// ===========================================================
@@ -252,8 +260,9 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 	@Override
 	protected void onSetupContentView() {
 		this.setContentView(R.layout.whereami_map);
-		super.mOSMapView = (MapView)findViewById(R.id.map_whereami);
-		super.mOSMapView.setTileSource(Preferences.getMapViewProviderInfoWhereAmI(this));
+		this.mOSMapView = (MapView)findViewById(R.id.map_whereami);
+		this.mOSMapView.setTileSource(Preferences.getMapViewProviderInfoWhereAmI(this));
+        this.mOSMapView.setMapListener(new AndRoadMapListener(this));
 
         final OverlayManager overlaymanager = this.mOSMapView.getOverlayManager();
 
@@ -325,7 +334,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 		items.add(new OverlayItem("", "", pGeoPoint));
 		refreshPinOverlay(items);
 		WhereAmIMap.this.updateUIForAutoCenterChange(WhereAmIMap.CENTERMODE_NONE);
-		WhereAmIMap.super.mOSMapView.getController().animateTo(pGeoPoint, AnimationType.MIDDLEPEAKSPEED);
+		WhereAmIMap.this.mOSMapView.getController().animateTo(pGeoPoint, AnimationType.MIDDLEPEAKSPEED);
 	}
 
 	private void refreshPinOverlay(final ArrayList<OverlayItem> items){
@@ -433,7 +442,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 		final boolean doDefault = !handlePossibleAction();
 
 		if(doDefault){
-			final GeoPoint location = super.getLastKnownLocation(true);
+			final GeoPoint location = getLastKnownLocation(true);
 			if(location == null || Math.abs(location.getLatitudeE6()) <= 100 || Math.abs(location.getLongitudeE6()) <= 100) {
 				this.mOSMapView.getController().setZoom(3);
 			} else{
@@ -490,12 +499,12 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 						@Override
 						public void run() {
 							if(items.size() == 1) {
-								WhereAmIMap.super.mOSMapView.getController().setZoom(13);
+								WhereAmIMap.this.mOSMapView.getController().setZoom(13);
 							} else {
-								WhereAmIMap.super.mOSMapView.getController().zoomToSpan(itemBoundingBoxE6);
+								WhereAmIMap.this.mOSMapView.getController().zoomToSpan(itemBoundingBoxE6);
 							}
 
-							WhereAmIMap.super.mOSMapView.getController().animateTo(itemBoundingBoxE6.getCenter(), AnimationType.MIDDLEPEAKSPEED);
+							WhereAmIMap.this.mOSMapView.getController().animateTo(itemBoundingBoxE6.getCenter(), AnimationType.MIDDLEPEAKSPEED);
 						}
 					}, 500);
 
@@ -580,7 +589,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 					items.add(new OverlayItem(b.getString(EXTRAS_DESTINATION_TITLE), "", gp));
 					refreshPinOverlay(items);
 					WhereAmIMap.this.updateUIForAutoCenterChange(WhereAmIMap.CENTERMODE_NONE);
-					WhereAmIMap.super.mOSMapView.getController().animateTo(gp, AnimationType.MIDDLEPEAKSPEED);
+					WhereAmIMap.this.mOSMapView.getController().animateTo(gp, AnimationType.MIDDLEPEAKSPEED);
 				}
 				break;
             case REQUESTCODE_PICTURE:
@@ -879,13 +888,13 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 				}
 				return true;
 			case MENU_WEATHER_ID:
-				openWeatherDialog(super.mOSMapView.getMapCenter());
+				openWeatherDialog(this.mOSMapView.getMapCenter());
 				return true;
             case MENU_SUBMENU_POI:
-                showPoi(super.mOSMapView.getMapCenter(), item);
+                showPoi(item);
                 return true;
             case MENU_SUBMENU_FOXYTAG:
-                showFoxyTag(super.mOSMapView.getMapCenter(), item);
+                showFoxyTag(item);
                 return true;
             case MENU_SUBMENU_FAVORITE:
                 showFavorite(item);
@@ -1142,7 +1151,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 
 	@Override
 	public void onLocationChanged(final AndNavLocation pLocation) {
-		if(super.mOSMapView == null || this.mMyLocationOverlay == null) {
+		if(this.mOSMapView == null || this.mMyLocationOverlay == null) {
 			return;
 		}
 
@@ -1177,79 +1186,109 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 	// Methods
 	// ===========================================================
 
-    private void showPoi(final GeoPoint pGeoPoint, final MenuItem item) {
+    private void showPoi(final MenuItem item) {
         if (item.isChecked()) {
-            final List<CircleItem> pois = WhereAmIMap.this.mPOIOverlay.getCircleItems();
-            pois.clear();
             item.setChecked(false);
-            return;
+        } else {
+            item.setChecked(true);
         }
+        showOverlayPoi = item.isChecked();
 
-        Toast.makeText(WhereAmIMap.this, R.string.please_wait_a_moment, Toast.LENGTH_LONG).show();
-        new Thread(new Runnable(){
-                @Override
-                public void run() {
-                    final List<CircleItem> pois = WhereAmIMap.this.mPOIOverlay.getCircleItems();
-                    if (pois.size() > 0) {
-                        pois.clear();
-                    }
-                    for (final DBPOI poi : DBManager.getPOIs(WhereAmIMap.this, WhereAmIMap.this.mOSMapView.getBoundingBox())) {
-                        pois.add(new CircleItem(poi, WhereAmIMap.this, Color.YELLOW, poi.getName()));
-                    }
-                }
-            }, "POI-Runner").start();
-        item.setChecked(true);
+        updatePoi();
     }
 
-	private void showFoxyTag(final GeoPoint pGeoPoint, final MenuItem item) {
+    private void showFoxyTag(final MenuItem item) {
         if (item.isChecked()) {
-            final List<CircleItem> ff = WhereAmIMap.this.mFFOverlay.getCircleItems();
-            ff.clear();
             item.setChecked(false);
-            return;
+        } else {
+            item.setChecked(true);
         }
+        showOverlayFoxyTag = item.isChecked();
 
-        Toast.makeText(WhereAmIMap.this, R.string.please_wait_a_moment, Toast.LENGTH_LONG).show();
-        new Thread(new Runnable(){
-                @Override
-                public void run() {
-                    try {
-                        final List<CircleItem> ff = WhereAmIMap.this.mFFOverlay.getCircleItems();
-                        if (ff.size() > 0) {
-                            ff.clear();
-                        }
-                        for (final FoxyTagPoint fpp : FoxyTagRequester.request(WhereAmIMap.this, WhereAmIMap.this.mOSMapView.getMapCenter())) {
-                            if (WhereAmIMap.this.mOSMapView.getBoundingBox().contains(fpp.getCenter()))
-                                ff.add(fpp);
-                        }
-                    } catch (final Exception e) {
-                        Log.e(Constants.DEBUGTAG, "AASRequester-Error", e);
-                    }
-                }
-            }, "FoxyTag-Runner").start();
-        item.setChecked(true);
+        updateFoxyTag();
     }
 
     private void showFavorite(final MenuItem item) {
         if (item.isChecked()) {
-            final List<BitmapItem> fs = WhereAmIMap.this.mFavoriteOverlay.getBitmapItems();
-            fs.clear();
             item.setChecked(false);
-            return;
+        } else {
+            item.setChecked(true);
+        }
+        showOverlayFavorite = item.isChecked();
+
+        updateFavorite();
+    }
+
+    public void updateLayers() {
+        updatePoi();
+        updateFoxyTag();
+        updateFavorite();
+    }
+
+    private void updatePoi() {
+        final List<CircleItem> pois = WhereAmIMap.this.mPOIOverlay.getCircleItems();
+        if (pois.size() > 0) {
+            pois.clear();
         }
 
-        try {
-            final List<BitmapItem> fs = WhereAmIMap.this.mFavoriteOverlay.getBitmapItems();
-            if (fs.size() > 0) {
-                fs.clear();
-            }
-            for (final Favorite fp : DBManager.getFavorites(this, WhereAmIMap.this.mOSMapView.getBoundingBox())) {
-                fs.add(new FavoritePoint(fp, this));
-            }
-        } catch (final DataBaseException e) {
-            Log.e(Constants.DEBUGTAG, "Error on loading Favorites", e);
-		}
-        item.setChecked(true);
+        if (showOverlayPoi &&
+            this.mOSMapView.getZoomLevel() > 11) {
+            new Thread(new Runnable(){
+                    @Override
+                    public void run() {
+                        for (final DBPOI poi : DBManager.getPOIs(WhereAmIMap.this, WhereAmIMap.this.mOSMapView.getBoundingBox())) {
+                            pois.add(new CircleItem(poi, WhereAmIMap.this, Color.YELLOW, poi.getName()));
+                        }
+                    }
+                }, "POI-Runner").start();
+        }
+    }
+
+	private void updateFoxyTag() {
+        final List<CircleItem> ff = WhereAmIMap.this.mFFOverlay.getCircleItems();
+        if (ff.size() > 0) {
+            ff.clear();
+        }
+
+        if (showOverlayFoxyTag &&
+            this.mOSMapView.getZoomLevel() > 11) {
+            new Thread(new Runnable(){
+                    @Override
+                    public void run() {
+                        try {
+                            for (final FoxyTagPoint fpp : FoxyTagRequester.request(WhereAmIMap.this, WhereAmIMap.this.mOSMapView.getMapCenter())) {
+                                if (WhereAmIMap.this.mOSMapView.getBoundingBox().contains(fpp.getCenter()))
+                                    ff.add(fpp);
+                            }
+                        } catch (final Exception e) {
+                            Log.e(Constants.DEBUGTAG, "AASRequester-Error", e);
+                        }
+                    }
+                }, "FoxyTag-Runner").start();
+        }
+    }
+
+    private void updateFavorite() {
+        final List<BitmapItem> fs = WhereAmIMap.this.mFavoriteOverlay.getBitmapItems();
+        if (fs.size() > 0) {
+            fs.clear();
+        }
+
+        if (showOverlayFavorite &&
+            this.mOSMapView.getZoomLevel() > 11) {
+            new Thread(new Runnable(){
+                    @Override
+                    public void run() {
+                        try {
+                            for (final Favorite fp : DBManager.getFavorites(WhereAmIMap.this, WhereAmIMap.this.mOSMapView.getBoundingBox())) {
+                                fs.add(new FavoritePoint(fp, WhereAmIMap.this));
+                            }
+                        } catch (final DataBaseException e) {
+                            Log.e(Constants.DEBUGTAG, "Error on loading Favorites", e);
+                        }
+                    }
+                }, "Favorite-Runner").start();
+        }
     }
 
 	private void showCenterLatLonDialog() {
@@ -1457,7 +1496,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 		final GestureDetector gd = new GestureDetector(new GestureDetector.SimpleOnGestureListener(){
 			@Override
 			public void onLongPress(final MotionEvent e) {
-				final Projection pj = WhereAmIMap.super.mOSMapView.getProjection();
+				final Projection pj = WhereAmIMap.this.mOSMapView.getProjection();
 				WhereAmIMap.this.mGPLastMapClick = pj.fromPixels((int)e.getX(), (int)e.getY());
 
 				final String[] items = new String[]{
@@ -1749,7 +1788,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 				startDelayedHideControlsAnimation();
 				final int newMode = (WhereAmIMap.this.mDoCenter + 1) % 3;
 
-				final GeoPoint lastKnownLocationAsGeoPoint = WhereAmIMap.super.getLastKnownLocation(true);
+				final GeoPoint lastKnownLocationAsGeoPoint = WhereAmIMap.this.getLastKnownLocation(true);
 				if(lastKnownLocationAsGeoPoint != null){
 					switch(newMode){
 						case CENTERMODE_AUTO:
@@ -1806,7 +1845,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 			this.mNavPointsConnectionLineOverlay.setEnabled(false);
 		}
 
-		super.mOSMapView.invalidate();
+		this.mOSMapView.invalidate();
 	}
 
 	private void doNavToGeoPoint(final GeoPoint gp) {
@@ -1835,7 +1874,7 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 		Preferences.saveMapViewProviderInfoWhereAmI(this, aProviderInfo);
 
 		/* Check if Auto-Follow has to be disabled. */
-        super.mOSMapView.setTileSource(aProviderInfo);
+        this.mOSMapView.setTileSource(aProviderInfo);
 	}
 
 	private void updateUIForAutoCenterChange(final int pNewMode) {
@@ -1987,4 +2026,26 @@ public class WhereAmIMap extends OpenStreetMapAndNavBaseActivity implements Pref
 	// ===========================================================
 	// Inner and Anonymous Classes
 	// ===========================================================
+
+	private class AndRoadMapListener implements MapListener {
+        private WhereAmIMap map;
+
+        AndRoadMapListener(WhereAmIMap map) {
+            this.map = map;
+        }
+
+        @Override
+        public boolean onScroll(ScrollEvent e) {
+            map.updateLayers();
+            return true;
+        }
+
+		@Override
+		public boolean onZoom(ZoomEvent e) {
+            map.updateLayers();
+            return true;
+		}
+	}
+
+
 }
